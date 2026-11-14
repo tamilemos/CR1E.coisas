@@ -401,6 +401,10 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 .fc-app{border:2px solid currentColor;background:var(--verde);overflow:hidden}
 .fc-app .crow{padding-block:6px}
 .fc-app .crow-t{font-size:20px}
+.fc-scr{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px;background:var(--preto)}
+.fcard .fc-scr img{aspect-ratio:9/13;border:2px solid var(--papel);border-radius:10px}
+.btn.demo{margin-top:6px;font-size:clamp(15px,1.6vw,18px);padding:18px 30px;border:2px solid var(--preto);box-shadow:6px 6px 0 var(--preto);transition:transform .35s var(--spring),box-shadow .35s var(--spring)}
+.btn.demo:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--preto)}
 .fc-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px}
 .fc-ph img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 12%;border:2px solid var(--preto);display:block}
 .fgrid{grid-template-columns:minmax(0,1fr)}
@@ -422,6 +426,69 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 .metodo .t .a{background:var(--verde);color:var(--preto)}
 @media (prefers-reduced-motion: reduce){.sf .w{font-stretch:125%}}
 #h1 .g-c svg path{stroke:#fff}
+
+/* c8: ajustes finais */
+#h1 .g-c svg{left:-5%;top:-9%;width:110%;height:118%}
+#h1 .g-c svg path{stroke-width:clamp(3px,.032em,6px)}
+.flt .pill{font-size:10px;padding:5px 11px;letter-spacing:.06em}
+.sec-h .flt{max-width:420px}
+.vn{padding:clamp(30px,5vw,56px) clamp(26px,6vw,60px)}
+.vn-c{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;width:100%}
+.vn-l{font-family:var(--display);font-weight:900;font-stretch:125%;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:2px solid currentColor;border-radius:999px;padding:4px 12px}
+.vn.b .vn-l{color:var(--verde)}
+.vn p{margin:4px auto 0}
+.venn .vn:first-child{padding-bottom:calc(clamp(30px,5vw,56px) + 52px)}
+.vn.b{padding-top:calc(clamp(30px,5vw,56px) + 52px)}
+@media(min-width:900px){.venn .vn:first-child{padding:clamp(30px,5vw,56px) calc(160px + 24px) clamp(30px,5vw,56px) 24px}.vn.b{padding:clamp(30px,5vw,56px) 24px clamp(30px,5vw,56px) calc(160px + 24px)}}
+/* frentes: logo em destaque */
+.fc-h{flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(18px,2.6vw,34px) 0 clamp(20px,2.8vw,36px);text-align:center}
+.fc-h .lg{font-size:clamp(34px,4.3vw,62px)}
+/* cases */
+.job-i img{transition:transform .6s var(--spring)}
+.job:hover .job-i img{transform:scale(1.04)}
+dialog.sheet{width:min(860px,calc(100vw - 20px))}
+.sheet-i{aspect-ratio:auto;height:clamp(240px,44vh,420px);overflow-x:auto;overflow-y:hidden;gap:3px;scroll-snap-type:x proximity;scrollbar-width:thin}
+.sheet-i img{flex:none;width:auto;height:100%;object-fit:cover;scroll-snap-align:start;max-width:86vw}
+.sheet-i img:only-child{width:100%;max-width:none}
+.sheet-h{margin:8px 20px 0;font-size:10px}
+.sheet-p{font-size:15px;max-width:62ch}
+.sheet-k{display:grid;gap:14px 26px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:2px solid var(--preto);padding-top:14px}
+.sheet-k h3{margin:0 0 4px;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--verde);display:inline-block;padding:2px 8px}
+.sheet-k p{font-size:13px;color:#2A2A26}
+.res.big span{font-size:clamp(20px,2.6vw,30px);padding:5px 12px}
+.sheet-l{display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--preto);padding-top:12px}
+.sheet-l div{display:flex;flex-wrap:wrap;gap:8px}
+.sheet-l .pill{background:var(--preto);color:var(--verde);border-color:var(--preto)}
+/* manifesto em sanfona */
+.mani-x{font-size:inherit;margin-top:22px;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,30px)}
+.mani-x .mg{margin:0;font-family:var(--display);font-weight:800;font-stretch:62%;text-transform:uppercase;line-height:.94;letter-spacing:-.01em;font-size:clamp(22px,3vw,44px)}
+.mani-x .mg0,.mani-x .mg2{font-size:clamp(34px,5.4vw,84px)}
+.mani-x .ln{display:block}
+.mani-x .w{font-weight:900;font-stretch:62%;letter-spacing:-.01em;transition:font-stretch 1.1s var(--spring),letter-spacing 1.1s var(--spring)}
+.mani.in .mani-x .w{font-stretch:125%;letter-spacing:-.035em}
+.mani-x .mg1 .w{color:var(--verde)}
+.mani-x .w.a{background:var(--verde);color:var(--preto);padding:0 .1em;margin:0}
+.mani.in .mani-x .mg1 .w{transition-delay:.3s}
+.mani.in .mani-x .mg2 .w{transition-delay:.6s}
+.mani-x b{all:unset}
+@media(min-width:960px){.mani-g{grid-template-columns:1.9fr 1fr}}
+/* quem cria */
+.pf img{width:168px;height:168px;object-position:50% 50%}
+/* collab */
+.pt-top{display:flex;flex-direction:column;align-items:flex-start}
+.pt-logo{width:100%;display:flex;justify-content:center;padding:clamp(40px,7vw,96px) 0 clamp(36px,6vw,80px)}
+.pt-logo .lg{font-size:clamp(40px,9.5vw,132px)}
+.pt-logo .lg .o{animation:blo 3.4s var(--spring) infinite}
+.pt-top .sec-h{width:100%;align-items:flex-start}
+.pt-side{display:flex;flex-direction:column;gap:16px;align-items:flex-start;max-width:44ch}
+.pt-side p{margin:0;color:var(--mut)}
+.pt2 .pt-badge{position:static;width:clamp(104px,11vw,148px);right:auto;bottom:auto;top:auto;left:auto}
+.pt-badge text{font-size:10px;letter-spacing:.08em}
+.pt-call{margin-top:34px;border-top:2px solid var(--preto);padding-top:24px}
+.pt-call h3{font-size:clamp(30px,5vw,68px)}
+.pt-call p{margin:10px 0 0;max-width:52ch}
+@media(min-width:900px){.cb2 .card{min-width:0}.cb2 h3{font-size:clamp(16px,1.7vw,28px)}}
+@media (prefers-reduced-motion: reduce){.mani-x .w{font-stretch:125%}.pt-logo .lg .o{animation:none}}
 </style>
 
 <div class="intro" id="intro" role="dialog" aria-label="Abertura">
@@ -463,11 +530,10 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 <section class="sec metodo" id="metodo"><div class="wrap">
   <div class="sec-h"><h2 class="t" data-t="mt_t" data-fmt></h2><p data-t="mt_p"></p></div>
   <div class="venn">
-    <div class="vn"><h3 class="t w" data-t="mt_a"></h3><p data-t="mt_a_p"></p></div>
+    <div class="vn"><div class="vn-c"><h3 class="t w" data-t="mt_a"></h3><span class="vn-l" data-t="mt_go"></span><p data-t="mt_a_p"></p></div></div>
     <span class="pill v vx">CR1E.Coisas</span>
-    <div class="vn b"><h3 class="t w" data-t="mt_b"></h3><p data-t="mt_b_p"></p></div>
+    <div class="vn b"><div class="vn-c"><h3 class="t w" data-t="mt_b"></h3><span class="vn-l" data-t="mt_back"></span><p data-t="mt_b_p"></p></div></div>
   </div>
-  <div class="mt-l"><span class="lbl">→ <span data-t="mt_go"></span></span><span class="lbl">← <span data-t="mt_back"></span></span></div>
 </div></section>
 
 <section class="sec" id="frentes"><div class="wrap">
@@ -495,7 +561,7 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 </div></section>
 
 <section class="mani" id="manifesto"><div class="wrap"><div class="mani-g card">
-  <div><span class="pill" style="color:var(--verde)" data-t="mani_k"></span><p class="mani-x" id="mani" data-t="mani"></p></div>
+  <div><span class="pill" style="color:var(--verde)" data-t="mani_k"></span><div class="mani-x" id="mani"></div></div>
   <div class="sw" id="sw" data-s="a">
     <span class="lbl" data-t="sw_q"></span>
     <div class="sw-b"><span class="sw-k" aria-hidden="true"></span><button type="button" data-v="a" data-t="sw_a"></button><button type="button" data-v="b" data-t="sw_b"></button></div>
@@ -504,7 +570,7 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 </div></div></section>
 
 <section class="sec" id="tami" style="padding-top:0"><div class="wrap prof">
-  <div class="pf card sh"><img src="img/tami.jpg" alt="Tami Lemos sorrindo em set de gravação"><span class="pill v" style="border-color:var(--preto);align-self:flex-start" data-t="tami_role"></span>
+  <div class="pf card sh"><img src="img/tami-bust.jpg" alt="Tami Lemos sorrindo"><span class="pill v" style="border-color:var(--preto);align-self:flex-start" data-t="tami_role"></span>
     <h2 class="t">Tami <span class="w">Lemos</span></h2>
     <div><span class="lbl" data-t="pf_sk"></span><div class="pills"><span class="pill s" data-t="pf_s1"></span><span class="pill s" data-t="pf_s2"></span><span class="pill s" data-t="pf_s3"></span><span class="pill s">TikTok</span></div></div>
     <div class="ctas"><a class="pill" href="https://www.instagram.com/tamilemos/" target="_blank" rel="noopener">@tamilemos ↗</a><a class="pill k" href="#contato" data-t="tami_cta"></a></div></div>
@@ -514,10 +580,13 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
 <section class="pt2" id="portal-sec">
   <div class="crows" aria-hidden="true"><div class="crow"><div class="crow-t" id="crow1"></div></div><div class="crow k"><div class="crow-t" id="crow2"></div></div></div>
   <div class="wrap">
-  <div class="sec-h"><div><span class="pill k" data-t="pt_k"></span><h2 class="t" style="margin-top:16px"><span class="lg ptlg" id="ptLg"></span><span data-t="pt_t" data-fmt style="display:block"></span></h2></div><p data-t="pt_p"></p></div>
+  <div class="pt-top"><span class="pill k" data-t="pt_k"></span>
+    <div class="pt-logo"><span class="lg" id="ptLg"></span></div>
+    <div class="sec-h"><h2 class="t" data-t="pt_t" data-fmt></h2><div class="pt-side"><svg class="badge pt-badge" viewBox="0 0 120 120" role="img" aria-labelledby="ptbT"><title id="ptbT" data-t="pt_seal_a"></title><defs><path id="bp2" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><circle cx="60" cy="60" r="58"/><text><textPath href="#bp2" textLength="270" data-t="pt_seal"></textPath></text><rect x="38" y="51" width="44" height="18" rx="9"/></svg><p data-t="pt_p"></p><a class="btn demo" href="app/"><span data-t="pt_demo"></span> <span class="arr" aria-hidden="true">→</span></a><span class="lbl" data-t="pt_demo_p"></span></div></div></div>
   <div class="phones"><figure class="card sh"><img src="img/app-1.jpg" alt="Tela de entrada do app: áreas de arte em pastas"></figure><figure class="card sh"><img src="img/app-2.jpg" alt="Tela Rede do app: match entre artistas"></figure><figure class="card sh"><img src="img/app-3.jpg" alt="Tela Fórum do app"></figure><figure class="card sh"><img src="img/app-4.jpg" alt="Tela Jobs do app: filtro por área de atuação"></figure></div>
   <div class="cb2"><div class="card"><i></i><h3 class="t w" data-t="cb_2t"></h3><p data-t="cb_2"></p></div><div class="card v"><i></i><h3 class="t w">Jobs</h3><p data-t="cb_1"></p></div><div class="card"><i></i><h3 class="t w" data-t="cb_3t"></h3><p data-t="cb_3"></p></div><div class="card"><i></i><h3 class="t w" data-t="cb_4t"></h3><p data-t="cb_4"></p></div><div class="card k"><i></i><h3 class="t w" data-t="cb_5t"></h3><p data-t="cb_5"></p></div></div>
-  <div class="ctas" style="margin-top:28px"><button class="btn k" type="button" data-portal><span data-t="pt_cta"></span> <span class="arr" aria-hidden="true">→</span></button><a class="btn ln" href="https://claude.ai/artifact/PJfnLtHSTMjyVoTevRceY5" target="_blank" rel="noopener"><span data-t="pt_proto"></span> ↗</a></div>
+  <div class="pt-call"><h3 class="t" data-t="pt_call" data-fmt></h3><p data-t="pt_call_p"></p></div>
+  <div class="ctas" style="margin-top:18px"><button class="btn k" type="button" data-portal><span data-t="pt_cta"></span> <span class="arr" aria-hidden="true">→</span></button><a class="btn ln" href="app/"><span data-t="pt_proto"></span> →</a></div>
   <p class="lbl" style="margin-top:14px" data-t="pt_note"></p>
 </div></section>
 
@@ -609,14 +678,17 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
     eco_3t: ['Curadoria', 'Curation'], eco_3: ['A CR1E.Coisas seleciona e dirige artistas e criativos.', 'CR1E.Coisas selects and directs artists and creatives.'],
     eco_4t: ['Marcas', 'Brands'], eco_4: ['Recebem a entrega, para todo tipo de trabalho criativo.', 'Get the delivery, for every kind of creative work.'],
     eco_back: ['Cada projeto volta para a rede como trabalho e renda para artistas', 'Every project returns to the network as work and income for artists'],
-    pt_proto: ['Ver o protótipo', 'See the prototype'], pt_note: ['As telas são do protótipo do aplicativo.', 'Screens are from the app prototype.'],
+    pt_proto: ['Testar a versão demo', 'Try the demo'], pt_demo: ['Testar a versão demo', 'Try the demo'], pt_demo_p: ['Versão de teste, aberta para amigos da rede.', 'Test version, open to friends of the network.'], pt_note: ['As telas são do protótipo do aplicativo.', 'Screens are from the app prototype.'],
     cb_5t: ['Para marcas', 'For brands'], cb_5: ['A marca publica o briefing por área e tipo de entrega e recebe a proposta pronta. A curadoria dos artistas é da CR1E.Coisas.', 'Brands post a brief by field and deliverable and get a ready proposal. Artist curation is done by CR1E.Coisas.'],
     fr_p: ['Contrate por projeto ou como time contínuo. As quatro frentes trabalham juntas ou separadas, conforme o que a sua marca precisa.', 'Hire us per project or as an ongoing team. The four fronts work together or apart, depending on what your brand needs.'],
     cb_1: ['Oportunidades com marcas, filtradas por área de atuação e tipo de trabalho.', 'Brand opportunities, filtered by field and type of work.'],
     cb_2t: ['Rede', 'Network'], cb_2: ['Match entre artistas, contatos, mural e fórum por assunto.', 'Artist matching, contacts, a shared wall and a forum by topic.'],
     cb_3t: ['Estúdio', 'Studio'], cb_3: ['Media kit e proposta de orçamento prontos em minutos.', 'Media kit and budget proposal ready in minutes.'],
     cb_4t: ['Aulas', 'Classes'], cb_4: ['Cursos em vídeo, dados por artistas, sobre carreira criativa.', 'Video courses, taught by artists, on the creative career.'],
-    pt_cta: ['Quero entrar na rede', 'I want to join'], pt_d: ['O CR1E.Collab ainda não está aberto. Deixe seu contato e avisamos quando o cadastro for liberado.', 'CR1E.Collab is not open yet. Leave your contact and we will let you know when sign-up opens.'],
+    pt_cta: ['Quero receber primeiro', 'I want it first'],
+    pt_call: ['Receba o app ^^primeiro', 'Get the app ^^first'], pt_call_p: ['Entre na lista para receber o aplicativo antes do lançamento e chegar na rede antes de todo mundo.', 'Join the list to get the app before launch and be in the network before everyone else.'],
+    pt_seal: ['APP EM BREVE NO AR · CR1E.COLLAB · ', 'APP COMING SOON · CR1E.COLLAB · '], pt_seal_a: ['App em breve no ar', 'App coming soon'],
+    cs_videos: ['Assista aos vídeos', 'Watch the videos'], cs_fotos: ['Arraste para ver mais fotos', 'Swipe for more photos'], pt_d: ['O CR1E.Collab ainda não está aberto. Deixe seu contato e avisamos quando o cadastro for liberado.', 'CR1E.Collab is not open yet. Leave your contact and we will let you know when sign-up opens.'],
   });
 
   /* frentes: as quatro juntas */
@@ -626,7 +698,7 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
   const appFig = () => `<div class="fc-app"><div class="crow"><div class="crow-t">${Array(8).fill('<span>CR1E<b>.c<i></i>llab</b></span>').join('')}</div></div><div class="fc-ph"><img src="img/app-2.jpg" alt=""><img src="img/app-3.jpg" alt=""><img src="img/app-4.jpg" alt=""></div></div>`;
   function fitF() { document.querySelectorAll('.fcard h3').forEach((h) => { const lns = [...h.querySelectorAll('.ln')]; h.style.fontSize = '100px'; const w = Math.max(...lns.map((l) => l.getBoundingClientRect().width)); h.style.fontSize = Math.min(120, 100 * h.clientWidth / w * .985) + 'px'; }); }
   function frentes() {
-    $('fbox').innerHTML = `<div class="fgrid">${C.FR.map((f, i) => `<article class="fcard card sh ${f.id}" style="--i:${i}" aria-label="${C.namePlain(f.id)}"><div class="fc-h"><span class="lg">${C.nameHTML(f.id)}</span><span class="pill s">${C.tx(f.tag)}</span></div>${f.id === 'collab' ? appFig() : `<figure><img src="img/${f.img}.jpg" alt="" style="object-position:${f.pos}"></figure>`}<h3 class="t poster">${C.fmt(C.tx(f.h))}</h3><p>${C.tx(f.p)}</p><ul>${f.li.map((l) => `<li class="pill s">${C.tx(l)}</li>`).join('')}</ul></article>`).join('')}</div>`; fitF();
+    $('fbox').innerHTML = `<div class="fgrid">${C.FR.map((f, i) => `<article class="fcard card sh ${f.id}" style="--i:${i}" aria-label="${C.namePlain(f.id)}"><div class="fc-h"><span class="lg">${C.nameHTML(f.id)}</span><span class="pill s">${C.tx(f.tag)}</span></div>${f.id === 'collab' ? appFig() : f.imgs ? `<figure class="fc-scr">${f.imgs.map((k) => `<img src="img/${k}.jpg" alt="" style="object-position:${f.pos}">`).join('')}</figure>` : `<figure><img src="img/${f.img}.jpg" alt="" style="object-position:${f.pos}"></figure>`}<h3 class="t poster">${C.fmt(C.tx(f.h))}</h3><p>${C.tx(f.p)}</p><ul>${f.li.map((l) => `<li class="pill s">${C.tx(l)}</li>`).join('')}</ul></article>`).join('')}</div>`; fitF();
   }
 
   /* cases como fichas que abrem */
@@ -635,13 +707,13 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
     const frs = [...new Set(C.CS.map((c) => c.fr))];
     $('flt').innerHTML = [['all', C.t('cs_all')], ...frs.map((f) => [f, C.namePlain(f)])].map(([k, l]) => `<button class="pill" type="button" data-f="${k}" aria-pressed="${k === flt}">${l}</button>`).join('');
     const rot = [-1.2, 1.4, -0.8, 1.1, -1.5];
-    $('col').innerHTML = C.CS.map((c, i) => `<button class="job${flt !== 'all' && c.fr !== flt ? ' off' : ''}" type="button" data-case="${c.id}" data-fr="${c.fr}" style="--r:${rot[i % 5]}deg"><div class="job-i"><img src="img/${c.cover}.jpg" alt=""><span class="pill v" style="border-color:var(--preto)">${C.namePlain(c.fr)}</span></div><div class="job-b"><h3 class="t">${C.fmt(c.n)}</h3>${c.res ? `<div class="res">${c.res.slice(0, 2).map((r) => `<span>${r[0]} <small>${r[1 + C.lang()]}</small></span>`).join('')}</div>` : ''}<span class="lbl">${C.lang() ? 'Open case' : 'Abrir ficha'} →</span></div></button>`).join('');
+    $('col').innerHTML = C.CS.map((c, i) => `<button class="job${flt !== 'all' && c.fr !== flt ? ' off' : ''}" type="button" data-case="${c.id}" data-fr="${c.fr}" style="--r:${rot[i % 5]}deg"><div class="job-i">${c.cover.map((k) => `<img src="img/${k}.jpg" alt="" style="object-position:${c.pos || '50% 50%'}">`).join('')}<span class="pill v" style="border-color:var(--preto)">${C.namePlain(c.fr)}</span></div><div class="job-b"><h3 class="t">${C.fmt(c.n)}</h3><span class="lbl">${C.lang() ? 'Open case' : 'Abrir ficha'} →</span></div></button>`).join('');
   }
   $('flt').addEventListener('click', (e) => { const b = e.target.closest('[data-f]'); if (!b) return; flt = b.dataset.f; $('flt').querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); document.querySelectorAll('.job').forEach((c) => c.classList.toggle('off', flt !== 'all' && c.dataset.fr !== flt)); });
   const sheet = $('sheet');
   $('col').addEventListener('click', (e) => {
     const b = e.target.closest('[data-case]'); if (!b) return; const c = C.CS.find((x) => x.id === b.dataset.case);
-    $('shBody').innerHTML = `<div class="sheet-i">${c.imgs.map((k) => `<img src="img/${k}.jpg" alt="">`).join('')}</div><div class="sheet-b"><span class="pill v" style="border-color:var(--preto);align-self:flex-start">${C.namePlain(c.fr)}</span><h2 class="t" id="sh-t">${C.fmt(c.n)}</h2><p>${C.tx(c.p)}</p>${c.res ? `<div class="res">${c.res.map((r) => `<span>${r[0]} <small>${r[1 + C.lang()]}</small></span>`).join('')}</div>` : ''}<dl class="ficha" style="border-top:2px solid var(--preto);padding-top:12px">${c.f.map((r) => `<dt>${C.tx(r[0])}</dt><dd>${C.tx(r[1])}</dd>`).join('')}</dl><a class="btn k" href="#contato" id="shGo" style="justify-content:center">${C.t('cta')} <span class="arr" aria-hidden="true">→</span></a></div>`;
+    $('shBody').innerHTML = `<div class="sheet-i" tabindex="0" aria-label="${C.t('cs_fotos')}">${c.imgs.map((k) => `<img src="img/${k}.jpg" alt="" loading="lazy">`).join('')}</div>${c.imgs.length > 2 ? `<p class="lbl sheet-h">${C.t('cs_fotos')} →</p>` : ''}<div class="sheet-b"><span class="pill v" style="border-color:var(--preto);align-self:flex-start">${C.namePlain(c.fr)}</span><h2 class="t" id="sh-t">${C.fmt(c.n)}</h2><p class="sheet-p">${C.tx(c.p)}</p>${c.b ? `<div class="sheet-k">${c.b.map((r) => `<div><h3>${C.tx(r[0])}</h3><p>${C.tx(r[1])}</p></div>`).join('')}</div>` : ''}${c.res ? `<div class="res big">${c.res.map((r) => `<span>${r[0]} <small>${r[1 + C.lang()]}</small></span>`).join('')}</div>` : ''}<dl class="ficha" style="border-top:2px solid var(--preto);padding-top:12px">${c.f.map((r) => `<dt>${C.tx(r[0])}</dt><dd>${C.tx(r[1])}</dd>`).join('')}</dl>${c.lk ? `<div class="sheet-l"><span class="lbl">${C.t('cs_videos')}</span><div>${c.lk.map((l) => `<a class="pill" href="${l[1]}" target="_blank" rel="noopener">${C.tx(l[0])} ↗</a>`).join('')}</div></div>` : ''}<a class="btn k" href="#contato" id="shGo" style="justify-content:center">${C.t('cta')} <span class="arr" aria-hidden="true">→</span></a></div>`;
     $('shGo').onclick = () => sheet.close();
     sheet.showModal ? sheet.showModal() : sheet.setAttribute('open', '');
   });
@@ -653,7 +725,7 @@ dialog.sheet::backdrop{background:rgba(14,14,12,.6)}
   sw.addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (!b) return; sw.dataset.s = b.dataset.v; $('swr').textContent = ''; clearTimeout(tm); tm = setTimeout(() => { sw.dataset.s = 'both'; $('swr').textContent = C.t('sw_r'); }, reduce ? 0 : 520); });
   function swLang() { if (sw.dataset.s === 'both') $('swr').textContent = C.t('sw_r'); }
 
-  function maniG() { $('mani').querySelectorAll('s').forEach((s) => { s.outerHTML = `<span class="g g-s">${s.innerHTML}<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" vector-effect="non-scaling-stroke" d="M1,6 C25,2 50,8 99,3"/></svg></span>`; }); }
+  function maniG() { $('mani').innerHTML = C.t('mani').split('|').map((g, i) => `<p class="mg mg${i}">${C.fmt(g)}</p>`).join(''); C.lang; $('mani').querySelectorAll('s').forEach((s) => { s.outerHTML = `<span class="g g-s">${s.innerHTML}<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" vector-effect="non-scaling-stroke" d="M1,6 C25,2 50,8 99,3"/></svg></span>`; }); }
   function closeT() { $('closeT').innerHTML = C.fmt(C.t('close_t')).replace(/⬭/g, '<span class="O" aria-hidden="true"></span>'); }
   function fit() {
     document.querySelectorAll('[data-fit]').forEach((el) => {
