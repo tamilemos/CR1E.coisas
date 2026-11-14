@@ -80,6 +80,13 @@
 .covp{all:unset;cursor:pointer;width:56px;height:40px;border:2px solid var(--preto);background-size:cover;background-position:center}
 .covp[aria-pressed="true"]{box-shadow:0 0 0 3px var(--verde),0 0 0 5px var(--preto)}
 .covp:focus-visible{outline:3px solid var(--preto);outline-offset:3px}
+
+/* perfil: sem título grande, o cartão começa no topo da página */
+[data-view="perfil"],[data-view="artista"]{gap:10px;padding-top:10px}
+.pfh{display:flex;align-items:center;gap:10px;min-height:28px}
+.pft{margin:0;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1;background:var(--verde);padding:3px 8px;border:2px solid var(--preto)}
+.pfh .back{align-self:center}
+.pf #apN{font-size:clamp(30px,5vw,48px);line-height:.95;overflow-wrap:anywhere}
 </style></head><body>
 <title>CR1E.Collab · A rede de quem cria</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -934,7 +941,7 @@ button.pill.s.rmv::after{content:"×";margin-left:6px}
         <div class="agrid" id="arList"></div>
       </section>
       <section class="view" data-view="artista" aria-labelledby="apN" hidden>
-        <a class="pill back" href="#artistas" id="apBack">← Artistas</a>
+        <div class="pfh"><a class="pill s back" href="#artistas" id="apBack">← Artistas</a><span class="pft">Perfil</span></div>
         <div class="pub">
           <div class="pf card sh" style="transform:rotate(-1deg)"><div class="cov" id="apCov" role="img" aria-label="Foto de capa"></div><span class="av big avc" id="apAv"></span><h1 class="t w" id="apN"></h1><span class="pf-loc" id="apR"></span><div id="apAr"></div><p id="apB"></p><div class="short" id="apActs"></div><span class="lbl sm">Habilidades</span><div class="pills sm" id="apSk"></div><span class="lbl">Gostos e hobbies</span><div class="pills" id="apHb"></div>
             <button class="btn k" type="button" id="apInv" style="justify-content:center" hidden></button><button class="btn ln" type="button" id="apMsg" style="justify-content:center">Enviar mensagem</button><span class="note" id="apMsgN">As mensagens abrem quando vocês dois se seguem.</span></div>
@@ -951,7 +958,7 @@ button.pill.s.rmv::after{content:"×";margin-left:6px}
 
       <!-- PERFIL -->
       <section class="view" data-view="perfil" aria-labelledby="v-perfil" hidden>
-        <div class="vh"><h1 class="t"><span class="ln">Seu</span><span class="ln w a">perfil</span></h1><p id="pfLead">É assim que a curadoria e a rede veem você. Complete para se candidatar aos jobs.</p></div>
+        <div class="pfh"><h1 class="pft">Perfil</h1><p id="pfLead" hidden></p></div>
         <div class="prof">
           <div class="pf card sh">
             <div class="pv" id="pfView">
