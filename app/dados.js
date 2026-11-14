@@ -92,8 +92,8 @@ const A = {
     unsub.push(onSnapshot(query(collection(db, 'posts'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.posts(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
     unsub.push(onSnapshot(query(collection(db, 'forum'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.forum(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
   },
-  async post(S, t) {
-    const u = auth.currentUser; await addDoc(collection(db, 'posts'), { uid: u.uid, name: S.name, t, likes: [], reposts: [], replies: [], ts: serverTimestamp() });
+  async post(S, t, img) {
+    const u = auth.currentUser; await addDoc(collection(db, 'posts'), { uid: u.uid, name: S.name, t, img: img || '', likes: [], reposts: [], replies: [], ts: serverTimestamp() });
     drive('Mural', { nome: S.name, texto: t });
   },
   togglePost: (id, field, on) => updateDoc(doc(db, 'posts', id), { [field]: on ? arrayUnion(auth.currentUser.uid) : arrayRemove(auth.currentUser.uid) }),
