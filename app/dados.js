@@ -48,7 +48,7 @@ async function drive(type, data, files = []) {
 const fileOf = (name, dataUrl) => dataUrl ? { name, mime: 'image/jpeg', b64: dataUrl.split(',')[1] } : null;
 
 /* perfil público (sem e-mail) */
-const pub = (S) => ({ name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], uf: S.uf || '', cid: S.cid || '', conns: [...(S.follow || [])], follow: [...(S.follow || [])], done: true, updated: serverTimestamp() });
+const pub = (S) => ({ name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], uf: S.uf || '', cid: S.cid || '', conns: [...(S.follow || [])], follow: [...(S.follow || [])], chats: [...(S.chats || [])], done: true, updated: serverTimestamp() });
 
 let unsub = [];
 const A = {
