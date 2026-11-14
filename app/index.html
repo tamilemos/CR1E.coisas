@@ -762,14 +762,14 @@ button.pill.s.rmv::after{content:"×";margin-left:6px}
       <!-- REDE -->
       <section class="view" data-view="rede" aria-labelledby="v-rede" hidden>
         <div class="vh"><h1 class="t" id="v-rede">Gente que <span class="w a">cria</span></h1><p>Conheça artistas além do portfólio: gostos, hobbies e habilidades.</p></div>
-        <div class="seg s3" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="match" aria-pressed="true">Match</button><button type="button" data-rt="social" aria-pressed="false">Feed</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
-        <div id="rdMatch">
+        <div class="seg s3" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Contatos</button><button type="button" data-rt="match" aria-pressed="false">Match</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
+        <div id="rdMatch" hidden>
           <div class="deck-w">
             <div><div class="deck" id="deck"></div><div class="acts"><button class="btn ln" type="button" id="skip">Pular</button><button class="btn k" type="button" id="conn">Seguir <span class="arr" aria-hidden="true">→</span></button></div></div>
             <div class="net"><h2 class="t">Você <span class="w">segue</span></h2><div id="conns"></div><button class="pill" type="button" data-rt="social" style="align-self:flex-start">Ver o feed da rede →</button></div>
           </div>
         </div>
-        <div id="rdSocial" hidden>
+        <div id="rdSocial">
           <div class="sub"><h2 class="t">Quem você <span class="w a">segue</span></h2></div>
           <div id="ctList"></div>
           <div class="feedw"><div class="feedh"><i aria-hidden="true"></i><b>Feed da rede</b><span>o que a rede está publicando agora</span></div><form class="compose2" id="postF"><span class="av" id="postAv" aria-hidden="true"></span><div><textarea id="postI" maxlength="600" rows="2" aria-label="Compartilhe com a rede" placeholder="O que você está criando?"></textarea><div class="ft2"><span class="cnt" id="postN">0/600</span><button class="btn k" type="submit">Publicar</button></div></div></form>
@@ -1126,7 +1126,7 @@ button.pill.s.rmv::after{content:"×";margin-left:6px}
   const OB = { artista: ['Habilidades: escolha as suas', ['Muralismo', 'Ilustração', 'Lettering', 'Graffiti', 'Live painting', 'Customização', 'Vídeo', 'Oficinas']], empresa: ['O que você procura?', ['Mural', 'Live painting', 'Conteúdo e UGC', 'Customização', 'Oficina para o time', 'Cenografia']] };
   const BSTEPS = ['Publicado', 'Curadoria', 'Proposta', 'Aprovado', 'Produção', 'Entregue'], CSTEPS = ['Enviada', 'Em curadoria', 'Aprovada', 'Em produção', 'Entregue'];
 
-  const S = { name: '', avatar: '', fotos: ['', '', ''], seen: new Set(), fb: '', role: 'artista', applied: new Set(), conns: [], done: new Set(), jf: 'Todos', ja: 'Todas', bTipo: '', bArea: '', di: 0, cf: 'Todos', crs: 'feed', les: 0, briefs: [], inv: new Set(), canva: false, ff: 'Todos', mat: 'sintetico', saved: new Set(), cst: {}, th: 0, msgs: {}, thN: 'Curadoria CR1E.Coisas', read: false, pro: false, sk: [], skA: 'Artes visuais', hbA: 'Cultura', rt: 'match', posts: [], liked: new Set(), fcat: 'Todos', top: '', forum: FORUM, fall: false, obA: new Set(), obStep: 1, obG: new Set(), obH: new Set(), hb: [], want: [], bid: '', aid: '', proj: [], ob: new Set() };
+  const S = { name: '', avatar: '', fotos: ['', '', ''], seen: new Set(), fb: '', role: 'artista', applied: new Set(), conns: [], done: new Set(), jf: 'Todos', ja: 'Todas', bTipo: '', bArea: '', di: 0, cf: 'Todos', crs: 'feed', les: 0, briefs: [], inv: new Set(), canva: false, ff: 'Todos', mat: 'sintetico', saved: new Set(), cst: {}, th: 0, msgs: {}, thN: 'Curadoria CR1E.Coisas', read: false, pro: false, sk: [], skA: 'Artes visuais', hbA: 'Cultura', rt: 'social', posts: [], liked: new Set(), fcat: 'Todos', top: '', forum: FORUM, fall: false, obA: new Set(), obStep: 1, obG: new Set(), obH: new Set(), hb: [], want: [], bid: '', aid: '', proj: [], ob: new Set() };
 
   let DECK = []; /* perfis reais de outros testadores, carregados do Firebase */
   /* entrada */
