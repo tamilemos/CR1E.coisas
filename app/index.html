@@ -106,6 +106,17 @@ button.thr:hover{background:var(--verde)}
 button.thr:focus-visible{outline:3px solid var(--preto);outline-offset:-3px}
 button.thr .note{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
 [data-view="avisos"] .sub{margin:0;align-items:center}
+
+/* etiqueta "Perfil" preta, colada no topo do cartão; áreas de atuação menores */
+[data-view="perfil"],[data-view="artista"],[data-view="mensagens"]{padding-top:6px}
+.pfh{margin-bottom:-10px;align-items:flex-end;min-height:0;gap:8px}
+.pft{background:var(--preto);color:var(--papel);border:2px solid var(--preto);border-bottom:0;font-size:11px;padding:5px 10px 4px}
+.pfh .back{margin-bottom:4px}
+[data-view="artista"] .pf.card{transform:none !important}
+.view[data-view="perfil"],.view[data-view="artista"],.view[data-view="mensagens"]{gap:10px;padding-top:6px}
+.view[data-view="rede"]{gap:14px}
+.arb{font-size:12px;padding:4px 8px;box-shadow:2px 2px 0 var(--preto)}
+.pf-ar.sm .arb{font-size:10px;padding:3px 7px}
 </style></head><body>
 <title>CR1E.Collab · A rede de quem cria</title>
 <meta name="claude:viewport-fit-sides" content="cover">
