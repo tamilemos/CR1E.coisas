@@ -48,7 +48,7 @@ async function drive(type, data, files = []) {
 const fileOf = (name, dataUrl) => dataUrl ? { name, mime: 'image/jpeg', b64: dataUrl.split(',')[1] } : null;
 
 /* perfil público (sem e-mail) */
-const pub = (S) => ({ name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], conns: (S.conns || []).map((a) => a.uid).filter(Boolean), done: true, updated: serverTimestamp() });
+const pub = (S) => ({ name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], uf: S.uf || '', cid: S.cid || '', conns: [...new Set(S.connIds || [])], follow: [...(S.follow || [])], dec: [...(S.declined || [])], done: true, updated: serverTimestamp() });
 
 let unsub = [];
 const A = {
@@ -78,7 +78,7 @@ const A = {
     await setDoc(doc(db, 'profiles', u.uid), { ...pub(S), avatar, fotos, ...(event === 'cadastro' ? { created: serverTimestamp(), consent: true } : {}) }, { merge: true });
     if (event) {
       const files = event === 'cadastro' || event === 'fotos' ? [fileOf('perfil.jpg', S.avatar), ...(S.fotos || []).map((f, i) => fileOf(`trabalho-${i + 1}.jpg`, f))].filter(Boolean) : [];
-      drive(event === 'cadastro' ? 'Cadastros' : 'Perfis', { evento: event, nome: S.name, perfil: S.role, areas_habilidades: (S.role === 'empresa' ? S.want : S.sk).join(', '), gostos: (S.hb || []).join(', '), bio: S.cvBio || '', curriculo: (S.cv || []).map((c) => `${c.a} · ${c.t} · ${c.o}`).join(' | '), links: (S.links || []).map((l) => `${l.n}: ${l.u}`).join(' | ') }, files);
+      drive(event === 'cadastro' ? 'Cadastros' : 'Perfis', { evento: event, nome: S.name, perfil: S.role, cidade: [S.cid, S.uf].filter(Boolean).join(', '), areas_habilidades: (S.role === 'empresa' ? S.want : S.sk).join(', '), gostos: (S.hb || []).join(', '), bio: S.cvBio || '', curriculo: (S.cv || []).map((c) => `${c.a} · ${c.t} · ${c.o}`).join(' | '), links: (S.links || []).map((l) => `${l.n}: ${l.u}`).join(' | ') }, files);
     }
   },
   drive,
