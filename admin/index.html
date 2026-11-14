@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel · CR1E.Collab</title>
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,700..900&family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{--preto:#0E0E0C;--papel:#F4F3EE;--verde:#C5FF3D;--grafite:#1C1C19;--papel-2:#E9E8E1;--cinza:#9A9A92;--cinza-p:#5F5F58;--linha:#34342F;--display:'Archivo','Arial Black',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--preto);color:var(--papel);font-family:var(--mono);font-size:14px;line-height:1.55;min-height:100vh}
+a{color:inherit}
+.lg{font-family:var(--display);font-weight:900;font-stretch:125%;font-size:22px;letter-spacing:-.02em}
+.lg b{color:var(--preto);background:var(--verde);padding:0 .2em;margin-left:2px}
+.t{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;line-height:.95;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(16px,3vw,32px)}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--linha);flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:4px 12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza);background:none;font-family:var(--mono);cursor:pointer;text-decoration:none}
+.pill.v{background:var(--verde);color:var(--preto);border-color:var(--verde);font-weight:700}
+.pill[aria-pressed="true"]{background:var(--papel);color:var(--preto);border-color:var(--papel)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font-family:var(--display);font-weight:900;font-stretch:110%;text-transform:uppercase;font-size:14px;background:var(--verde);color:var(--preto);cursor:pointer;text-decoration:none}
+.btn.ln{background:none;color:var(--papel);border:1px solid var(--linha)}
+.btn:disabled{opacity:.5}
+/* login */
+.gate{min-height:100vh;display:grid;place-items:center;padding:20px}
+.box{width:min(420px,100%);background:var(--grafite);border:1px solid var(--linha);padding:28px;display:flex;flex-direction:column;gap:14px}
+.box h1{font-size:34px}
+label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--cinza);letter-spacing:.06em;text-transform:uppercase}
+input,select{font:inherit;font-size:16px;background:var(--preto);color:var(--papel);border:1px solid var(--linha);padding:11px 12px;text-transform:none;letter-spacing:0}
+input:focus,select:focus{outline:2px solid var(--verde);outline-offset:1px}
+.msg{min-height:1.4em;color:var(--verde);font-size:13px}
+.lnk{background:none;border:0;padding:0;color:var(--cinza);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer;align-self:flex-start}
+/* painel */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--linha);border:1px solid var(--linha);margin:22px 0}
+.kpi{background:var(--preto);padding:16px}
+.kpi b{display:block;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:40px;line-height:1;color:var(--verde)}
+.kpi span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.bar input{flex:1;min-width:200px;padding:9px 12px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza);border-bottom:1px solid var(--linha);padding:8px 10px;white-space:nowrap}
+td{border-bottom:1px solid var(--linha);padding:10px;vertical-align:top}
+tr:hover td{background:var(--grafite)}
+.av{width:36px;height:36px;border-radius:50%;background:var(--verde);color:var(--preto);display:grid;place-items:center;font-weight:700;font-size:12px;overflow:hidden;flex:none}
+.av img{width:100%;height:100%;object-fit:cover}
+.who{display:flex;gap:10px;align-items:center}
+.who b{font-family:var(--display);font-weight:900;font-size:15px}
+.tag{display:inline-block;border:1px solid var(--linha);padding:1px 7px;font-size:11px;margin:0 4px 4px 0;color:var(--papel-2)}
+.mut{color:var(--cinza);font-size:12px}
+.scroll{overflow-x:auto;border:1px solid var(--linha)}
+.item{border:1px solid var(--linha);padding:14px;margin-bottom:10px;background:var(--grafite)}
+.item p{margin:6px 0 0;white-space:pre-wrap;word-break:break-word}
+.item .row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.del{background:none;border:1px solid #6b2a2a;color:#ff8a8a;border-radius:999px;padding:4px 12px;font:inherit;font-size:11px;cursor:pointer;text-transform:uppercase;letter-spacing:.08em}
+.del[data-sure="1"]{background:#ff8a8a;color:var(--preto)}
+.empty{border:1px dashed var(--linha);padding:24px;text-align:center;color:var(--cinza)}
+.fotos{display:flex;gap:4px;margin-top:6px}
+.fotos img{width:44px;height:44px;object-fit:cover;border:1px solid var(--linha)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <form class="box" id="lf" novalidate>
+    <span class="lg">CR1E<b>.collab</b></span>
+    <h1 class="t">Painel de controle</h1>
+    <p class="mut" style="margin:0">Acesso restrito à conta de administração da CR1E.Coisas.</p>
+    <label>E-mail<input id="le" type="email" autocomplete="username" required></label>
+    <label>Senha<input id="lp" type="password" autocomplete="current-password" required></label>
+    <button class="btn" type="submit" id="lb">Entrar →</button>
+    <button class="lnk" type="button" id="lfg">Esqueci minha senha</button>
+    <button class="lnk" type="button" id="lnew">Primeiro acesso: criar a senha de admin</button>
+    <p class="msg" id="lm" role="alert"></p>
+    <a class="mut" href="../">← Voltar ao site</a>
+  </form>
+</div>
+
+<main class="wrap" id="app" hidden>
+  <header class="top">
+    <span class="lg">CR1E<b>.collab</b> <span class="mut" style="font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.1em">PAINEL</span></span>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="mut" id="me"></span><button class="pill" type="button" id="out">Sair</button></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="links">
+    <a class="pill v" target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/1jsqzvY6QKLkKRyX8mcLbuA-z0fz03popw3dLPjEM7g4/edit">Planilha de envios ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1IPnzg7tqFJJjxeet_rGv4zL_TFjY4tlB">Arquivos dos testadores ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/authentication/users">Contas (Firebase) ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/firestore/data">Banco de dados ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="../app/">Abrir o app ↗</a>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="pill" type="button" data-tab="pessoas" aria-pressed="true">Cadastros</button>
+    <button class="pill" type="button" data-tab="mural" aria-pressed="false">Mural</button>
+    <button class="pill" type="button" data-tab="forum" aria-pressed="false">Fórum</button>
+  </div>
+
+  <section id="t-pessoas">
+    <div class="bar"><input id="q" type="search" placeholder="Buscar por nome, área ou e-mail"><select id="fr"><option value="">Todos</option><option value="artista">Artistas</option><option value="empresa">Empresas</option></select><button class="pill" type="button" id="csv">Baixar CSV</button></div>
+    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Áreas e habilidades</th><th>Gostos</th><th>Cadastro</th></tr></thead><tbody id="tb"></tbody></table></div>
+  </section>
+  <section id="t-mural" hidden><div id="ml"></div></section>
+  <section id="t-forum" hidden><div id="fl"></div></section>
+  <p class="mut" style="margin-top:28px">Os dados completos (incluindo arquivos originais) também chegam na planilha e na pasta do Drive da CR1E.Coisas.</p>
+</main>
+
+<script src="../app/config.js"></script>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, collection, onSnapshot, query, orderBy, limit, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const ADMIN = 'tami@cr1e.co';
+const app = initializeApp(window.CR1E_CONFIG.firebase);
+const auth = getAuth(app); auth.languageCode = 'pt-BR';
+const db = getFirestore(app);
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const dt = (v) => { const d = v && v.toDate ? v.toDate() : (typeof v === 'number' ? new Date(v) : null); return d ? d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—'; };
+const ms = (v) => v && v.toDate ? v.toDate().getTime() : 0;
+const av = (img, n) => `<span class="av">${img ? `<img src="${img}" alt="">` : esc((n || '?').slice(0, 2).toUpperCase())}</span>`;
+const MSG = { 'auth/invalid-credential': 'E-mail ou senha não conferem.', 'auth/too-many-requests': 'Muitas tentativas. Espere alguns minutos.', 'auth/email-already-in-use': 'A senha de admin já foi criada. Use "Entrar" ou "Esqueci minha senha".', 'auth/weak-password': 'A senha precisa ter pelo menos 6 caracteres.' };
+const msg = (e) => MSG[e && e.code] || 'Não deu certo. Tente de novo.';
+const lm = (t) => { $('lm').textContent = t; };
+const isAdmin = (u) => u && (u.email || '').toLowerCase() === ADMIN;
+
+$('lf').addEventListener('submit', async (e) => {
+  e.preventDefault(); const em = $('le').value.trim().toLowerCase(), pw = $('lp').value;
+  if (em !== ADMIN) return lm('Este painel é só para a conta de administração.');
+  $('lb').disabled = true; lm('Entrando…');
+  try { await signInWithEmailAndPassword(auth, em, pw); } catch (er) { lm(msg(er)); }
+  $('lb').disabled = false;
+});
+$('lnew').addEventListener('click', async () => {
+  const em = $('le').value.trim().toLowerCase(), pw = $('lp').value;
+  if (em !== ADMIN) return lm('Escreva o e-mail de administração acima.');
+  if (pw.length < 6) return lm('Escreva a senha que você quer usar (pelo menos 6 caracteres) e toque de novo.');
+  try { const c = await createUserWithEmailAndPassword(auth, em, pw); await sendEmailVerification(c.user, { url: location.href }); lm('Senha criada. Confirme o e-mail que acabamos de enviar e depois entre.'); } catch (er) { lm(msg(er)); }
+});
+$('lfg').addEventListener('click', async () => {
+  const em = $('le').value.trim().toLowerCase(); if (em !== ADMIN) return lm('Escreva o e-mail de administração acima.');
+  try { await sendPasswordResetEmail(auth, em); lm('Enviamos um link para criar uma senha nova.'); } catch (er) { lm(msg(er)); }
+});
+$('out').addEventListener('click', () => signOut(auth));
+
+let unsub = [];
+const D = { profiles: [], priv: {}, posts: [], forum: [] };
+onAuthStateChanged(auth, async (u) => {
+  unsub.forEach((f) => f()); unsub = [];
+  if (!u) { $('app').hidden = true; $('gate').hidden = false; return; }
+  if (!isAdmin(u)) { lm('Esta conta não tem acesso ao painel.'); await signOut(auth); return; }
+  await u.reload().catch(() => {});
+  if (!auth.currentUser.emailVerified) { lm('Confirme o e-mail de administração (link enviado para a sua caixa) e entre de novo.'); sendEmailVerification(u, { url: location.href }).catch(() => {}); await signOut(auth); return; }
+  await u.getIdToken(true).catch(() => {});
+  $('gate').hidden = true; $('app').hidden = false; $('me').textContent = u.email;
+  const err = (name) => () => { if (name) document.getElementById(name).innerHTML = '<div class="empty">Sem permissão de leitura. Confira as regras do Firestore.</div>'; };
+  unsub.push(onSnapshot(query(collection(db, 'profiles'), limit(1000)), (s) => { D.profiles = s.docs.map((d) => ({ uid: d.id, ...d.data() })); draw(); }, err()));
+  unsub.push(onSnapshot(query(collection(db, 'private'), limit(1000)), (s) => { D.priv = Object.fromEntries(s.docs.map((d) => [d.id, d.data()])); draw(); }, () => {}));
+  unsub.push(onSnapshot(query(collection(db, 'posts'), orderBy('ts', 'desc'), limit(300)), (s) => { D.posts = s.docs.map((d) => ({ id: d.id, ...d.data() })); draw(); }, err('ml')));
+  unsub.push(onSnapshot(query(collection(db, 'forum'), orderBy('ts', 'desc'), limit(300)), (s) => { D.forum = s.docs.map((d) => ({ id: d.id, ...d.data() })); draw(); }, err('fl')));
+});
+
+const rows = () => {
+  const q = $('q').value.trim().toLowerCase(), f = $('fr').value;
+  return D.profiles.map((p) => ({ ...p, email: (D.priv[p.uid] || {}).email || '' }))
+    .filter((p) => (!f || p.role === f) && (!q || [p.name, p.email, ...(p.sk || []), ...(p.want || [])].join(' ').toLowerCase().includes(q)))
+    .sort((a, b) => ms(b.created) - ms(a.created));
+};
+function draw() {
+  const P = D.profiles, wk = Date.now() - 7 * 864e5;
+  const k = [[P.length, 'perfis'], [P.filter((p) => p.role !== 'empresa').length, 'artistas'], [P.filter((p) => p.role === 'empresa').length, 'empresas'], [P.filter((p) => ms(p.created) > wk).length, 'novos em 7 dias'], [D.posts.length, 'posts no mural'], [D.forum.length, 'tópicos no fórum']];
+  $('kpis').innerHTML = k.map(([n, l]) => `<div class="kpi"><b>${n}</b><span>${l}</span></div>`).join('');
+  const R = rows();
+  $('tb').innerHTML = R.length ? R.map((p) => `<tr><td><div class="who">${av(p.avatar, p.name)}<div><b>${esc(p.name)}</b>${p.cvBio ? `<div class="mut">${esc(p.cvBio).slice(0, 140)}</div>` : ''}${(p.fotos || []).filter(Boolean).length ? `<div class="fotos">${p.fotos.filter(Boolean).map((f) => `<img src="${f}" alt="">`).join('')}</div>` : ''}</div></div></td><td>${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : '<span class="mut">na planilha</span>'}</td><td>${p.role === 'empresa' ? 'Empresa' : 'Artista'}</td><td>${(p.role === 'empresa' ? p.want : p.sk || []).map((x) => `<span class="tag">${esc(x)}</span>`).join('') || '<span class="mut">—</span>'}</td><td>${(p.hb || []).map((x) => `<span class="tag">${esc(x)}</span>`).join('') || '<span class="mut">—</span>'}</td><td class="mut" style="white-space:nowrap">${dt(p.created)}</td></tr>`).join('') : '<tr><td colspan="6"><div class="empty">Ninguém se cadastrou ainda.</div></td></tr>';
+  $('ml').innerHTML = D.posts.length ? D.posts.map((p) => `<div class="item"><div class="row"><div><b>${esc(p.name)}</b> <span class="mut">· ${dt(p.ts)} · ${(p.likes || []).length} curtidas · ${(p.reposts || []).length} reposts · ${(p.replies || []).length} respostas</span></div><button class="del" type="button" data-del="posts/${p.id}">Apagar</button></div><p>${esc(p.t)}</p>${(p.replies || []).map((r) => `<p class="mut">↳ <b>${esc(r.name)}</b>: ${esc(r.t)}</p>`).join('')}</div>`).join('') : '<div class="empty">Nenhum post no mural ainda.</div>';
+  $('fl').innerHTML = D.forum.length ? D.forum.map((t) => `<div class="item"><div class="row"><div><span class="tag">${esc(t.cat)}</span> <b>${esc(t.t)}</b> <span class="mut">· ${dt(t.ts)} · ${(t.msgs || []).length} mensagens</span></div><button class="del" type="button" data-del="forum/${t.id}">Apagar</button></div>${(t.msgs || []).map((m) => `<p><b>${esc(m.name)}</b>: ${esc(m.t)}</p>`).join('')}</div>`).join('') : '<div class="empty">Nenhum tópico no fórum ainda.</div>';
+}
+$('q').addEventListener('input', draw); $('fr').addEventListener('change', draw);
+document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['pessoas', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-del]'); if (!b) return;
+  if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Confirmar'; setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Apagar'; }, 4000); return; }
+  const [c, id] = b.dataset.del.split('/'); b.disabled = true;
+  try { await deleteDoc(doc(db, c, id)); } catch (er) { b.disabled = false; b.textContent = 'Sem permissão'; }
+});
+$('csv').addEventListener('click', () => {
+  const cols = ['nome', 'email', 'perfil', 'areas_habilidades', 'gostos', 'bio', 'cadastro'];
+  const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const lines = [cols.join(','), ...rows().map((p) => [p.name, p.email, p.role, (p.role === 'empresa' ? p.want : p.sk || []).join('; '), (p.hb || []).join('; '), p.cvBio, dt(p.created)].map(q).join(','))];
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv' })); a.download = 'cr1e-collab-cadastros.csv'; a.click();
+});
+</script>
+</body>
+</html>

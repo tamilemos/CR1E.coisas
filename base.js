@@ -201,8 +201,9 @@
   <a href="#topo" class="on"><i></i><span data-t="nav_inicio"></span></a>
   <a href="#frentes"><i></i><span data-t="nav_frentes"></span></a>
   <a href="#cases"><i></i><span data-t="nav_cases"></span></a>
-  <button type="button" class="ptl" data-portal><i></i><span data-t="nav_portal"></span></button>
+  <a href="#portal-sec" class="ptl"><i></i><span data-t="nav_portal"></span></a>
   <a href="#contato"><i></i><span data-t="nav_contato"></span></a>
+  <a class="adm" href="admin/" aria-label="Acesso restrito">adm</a>
 </nav>`;
   const formHTML = (btnCls) => `
 <form class="form" id="form" novalidate data-endpoint="">

@@ -73,6 +73,7 @@ a.pill,button.pill{cursor:pointer}
 .tab .on{color:var(--verde)}
 .tab .on i{width:40px;background:var(--verde)}
 .tab .ptl i{border-style:dashed}
+.tab a.adm{position:absolute;right:max(6px,env(safe-area-inset-right,0px));bottom:calc(2px + env(safe-area-inset-bottom,0px));min-height:0;padding:2px 4px;font-size:8px;letter-spacing:.12em;color:#1b1b1b;flex-direction:row}
 @media(max-width:999px){:root{--tab-h:calc(70px + env(safe-area-inset-bottom,0px))}}
 @media(min-width:1000px){.tab{display:none}}
 
