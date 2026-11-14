@@ -74,10 +74,10 @@ const A = {
   /* salva o perfil na rede e manda o registro para o Drive */
   async saveProfile(S, event) {
     const u = auth.currentUser; if (!u) return;
-    const avatar = await shrink(S.avatar), fotos = await Promise.all((S.fotos || []).map((f) => shrink(f)));
-    await setDoc(doc(db, 'profiles', u.uid), { ...pub(S), avatar, fotos, ...(event === 'cadastro' ? { created: serverTimestamp(), consent: true } : {}) }, { merge: true });
+    const avatar = await shrink(S.avatar), fotos = await Promise.all((S.fotos || []).map((f) => shrink(f))); const cover = await shrink(S.cover, 900);
+    await setDoc(doc(db, 'profiles', u.uid), { ...pub(S), avatar, fotos, cover, ...(event === 'cadastro' ? { created: serverTimestamp(), consent: true } : {}) }, { merge: true });
     if (event) {
-      const files = event === 'cadastro' || event === 'fotos' ? [fileOf('perfil.jpg', S.avatar), ...(S.fotos || []).map((f, i) => fileOf(`trabalho-${i + 1}.jpg`, f))].filter(Boolean) : [];
+      const files = event === 'cadastro' || event === 'fotos' ? [fileOf('perfil.jpg', S.avatar), fileOf('capa.jpg', S.cover), ...(S.fotos || []).map((f, i) => fileOf(`trabalho-${i + 1}.jpg`, f))].filter(Boolean) : [];
       drive(event === 'cadastro' ? 'Cadastros' : 'Perfis', { evento: event, nome: S.name, perfil: S.role, cidade: [S.cid, S.uf].filter(Boolean).join(', '), areas_habilidades: (S.role === 'empresa' ? S.want : S.sk).join(', '), gostos: (S.hb || []).join(', '), bio: S.cvBio || '', curriculo: (S.cv || []).map((c) => `${c.a} · ${c.t} · ${c.o}`).join(' | '), links: (S.links || []).map((l) => `${l.n}: ${l.u}`).join(' | ') }, files);
     }
   },
