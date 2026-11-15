@@ -1016,6 +1016,39 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 .tpf input{flex:1;min-width:0;border:0;background:transparent;color:var(--preto);font:inherit;font-size:16px;padding:8px 0;outline:none}
 .tpf .pill{flex:none;cursor:pointer}
 .tpf:focus-within{box-shadow:4px 4px 0 var(--verde)}
+
+/* media kit: blocos numerados */
+.kstep{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:10px;padding-top:14px;border-top:1.5px solid var(--preto)}
+.kstep b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px}
+.kstep .note{flex-basis:100%;font-size:11px;margin:0}
+.kn{--preto:#0E0E0C;flex:none;min-width:34px;height:20px;padding:0 8px;border-radius:999px;background:var(--verde);border:2px solid #0E0E0C;color:#0E0E0C;font-family:var(--display);font-weight:900;font-size:11px;display:grid;place-items:center}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end}
+@media(max-width:520px){.three{grid-template-columns:1fr 1fr}.three>:last-child{grid-column:1/-1}}
+.kit-n{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
+.kit-s{display:flex;flex-direction:column;gap:6px}
+.kit-s p{margin:0}
+.kit-s[hidden],.kit-n[hidden],.kit-n div[hidden]{display:none}
+
+/* aulas: cursos primeiro, aulas dentro */
+.crs-n{position:absolute;left:8px;bottom:8px;background:#0E0E0C;color:#C5FF3D;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:10px;padding:5px 9px;border-radius:999px}
+.crs-d{margin:0;font-size:13px;line-height:1.5}
+.crs-f{margin-top:auto;display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
+.crs-f .bar{grid-column:1/-1;margin:0}
+.crs-go{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:11px;justify-self:end}
+.crs-b h3{font-size:26px}
+.cgrid[data-mode="lista"]{grid-template-columns:1fr;max-width:720px}
+.cgrid[data-mode="lista"] .cg-a{display:none!important}
+.cgrid[data-mode="lista"] .cg-l{order:-1}
+.cgrid[data-mode="aula"] .teacher{display:none}
+.teacher{padding:14px 16px;gap:6px}
+.teacher h3{font-size:22px}
+.teacher .av{width:44px;height:44px;font-size:13px}
+.aula{align-items:center}
+.aula .au-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left}
+.aula .au-t h3{font-size:clamp(17px,4.4vw,22px)}
+.aula .au-t .note{font-size:11.5px}
+.aula .au-t .lbl{font-size:9.5px}
+@media(max-width:560px){.aula>.arr{display:none}}
 </style>
 
 <div class="gate" id="gate">
@@ -1128,12 +1161,22 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
         <div class="fbody" id="fbody" data-tool="kit">
         <div class="tools" id="tool-kit">
           <div class="panel card">
-            <div class="two"><label class="fld" for="k-nome">Nome artístico<input id="k-nome" value=""></label><label class="fld" for="k-cid">Cidade<input id="k-cid" value="São Paulo, SP"></label></div>
-            <label class="fld" for="k-esp">Especialidades (separe por vírgula)<input id="k-esp" value="Muralismo, Live painting, Conteúdo"></label>
-            <div class="two"><label class="fld" for="k-seg">Seguidores<input id="k-seg" inputmode="numeric" value="25000"></label><label class="fld" for="k-alc">Alcance mensal<input id="k-alc" inputmode="numeric" value="180000"></label></div>
-            <label class="fld" for="k-bio">Bio<textarea id="k-bio">Artista plástica e muralista. Transformo paredes, produtos e eventos em arte ao vivo, e conto o processo em vídeo.</textarea></label>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="btn" type="button" id="aiBio" hidden>Escrever bio com IA <span class="arr" aria-hidden="true">→</span></button><span class="note" id="aiNote" role="status" aria-live="polite">Os números acima são exemplos: troque pelos seus.</span></div>
-            <label class="fld" for="k-ct">Contato<input id="k-ct" value="tami@CR1E.co"></label>
+            <h2 class="t" style="font-size:34px">Media <span class="w a">kit</span></h2>
+            <p class="note" style="margin:-6px 0 0">O media kit é o seu cartão de visitas para marcas: uma página que mostra quem você é, o que faz, os seus números e como contratar. Preencha os blocos e acompanhe a prévia.</p>
+            <div class="kstep"><span class="kn">1</span><b>Quem é você</b></div>
+            <div class="two"><label class="fld" for="k-nome">Nome artístico<input id="k-nome" value="" placeholder="Como você assina"></label><label class="fld" for="k-cid">Cidade<input id="k-cid" value="" placeholder="Cidade, UF"></label></div>
+            <label class="fld" for="k-esp">Especialidades (separe por vírgula)<input id="k-esp" value="" placeholder="Ex.: muralismo, ilustração, live painting"></label>
+            <label class="fld" for="k-bio">Bio<textarea id="k-bio" placeholder="Duas ou três frases: o que você faz, para quem e o que te diferencia."></textarea></label>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="btn" type="button" id="aiBio" hidden>Escrever bio com IA <span class="arr" aria-hidden="true">→</span></button><span class="note" id="aiNote" role="status" aria-live="polite"></span></div>
+            <div class="kstep"><span class="kn">2</span><b>Seus números</b><span class="note">Use números reais. Deixe em branco o que não tiver.</span></div>
+            <div class="three"><label class="fld" for="k-seg">Seguidores<input id="k-seg" inputmode="numeric" value="" placeholder="0"></label><label class="fld" for="k-alc">Alcance mensal<input id="k-alc" inputmode="numeric" value="" placeholder="0"></label><label class="fld" for="k-eng">Engajamento (%)<input id="k-eng" inputmode="decimal" value="" placeholder="0"></label></div>
+            <label class="fld" for="k-pub">Quem te acompanha<input id="k-pub" value="" placeholder="Ex.: mulheres de 25 a 34 anos, São Paulo e Rio"></label>
+            <div class="kstep"><span class="kn">3</span><b>O que você oferece</b></div>
+            <label class="fld" for="k-srv">Serviços e formatos (separe por vírgula)<input id="k-srv" value="" placeholder="Ex.: mural, live painting, vídeo de processo, oficina"></label>
+            <div class="kstep"><span class="kn">4</span><b>Com quem já trabalhou</b></div>
+            <label class="fld" for="k-cli">Marcas, eventos e projetos (separe por vírgula)<input id="k-cli" value="" placeholder="Só o que você pode citar"></label>
+            <div class="kstep"><span class="kn">5</span><b>Contato</b></div>
+            <div class="two"><label class="fld" for="k-ct">E-mail ou telefone<input id="k-ct" value="" placeholder="voce@email.com"></label><label class="fld" for="k-lk">Link principal<input id="k-lk" value="" placeholder="instagram.com/voce"></label></div>
             <div class="canva card" data-canva="media kit"><b>Canva</b><p class="note" data-cv-txt>Conecte a sua conta do Canva para abrir esta peça lá e continuar o design.</p><button class="btn k" type="button" data-cv-btn style="align-self:flex-start">Conectar com o Canva</button></div>
           </div>
           <div class="kit sh" aria-label="Prévia do media kit" style="box-shadow:6px 6px 0 var(--verde),6px 6px 0 2px var(--preto)">
@@ -1141,13 +1184,18 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
             <h2 class="t" id="pk-nome"></h2>
             <span class="lbl" style="color:var(--cinza)" id="pk-cid"></span>
             <div class="pills" id="pk-esp"></div>
-            <div class="kit-n"><div><b id="pk-seg"></b><span class="lbl" style="color:var(--cinza)">seguidores</span></div><div><b id="pk-alc"></b><span class="lbl" style="color:var(--cinza)">alcance mensal</span></div></div>
             <p id="pk-bio"></p>
-            <span class="lbl" style="color:var(--verde)" id="pk-ct"></span>
+            <div class="kit-n" id="pk-n"><div><b id="pk-seg"></b><span class="lbl" style="color:var(--cinza)">seguidores</span></div><div><b id="pk-alc"></b><span class="lbl" style="color:var(--cinza)">alcance mensal</span></div><div><b id="pk-eng"></b><span class="lbl" style="color:var(--cinza)">engajamento</span></div></div>
+            <div class="kit-s" id="pk-pubW"><span class="lbl" style="color:var(--cinza)">Quem me acompanha</span><p id="pk-pub"></p></div>
+            <div class="kit-s" id="pk-srvW"><span class="lbl" style="color:var(--cinza)">O que ofereço</span><div class="pills" id="pk-srv"></div></div>
+            <div class="kit-s" id="pk-cliW"><span class="lbl" style="color:var(--cinza)">Já trabalhei com</span><p id="pk-cli"></p></div>
+            <div class="kit-s" style="border-top:2px solid var(--papel);padding-top:12px"><span class="lbl" style="color:var(--verde)" id="pk-ct"></span><span class="lbl" style="color:var(--papel)" id="pk-lk"></span></div>
           </div>
         </div>
         <div class="tools" id="tool-orc" hidden>
           <div class="panel card">
+            <h2 class="t" style="font-size:34px">Proposta de <span class="w a">orçamento</span></h2>
+            <p class="note" style="margin:-6px 0 0">Monte a proposta que vai para o cliente: liste os itens, as quantidades e os valores. O total é somado sozinho e a prévia já sai organizada para enviar.</p>
             <div class="two"><label class="fld" for="o-cli">Cliente<input id="o-cli" value="Marca exemplo"></label><label class="fld" for="o-proj">Projeto<input id="o-proj" value="Mural para loja"></label></div>
             <table class="orc"><thead><tr><th>Item</th><th>Qtd</th><th>Valor (R$)</th><th><span style="position:absolute;left:-9999px">Remover</span></th></tr></thead><tbody id="o-rows"></tbody></table>
             <button class="pill" type="button" id="o-add" style="align-self:flex-start">+ Adicionar item</button>
@@ -1200,16 +1248,17 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
       <section class="view" data-view="curso" aria-labelledby="v-curso" hidden>
         <a class="pill back" href="#aulas">← Todos os cursos</a>
         <div class="vh"><h1 class="t" id="v-curso"></h1><p id="crsDesc"></p></div>
-        <div class="cgrid">
-          <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+        <div class="cgrid" id="cgrid" data-mode="lista">
+          <div class="cg-a" style="display:flex;flex-direction:column;gap:18px;min-width:0">
+            <button class="pill" type="button" id="lsBack" style="align-self:flex-start">← Aulas do curso</button>
             <button class="player sh" type="button" id="player" aria-label="Reproduzir aula"><img alt="" id="plImg"><span class="play" aria-hidden="true"></span><span class="cap"><b id="plT"></b><span class="pill s v" style="border-color:var(--preto)" id="plD"></span></span><span class="prog" id="plProg"></span></button>
             <div class="lesson card"><span class="lbl" id="lsN"></span><h2 class="t" id="lsT"></h2><p id="lsP"></p><span class="lbl">Você vai sair sabendo</span><ul class="ck" id="lsL"></ul>
               <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="btn k" type="button" id="lsDone"></button><button class="btn ln" type="button" id="lsNext">Próxima aula <span class="arr" aria-hidden="true">→</span></button></div>
               <p class="note">Os vídeos ainda vão ser gravados: o player mostra só como a aula vai aparecer.</p></div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+          <div class="cg-b" style="display:flex;flex-direction:column;gap:18px;min-width:0">
             <div class="teacher card sh"><span class="lbl" style="color:var(--preto)">Quem dá a aula</span><span class="av" id="tcAv"></span><h3 class="t w" id="tcN"></h3><b id="tcR" style="font-size:13px"></b><p id="tcB" style="font-size:14px"></p><span class="note" id="tcX" style="color:var(--preto)"></span></div>
-            <div><div class="sub" style="margin-bottom:8px"><h2 class="t" style="font-size:30px"><span class="w">Aulas</span> do curso</h2><b id="crsPct"></b></div><div class="plist" id="plist"></div></div>
+            <div class="cg-l"><div class="sub" style="margin-bottom:8px"><h2 class="t" style="font-size:30px"><span class="w">Aulas</span> do curso</h2><b id="crsPct"></b></div><div class="plist" id="plist"></div></div>
           </div>
         </div>
       </section>
@@ -1545,7 +1594,7 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
   }
   function enterApp() {
     S.guest = false; document.documentElement.classList.remove('guest'); gate.classList.remove('splash');
-    if (!$('k-nome').value) $('k-nome').value = S.name; try { kit(); } catch (err) {}
+    if (!$('k-nome').value) $('k-nome').value = S.name; if (!$('k-cid').value) $('k-cid').value = [S.cid, S.uf].filter(Boolean).join(', '); if (!$('k-esp').value) $('k-esp').value = (S.sk || []).slice(0, 5).join(', '); if (!$('k-bio').value) $('k-bio').value = S.cvBio || ''; try { kit(); } catch (err) {}
     who(); if (S.role === 'empresa') { try { location.hash = '#empresa'; } catch (err) {} } route();
     gate.classList.add('go'); document.documentElement.classList.remove('lock'); setTimeout(() => gate.remove(), 1400); netStart();
   }
@@ -1832,7 +1881,7 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
   const doneIn = (c) => c.aulas.filter((a, i) => S.done.has(key(c, i))).length;
   function cursos() {
     $('crsF').innerHTML = TEMAS.map((t) => `<button class="pill" type="button" data-cf="${t}" aria-pressed="${t === S.cf}">${t}</button>`).join('');
-    $('crsList').innerHTML = !COURSES.length ? '<div class="empty">As aulas em vídeo com artistas convidados chegam em breve. Você recebe um aviso quando a primeira for publicada.</div>' : COURSES.filter((c) => S.cf === 'Todos' || c.tema === S.cf).map((c, i) => `<button class="crs" type="button" data-crs="${c.id}" style="--r:${[-1, 1.2, -.8, 1, -1.2][i % 5]}deg"><div class="crs-i"><img src="img/${c.img}.jpg" alt=""><span class="pill s v" style="border-color:var(--preto)">${c.tema}</span><span class="play" aria-hidden="true"></span></div><div class="crs-b"><h3 class="t">${c.t}</h3><div class="who"><span class="av">${c.prof.n.slice(0, 2).toUpperCase()}</span><span><b>${c.prof.n}</b><br><span class="note">${c.prof.r}</span></span></div><div class="meta" style="margin:0"><span>${c.aulas.length} aulas em vídeo</span><span>${doneIn(c)}/${c.aulas.length} feitas</span></div><div class="bar"><i style="width:${100 * doneIn(c) / c.aulas.length}%"></i></div></div></button>`).join('');
+    $('crsList').innerHTML = !COURSES.length ? '<div class="empty">As aulas em vídeo com artistas convidados chegam em breve. Você recebe um aviso quando a primeira for publicada.</div>' : COURSES.filter((c) => S.cf === 'Todos' || c.tema === S.cf).map((c, i) => `<button class="crs" type="button" data-crs="${c.id}" style="--r:${[-1, 1.2, -.8, 1, -1.2][i % 5]}deg"><div class="crs-i"><img src="img/${c.img}.jpg" alt=""><span class="pill s v" style="border-color:var(--preto)">${c.tema}</span><span class="crs-n">Curso · ${c.aulas.length} aulas</span></div><div class="crs-b"><h3 class="t">${c.t}</h3><p class="crs-d">${c.d}</p><span class="note">Com ${c.prof.n}</span><div class="crs-f"><div class="bar"><i style="width:${100 * doneIn(c) / c.aulas.length}%"></i></div><span class="note">${doneIn(c)}/${c.aulas.length} feitas</span><span class="crs-go">Ver aulas →</span></div></div></button>`).join('');
     const c0 = COURSES.find((c) => doneIn(c) < c.aulas.length);
     $('homeAulas').innerHTML = c0 ? c0.aulas.map((a, i) => [a, i]).filter(([, i]) => !S.done.has(key(c0, i))).slice(0, 2).map(([a, i]) => `<button class="aula" type="button" data-go="${c0.id}:${i}" aria-pressed="false"><span class="o" aria-hidden="true"></span><h3 class="t">${a[0]}</h3><span class="lbl">${c0.prof.n} · ${a[1]}</span></button>`).join('') : (COURSES.length ? '<div class="empty">Você fez todas as aulas disponíveis.</div>' : '<div class="empty">As primeiras aulas chegam em breve.</div>');
     stats();
@@ -1849,14 +1898,16 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
     $('lsNext').hidden = S.les >= c.aulas.length - 1;
     $('tcAv').textContent = c.prof.n.slice(0, 2).toUpperCase(); $('tcN').textContent = c.prof.n; $('tcR').textContent = c.prof.r; $('tcB').textContent = c.prof.b; $('tcX').textContent = c.prof.real ? '' : 'Professor de exemplo: os artistas convidados ainda vão ser definidos.';
     $('crsPct').textContent = `${doneIn(c)}/${c.aulas.length}`;
-    $('plist').innerHTML = c.aulas.map((x, i) => `<button class="aula${i === S.les ? ' sel' : ''}" type="button" data-les="${i}" aria-pressed="${S.done.has(key(c, i))}"><span class="o" aria-hidden="true"></span><h3 class="t">${x[0]}</h3><span class="lbl">${x[1]}</span></button>`).join('');
+    $('plist').innerHTML = c.aulas.map((x, i) => `<button class="aula${i === S.les && S.lesOpen ? ' sel' : ''}" type="button" data-les="${i}" aria-pressed="${S.done.has(key(c, i))}"><span class="o" aria-hidden="true"></span><span class="au-t"><span class="lbl">Aula ${i + 1} · ${x[1]}</span><h3 class="t">${x[0]}</h3><span class="note">${x[2] || ''}</span></span><span class="arr" aria-hidden="true">→</span></button>`).join('');
+    $('cgrid').dataset.mode = S.lesOpen ? 'aula' : 'lista';
   }
   const openCurso = (id, les) => { S.crs = id; S.les = les || 0; curso(); try { location.hash = '#curso'; } catch (err) {} route(); };
   document.addEventListener('click', (e) => {
     const f = e.target.closest('[data-cf]'); if (f) { S.cf = f.dataset.cf; cursos(); return; }
-    const c = e.target.closest('[data-crs]'); if (c) { const co = COURSES.find((x) => x.id === c.dataset.crs); const nx = co.aulas.findIndex((a, i) => !S.done.has(key(co, i))); openCurso(co.id, nx < 0 ? 0 : nx); return; }
+    const c = e.target.closest('[data-crs]'); if (c) { const co = COURSES.find((x) => x.id === c.dataset.crs); const nx = co.aulas.findIndex((a, i) => !S.done.has(key(co, i))); S.lesOpen = false; openCurso(co.id, nx < 0 ? 0 : nx); return; }
+    if (e.target.closest('#lsBack')) { S.lesOpen = false; curso(); scrollTo(0, 0); return; }
     const g = e.target.closest('[data-go]'); if (g) { const [id, i] = g.dataset.go.split(':'); openCurso(id, +i); return; }
-    const l = e.target.closest('[data-les]'); if (l) { S.les = +l.dataset.les; curso(); }
+    const l = e.target.closest('[data-les]'); if (l) { S.les = +l.dataset.les; S.lesOpen = true; curso(); scrollTo(0, 0); }
   });
   $('lsDone').addEventListener('click', () => { const c = COURSES.find((x) => x.id === S.crs), k = key(c, S.les); S.done.has(k) ? S.done.delete(k) : S.done.add(k); curso(); cursos(); });
   $('lsNext').addEventListener('click', () => { S.les++; curso(); scrollTo(0, 0); });
@@ -1913,11 +1964,16 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
   function kit() {
     const nome = $('k-nome').value.trim() || 'Seu nome', parts = nome.split(' ');
     $('pk-nome').innerHTML = `<span class="ln">${esc(parts[0])}</span>` + (parts.length > 1 ? `<span class="ln w a">${esc(parts.slice(1).join(' '))}</span>` : '');
-    $('pk-cid').textContent = $('k-cid').value; $('pk-bio').textContent = $('k-bio').value; $('pk-ct').textContent = $('k-ct').value;
-    $('pk-esp').innerHTML = $('k-esp').value.split(',').map((s) => s.trim()).filter(Boolean).map((s) => `<span class="pill s">${esc(s)}</span>`).join('');
-    $('pk-seg').textContent = nf($('k-seg').value); $('pk-alc').textContent = nf($('k-alc').value);
+    const v = (id) => $(id).value.trim(), list = (id) => v(id).split(',').map((s) => s.trim()).filter(Boolean);
+    $('pk-cid').textContent = v('k-cid'); $('pk-bio').textContent = v('k-bio') || 'A sua bio aparece aqui.'; $('pk-ct').textContent = v('k-ct'); $('pk-lk').textContent = v('k-lk');
+    $('pk-esp').innerHTML = list('k-esp').map((s) => `<span class="pill s">${esc(s)}</span>`).join('');
+    const num = [['pk-seg', v('k-seg') ? nf(v('k-seg')) : ''], ['pk-alc', v('k-alc') ? nf(v('k-alc')) : ''], ['pk-eng', v('k-eng') ? v('k-eng').replace('.', ',').replace(/%/g, '') + '%' : '']];
+    num.forEach(([id, t]) => { $(id).textContent = t; $(id).parentElement.hidden = !t; }); $('pk-n').hidden = num.every((x) => !x[1]);
+    $('pk-pub').textContent = v('k-pub'); $('pk-pubW').hidden = !v('k-pub');
+    $('pk-srv').innerHTML = list('k-srv').map((s) => `<span class="pill s">${esc(s)}</span>`).join(''); $('pk-srvW').hidden = !list('k-srv').length;
+    $('pk-cli').textContent = list('k-cli').join(' · '); $('pk-cliW').hidden = !list('k-cli').length;
   }
-  ['k-nome', 'k-cid', 'k-esp', 'k-seg', 'k-alc', 'k-bio', 'k-ct'].forEach((id) => $(id).addEventListener('input', () => { kitTouched = true; kit(); stats(); }));
+  ['k-nome', 'k-cid', 'k-esp', 'k-seg', 'k-alc', 'k-eng', 'k-pub', 'k-srv', 'k-cli', 'k-bio', 'k-ct', 'k-lk'].forEach((id) => $(id).addEventListener('input', () => { kitTouched = true; kit(); stats(); }));
   document.querySelectorAll('[data-tool]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tool]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); $('tool-kit').hidden = b.dataset.tool !== 'kit'; $('tool-orc').hidden = b.dataset.tool !== 'orc'; $('tool-plan').hidden = b.dataset.tool !== 'plan'; $('fbody').dataset.tool = b.dataset.tool; }));
   /* IA: só aparece quando a página roda dentro do Claude com a capacidade liberada */
   (async () => {
@@ -2297,6 +2353,8 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "← Aulas do curso": "← Course lessons",
+    "Quem é você": "Who you are", "Seus números": "Your numbers", "O que você oferece": "What you offer", "Com quem já trabalhou": "Who you have worked with", "Quem te acompanha": "Who follows you", "Engajamento (%)": "Engagement (%)", "Serviços e formatos (separe por vírgula)": "Services and formats (comma separated)", "Marcas, eventos e projetos (separe por vírgula)": "Brands, events and projects (comma separated)", "E-mail ou telefone": "Email or phone", "Link principal": "Main link", "Use números reais. Deixe em branco o que não tiver.": "Use real numbers. Leave blank what you do not have.", "O media kit é o seu cartão de visitas para marcas: uma página que mostra quem você é, o que faz, os seus números e como contratar. Preencha os blocos e acompanhe a prévia.": "The media kit is your business card for brands: one page showing who you are, what you do, your numbers and how to hire you. Fill in the blocks and follow the preview.", "Monte a proposta que vai para o cliente: liste os itens, as quantidades e os valores. O total é somado sozinho e a prévia já sai organizada para enviar.": "Build the proposal for your client: list items, quantities and prices. The total adds up by itself and the preview is ready to send.", "Quem me acompanha": "Who follows me", "O que ofereço": "What I offer", "Já trabalhei com": "I have worked with", "engajamento": "engagement",
     "Tópicos de modelo, só para visualizar a diagramação.": "Sample topics, shown only to preview the layout.", "Vagas de modelo, só para visualizar a diagramação.": "Sample jobs, shown only to preview the layout.", "Aulas de modelo, só para visualizar a diagramação.": "Sample classes, shown only to preview the layout.",
     "Buscar pessoas": "Find people", "Filtros": "Filters", "Limpar filtros": "Clear filters", "Habilidade": "Skill", "Todas as áreas": "All fields", "Todas as habilidades": "All skills", "Todos os gostos": "All interests", "Ninguém encontrado com essa busca.": "No one found for this search.",
     "Aceitar e continuar": "Accept and continue", "Li e aceito os Termos de uso e a Política de privacidade.": "I have read and accept the Terms of use and the Privacy policy.", "Termos de uso e privacidade": "Terms of use and privacy", "Termos de uso e a Política de privacidade (LGPD)": "Terms of use and Privacy policy (LGPD)", "Li e aceito os": "I have read and accept the",
