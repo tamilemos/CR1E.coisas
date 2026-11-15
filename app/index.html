@@ -941,6 +941,12 @@ html[data-theme="dark"] .edx.big{box-shadow:6px 6px 0 var(--verde)}
 .cal2-p>div{width:100%}
 .cal2-p .pill{align-self:flex-start}
 .pchk summary .note{white-space:nowrap;text-align:right}
+
+/* orçamento: caixa inteira branca nos dois temas */
+.fbody[data-tool="orc"]{--preto:#0E0E0C;--papel:#fff;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;background:#fff;color:#0E0E0C}
+html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px 8px 0 var(--verde)}
+.fbody[data-tool="orc"]{color-scheme:light}
+.fbody[data-tool="orc"] input,.fbody[data-tool="orc"] select,.fbody[data-tool="orc"] textarea{color:#0E0E0C}
 </style>
 
 <div class="gate" id="gate">
@@ -2102,12 +2108,14 @@ html[data-theme="dark"] .edx.big{box-shadow:6px 6px 0 var(--verde)}
   }
   $('pForm').addEventListener('submit', (e) => { e.preventDefault(); planLocal(); planDraw(); $('pMsg').textContent = 'Calendário atualizado a partir do seu canvas.'; });
   document.addEventListener('click', (e) => { const c = e.target.closest('[data-pd]'); if (c) { const [w, d] = c.dataset.pd.split(',').map(Number); S.pSel = { w, d }; planDraw(); return; } const b = e.target.closest('[data-pp]'); if (!b) return; const p = S.plan.posts[+b.dataset.pp]; p.done = !p.done; planDraw(); });
-  (async () => { let smp = null; try { smp = await window.claude?.use?.('sample'); } catch (err) {} if (!smp) return; const bt = $('pAI'); bt.hidden = false;
+  (async () => { let smp = null; try { smp = await window.claude?.use?.('sample'); } catch (err) {} const bt = $('pAI'); bt.hidden = false;
+    const iaOn = !!((window.CR1E_CONFIG || {}).ia || {}).recaptcha;
+    if (!smp) smp = async (prompt) => { if (!iaOn) throw Object.assign(new Error('ia-off'), { code: 'ia-off' }); const m = await import('./ia.js'); return m.ask(prompt); };
     bt.addEventListener('click', async () => { const c = pCanvas(); bt.disabled = true; $('pMsg').textContent = 'Gerando o planejamento…';
       try { const r = await smp(`Você é estrategista de conteúdo para artistas e aplica o framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Os cinco pilares: (1) formato nativo: vídeo vertical feito para a plataforma, som como parte da ideia, 15 a 60 segundos; (2) comunidade: falar com uma subcultura específica, na linguagem e nos valores dela; (3) talento: a autenticidade e a identidade de quem cria; (4) trend: usar o que está em alta (áudio, formato ou modelo pronto) como molde; (5) estrutura: gancho de 1 a 3 segundos (pergunta, suspense, surpresa, texto na tela ou dado), corpo que entrega a mensagem e encerramento com um convite claro. Fórmula: comunidade certa + trend em alta + formato autêntico. Cada post combina uma emoção (o que o público sente) com um tipo de conteúdo (o que é apresentado). Regra da novidade familiar: o familiar é a trend e o formato; a novidade é o talento. Monte um planejamento de 4 semanas em português do Brasil. Dados: objetivo "${c.obj}"; comunidade "${c.pub}"; talento "${c.dif || 'não informado'}"; emoção principal "${c.ent}"; conteúdo principal "${c.con}"; trend "${c.trend}"; ${c.face ? 'aparece no vídeo' : 'não aparece no vídeo, use formatos sem rosto'}; ${c.freq} posts por semana; áreas e habilidades: ${S.sk.join(', ') || 'não informadas'}. Responda só com JSON válido, sem texto fora dele, no formato {"estrategia":"3 frases curtas","posts":[{"semana":1,"dia":"Seg","formato":"até 3 palavras","gancho":"até 14 palavras","corpo":"até 18 palavras","encerramento":"até 10 palavras"}]}. Use dias entre Seg, Ter, Qua, Qui, Sex, Sáb, Dom e exatamente ${c.freq * 4} posts. Não invente números nem cite marcas.`);
         const j = JSON.parse(r.text.slice(r.text.indexOf('{'), r.text.lastIndexOf('}') + 1)); const posts = (j.posts || []).map((p) => ({ w: Math.min(3, Math.max(0, (+p.semana || 1) - 1)), d: Math.max(0, PDAYS.indexOf(p.dia)), f: String(p.formato || 'Post').slice(0, 28), t: String(p.corpo || p.ideia || '').slice(0, 160), g: String(p.gancho || '').slice(0, 160), c: String(p.corpo || p.ideia || '').slice(0, 200), e: String(p.encerramento || '').slice(0, 120), done: false })).filter((p) => p.t);
         if (!posts.length) throw new Error('vazio'); S.plan = { posts, strat: esc(String(j.estrategia || '')) + '<br><b>Gerado com IA:</b> revise antes de usar.' }; planDraw(); $('pMsg').textContent = 'Planejamento gerado com IA. Revise e ajuste ao seu jeito.'; }
-      catch (err) { $('pMsg').textContent = 'Não consegui gerar com IA agora. O calendário do canvas continua disponível.'; }
+      catch (err) { $('pMsg').textContent = err && err.code === 'ia-off' ? 'A IA ainda não foi ativada para este app. Por enquanto, use Gerar calendário: ele já segue o framework.' : 'Não consegui gerar com IA agora. O calendário do canvas continua disponível.'; }
       bt.disabled = false; }); })();
   planLocal(); planDraw(); chkDraw();
   /* ---------- versão de teste ---------- */
@@ -2147,6 +2155,7 @@ html[data-theme="dark"] .edx.big{box-shadow:6px 6px 0 var(--verde)}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "A IA ainda não foi ativada para este app. Por enquanto, use Gerar calendário: ele já segue o framework.": "AI is not enabled for this app yet. For now, use Generate calendar: it already follows the framework.",
     "Liberado durante o teste": "Open during the test", "Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.": "CR1E.Coisas content framework, created by Tami Lemos. Five pillars: native format, community, talent, trend and structure.", "Comunidade: com quem você fala?": "Community: who do you talk to?", "Talento: o que só você tem?": "Talent: what do only you have?", "O que o público sente": "What the audience feels", "O que você apresenta": "What you present", "Trend que você consegue seguir": "Trend you can follow", "Você aparece?": "Do you appear?", "Com rosto": "On camera", "Sem rosto": "Faceless", "Formato em alta": "Trending format", "Áudio em alta": "Trending audio", "Modelo pronto": "Ready-made template", "Checklist antes de publicar": "Pre-publish checklist", "Gancho": "Hook", "Corpo": "Body", "Encerramento": "Closing",
     "Marcar feito": "Mark done", "Feito": "Done",
     "Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis.": "No one else around for now. You have seen every profile.", "Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.": "No one here yet. Profiles of people who join the test show up here for you to follow.",
