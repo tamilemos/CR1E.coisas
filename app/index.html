@@ -813,13 +813,14 @@ html[data-theme="dark"] .bell.more:not(.on){--preto:#F4F3EE}
 .thm:hover{color:var(--preto)}
 .thm:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 .thm svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.thm.lng{width:auto;min-width:28px;padding:0 3px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.04em}
 .thm .sol{display:none}
 html[data-theme="dark"] .thm .sol{display:block}
 html[data-theme="dark"] .thm .lua{display:none}
 </style>
 
 <div class="gate" id="gate">
-  <form class="login card sh" id="login" novalidate><div style="display:flex;justify-content:flex-end;margin:-8px -8px -6px 0"><div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></div>
+  <form class="login card sh" id="login" novalidate><div style="display:flex;justify-content:flex-end;margin:-8px -8px -6px 0"><button type="button" class="thm lng" data-langt translate="no">PT</button><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></div>
     <span class="lg" aria-label="CR1E.Collab">CR1E<span class="co">.c<span class="o"></span>llab</span></span>
     <h1 class="t"><span class="ln">A rede de quem</span><span class="ln"><span class="w a">cria</span></span></h1>
     <div class="seg" role="group" aria-label="Tipo de conta"><button type="button" data-role="artista" aria-pressed="true">Sou artista</button><button type="button" data-role="empresa" aria-pressed="false">Sou empresa</button></div>
@@ -841,7 +842,7 @@ html[data-theme="dark"] .thm .lua{display:none}
     <div class="plan card"><span class="lbl" style="color:var(--preto)">Seu plano</span><p id="sdPlan" style="font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:20px">Gratuito</p><a href="#plano" style="font-size:12px;padding:0;border:0;text-decoration:underline;font-family:var(--mono);font-weight:400;text-transform:none">Ver plano Pro</a></div>
   </aside>
   <div class="main">
-    <header class="top"><div class="wrap"><span class="lg">CR1E<span class="co">.c<span class="o"></span>llab</span></span><span class="pill s proto" style="white-space:nowrap">Teste<span class="wide-only"> · versão de teste</span></span><span class="top-r"><div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button><a class="bell" href="#avisos" aria-label="Avisos e mensagens"><i></i><b id="bellN">0</b></a><a class="av" href="#perfil" id="avTop" aria-label="Perfil">TL</a><a class="bell more" href="#mais" aria-label="Mais opções" id="moreBtn"><span><i></i><i></i><i></i></span></a></span></div></header>
+    <header class="top"><div class="wrap"><span class="lg">CR1E<span class="co">.c<span class="o"></span>llab</span></span><span class="pill s proto" style="white-space:nowrap">Teste<span class="wide-only"> · versão de teste</span></span><span class="top-r"><button type="button" class="thm lng" data-langt translate="no">PT</button><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button><a class="bell" href="#avisos" aria-label="Avisos e mensagens"><i></i><b id="bellN">0</b></a><a class="av" href="#perfil" id="avTop" aria-label="Perfil">TL</a><a class="bell more" href="#mais" aria-label="Mais opções" id="moreBtn"><span><i></i><i></i><i></i></span></a></span></div></header>
 
     <main class="wrap">
       <!-- INÍCIO -->
@@ -2020,12 +2021,14 @@ html[data-theme="dark"] .thm .lua{display:none}
     LANG = l === 'en' ? 'en' : 'pt'; try { localStorage.setItem(KEY, LANG); } catch (e) {}
     document.documentElement.lang = LANG === 'en' ? 'en' : 'pt-BR';
     document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+    document.querySelectorAll('[data-langt]').forEach((b) => { b.textContent = LANG === 'en' ? 'EN' : 'PT'; const t = LANG === 'en' ? 'Language: English. Switch to Portuguese' : 'Idioma: português. Trocar para inglês'; b.setAttribute('aria-label', t); b.title = t; });
     busy = true; try { walk(document.body); } finally { mo.takeRecords(); busy = false; }
     thmLbl();
   }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-thm]'); if (!b) return; e.preventDefault(); const d = document.documentElement.dataset.theme !== 'dark'; if (d) document.documentElement.dataset.theme = 'dark'; else delete document.documentElement.dataset.theme; try { localStorage.setItem('cr1e-tema', d ? 'escuro' : 'claro'); } catch (er) {} thmLbl(); });
   function thmLbl() { const d = document.documentElement.dataset.theme === 'dark'; const t = (typeof LANG !== 'undefined' && LANG === 'en') ? (d ? 'Light theme' : 'Dark theme') : (d ? 'Tema claro' : 'Tema escuro'); document.querySelectorAll('[data-thm]').forEach((b) => { b.setAttribute('aria-label', t); b.title = t; b.setAttribute('aria-pressed', String(d)); }); }
   thmLbl();
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-langt]'); if (b) { e.preventDefault(); setLang(LANG === 'en' ? 'pt' : 'en'); } });
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-lang]'); if (b) { e.preventDefault(); setLang(b.dataset.lang); } });
   mo.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ATTRS });
   setLang(LANG);
