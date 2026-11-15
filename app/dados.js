@@ -2,8 +2,8 @@
    Login (Firebase Authentication), dados da rede (Firestore) e envios para o Drive da CR1E.Coisas (Apps Script).
    As chaves abaixo são públicas por natureza: quem protege os dados são as regras do Firestore e a checagem de login no script do Drive. */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-import { getFirestore, doc, getDoc, setDoc, collection, addDoc, onSnapshot, query, orderBy, limit, updateDoc, deleteDoc, arrayUnion, arrayRemove, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, onSnapshot, query, orderBy, limit, updateDoc, deleteDoc, arrayUnion, arrayRemove, serverTimestamp, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 const FIREBASE_CONFIG = window.CR1E_CONFIG?.firebase;
 const DRIVE_URL = window.CR1E_CONFIG?.drive || '';
@@ -73,6 +73,16 @@ const A = {
     return s.exists() ? s.data() : null;
   },
   reset: (email) => sendPasswordResetEmail(auth, email),
+  /* exclui a conta: confirma a senha, apaga perfil, dados privados e publicações, e por fim o acesso */
+  async deleteAccount(pass) {
+    const u = auth.currentUser; if (!u) throw new Error('sem-login');
+    await reauthenticateWithCredential(u, EmailAuthProvider.credential(u.email, pass));
+    unsub.forEach((f) => f()); unsub = [];
+    try { const ps = await getDocs(query(collection(db, 'posts'), where('uid', '==', u.uid))); await Promise.all(ps.docs.map((x) => deleteDoc(x.ref).catch(() => {}))); } catch (e) {}
+    await deleteDoc(doc(db, 'profiles', u.uid)).catch(() => {});
+    await deleteDoc(doc(db, 'private', u.uid)).catch(() => {});
+    await deleteUser(u);
+  },
   async logout() { unsub.forEach((u) => u()); unsub = []; await signOut(auth); },
   /* salva o perfil na rede e manda o registro para o Drive */
   async saveProfile(S, event) {
