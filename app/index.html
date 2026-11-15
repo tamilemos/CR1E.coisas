@@ -856,19 +856,33 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 .tick-t{display:flex;gap:22px;width:max-content;align-items:center;animation:roll 46s linear infinite;font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
 .tick-t i{display:inline-block;width:22px;height:9px;border:2px solid currentColor;border-radius:999px;flex:none}
 .tick-t i.f{background:var(--verde);border-color:var(--preto)}
-.crows{margin:clamp(28px,5vw,56px) -16px 0;border-top:2px solid var(--preto)}
-@media(min-width:900px){.crows{margin-inline:-44px}}
-.crow{background:#C5FF3D;color:#0E0E0C;overflow:hidden;border-bottom:2px solid #0E0E0C;padding-block:8px}
-.crow.k{background:#0E0E0C;color:#C5FF3D}
-.crow-t{display:flex;gap:.5em;width:max-content;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:clamp(26px,5vw,56px);letter-spacing:-.03em;white-space:nowrap;align-items:center;animation:roll 34s linear infinite}
-.crow.k .crow-t{animation-direction:reverse}
-.crow-t b{font-weight:900}
-.crow-t i{display:inline-block;width:1.45em;height:.53em;border:.15em solid currentColor;border-radius:999px;margin:0 .03em}
+.cbands{margin:clamp(28px,5vw,56px) -16px 0;border-top:2px solid var(--preto)}
+@media(min-width:900px){.cbands{margin-inline:-44px}}
+.cband{background:#C5FF3D;color:#0E0E0C;overflow:hidden;border-bottom:2px solid #0E0E0C;padding-block:8px}
+.cband.k{background:#0E0E0C;color:#C5FF3D}
+.cband-t{display:flex;gap:.5em;width:max-content;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:clamp(26px,5vw,56px);letter-spacing:-.03em;white-space:nowrap;align-items:center;animation:roll 34s linear infinite}
+.cband.k .cband-t{animation-direction:reverse}
+.cband-t b{font-weight:900}
+.cband-t i{display:inline-block;width:1.45em;height:.53em;border:.15em solid currentColor;border-radius:999px;margin:0 .03em}
 .top .lg .o,.side .lg .o,.login .lg .o{animation:blo 3.4s var(--spring) infinite}
 .top .lg .co,.side .lg .co,.login .lg .co{animation:blw 3.4s ease-in-out infinite}
 @keyframes blo{0%,55%,100%{width:1.45em}25%{width:.53em}}
 @keyframes blw{0%,55%,100%{letter-spacing:0}25%{letter-spacing:.04em}}
 .top .lg,.side .lg{cursor:pointer}
+
+/* compositor: balão retilíneo apontando para a foto */
+.c3-t{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px}
+.c3-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:start}
+.c3-row .av{width:40px;height:40px;border-radius:50%;overflow:hidden;display:grid;place-items:center;font-size:12px}
+.c3-row .av img{width:100%;height:100%;object-fit:cover}
+.c3-bal{position:relative}
+.c3-bal::before,.c3-bal::after{content:"";position:absolute;width:0;height:0;border-style:solid;border-color:transparent;pointer-events:none}
+.c3-bal::before{left:-13px;top:11px;border-width:9px 13px 9px 0;border-right-color:var(--preto)}
+.c3-bal::after{left:-9px;top:13px;border-width:7px 10px 7px 0;border-right-color:var(--papel)}
+.compose3 .c3-bal textarea{display:block;border:2px solid var(--preto);border-style:solid;min-height:78px}
+.compose3 .c3-bal textarea:focus{box-shadow:4px 4px 0 var(--verde)}
+.av[data-art]{cursor:pointer}
+.av[data-art]:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 </style>
 
 <div class="gate" id="gate">
@@ -946,8 +960,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
         </div>
         <div id="rdSocial">
           <div class="feedw" style="margin-top:0"><h2 class="feed-t">Feed <span>da rede</span></h2>
-            <form class="compose3" id="postF"><div class="c3-top"><span class="av" id="postAv" aria-hidden="true"></span><b>Criar publicação</b></div>
-              <textarea id="postI" maxlength="600" rows="2" aria-label="Escreva a sua publicação" placeholder="O que você está criando? Conte para a rede."></textarea>
+            <form class="compose3" id="postF"><b class="c3-t">Criar publicação</b><div class="c3-row"><span class="av" id="postAv"></span><div class="c3-bal"><textarea id="postI" maxlength="600" rows="2" aria-label="Escreva a sua publicação" placeholder="O que você está criando? Conte para a rede."></textarea></div></div>
               <div class="c3-prev" id="postPrev" hidden><img id="postImg" alt="Prévia da imagem"><button type="button" id="postImgX" aria-label="Tirar imagem">×</button></div>
               <div class="ft2"><label class="c3-b"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Foto<input type="file" accept="image/jpeg,image/png,image/webp" id="postFoto"></label><label class="c3-b"><b>GIF</b><input type="file" accept="image/gif" id="postGif"></label><span class="cnt" id="postN">0/600</span><button class="btn k" type="submit">Publicar</button></div></form>
           <div id="postList"></div><button class="pill" type="button" id="postMore" style="align-self:center" hidden>Ver mais publicações</button></div>
@@ -1221,7 +1234,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
           </div>
         </div>
       </section>
-      <div class="crows" id="crows" aria-hidden="true"><div class="crow"><div class="crow-t" id="crow1"></div></div><div class="crow k"><div class="crow-t" id="crow2"></div></div></div>
+      <div class="cbands" id="crows" aria-hidden="true"><div class="cband"><div class="cband-t" id="crow1"></div></div><div class="cband k"><div class="cband-t" id="crow2"></div></div></div>
     </main>
   </div>
 </div>
@@ -1400,7 +1413,8 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   $('pf-uf').addEventListener('change', (e) => { S.uf = e.target.value; try { who(); editais(); } catch (er) {} syncSoon(); });
   $('pf-cid').addEventListener('change', (e) => { S.cid = e.target.value.trim(); try { who(); } catch (er) {} syncSoon(); });
   const ARB = (ar, sm) => `<div class="pf-ar${sm ? ' sm' : ''}">${String(ar || '').split(' · ').filter(Boolean).map((x) => `<span class="arb">${esc(x)}</span>`).join('')}</div>`;
-  const avA = (a, cls = '') => `<span class="av avc ${cls}">${a && a.img ? `<img src="${a.img}" alt="">` : esc(((a && a.n) || '?').slice(0, 2).toUpperCase())}</span>`;
+  const avKey = (a) => (a && (a.uid || (a.n && a.n === S.name && myUid()) || (a.n && findArt(a.n) ? a.n : ''))) || '';
+  const avA = (a, cls = '') => { const k = avKey(a); return `<span class="av avc ${cls}"${k ? ` data-art="${esc(k)}" role="button" tabindex="0" aria-label="Ver perfil de ${esc(a.n || '')}"` : ''}>${a && a.img ? `<img src="${a.img}" alt="">` : esc(((a && a.n) || '?').slice(0, 2).toUpperCase())}</span>`; };
   const avN = (n, cls = '') => avA(ARTISTS.find((x) => x.n === n) || { n }, cls);
   /* encolhe o título quando ele não cabe em uma linha */
   function fitV() { document.querySelectorAll('.view:not([hidden]) .vh h1').forEach((el) => { el.style.fontSize = ''; const box = el.parentElement.clientWidth; let n = 0; while (el.scrollWidth > box + 1 && n++ < 40) { el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * .94) + 'px'; } }); }
@@ -1484,6 +1498,8 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   const views = [...document.querySelectorAll('[data-view]')], names = views.map((v) => v.dataset.view);
   document.addEventListener('click', (e) => { const l = e.target.closest('.top .lg, .side .lg'); if (l) go(S.guest ? 'feed' : S.role === 'empresa' ? 'empresa' : 'inicio'); });
   document.querySelectorAll('.top .lg, .side .lg').forEach((l) => { l.setAttribute('role', 'link'); l.tabIndex = 0; l.setAttribute('aria-label', 'CR1E.Collab, início'); l.addEventListener('keydown', (e) => { if (e.key === 'Enter') l.click(); }); });
+  document.addEventListener('click', (e) => { const s = e.target.closest('.av[data-art]'); if (!s) return; e.preventDefault(); e.stopPropagation(); const k = s.dataset.art; if (k === myUid() || k === S.name) { go('perfil'); return; } if (!findArt(k)) { toast('Não encontrei esse perfil agora. Tente de novo em instantes.'); return; } S.aid = k; artistas(); go('artista'); }, true);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('.av[data-art]')) e.target.click(); });
   /* movimento: faixas e títulos */
   { const TK = ['A rede de quem cria', 'Jobs com marcas', 'Editais abertos', 'Fórum da rede', 'Aulas de quem vive de arte', 'Artistas primeiro'];
     $('tick').innerHTML = Array(4).fill(TK.map((t, i) => `<span>${t}</span><i${i % 2 ? ' class="f"' : ''}></i>`).join('')).join('');
@@ -1894,7 +1910,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
     const isC = (n) => S.conns.some((a) => a.n === n);
     const keep = document.activeElement && document.activeElement.closest && document.activeElement.closest('[data-twf]') ? [document.activeElement.closest('[data-twf]').dataset.twf, document.activeElement.value] : null;
     const myU = RR.A && RR.A.user() ? RR.A.user().uid : '';
-    $('postAv').innerHTML = avIn(S.avatar, S.name); $('postAv').className = 'av' + (S.avatar ? '' : ' txt');
+    $('postAv').innerHTML = avIn(S.avatar, S.name); $('postAv').className = 'av' + (S.avatar ? '' : ' txt'); $('postAv').dataset.art = myUid() || S.name; $('postAv').setAttribute('role', 'button'); $('postAv').tabIndex = 0; $('postAv').setAttribute('aria-label', 'Ver o seu perfil');
     twOne = (p) => {
       const nm = p.me ? S.name : p.a, pr = p.me ? { avatar: S.avatar } : ((S.pmap && S.pmap.get(p.uid)) || {}), lk = p.likes.includes(myU), rp = p.reposts.includes(myU), op = S.twOpen === p.id;
       const th = op ? `<div class="tw-th">${p.replies.map((r) => `<div class="rp"><b>${esc(r.name || 'Artista')}</b>${esc(r.t)}<span>${rel(new Date(r.at))}</span></div>`).join('')}<form data-twf="${p.id}"><input maxlength="280" aria-label="Responder" placeholder="Responda ${esc(nm)}"><button class="pill s k" type="submit">Responder</button></form></div>` : '';
@@ -2053,6 +2069,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Ver o seu perfil": "View your profile",
     "A rede de quem cria": "The network for makers",
     "Jobs com marcas": "Jobs with brands", "Editais abertos": "Open calls", "Fórum da rede": "Network forum", "Aulas de quem vive de arte": "Classes by working artists", "Artistas primeiro": "Artists first",
     "Escreva uma legenda": "Write a caption", "Foto anterior": "Previous photo", "Próxima foto": "Next photo", "Legenda da foto": "Photo caption", "Galeria do portfólio": "Portfolio gallery",
