@@ -973,6 +973,49 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
 .kp b{font-size:clamp(20px,2.6vw,34px)}
 @media(min-width:820px){.hello{grid-template-columns:1fr 1fr}.kp{grid-template-columns:1fr 1fr}.kp .lbl{font-size:10px;letter-spacing:.08em}}
 .login{max-height:calc(100dvh - 130px)}
+
+/* aba Rede: busca de pessoas, recolhida até tocar */
+.psx{border:2px solid var(--preto);background:var(--branco);margin-bottom:14px;max-width:640px}
+.psx>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.psx>summary::-webkit-details-marker,.psf>summary::-webkit-details-marker{display:none}
+.psx>summary b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px}
+.psx>summary .note{flex:1;text-align:right;font-size:10px}
+.psx>summary i{flex:none;width:28px;height:12px;border:2px solid var(--preto);border-radius:999px;transition:width .4s var(--spring),background .2s}
+.psx[open]>summary i{width:12px;background:var(--verde)}
+.psx[open]>summary{border-bottom:2px solid var(--preto)}
+.psx-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.psx-b input[type=search]{width:100%;font-size:16px;padding:10px 12px;border:2px solid var(--preto);background:var(--papel);color:var(--preto);border-radius:0}
+.psf>summary{cursor:pointer;list-style:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;align-self:flex-start;width:max-content}
+.psf[open]>summary{margin-bottom:8px}
+.psf .edf{margin-bottom:6px}
+.gbt{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 150px;min-width:0}
+.gbt:hover b{text-decoration:underline}
+.gbt:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+button.conn{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;border-radius:0;-webkit-appearance:none;appearance:none}
+button.conn .arr{margin-left:auto}
+button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+
+/* fórum: lista leve e resposta em uma linha */
+.demo{margin:0 0 8px;font-size:10.5px;border-left:3px solid var(--verde);padding-left:8px}
+.fcr{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:none}
+.fcr::-webkit-scrollbar{display:none}
+.fcr .pill{flex:none}
+.tlist{border:2px solid var(--preto);background:var(--branco)}
+.tl-r{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border-top:1.5px solid var(--preto)}
+.tl-r:first-child{border-top:0}
+.tl-r>span:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.tl-r b{font-family:var(--mono);font-weight:700;font-size:13px;line-height:1.35}
+.tl-r .note{font-size:10px}
+.tl-r em{font-style:normal;font-weight:700;color:var(--preto);text-transform:uppercase;letter-spacing:.06em}
+.tl-r:hover b{text-decoration:underline}
+.tl-r:focus-visible{outline:3px solid var(--preto);outline-offset:-3px}
+#rdForum{max-width:640px}
+.fmsg{padding:12px 0;border-top:1.5px solid var(--preto)}
+.fmsg p{font-size:14px}
+.tpf{display:flex;gap:8px;align-items:center;max-width:640px;border:2px solid var(--preto);background:var(--branco);padding:6px 6px 6px 12px;margin-top:6px}
+.tpf input{flex:1;min-width:0;border:0;background:transparent;color:var(--preto);font:inherit;font-size:16px;padding:8px 0;outline:none}
+.tpf .pill{flex:none;cursor:pointer}
+.tpf:focus-within{box-shadow:4px 4px 0 var(--verde)}
 </style>
 
 <div class="gate" id="gate">
@@ -1035,14 +1078,20 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
       <section class="view" data-view="jobs" aria-labelledby="v-jobs" hidden>
         <div class="vh"><h1 class="t" id="v-jobs"><span class="ln">Jobs com</span><span class="ln w a">marcas</span></h1><p>Oportunidades captadas pela CR1E.Coisas e direcionadas para artistas da rede.</p></div>
         <div class="pick" id="jobPick" style="margin-top:0"><span class="lbl">Área de atuação</span><div class="areas" id="jobA" role="group" aria-label="Filtrar por área"></div><span class="lbl" id="jobTL"></span><div class="chips" id="jobT" role="group" aria-label="Filtrar por tipo de trabalho"></div></div>
+        <p class="note demo">Vagas de modelo, só para visualizar a diagramação.</p>
         <div class="jobs" id="jobList"></div>
       </section>
 
       <!-- REDE -->
       <section class="view" data-view="rede" aria-labelledby="v-rede" hidden>
         <div class="vh"><h1 class="t" id="v-rede">Gente que <span class="w a">cria</span></h1><p>Conheça artistas além do portfólio: gostos, hobbies e habilidades.</p></div>
-        <div class="seg s3" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Feed</button><button type="button" data-rt="match" aria-pressed="false">Match</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
+        <div class="seg s3" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Feed</button><button type="button" data-rt="match" aria-pressed="false">Rede</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
         <div id="rdMatch" hidden>
+          <details class="psx" id="psx"><summary><i aria-hidden="true"></i><b>Buscar pessoas</b><span class="note" id="psN"></span></summary>
+            <div class="psx-b"><input id="psQ" type="search" placeholder="Nome da pessoa" aria-label="Buscar pessoas por nome" autocomplete="off">
+              <details class="psf" id="psf"><summary>Filtros<span class="note" id="psFn"></span></summary><div class="edf"><label class="lbl" for="psA">Área de atuação<select id="psA"></select></label><label class="lbl" for="psS">Habilidade<select id="psS"></select></label><label class="lbl" for="psH">Gostos e hobbies<select id="psH"></select></label></div><button class="lnk" type="button" id="psClr">Limpar filtros</button></details>
+              <div id="psRes"></div></div>
+          </details>
           <div class="deck-w">
             <div><div class="deck" id="deck"></div><div class="acts"><button class="btn ln" type="button" id="skip">Pular</button><button class="btn k" type="button" id="conn">Seguir <span class="arr" aria-hidden="true">→</span></button></div></div>
             <div class="net"><h2 class="t">Você <span class="w">segue</span></h2><div id="conns"></div><button class="pill" type="button" data-rt="social" style="align-self:flex-start">Ver o feed da rede →</button></div>
@@ -1058,9 +1107,10 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
         </div>
         <div id="rdForum" hidden>
           
+          <p class="note demo">Tópicos de modelo, só para visualizar a diagramação.</p>
           <div class="hot" id="hotBox"><div class="hot-h"><b>Em alta agora</b><span class="note" id="hotN"></span></div><div id="hotList"></div></div>
           <details class="newtop"><summary>+ Abrir um tópico</summary><form id="topF"><label class="lbl" for="top-t">Assunto</label><input id="top-t" placeholder="Ex.: como cobrar oficina para empresa?"><label class="lbl" for="top-c">Categoria</label><select id="top-c"></select><label class="lbl" for="top-m">Mensagem</label><textarea id="top-m" rows="3" placeholder="Conte o contexto"></textarea><button class="btn k" type="submit" style="align-self:flex-start">Publicar tópico</button><span class="note" id="topMsg" role="status" aria-live="polite"></span></form></details>
-          <span class="lbl" style="display:block;font-size:10px;margin:2px 0 6px">Todos os tópicos por categoria</span><div class="pills" id="fcats" role="group" aria-label="Filtrar tópicos" style="margin-bottom:10px"></div>
+          <span class="lbl" style="display:block;font-size:10px;margin:6px 0 6px">Todos os tópicos por categoria</span><div class="pills fcr" id="fcats" role="group" aria-label="Filtrar tópicos"></div>
           <div id="topList"></div>
         </div>
       </section>
@@ -1068,7 +1118,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
         <a class="pill back" href="#rede">← Fórum</a>
         <div class="vh"><span class="pill s v" style="border-color:var(--preto);align-self:flex-start" id="tpC"></span><h1 class="t" id="tpT" style="font-size:clamp(32px,5vw,64px)"></h1><p class="note">Tópico aberto por quem está no teste.</p></div>
         <div id="tpMsgs" style="max-width:760px"></div>
-        <form class="send" id="tpF" style="max-width:760px;border:2px solid var(--preto)"><input id="tpI" aria-label="Sua resposta" placeholder="Responder no tópico" autocomplete="off"><button class="btn k" type="submit">Responder</button></form>
+        <form class="tpf" id="tpF"><input id="tpI" aria-label="Sua resposta" placeholder="Responder no tópico" autocomplete="off"><button class="pill k" type="submit">Responder</button></form>
       </section>
 
       <!-- ESTÚDIO -->
@@ -1142,6 +1192,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
       <section class="view" data-view="aulas" aria-labelledby="v-aulas" hidden>
         <div class="vh"><h1 class="t" id="v-aulas"><span class="ln">Aulas de quem</span><span class="ln w a">vive de arte</span></h1><p>Cursos online em vídeo, dados por artistas, sobre o que ninguém ensina na carreira artística: preço, contrato, conteúdo e relação com marcas.</p></div>
         <div class="pills" id="crsF" role="group" aria-label="Filtrar cursos"></div>
+        <p class="note demo">Aulas de modelo, só para visualizar a diagramação.</p>
         <div class="courses" id="crsList"></div>
       </section>
 
@@ -1366,10 +1417,35 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
   const toast = (t) => { let el = document.getElementById('toast'); if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); } el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 6000); };
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   /* dados de exemplo */
-  /* versão de teste: sem conteúdo de exemplo. Jobs e cursos entram pela curadoria; artistas vêm dos cadastros reais */
-  const JOBS = [];
+  /* jobs, cursos e fóruns abaixo são conteúdo de modelo, só para mostrar a diagramação; artistas vêm dos cadastros reais */
+  const JOBS = [
+    { area: 'Audiovisual', id: 'ugc', t: 'UGC para marca de tintas', tipo: 'UGC', local: 'Remoto', prazo: '7 dias', img: 'n-ugc', d: 'Três vídeos curtos mostrando o processo de uma obra com o produto, em linguagem nativa de TikTok e Reels.', req: ['Vídeo vertical com boa luz', 'Roteiro para os 3 primeiros segundos', 'Entrega dos arquivos sem trilha'] },
+    { area: 'Artes visuais', id: 'live', t: 'Live painting em evento', tipo: 'Live painting', local: 'São Paulo, SP', prazo: '1 diária', img: 'n-live', d: 'Pintura ao vivo de uma tela durante um evento corporativo, com interação com o público.', req: ['Experiência com pintura ao vivo', 'Materiais próprios', 'Disponibilidade no período da noite'] },
+    { area: 'Artes visuais', id: 'mural', t: 'Mural para fachada de loja', tipo: 'Mural', local: 'Rio de Janeiro, RJ', prazo: '10 dias', img: 'n-loja', d: 'Criação e execução de um mural de 12 m² a partir do briefing da marca, com registro em vídeo do processo.', req: ['Portfólio com murais externos', 'Estudo de cor aprovado antes da execução', 'NR-35 para trabalho em altura'] },
+    { area: 'Moda', id: 'custom', t: 'Customização em ativação', tipo: 'Customização', local: 'São Paulo, SP', prazo: '2 diárias', img: 'n-roupa', d: 'Personalização de peças na hora para o público de uma ativação de marca em loja.', req: ['Traço rápido e consistente', 'Tinta para tecido', 'Atendimento ao público'] },
+    { area: 'Educação', id: 'team', t: 'Oficina de arte coletiva', tipo: 'Oficina', local: 'Curitiba, PR', prazo: '1 diária', img: 'n-oficina', d: 'Condução de uma dinâmica de team building em que o time cria uma peça coletiva para o escritório.', req: ['Experiência com grupos', 'Proposta de obra coletiva', 'Montagem e desmontagem'] },
+    { area: 'Artes cênicas', id: 'perf', t: 'Performance em lançamento de produto', tipo: 'Performance em evento', local: 'Rio de Janeiro, RJ', prazo: '1 diária', img: 'g-danca', d: 'Intervenção de dança de dez minutos na abertura de um lançamento, criada a partir do conceito da campanha.', req: ['Vídeo de trabalhos anteriores', 'Ensaio no local na véspera', 'Figurino combinado com a marca'] },
+    { area: 'Música', id: 'dj', t: 'DJ set para festa de marca', tipo: 'DJ set', local: 'Belém, PA', prazo: '1 noite', img: 'g-plateia', d: 'Set de três horas para a festa de fim de ano de uma marca, com repertório brasileiro.', req: ['Equipamento próprio', 'Set gravado de referência', 'Nota fiscal'] },
+    { area: 'Design', id: 'idv', t: 'Identidade visual para cafeteria', tipo: 'Identidade visual', local: 'Remoto', prazo: '20 dias', img: 'n-kit', d: 'Criação de marca, paleta e aplicações básicas para uma cafeteria que abre no próximo trimestre.', req: ['Portfólio de marcas', 'Duas rotas criativas', 'Arquivos abertos na entrega'] },
+  ];
   let ARTISTS = [];
-  const COURSES = [];
+  const COURSES = [
+    { id: 'feed', t: 'Do ateliê ao feed', tema: 'Conteúdo', img: 'n-atelie', d: 'Como transformar o seu processo em conteúdo que as marcas querem contratar, sem deixar de ser artista.',
+      prof: { n: 'Tami Lemos', r: 'Artista e diretora criativa da CR1E.Coisas', b: 'Muralista e publicitária, com 14 anos entre arte, marcas e estratégia. TikTok Specialist pela ESPM.', real: true },
+      aulas: [['Virando creator sem deixar de ser artista', '12 min', 'O que muda quando o processo vira conteúdo.', ['Escolher o que mostrar do processo', 'Definir três temas fixos', 'Separar obra de bastidor']], ['Roteiro para os 3 primeiros segundos', '9 min', 'A abertura decide se o vídeo é visto.', ['Abrir com o resultado', 'Escrever o gancho em uma frase', 'Cortar o que atrasa o começo']], ['Como gravar o processo sozinha', '14 min', 'Luz, enquadramento e som com o que você já tem.', ['Posicionar o celular para o traço', 'Usar luz de janela', 'Gravar em blocos curtos']], ['UGC: o que as marcas pedem', '11 min', 'Como funciona o conteúdo feito por criadores para marcas.', ['Ler um briefing de UGC', 'Entregar sem trilha e sem legenda', 'Combinar uso de imagem']], ['Rotina de postagem que cabe na agenda', '8 min', 'Constância sem virar refém do feed.', ['Planejar a semana em 30 minutos', 'Reaproveitar um vídeo em três', 'Medir o que importa']]] },
+    { id: 'preco', t: 'Quanto vale o seu trabalho', tema: 'Negócios', img: 'n-preco', d: 'Um método simples para calcular o preço de um job e defender o valor na conversa com o cliente.',
+      prof: { n: 'Lia', r: 'Muralista', b: 'Pinta fachadas e empenas e negocia direto com marcas.' },
+      aulas: [['Seus custos de verdade', '10 min', 'O que entra na conta além do material.', ['Listar custos fixos', 'Calcular o custo do mês', 'Achar o valor mínimo da hora']], ['Hora criativa e hora de execução', '9 min', 'Criar e executar têm preços diferentes.', ['Separar criação de produção', 'Cobrar estudo e aprovação', 'Prever refações']], ['Montando a proposta', '12 min', 'Como apresentar o orçamento por escrito.', ['Organizar os itens', 'Definir validade e pagamento', 'Usar o orçamento do Estúdio']], ['Negociar sem baixar o preço', '11 min', 'O que ceder e o que não ceder.', ['Trocar escopo por valor', 'Responder ao pedido de desconto', 'Saber dizer não']]] },
+    { id: 'kit', t: 'Media kit que vende', tema: 'Negócios', img: 'n-kit', d: 'O que colocar, o que tirar e como mostrar os seus números para uma marca dizer sim.',
+      prof: { n: 'Nina', r: 'Letrista', b: 'Faz lettering ao vivo e fecha jobs pelo media kit.' },
+      aulas: [['O que uma marca procura', '8 min', 'Como a marca lê o seu material.', ['Entender quem decide', 'Destacar o que você entrega', 'Tirar o que confunde']], ['Números que importam', '10 min', 'Seguidores não são tudo.', ['Ler alcance e engajamento', 'Mostrar público e cidade', 'Atualizar todo mês']], ['Montando no Estúdio', '9 min', 'Passo a passo com a ferramenta do app.', ['Preencher o media kit', 'Revisar a bio', 'Enviar o link']]] },
+    { id: 'mural', t: 'Mural: do briefing à entrega', tema: 'Ofício', img: 'n-muralaula', d: 'Todas as etapas de um mural comercial, da primeira reunião à foto final.',
+      prof: { n: 'Dandara', r: 'Grafiteira', b: 'Leva murais e oficinas para escolas e empresas.' },
+      aulas: [['Lendo o briefing', '10 min', 'O que perguntar antes de desenhar.', ['Entender o objetivo', 'Medir e fotografar a parede', 'Combinar aprovações']], ['Estudo de cor e layout', '13 min', 'Do esboço à arte aprovada.', ['Montar o estudo em escala', 'Apresentar duas opções', 'Fechar a paleta']], ['Execução e segurança', '14 min', 'Planejar os dias de pintura.', ['Calcular tinta e spray', 'Trabalhar em altura com segurança', 'Organizar o cronograma']], ['Entrega e registro', '8 min', 'O mural também vira conteúdo.', ['Fotografar a obra', 'Gravar o processo', 'Fazer o relatório final']]] },
+    { id: 'contrato', t: 'Contrato, nota e direitos autorais', tema: 'Negócios', img: 'n-contrato', d: 'O básico para trabalhar com empresas sem dor de cabeça.',
+      prof: { n: 'Caio', r: 'Ilustrador', b: 'Licencia personagens e ilustrações para marcas.' },
+      aulas: [['O que precisa estar no contrato', '11 min', 'As cláusulas que protegem o artista.', ['Definir escopo e prazo', 'Prever pagamento e multa', 'Registrar aprovações']], ['Cessão e licença de uso', '12 min', 'A diferença entre vender a obra e licenciar a imagem.', ['Entender prazo e território', 'Cobrar pelo uso', 'Guardar os originais']], ['Emitindo nota', '9 min', 'Como se formalizar para atender empresas.', ['Conhecer as opções de formalização', 'Emitir a primeira nota', 'Guardar comprovantes']]] },
+  ];
   const TEMAS = ['Todos', ...new Set(COURSES.map((c) => c.tema))];
   const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
     empresa: [['empresa', 'Painel'], ['feed', 'Feed'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']] };
@@ -1413,7 +1489,13 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
   };
   const POSTS = [];
   const FCATS = ['Preço', 'Contrato', 'Materiais', 'Editais', 'Collabs', 'Carreira'];
-  const FORUM = [];
+  const FORUM = [
+    { id: 't1', cat: 'Preço', t: 'Como cobrar mural por metro quadrado?', msgs: [['Dandara', 'Recebi um pedido de 40 m² em fachada. Vocês cobram por m² ou por projeto fechado?'], ['Lia', 'Eu fecho por projeto e uso o m² só como conta interna. Parede alta, texturizada ou com andaime muda tudo.'], ['Nina', 'Separe criação de execução na proposta. Fica mais fácil negociar sem baixar o valor do seu desenho.']] },
+    { id: 't2', cat: 'Contrato', t: 'A marca pediu cessão total de direitos. Aceito?', msgs: [['Caio', 'O contrato fala em cessão total e por tempo indeterminado. É normal?'], ['Téo', 'Comigo já apareceu. Negociei licença por prazo e por mídia, e cobrei a mais pelo uso em publicidade.'], ['Jô', 'A aula de contrato na aba Aulas fala disso. Vale assistir antes de responder.']] },
+    { id: 't3', cat: 'Materiais', t: 'Tinta para fachada que pega sol o dia todo', msgs: [['Lia', 'Qual acabamento vocês usam para o mural não desbotar em parede que pega sol direto?'], ['Dandara', 'Sempre pergunto ao fabricante da tinta e peço a ficha técnica. E combino a manutenção por escrito com o cliente.']] },
+    { id: 't4', cat: 'Collabs', t: 'Procuro videomaker em Recife para registrar oficina', msgs: [['Caio', 'Oficina de personagens em dezembro. Preciso de alguém para captar e editar um vídeo curto.'], ['Téo', 'Não estou em Recife, mas posso editar à distância se alguém captar.']] },
+    { id: 't5', cat: 'Carreira', t: 'Vale a pena atuar em mais de uma área?', msgs: [['Mel', 'Sou DJ e faço colagem. Tenho medo de confundir quem me contrata. Como vocês se apresentam?'], ['Rui', 'Eu separo por projeto: no media kit, cada área tem a sua página e os seus números.'], ['Jô', 'Aqui no perfil dá para marcar várias áreas. Para mim foi o que mais trouxe convite diferente.']] },
+  ];
   const FEED = [
     { id: 'sintetico', cat: 'Mercado', t: 'Slop virou palavra do ano: o público começou a punir o sintético', cr: 'Cash Macanaya', img: 'f-sintetico', min: 4, lead: 'O problema não é a IA. É a cara de IA: conteúdo sem direção, que o público já reconhece e pune.',
       body: ['Em 2025, o dicionário Merriam-Webster escolheu "slop" como palavra do ano: conteúdo digital de baixa qualidade, produzido em quantidade com inteligência artificial. Quando um dicionário precisa de uma palavra nova, é porque todo mundo já está vendo a mesma coisa.', 'O público não odeia tecnologia. Ele odeia sentir que ninguém pensou naquilo: pele perfeita demais, luz sem origem, texto sem opinião. O olho aprendeu a reconhecer, e reage.', 'Numa pesquisa com 8.000 consumidores em oito países, para cada pessoa que passa a confiar mais numa marca por causa da IA, quatro passam a desconfiar.', 'Do lado de cá (arte e estratégia), a regra é simples: máquina no processo, gente na assinatura. A ideia, o traço e a voz continuam humanos. A IA escala; só o humano conecta.'],
@@ -1672,7 +1754,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
     const ag = $('again'); if (ag) ag.onclick = () => { S.skip = new Set(); deckBuild(); drawDeck(); };
     const top = deck.querySelector('.pc[data-d="0"]'); if (top) bindDrag(top);
     $('skip').disabled = $('conn').disabled = !rest.length;
-    $('conns').innerHTML = (S.following || []).length ? S.following.map((a) => `<div class="conn card" style="margin-bottom:8px">${avA(a)}<div><b>${esc(a.n)}</b><div class="note">${esc([a.esp, a.cid].filter(Boolean).join(' · '))}</div></div></div>`).join('') : '<div class="empty">Quem você seguir aparece aqui.</div>';
+    $('conns').innerHTML = (S.following || []).length ? S.following.map((a) => `<button class="conn card" type="button" data-art="${esc(a.uid || a.n)}" aria-label="Ver perfil de ${esc(a.n)}" style="margin-bottom:8px">${avA(a)}<div><b>${esc(a.n)}</b><div class="note">${esc([a.esp, a.cid].filter(Boolean).join(' · '))}</div></div><span class="arr" aria-hidden="true">→</span></button>`).join('') : '<div class="empty">Quem você seguir aparece aqui.</div>';
     stats();
   }
   function deckBuild() { DECK = ARTISTS.filter((a) => !S.follow.has(a.uid) && !S.skip.has(a.uid)); S.di = 0; }
@@ -1698,7 +1780,18 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
   function findArt(k) { if (!k) return null; let a = ARTISTS.find((x) => x.uid === k) || ARTISTS.find((x) => x.n === k); if (a) return a;
     const pm = S.pmap; if (!pm) return null; const p = pm.get(k) || [...pm.values()].find((x) => x.name === k); return p ? toArt(p) : null; }
   function netCalc() { const me = myUid(); S.following = ARTISTS.filter((a) => S.follow.has(a.uid)); S.followers = ARTISTS.filter((a) => a.tf.includes(me)); S.conns = S.following.filter((a) => a.tf.includes(me)); S.reqOut = []; S.reqIn = []; }
-  function netRefresh() { netCalc(); deckBuild(); try { drawDeck(); } catch (er) {} try { social(); } catch (er) {} try { artistas(); } catch (er) {} try { threads(); } catch (er) {} try { netTab(); stats(); todo(); } catch (er) {} }
+  /* busca de pessoas na aba Rede */
+  function psOpts() { const u = (f) => [...new Set(ARTISTS.flatMap(f).map((x) => String(x || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    [['psA', 'Todas as áreas', (a) => String(a.ar || '').split(' · ')], ['psS', 'Todas as habilidades', (a) => a.sk || []], ['psH', 'Todos os gostos', (a) => a.hb || []]].forEach(([id, all, f]) => { const el = $(id), v = el.value; el.innerHTML = `<option value="">${all}</option>` + u(f).map((x) => `<option>${esc(x)}</option>`).join(''); if ([...el.options].some((o) => o.value === v)) el.value = v; }); }
+  function psDraw() { const nrm = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); const q = nrm($('psQ').value.trim()), fa = $('psA').value, fs = $('psS').value, fh = $('psH').value, nf = [fa, fs, fh].filter(Boolean).length;
+    $('psFn').textContent = nf ? ` · ${nf} ${nf === 1 ? 'ativo' : 'ativos'}` : ''; $('psN').textContent = ARTISTS.length ? `${ARTISTS.length} ${ARTISTS.length === 1 ? 'pessoa' : 'pessoas'} na rede` : '';
+    if (!q && !nf) { $('psRes').innerHTML = ''; return; }
+    const l = ARTISTS.filter((a) => (!q || nrm(a.n).includes(q)) && (!fa || String(a.ar || '').split(' · ').includes(fa)) && (!fs || (a.sk || []).includes(fs)) && (!fh || (a.hb || []).includes(fh))).slice(0, 30);
+    $('psRes').innerHTML = l.length ? l.map((a) => { const f = S.follow.has(a.uid); return `<div class="reqr"><button class="avb" type="button" data-art="${esc(a.uid || a.n)}" aria-label="Ver perfil de ${esc(a.n)}">${avA(a)}</button><button class="g gbt" type="button" data-art="${esc(a.uid || a.n)}"><b>${esc(a.n)}</b><br><span class="note">${esc([a.esp || a.ar, a.cid].filter(Boolean).join(' · '))}</span></button><span class="short"><button class="pill s${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f ? 'Seguindo' : 'Seguir'}</button></span></div>`; }).join('') : '<div class="empty">Ninguém encontrado com essa busca.</div>'; }
+  $('psx').addEventListener('toggle', () => { if ($('psx').open) { psOpts(); psDraw(); $('psQ').focus({ preventScroll: true }); } });
+  $('psQ').addEventListener('input', psDraw); ['psA', 'psS', 'psH'].forEach((id) => $(id).addEventListener('change', psDraw));
+  $('psClr').addEventListener('click', () => { ['psA', 'psS', 'psH'].forEach((id) => { $(id).value = ''; }); psDraw(); });
+  function netRefresh() { netCalc(); deckBuild(); try { if ($('psx').open) { psOpts(); psDraw(); } } catch (er) {} try { drawDeck(); } catch (er) {} try { social(); } catch (er) {} try { artistas(); } catch (er) {} try { threads(); } catch (er) {} try { netTab(); stats(); todo(); } catch (er) {} }
   function ask(a) { if (!a || !a.uid) return; S.follow.add(a.uid); syncSoon(); }
   function netTab() { if (!$('netC')) return; const emp = S.role === 'empresa'; $('pvNet').hidden = emp; if (emp) return;
     const following = S.following || [];
@@ -1714,7 +1807,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
     RR.A.listen({
       profiles: (l) => { S.pmap = new Map(l.map((p) => [p.uid, p])); ARTISTS = l.filter((p) => p.done && p.role !== 'empresa').map(toArt); netRefresh(); },
       posts: (l) => { S.netPosts = l.map((p) => ({ me: p.uid === me(), uid: p.uid, id: p.id, a: p.name || 'Artista', t: p.t, img: p.img || '', ts: p.ts && p.ts.toDate ? p.ts.toDate() : new Date(), likes: p.likes || [], reposts: p.reposts || [], replies: p.replies || [] })); try { social(); } catch (er) {} },
-      forum: (l) => { S.forum = l.map((t) => ({ id: t.id, cat: t.cat, t: t.t, msgs: (t.msgs || []).map((m) => [m.name || 'Artista', m.t, m.uid === me()]) })); try { social(); } catch (er) {} },
+      forum: (l) => { S.forum = l.map((t) => ({ id: t.id, cat: t.cat, t: t.t, msgs: (t.msgs || []).map((m) => [m.name || 'Artista', m.t, m.uid === me()]) })).concat(FORUM); try { social(); } catch (er) {} },
     });
   }
   let syncT = null;
@@ -2041,7 +2134,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
     { const hot = [...S.forum].sort((a, b) => b.msgs.length - a.msgs.length).slice(0, 4); $('hotBox').hidden = !hot.length; $('hotN').textContent = hot.length ? `${S.forum.length} ${S.forum.length === 1 ? 'tópico' : 'tópicos'} na rede` : '';
       $('hotList').innerHTML = hot.map((t, i) => `<button class="hot-r" type="button" data-top="${t.id}"><i>${i + 1}</i><span><b>${esc(t.t)}</b><span class="note">${t.cat} · ${t.msgs.length} ${t.msgs.length === 1 ? 'mensagem' : 'mensagens'}</span></span><span class="arr" aria-hidden="true">→</span></button>`).join(''); }
     const tl = S.forum.filter((t) => S.fcat === 'Todos' || t.cat === S.fcat);
-    $('topList').innerHTML = tl.length ? tl.map((t) => `<button class="rowc" type="button" data-top="${t.id}"><div class="sub"><h3 class="t">${esc(t.t)}</h3><span class="pill s v" style="border-color:var(--preto)">${t.cat}</span></div><div class="meta" style="margin:0"><span>Aberto por ${esc(t.msgs[0][0])}</span><span>${t.msgs.length} ${t.msgs.length === 1 ? 'mensagem' : 'mensagens'}</span><span>${new Set(t.msgs.map((m) => m[0])).size} pessoas</span></div></button>`).join('') : '<div class="empty">Nenhum tópico nessa categoria ainda. Abra o primeiro.</div>';
+    $('topList').innerHTML = tl.length ? `<div class="tlist">${tl.map((t) => `<button class="tl-r" type="button" data-top="${t.id}"><span><b>${esc(t.t)}</b><span class="note"><em>${t.cat}</em> · ${t.msgs.length} ${t.msgs.length === 1 ? 'mensagem' : 'mensagens'} · aberto por ${esc(t.msgs[0][0])}</span></span><span class="arr" aria-hidden="true">→</span></button>`).join('')}</div>` : '<div class="empty">Nenhum tópico nessa categoria ainda. Abra o primeiro.</div>';
     const t = S.forum.find((x) => x.id === S.top) || S.forum[0]; if (!t) return;
     $('tpC').textContent = t.cat; $('tpT').textContent = t.t;
     $('tpMsgs').innerHTML = t.msgs.map((m) => `<div class="fmsg${m[2] ? ' me' : ''}">${m[2] ? avA({ n: S.name, img: S.avatar }) : avN(m[0])}<div><b>${esc(m[0])}</b><p>${esc(m[1])}</p></div></div>`).join('');
@@ -2068,7 +2161,7 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
     if ((b = e.target.closest('[data-twd]'))) { const id = b.dataset.twd; if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.style.color = 'var(--preto)'; toast('Toque de novo na lixeira para apagar a publicação.'); setTimeout(() => { b.dataset.sure = ''; b.style.color = ''; }, 4000); return; } S.netPosts = S.netPosts.filter((x) => x.id !== id); social(); RR.A && RR.A.delPost(id).catch(() => toast('Não consegui apagar agora.')); return; }
   });
   $('topF').addEventListener('submit', (e) => { e.preventDefault(); const t = $('top-t').value.trim(), m = $('top-m').value.trim(); if (!t || !m) { $('topMsg').textContent = 'Escreva o assunto e a mensagem.'; return; } if (!RR.A) return; RR.A.topic(S, $('top-c').value, t, m).catch(() => { $('topMsg').textContent = 'Não consegui publicar agora. Tente de novo.'; }); e.target.reset(); $('topMsg').textContent = ''; e.target.closest('details').open = false; S.fcat = 'Todos'; social(); });
-  $('tpF').addEventListener('submit', (e) => { e.preventDefault(); const v = $('tpI').value.trim(); if (!v || !RR.A) return; const tp = S.forum.find((x) => x.id === S.top); $('tpI').value = ''; RR.A.reply(S, S.top, v, tp && tp.t).catch(() => { $('tpI').value = v; }); });
+  $('tpF').addEventListener('submit', (e) => { e.preventDefault(); const v = $('tpI').value.trim(); if (!v || !RR.A) return; const tp = S.forum.find((x) => x.id === S.top); $('tpI').value = ''; if (tp && FORUM.includes(tp)) { tp.msgs.push([S.name, v, true]); social(); return; } RR.A.reply(S, S.top, v, tp && tp.t).catch(() => { $('tpI').value = v; }); });
   document.addEventListener('click', (e) => { let b;
     if ((b = e.target.closest('[data-rt]'))) { S.rt = b.dataset.rt; social(); return; }
     if ((b = e.target.closest('[data-fol]'))) { const u = b.dataset.fol, on = !S.follow.has(u); on ? S.follow.add(u) : S.follow.delete(u); syncSoon(); netRefresh(); const a = ARTISTS.find((x) => x.uid === u); if (a && on) toast(`Você agora segue ${a.n}.`); return; }
@@ -2204,6 +2297,8 @@ dialog.terms{width:min(560px,calc(100vw - 20px))}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Tópicos de modelo, só para visualizar a diagramação.": "Sample topics, shown only to preview the layout.", "Vagas de modelo, só para visualizar a diagramação.": "Sample jobs, shown only to preview the layout.", "Aulas de modelo, só para visualizar a diagramação.": "Sample classes, shown only to preview the layout.",
+    "Buscar pessoas": "Find people", "Filtros": "Filters", "Limpar filtros": "Clear filters", "Habilidade": "Skill", "Todas as áreas": "All fields", "Todas as habilidades": "All skills", "Todos os gostos": "All interests", "Ninguém encontrado com essa busca.": "No one found for this search.",
     "Aceitar e continuar": "Accept and continue", "Li e aceito os Termos de uso e a Política de privacidade.": "I have read and accept the Terms of use and the Privacy policy.", "Termos de uso e privacidade": "Terms of use and privacy", "Termos de uso e a Política de privacidade (LGPD)": "Terms of use and Privacy policy (LGPD)", "Li e aceito os": "I have read and accept the",
     "A IA ainda não foi ativada para este app. Por enquanto, use Gerar calendário: ele já segue o framework.": "AI is not enabled for this app yet. For now, use Generate calendar: it already follows the framework.",
     "Liberado durante o teste": "Open during the test", "Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.": "CR1E.Coisas content framework, created by Tami Lemos. Five pillars: native format, community, talent, trend and structure.", "Comunidade: com quem você fala?": "Community: who do you talk to?", "Talento: o que só você tem?": "Talent: what do only you have?", "O que o público sente": "What the audience feels", "O que você apresenta": "What you present", "Trend que você consegue seguir": "Trend you can follow", "Você aparece?": "Do you appear?", "Com rosto": "On camera", "Sem rosto": "Faceless", "Formato em alta": "Trending format", "Áudio em alta": "Trending audio", "Modelo pronto": "Ready-made template", "Checklist antes de publicar": "Pre-publish checklist", "Gancho": "Hook", "Corpo": "Body", "Encerramento": "Closing",
