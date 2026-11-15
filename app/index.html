@@ -1456,6 +1456,27 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
 .rp-o{cursor:default}
 .po-e{margin:0}
 @media (max-width:560px){.tw.big p.tx{font-size:17px}.po-f{padding:8px 10px}.po-f .pill{padding:6px 10px}}
+
+/* link marcado: frase com o verde deslocado, no lugar de caixa */
+.mk{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:700;font-size:12px;line-height:1.4;color:var(--preto);text-decoration:none;white-space:nowrap}
+.mk>span:first-child{background:linear-gradient(transparent 58%,var(--verde) 58%);padding:0 2px}
+.mk .arr{display:inline-block;transition:transform .3s var(--spring)}
+.mk:hover .arr,.mk:focus-visible .arr{transform:translateX(4px)}
+.mk:focus-visible{outline:3px solid var(--preto);outline-offset:3px}
+.sub .mk{align-self:center}
+html[data-theme="dark"] .mk,html[data-theme="dark"] .lg-how{color:#fff}
+html[data-theme="dark"] .mk>span:first-child,html[data-theme="dark"] .lg-how>span:first-child{color:#fff;background:linear-gradient(transparent 62%,#C5FF3D 62%) 2px 3px/100% 100% no-repeat}
+/* tela inicial no celular: conteúdo mais compacto e mais para baixo */
+#lgErr:empty{display:none}
+@media (max-width:999px){
+  html.guest .login{top:calc(50% - 4px);max-height:calc(100dvh - 136px)}
+  .login{gap:10px}
+  .login .lg{padding:4px 0 12px;margin-bottom:2px}
+  .login .seg button{font-size:11px;white-space:nowrap;padding:7px 6px;min-height:36px}
+  .login>p.note{font-size:10px;line-height:1.45}
+}
+.sub .mk{text-transform:none;letter-spacing:0;font-size:12px}
+.cbt .mk{margin-left:auto;font-size:11px}
 </style>
 
 <div class="gate" id="gate">
@@ -1472,7 +1493,7 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
     <span class="note" id="lgErr" role="alert" style="color:var(--preto);font-weight:700"></span>
     <button class="btn k" type="submit" id="lgBtn" style="justify-content:center">Começar <span class="arr" aria-hidden="true">→</span></button>
     <div class="have"><span class="note" id="lgHaveT">Já tem conta?</span><button type="button" class="lnk" id="lgHave">Já tenho senha</button></div>
-    <button type="button" class="lnk" id="lgFeed" style="align-self:center">Ler o feed sem login →</button>
+    <button type="button" class="mk" id="lgFeed" style="align-self:center"><span>Ler o feed sem login</span> <span class="arr" aria-hidden="true">→</span></button>
     <p class="note">Versão de teste. Jobs e aulas entram pela curadoria. <button type="button" class="lnk" data-terms>Termos de uso e privacidade</button></p>
   </form>
 </div>
@@ -1500,10 +1521,10 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
         <details class="edx big" id="edx"><summary><h2 class="t"><span class="w a">Editais</span> abertos</h2><span class="note" id="edMini"></span><i aria-hidden="true"></i></summary>
           <div class="edx-b"><div class="edf"><label class="lbl" for="edA">Área de atuação<select id="edA"></select></label><label class="lbl" for="edSt">Situação<select id="edSt"></select></label><label class="lbl" for="edUF">Estado<select id="edUF"></select></label><label class="lbl" for="edC">Cidade<select id="edC"></select></label></div><div class="edg" id="edList"></div><p class="note" style="margin:0">Lista atualizada em 15/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.</p><p class="ed-soon"><span class="pill xx v">Em breve</span> Editais de todos os municípios brasileiros.</p></div></details>
         <span id="tdMini" hidden></span>
-        <div class="sub" style="margin-top:clamp(18px,4vw,30px)"><h2 class="t"><span class="w">Jobs</span> para você</h2><a href="#jobs">Ver todos →</a></div>
+        <div class="sub" style="margin-top:clamp(18px,4vw,30px)"><h2 class="t"><span class="w">Jobs</span> para você</h2><a class="mk" href="#jobs"><span>Ver todos</span> <span class="arr" aria-hidden="true">→</span></a></div>
         <div class="scroll" id="homeJobs"></div>
         <div id="homeFeed"><div class="sep" aria-hidden="true"><i></i></div><div class="sub"><h2 class="t">O que está <span class="w a">acontecendo</span></h2><span class="note">Leituras da CR1E.Coisas</span></div><div id="homeFeedSlot"></div></div>
-        <div class="sub"><h2 class="t">Continue no <span class="w a">lab</span></h2><a href="#aulas">Todos os cursos →</a></div>
+        <div class="sub"><h2 class="t">Continue no <span class="w a">lab</span></h2><a class="mk" href="#aulas"><span>Todos os cursos</span> <span class="arr" aria-hidden="true">→</span></a></div>
         <div class="aulas" id="homeAulas"></div>
       </section>
 
@@ -1542,7 +1563,7 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
           </details>
           <div class="deck-w">
             <div><div class="deck" id="deck"></div><div class="acts"><button class="btn ln" type="button" id="skip">Pular</button><button class="btn k" type="button" id="conn">Seguir <span class="arr" aria-hidden="true">→</span></button></div></div>
-            <div class="net"><h2 class="t">Você <span class="w">segue</span></h2><div id="conns"></div><button class="pill" type="button" data-rt="social" style="align-self:flex-start">Ver o feed da rede →</button></div>
+            <div class="net"><h2 class="t">Você <span class="w">segue</span></h2><div id="conns"></div><button class="mk" type="button" data-rt="social"><span>Ver o feed da rede</span> <span class="arr" aria-hidden="true">→</span></button></div>
           </div>
         </div>
         <div id="rdSocial">
@@ -2777,7 +2798,7 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
     $('feedF').innerHTML = cats.map((c) => `<button class="pill" type="button" data-ff="${c}" aria-pressed="${c === S.ff}">${c}</button>`).join('');
     const list = (S.ff === 'Salvas' ? FEED : FEED.slice(1)).filter((m) => S.ff === 'Todos' || (S.ff === 'Salvas' ? S.saved.has(m.id) : m.cat === S.ff));
     const home = S.role !== 'empresa', cut = home && !S.fall && S.ff === 'Todos' && list.length > 3;
-    $('feedMore').innerHTML = cut ? '<button class="pill" type="button" id="fAll">Ver todas as leituras →</button>' : ''; const fa = $('fAll'); if (fa) fa.onclick = () => { S.fall = true; feed(); };
+    $('feedMore').innerHTML = cut ? '<button class="mk" type="button" id="fAll"><span>Ver todas as leituras</span> <span class="arr" aria-hidden="true">→</span></button>' : ''; const fa = $('fAll'); if (fa) fa.onclick = () => { S.fall = true; feed(); };
     $('feedList').innerHTML = list.length ? (cut ? list.slice(0, 3) : list).map(fcard).join('') : '<div class="empty">Nenhuma matéria aqui ainda. Salve uma leitura para ela aparecer.</div>';
   }
   function materia() {
@@ -3086,7 +3107,7 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
       .sort((a, b) => (!!a.portal - !!b.portal) || (a.fim || '9999').localeCompare(b.fim || '9999'));
     $('edMini').textContent = `${EDITAIS.filter((e) => edSit(e) === 'a' && inArea(e)).length} abertos`;
     const when = edWhen;
-    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s${e.portal ? ' v' : ''}">${e.portal ? 'Portal de editais' : e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button>${e.portal || edSit(e) === 'e' ? '' : `<button class="lnk" type="button" data-cbed="${esc(e.t)}">Escrever em collab →</button>`}</div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
+    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s${e.portal ? ' v' : ''}">${e.portal ? 'Portal de editais' : e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button>${e.portal || edSit(e) === 'e' ? '' : `<button class="mk" type="button" data-cbed="${esc(e.t)}"><span>Escrever em collab</span> <span class="arr" aria-hidden="true">→</span></button>`}</div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
   }
   $('edA').addEventListener('change', (e) => { S.edU = true; S.edA = e.target.value; editais(); });
   $('edSt').addEventListener('change', (e) => { S.edSt = e.target.value; editais(); }); $('edUF').addEventListener('change', (e) => { S.edUF = e.target.value; S.edC = 'Todas'; editais(); }); $('edC').addEventListener('change', (e) => { S.edC = e.target.value; editais(); });
@@ -3230,6 +3251,7 @@ html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Ler o feed sem login": "Read the feed without signing in", "Ver todos": "See all", "Todos os cursos": "All courses", "Ver todas as leituras": "See all reads", "Ver o feed da rede": "See the network feed", "Escrever em collab": "Write as a collab",
     "Voltar ao feed": "Back to feed", "← Voltar ao feed": "← Back to feed", "← Voltar ao perfil": "← Back to profile", "Publicação na rede": "Post on the network", "Escreva um comentário": "Write a comment", "Comentários": "Comments", "Comentar": "Comment", "comentário": "comment", "comentários": "comments", "curtida": "like", "curtidas": "likes", "Ninguém comentou ainda. Seja a primeira pessoa a responder.": "No comments yet. Be the first to reply.", "Essa publicação não está mais disponível.": "This post is no longer available.", "Publicação apagada.": "Post deleted.", "Responder": "Reply",
     "Carregar mais": "Load more",
     "Salve o app na sua tela": "Save the app to your screen", "Abra com um toque, como um aplicativo, no celular ou no computador.": "Open it with one tap, like an app, on your phone or computer.", "Como salvar": "How to save", "Salvar o app na tela": "Save the app to your screen", "Como deixar o CR1E.Collab na tela do celular ou na área de trabalho.": "How to keep CR1E.Collab on your phone's home screen or your desktop.", "Ver como": "See how", "Leve o app com você": "Take the app with you", "Salve o": "Save the", "app": "app", "na sua tela": "to your screen", "O CR1E.Collab funciona como um aplicativo: salve na tela do celular ou na área de trabalho do computador e abra com um toque, em tela cheia, sem procurar o link.": "CR1E.Collab works like an app: save it to your phone's home screen or your computer's desktop and open it with one tap, full screen, without looking for the link.", "Onde você usa o app": "Where you use the app", "Computador": "Computer", "Instalar agora": "Install now", "Abra cr1e.co/app no Safari.": "Open cr1e.co/app in Safari.", "Toque em “Compartilhar”, o quadrado com a seta para cima, na barra do navegador.": "Tap “Share”, the square with the up arrow, in the browser bar.", "Role a lista e toque em “Adicionar à Tela de Início”.": "Scroll the list and tap “Add to Home Screen”.", "Toque em “Adicionar”. O ícone do CR1E.Collab aparece junto dos seus apps.": "Tap “Add”. The CR1E.Collab icon appears with your other apps.", "No iPad é igual. No Chrome do iPhone, o botão “Compartilhar” fica na barra de endereço.": "It works the same on iPad. In Chrome on iPhone, the “Share” button is in the address bar.", "Abra cr1e.co/app no Chrome.": "Open cr1e.co/app in Chrome.", "Toque no menu ⋮, no canto de cima da tela.": "Tap the ⋮ menu at the top corner of the screen.", "Toque em “Instalar app” ou em “Adicionar à tela inicial”.": "Tap “Install app” or “Add to Home screen”.", "Confirme. O ícone do CR1E.Collab aparece na tela do celular.": "Confirm. The CR1E.Collab icon appears on your phone's screen.", "No Samsung Internet, o caminho é o menu ☰ e depois “Adicionar página a” › “Tela inicial”.": "In Samsung Internet, open the ☰ menu, then “Add page to” › “Home screen”.", "Abra cr1e.co/app no Chrome ou no Edge.": "Open cr1e.co/app in Chrome or Edge.", "Clique no ícone de instalar, na ponta direita da barra de endereço, ou abra o menu ⋮ e procure “Instalar CR1E.Collab”.": "Click the install icon at the right end of the address bar, or open the ⋮ menu and look for “Install CR1E.Collab”.", "Confirme em “Instalar”. O app ganha um ícone na área de trabalho e abre na própria janela.": "Confirm with “Install”. The app gets a desktop icon and opens in its own window.", "No Safari do Mac: menu Arquivo › “Adicionar ao Dock”.": "In Safari on Mac: File menu › “Add to Dock”.", "Já salvei": "Already saved", "Agora não": "Not now", "Pronto: o CR1E.Collab está salvo na sua tela.": "Done: CR1E.Collab is saved to your screen.", "Ótimo. É só abrir pelo ícone na sua tela.": "Great. Just open it from the icon on your screen.",
