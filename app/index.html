@@ -1424,6 +1424,38 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
 .tw-more:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 .tw-more span{font-family:var(--mono);font-weight:400;font-size:11px;text-transform:none;color:var(--mut);letter-spacing:0}
 #postMore{display:none!important}
+
+/* publicação aberta */
+.tw[data-po]{cursor:pointer;transition:background .15s}
+.twbox .tw[data-po]:hover{background:#E2E1D9}
+html[data-theme="dark"] .twbox .tw[data-po]:hover{background:#383831}
+.tw[data-po]:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+.po-w{max-width:680px;display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.po-t{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:20px;margin:0;text-align:left}
+#poOne .tw.big{display:block;padding:16px 18px;cursor:default}
+.tw-bh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tw-bh .tw-av .av{width:52px;height:52px;border-radius:50%;overflow:hidden;font-size:16px}
+.tw-bn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;flex:1;min-width:0}
+.tw-bn button{all:unset;cursor:pointer}
+.tw-bn b{font-family:var(--display);font-weight:900;font-stretch:115%;font-size:17px}
+.tw-bn .hd{color:var(--mut);font-size:13px}
+.tw-bn button.nm:hover b{text-decoration:underline}
+.tw.big p.tx{font-size:19px;line-height:1.5;margin:14px 0 0}
+.tw.big .tw-img{max-height:560px;margin-top:12px}
+.tw-when{margin:14px 0 0;font-family:var(--mono);font-size:12px;color:var(--mut)}
+.tw-st{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;padding:10px 0;border-top:1.5px solid var(--cinza);border-bottom:1.5px solid var(--cinza);font-size:13px;color:var(--mut)}
+.tw-st b{color:var(--preto);font-family:var(--display);font-weight:900;font-size:14px}
+.tw.big .tw-a{max-width:none;justify-content:space-around;margin-top:10px}
+.po-f{display:flex;align-items:center;gap:10px;background:var(--branco);border:2px solid var(--preto);padding:10px 12px}
+.po-f .av{width:36px;height:36px;font-size:12px;border-radius:50%;overflow:hidden;flex:none}
+.po-f input{flex:1;min-width:0;font:inherit;font-size:15px;border:0;border-bottom:1.5px solid var(--preto);background:transparent;color:var(--preto);padding:6px 2px;border-radius:0}
+.po-f input:focus{outline:none;box-shadow:0 2px 0 var(--verde)}
+.po-f .pill{flex:none}
+.po-h{display:flex;align-items:center;margin-top:6px}
+.tw-to{margin:2px 0 0;font-size:12px;color:var(--mut)}
+.rp-o{cursor:default}
+.po-e{margin:0}
+@media (max-width:560px){.tw.big p.tx{font-size:17px}.po-f{padding:8px 10px}.po-f .pill{padding:6px 10px}}
 </style>
 
 <div class="gate" id="gate">
@@ -1542,6 +1574,14 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
           <span class="lbl" style="display:block;font-size:10px;margin:6px 0 6px">Todos os tópicos por categoria</span><div class="pills fcr" id="fcats" role="group" aria-label="Filtrar tópicos"></div>
           <div id="topList"></div>
         </div>
+      </section>
+      <section class="view" data-view="post" aria-labelledby="poT" hidden>
+        <a class="pill back" href="#rede" id="poBack">← Voltar ao feed</a>
+        <div class="po-w"><h1 class="po-t" id="poT">Publicação na rede</h1>
+          <div class="plist2 twbox" id="poOne"></div>
+          <form class="po-f" id="poF"><span class="av" id="poAv"></span><input id="poI" maxlength="280" aria-label="Escreva um comentário" placeholder="Escreva um comentário"><button class="pill s k" type="submit">Responder</button></form>
+          <div class="po-h"><span class="lbl" id="poN">Comentários</span></div>
+          <div class="plist2" id="poRep"></div></div>
       </section>
       <section class="view" data-view="collab" aria-labelledby="cbT" hidden>
         <a class="pill back" href="#rede" id="cbBack">← Collabs</a>
@@ -2043,7 +2083,7 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
   const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
     empresa: [['empresa', 'Painel'], ['feed', 'Feed'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']] };
   const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
-  const PARENT = { collab: 'rede', config: 'perfil', teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
+  const PARENT = { post: 'rede', collab: 'rede', config: 'perfil', teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
   const AREAS = {
     'Artes visuais': ['Muralismo', 'Pintura', 'Ilustração', 'Graffiti', 'Lettering', 'Escultura', 'Gravura', 'Colagem', 'Cerâmica', 'Live painting'],
     'Artes cênicas': ['Teatro', 'Dança', 'Circo', 'Performance', 'Palhaçaria', 'Teatro de bonecos', 'Cenografia', 'Direção cênica', 'Stand-up'],
@@ -2432,10 +2472,11 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
     views.forEach((x) => { x.hidden = x.dataset.view !== v; });
     document.querySelectorAll('.tab a, .side a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + nv));
     $('moreBtn').classList.toggle('on', v === 'mais'); S.seen.add(v); try { todo(); save(); } catch (err) {}
+    if (v === 'post') { if (!S.po) { go('rede'); return; } try { poDraw(); } catch (er) {} }
     if (v === 'collab') { try { cbDraw(); } catch (er) {} }
     if (v === 'sobre') { $('sbGo').hidden = !S.guest; $('sbBack').href = S.guest ? '#inicio' : '#config'; }
     $('crows').hidden = v === 'mensagens'; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
-    scrollTo(0, 0);
+    scrollTo(0, 0); if (S.lastV === 'post' && v === S.poFrom && S.poY) { S.poRs = { v, y: S.poY, t: Date.now() }; S.poY = 0; } if (S.poRs && S.poRs.v === v && Date.now() - S.poRs.t < 900) { const y = S.poRs.y; requestAnimationFrame(() => scrollTo(0, y)); setTimeout(() => scrollTo(0, y), 140); } S.lastV = v;
   }
   addEventListener('hashchange', route);
   document.addEventListener('click', (e) => { const a = e.target.closest('a[href^="#"]'); if (!a) return; const h = a.getAttribute('href'); if (names.includes(h.slice(1))) { e.preventDefault(); try { location.hash = h; } catch (err) {} route(); } });
@@ -2891,9 +2932,9 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
   const hdOf = (uid) => uid === myUid() ? S.hd : ((S.pmap && S.pmap.get(uid)) || {}).hd;
   const handle = (nm, uid) => (uid && hdOf(uid)) ? '@' + hdOf(uid) : '@' + ((nm || 'artista').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 15) || 'artista');
   const rel = (d) => { if (!d || isNaN(d)) return 'agora'; const m = Math.round((Date.now() - d.getTime()) / 60000); if (m < 1) return 'agora'; if (m < 60) return m + ' min'; if (m < 1440) return Math.round(m / 60) + ' h'; return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.', ''); };
-  let twOne = () => ''; S.feedN = 5; S.pvN = 5; S.apN = 5; S.apNid = '';
+  let twOne = () => '', twBig = () => ''; S.feedN = 5; S.poN = 10; S.pvN = 5; S.apN = 5; S.apNid = '';
   const twMore = (k, left) => left > 0 ? `<button class="tw-more" type="button" data-twmore="${k}"><i aria-hidden="true"></i>Carregar mais <span>(${left})</span></button>` : '';
-  document.addEventListener('click', (e) => { const b = e.target.closest('[data-twmore]'); if (!b) return; const k = b.dataset.twmore; if (k === 'feed') S.feedN += 5; else if (k === 'pv') S.pvN += 5; else S.apN += 5; social(); });
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-twmore]'); if (!b) return; const k = b.dataset.twmore; if (k === 'feed') S.feedN += 5; else if (k === 'pv') S.pvN += 5; else if (k === 'po') S.poN += 10; else S.apN += 5; social(); });
   
   function apPostsDraw() { const a = findArt(S.aid); if (!a) return; if (S.apNid !== S.aid) { S.apNid = S.aid; S.apN = 5; } const l = S.netPosts.filter((p) => p.uid === a.uid || p.reposts.includes(a.uid)); $('apPosts').classList.toggle('twbox', !!l.length); $('apPosts').innerHTML = l.length ? l.slice(0, S.apN).map((p, i) => (p.uid !== a.uid ? `<p class="tw-rp rp2">${ICO.rp} ${esc(a.n)} repostou</p>` : '') + twOne(p, i)).join('') + twMore('ap', l.length - S.apN) : '<p class="note" style="margin:0">Nenhuma publicação ainda.</p>'; }
   function social() {
@@ -2907,11 +2948,20 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
     twOne = (p) => {
       const nm = p.me ? S.name : p.a, pr = p.me ? { avatar: S.avatar } : ((S.pmap && S.pmap.get(p.uid)) || {}), lk = p.likes.includes(myU), rp = p.reposts.includes(myU), op = S.twOpen === p.id;
       const th = op ? `<div class="tw-th">${p.replies.map((r) => `<div class="rp"><b>${esc(r.name || 'Artista')}</b>${esc(r.t)}<span>${rel(new Date(r.at))}</span></div>`).join('')}<form data-twf="${p.id}"><input maxlength="280" aria-label="Responder" placeholder="Responda ${esc(nm)}"><button class="pill s k" type="submit">Responder</button></form></div>` : '';
-      return `<article class="tw"><button class="tw-av" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, nm)}</span></button><div>${rp ? `<p class="tw-rp">${ICO.rp} Você repostou</p>` : ''}<div class="tw-h"><button class="nm" type="button" data-art="${esc(p.uid || p.a)}"><b>${esc(nm)}</b></button><button class="hd" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}">${handle(nm, p.me ? myUid() : p.uid)}</button><span class="tm">· ${rel(p.ts)}</span>${!p.me && isC(p.a) ? ' <span class="pill xx v">vocês se seguem</span>' : ''}</div>${p.t ? `<p class="tx">${esc(p.t)}</p>` : ''}${p.img ? `<button class="tw-ib" type="button" data-zoom="${p.id}" aria-label="Ampliar a imagem da publicação"><img class="tw-img" src="${p.img}" alt="Imagem da publicação" loading="lazy"></button>` : ''}<div class="tw-a"><button type="button" data-twr="${p.id}" aria-expanded="${op}" aria-label="Responder">${ICO.re}<span>${p.replies.length || ''}</span></button><button type="button" data-twp="${p.id}" aria-pressed="${rp}" aria-label="Repostar">${ICO.rp}<span>${p.reposts.length || ''}</span></button><button class="lk" type="button" data-twl="${p.id}" aria-pressed="${lk}" aria-label="Curtir">${ICO.lk}<span>${p.likes.length || ''}</span></button><button type="button" data-tws="${p.id}" aria-label="Compartilhar">${ICO.sh}</button>${p.me ? `<button type="button" data-twd="${p.id}" aria-label="Apagar publicação">${ICO.del}</button>` : ''}</div>${th}</div></article>`;
+      return `<article class="tw" data-po="${p.id}" tabindex="0" aria-label="Abrir a publicação de ${esc(nm)}"><button class="tw-av" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, nm)}</span></button><div>${rp ? `<p class="tw-rp">${ICO.rp} Você repostou</p>` : ''}<div class="tw-h"><button class="nm" type="button" data-art="${esc(p.uid || p.a)}"><b>${esc(nm)}</b></button><button class="hd" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}">${handle(nm, p.me ? myUid() : p.uid)}</button><span class="tm">· ${rel(p.ts)}</span>${!p.me && isC(p.a) ? ' <span class="pill xx v">vocês se seguem</span>' : ''}</div>${p.t ? `<p class="tx">${esc(p.t)}</p>` : ''}${p.img ? `<button class="tw-ib" type="button" data-zoom="${p.id}" aria-label="Ampliar a imagem da publicação"><img class="tw-img" src="${p.img}" alt="Imagem da publicação" loading="lazy"></button>` : ''}<div class="tw-a"><button type="button" data-twr="${p.id}" aria-expanded="${op}" aria-label="Responder">${ICO.re}<span>${p.replies.length || ''}</span></button><button type="button" data-twp="${p.id}" aria-pressed="${rp}" aria-label="Repostar">${ICO.rp}<span>${p.reposts.length || ''}</span></button><button class="lk" type="button" data-twl="${p.id}" aria-pressed="${lk}" aria-label="Curtir">${ICO.lk}<span>${p.likes.length || ''}</span></button><button type="button" data-tws="${p.id}" aria-label="Compartilhar">${ICO.sh}</button>${p.me ? `<button type="button" data-twd="${p.id}" aria-label="Apagar publicação">${ICO.del}</button>` : ''}</div>${th}</div></article>`;
+    };
+
+    twBig = (p) => {
+      const nm = p.me ? S.name : p.a, pr = p.me ? { avatar: S.avatar } : ((S.pmap && S.pmap.get(p.uid)) || {}), lk = p.likes.includes(myU), rp = p.reposts.includes(myU), d = p.ts instanceof Date && !isNaN(p.ts) ? p.ts : new Date();
+      const when = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + ' · ' + d.toLocaleDateString('pt-BR');
+      const st = (n, a, b) => n ? `<span><b>${n}</b> ${n === 1 ? a : b}</span>` : '';
+      const stats = [st(p.replies.length, 'comentário', 'comentários'), st(p.reposts.length, 'repost', 'reposts'), st(p.likes.length, 'curtida', 'curtidas')].filter(Boolean).join('');
+      return `<article class="tw big"><div class="tw-bh"><button class="tw-av" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, nm)}</span></button><span class="tw-bn"><button class="nm" type="button" data-art="${esc(p.uid || p.a)}"><b>${esc(nm)}</b></button><button class="hd" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}">${handle(nm, p.me ? myUid() : p.uid)}</button></span>${!p.me && isC(p.a) ? '<span class="pill xx v">vocês se seguem</span>' : ''}</div>${rp ? `<p class="tw-rp">${ICO.rp} Você repostou</p>` : ''}${p.t ? `<p class="tx">${esc(p.t)}</p>` : ''}${p.img ? `<button class="tw-ib" type="button" data-zoom="${p.id}" aria-label="Ampliar a imagem da publicação"><img class="tw-img" src="${p.img}" alt="Imagem da publicação"></button>` : ''}<p class="tw-when">${when}</p>${stats ? `<div class="tw-st">${stats}</div>` : ''}<div class="tw-a"><button type="button" data-pofocus aria-label="Comentar">${ICO.re}</button><button type="button" data-twp="${p.id}" aria-pressed="${rp}" aria-label="Repostar">${ICO.rp}</button><button class="lk" type="button" data-twl="${p.id}" aria-pressed="${lk}" aria-label="Curtir">${ICO.lk}</button><button type="button" data-tws="${p.id}" aria-label="Compartilhar">${ICO.sh}</button>${p.me ? `<button type="button" data-twd="${p.id}" aria-label="Apagar publicação">${ICO.del}</button>` : ''}</div></article>`;
     };
     $('postList').innerHTML = !S.netPosts.length ? '<div class="empty">Ninguém publicou ainda. Conte o que você está criando e abra o feed da rede.</div>' : S.netPosts.slice(0, S.feedN).map((p, i) => twOne(p, i) + (i === 2 ? '<div class="cb-promo"><span><b>Viu alguém com quem criaria junto?</b><span class="note">Abra uma collab e chame quem você segue para um projeto.</span></span><button class="pill k" type="button" data-rt="collab">Ver collabs</button></div>' : '')).join('') + twMore('feed', S.netPosts.length - S.feedN); $('postList').classList.toggle('twbox', !!S.netPosts.length); $('postMore').hidden = true;
     { const mine = S.netPosts.filter((p) => p.me || p.reposts.includes(myUid())); $('pvPosts').classList.toggle('twbox', !!mine.length); $('pvPosts').innerHTML = mine.length ? mine.slice(0, S.pvN).map(twOne).join('') + twMore('pv', mine.length - S.pvN) : '<p class="note" style="margin:0">Você ainda não publicou. O que você postar no feed da rede aparece aqui.</p>'; }
     try { apPostsDraw(); } catch (er) {}
+    try { if (!document.querySelector('[data-view="post"]').hidden) poDraw(); } catch (er) {}
     if (keep) { const f = document.querySelector(`[data-twf="${keep[0]}"] input`); if (f) { f.value = keep[1]; f.focus(); } }
     $('fcats').innerHTML = ['Todos', ...FCATS].map((c) => `<button class="pill" type="button" data-fcat="${c}" aria-pressed="${c === S.fcat}">${c}</button>`).join('');
     { const hot = [...S.forum].sort((a, b) => b.msgs.length - a.msgs.length).slice(0, 4); $('hotBox').hidden = !hot.length; $('hotN').textContent = hot.length ? `${S.forum.length} ${S.forum.length === 1 ? 'tópico' : 'tópicos'} na rede` : '';
@@ -2934,14 +2984,29 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
   $('postGif').addEventListener('change', (e) => { const f = e.target.files[0]; e.target.value = ''; if (!f) return; if (f.size > 700 * 1024) { toast('Esse GIF é pesado demais. Escolha um de até 700 KB.'); return; } const fr = new FileReader(); fr.onload = () => { S.postImg = fr.result; postPrev(); }; fr.readAsDataURL(f); });
   $('postF').addEventListener('submit', (e) => { e.preventDefault(); const t = $('postI').value.trim(), img = S.postImg; if ((!t && !img) || !RR.A) { if (!t && !img) $('postI').focus(); return; } $('postI').value = ''; S.postImg = ''; postPrev(); postN(); RR.A.post(S, t, img).then(() => toast('Publicado no feed da rede.')).catch(() => { $('postI').value = t; S.postImg = img; postPrev(); postN(); toast('Não consegui publicar agora. Tente de novo.'); }); });
   const twP = (id) => S.netPosts.find((x) => x.id === id);
+
+  function poDraw() { const p = twP(S.po), fr = S.poFrom || 'rede', pf = fr === 'perfil' || fr === 'artista';
+    $('poBack').href = '#' + fr; $('poBack').textContent = pf ? '← Voltar ao perfil' : '← Voltar ao feed';
+    $('poAv').innerHTML = avIn(S.avatar, S.name); $('poAv').className = 'av' + (S.avatar ? '' : ' txt');
+    if (!p) { $('poOne').classList.remove('twbox'); $('poOne').innerHTML = '<div class="empty">Essa publicação não está mais disponível.</div>'; $('poF').hidden = true; $('poN').parentElement.hidden = true; $('poRep').innerHTML = ''; return; }
+    $('poOne').classList.add('twbox'); $('poOne').innerHTML = twBig(p); $('poF').hidden = false; $('poN').parentElement.hidden = false; $('poF').dataset.twf = p.id;
+    const nm = p.me ? S.name : p.a; $('poI').placeholder = 'Responda ' + nm;
+    const r = p.replies || []; $('poN').textContent = r.length ? `Comentários (${r.length})` : 'Comentários';
+    $('poRep').classList.toggle('twbox', !!r.length);
+    $('poRep').innerHTML = r.length ? r.slice(0, S.poN).map((x) => { const mine = x.uid ? x.uid === myUid() : x.name === S.name, n = mine ? S.name : (x.name || 'Artista'), pr = mine ? { avatar: S.avatar } : ((S.pmap && S.pmap.get(x.uid)) || {}), k = esc(x.uid || n);
+      return `<article class="tw rp-o"><button class="tw-av" type="button" data-art="${k}" aria-label="Ver perfil de ${esc(n)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, n)}</span></button><div><div class="tw-h"><button class="nm" type="button" data-art="${k}"><b>${esc(n)}</b></button><button class="hd" type="button" data-art="${k}" aria-label="Ver perfil de ${esc(n)}">${handle(n, mine ? myUid() : x.uid)}</button><span class="tm">· ${rel(new Date(x.at))}</span></div><p class="tw-to">Respondendo a ${handle(nm, p.me ? myUid() : p.uid)}</p><p class="tx">${esc(x.t)}</p></div></article>`; }).join('') + twMore('po', r.length - S.poN) : '<p class="note po-e">Ninguém comentou ainda. Seja a primeira pessoa a responder.</p>'; }
+  function poOpen(id, focus) { const cur = location.hash.slice(1) || 'inicio'; if (cur !== 'post') { S.poFrom = cur; S.poY = scrollY; } S.po = id; S.poN = 10; go('post'); if (focus) setTimeout(() => $('poI').focus(), 60); }
+  document.addEventListener('click', (e) => { const a = e.target.closest('article[data-po]'); if (!a || e.target.closest('button,a,input,textarea,form,label,select')) return; if (window.getSelection && String(window.getSelection()).length > 2) return; poOpen(a.dataset.po); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('article[data-po]')) poOpen(e.target.dataset.po); });
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-pofocus]')) $('poI').focus(); });
   document.addEventListener('submit', (e) => { const f = e.target.closest('[data-twf]'); if (!f) return; e.preventDefault(); const inp = f.querySelector('input'), v = inp.value.trim(), p = twP(f.dataset.twf); if (!v || !p || !RR.A) return; inp.value = ''; p.replies.push({ uid: '', name: S.name, t: v, at: Date.now() }); social(); RR.A.replyPost(S, p.id, v).catch(() => toast('Não consegui responder agora. Tente de novo.')); });
   document.addEventListener('click', async (e) => { let b; const myU = RR.A && RR.A.user() ? RR.A.user().uid : '';
-    if ((b = e.target.closest('[data-twr]'))) { S.twOpen = S.twOpen === b.dataset.twr ? '' : b.dataset.twr; social(); const f = document.querySelector(`[data-twf="${S.twOpen}"] input`); if (f) f.focus(); return; }
+    if ((b = e.target.closest('[data-twr]'))) { poOpen(b.dataset.twr, true); return; }
     const tog = (k, field) => { const p = twP(b.dataset[k]); if (!p || !RR.A) return; const arr = p[field], on = !arr.includes(myU); on ? arr.push(myU) : arr.splice(arr.indexOf(myU), 1); social(); RR.A.togglePost(p.id, field, on).catch(() => toast('Não deu certo agora. Tente de novo.')); };
     if ((b = e.target.closest('[data-twl]'))) return tog('twl', 'likes');
     if ((b = e.target.closest('[data-twp]'))) return tog('twp', 'reposts');
     if ((b = e.target.closest('[data-tws]'))) { const p = twP(b.dataset.tws); if (!p) return; const pr = p.me ? { avatar: S.avatar } : ((S.pmap && S.pmap.get(p.uid)) || {}); storyOpen({ kind: 'post', name: p.me ? S.name : p.a, avatar: pr.avatar || '', text: p.t }); return; }
-    if ((b = e.target.closest('[data-twd]'))) { const id = b.dataset.twd; if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.style.color = 'var(--preto)'; toast('Toque de novo na lixeira para apagar a publicação.'); setTimeout(() => { b.dataset.sure = ''; b.style.color = ''; }, 4000); return; } S.netPosts = S.netPosts.filter((x) => x.id !== id); social(); RR.A && RR.A.delPost(id).catch(() => toast('Não consegui apagar agora.')); return; }
+    if ((b = e.target.closest('[data-twd]'))) { const id = b.dataset.twd; if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.style.color = 'var(--preto)'; toast('Toque de novo na lixeira para apagar a publicação.'); setTimeout(() => { b.dataset.sure = ''; b.style.color = ''; }, 4000); return; } S.netPosts = S.netPosts.filter((x) => x.id !== id); if (S.po === id && location.hash === '#post') { go(S.poFrom || 'rede'); toast('Publicação apagada.'); } social(); RR.A && RR.A.delPost(id).catch(() => toast('Não consegui apagar agora.')); return; }
   });
   $('topF').addEventListener('submit', (e) => { e.preventDefault(); const t = $('top-t').value.trim(), m = $('top-m').value.trim(); if (!t || !m) { $('topMsg').textContent = 'Escreva o assunto e a mensagem.'; return; } if (!RR.A) return; RR.A.topic(S, $('top-c').value, t, m).catch(() => { $('topMsg').textContent = 'Não consegui publicar agora. Tente de novo.'; }); e.target.reset(); $('topMsg').textContent = ''; e.target.closest('details').open = false; S.fcat = 'Todos'; social(); });
   $('tpF').addEventListener('submit', (e) => { e.preventDefault(); const v = $('tpI').value.trim(); if (!v || !RR.A) return; const tp = S.forum.find((x) => x.id === S.top); $('tpI').value = ''; if (tp && FORUM.includes(tp)) { tp.msgs.push([S.name, v, true]); social(); return; } RR.A.reply(S, S.top, v, tp && tp.t).catch(() => { $('tpI').value = v; }); });
@@ -3165,6 +3230,7 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Voltar ao feed": "Back to feed", "← Voltar ao feed": "← Back to feed", "← Voltar ao perfil": "← Back to profile", "Publicação na rede": "Post on the network", "Escreva um comentário": "Write a comment", "Comentários": "Comments", "Comentar": "Comment", "comentário": "comment", "comentários": "comments", "curtida": "like", "curtidas": "likes", "Ninguém comentou ainda. Seja a primeira pessoa a responder.": "No comments yet. Be the first to reply.", "Essa publicação não está mais disponível.": "This post is no longer available.", "Publicação apagada.": "Post deleted.", "Responder": "Reply",
     "Carregar mais": "Load more",
     "Salve o app na sua tela": "Save the app to your screen", "Abra com um toque, como um aplicativo, no celular ou no computador.": "Open it with one tap, like an app, on your phone or computer.", "Como salvar": "How to save", "Salvar o app na tela": "Save the app to your screen", "Como deixar o CR1E.Collab na tela do celular ou na área de trabalho.": "How to keep CR1E.Collab on your phone's home screen or your desktop.", "Ver como": "See how", "Leve o app com você": "Take the app with you", "Salve o": "Save the", "app": "app", "na sua tela": "to your screen", "O CR1E.Collab funciona como um aplicativo: salve na tela do celular ou na área de trabalho do computador e abra com um toque, em tela cheia, sem procurar o link.": "CR1E.Collab works like an app: save it to your phone's home screen or your computer's desktop and open it with one tap, full screen, without looking for the link.", "Onde você usa o app": "Where you use the app", "Computador": "Computer", "Instalar agora": "Install now", "Abra cr1e.co/app no Safari.": "Open cr1e.co/app in Safari.", "Toque em “Compartilhar”, o quadrado com a seta para cima, na barra do navegador.": "Tap “Share”, the square with the up arrow, in the browser bar.", "Role a lista e toque em “Adicionar à Tela de Início”.": "Scroll the list and tap “Add to Home Screen”.", "Toque em “Adicionar”. O ícone do CR1E.Collab aparece junto dos seus apps.": "Tap “Add”. The CR1E.Collab icon appears with your other apps.", "No iPad é igual. No Chrome do iPhone, o botão “Compartilhar” fica na barra de endereço.": "It works the same on iPad. In Chrome on iPhone, the “Share” button is in the address bar.", "Abra cr1e.co/app no Chrome.": "Open cr1e.co/app in Chrome.", "Toque no menu ⋮, no canto de cima da tela.": "Tap the ⋮ menu at the top corner of the screen.", "Toque em “Instalar app” ou em “Adicionar à tela inicial”.": "Tap “Install app” or “Add to Home screen”.", "Confirme. O ícone do CR1E.Collab aparece na tela do celular.": "Confirm. The CR1E.Collab icon appears on your phone's screen.", "No Samsung Internet, o caminho é o menu ☰ e depois “Adicionar página a” › “Tela inicial”.": "In Samsung Internet, open the ☰ menu, then “Add page to” › “Home screen”.", "Abra cr1e.co/app no Chrome ou no Edge.": "Open cr1e.co/app in Chrome or Edge.", "Clique no ícone de instalar, na ponta direita da barra de endereço, ou abra o menu ⋮ e procure “Instalar CR1E.Collab”.": "Click the install icon at the right end of the address bar, or open the ⋮ menu and look for “Install CR1E.Collab”.", "Confirme em “Instalar”. O app ganha um ícone na área de trabalho e abre na própria janela.": "Confirm with “Install”. The app gets a desktop icon and opens in its own window.", "No Safari do Mac: menu Arquivo › “Adicionar ao Dock”.": "In Safari on Mac: File menu › “Add to Dock”.", "Já salvei": "Already saved", "Agora não": "Not now", "Pronto: o CR1E.Collab está salvo na sua tela.": "Done: CR1E.Collab is saved to your screen.", "Ótimo. É só abrir pelo ícone na sua tela.": "Great. Just open it from the icon on your screen.",
     "Novo no CR1E.Collab": "New on CR1E.Collab", "Crie o seu": "Create your", "É o seu endereço na rede: aparece no seu perfil e nas suas publicações, e é por ele que as pessoas encontram você, além do nome.": "It is your address on the network: it shows on your profile and posts, and people can find you by it as well as by your name.", "Seu @": "Your @", "Letras minúsculas, números, ponto e sublinhado. De 3 a 24 caracteres.": "Lowercase letters, numbers, dots and underscores. 3 to 24 characters.", "Salvar o meu @": "Save my @", "Depois": "Later", "Use pelo menos 3 caracteres.": "Use at least 3 characters.", "Não comece nem termine com ponto ou sublinhado.": "Do not start or end with a dot or underscore.", "Não use dois pontos seguidos.": "Do not use two dots in a row.", "Esse @ já está em uso. Tente outro.": "That @ is already taken. Try another.", "Ainda não criado": "Not created yet", "Nome ou @ da pessoa": "Person's name or @", "Buscar pessoas por nome ou @": "Search people by name or @",
@@ -3679,6 +3745,7 @@ html[data-theme="dark"] .twbox .cb-promo .pill.k{background:#0E0E0C;color:#C5FF3
   try { LANG = localStorage.getItem(KEY) || ((navigator.language || 'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en'); } catch (e) {}
   const pl = (n, a, b) => `${n} ${+n === 1 ? a : b}`;
   const RULES = [
+    [/^Comentários \((\d+)\)$/, (m) => `Comments (${m[1]})`], [/^Abrir a publicação de (.+)$/, (m) => `Open ${m[1]}'s post`], [/^Respondendo a (.+)$/, (m) => `Replying to ${m[1]}`],
     [/^@(.+) está livre\.$/, (m) => `@${m[1]} is available.`], [/^Pronto: agora você é @(.+)\.$/, (m) => `Done: you are now @${m[1]}.`],
     [/^(\d+) (pessoa|pessoas) · (\d+) (estado|estados)( · (\d+) (cidade|cidades))?$/, (m) => `${m[1]} ${m[1] === '1' ? 'person' : 'people'} · ${m[3]} ${m[3] === '1' ? 'state' : 'states'}${m[5] ? ` · ${m[6]} ${m[6] === '1' ? 'city' : 'cities'}` : ''}`], [/^(\d+) de (\d+) estados$/, (m) => `${m[1]} of ${m[2]} states`], [/^(\d+) (pessoa|pessoas)$/, (m) => `${m[1]} ${m[1] === '1' ? 'person' : 'people'}`],
     [/^Aula (\d+)$/, (m) => `Lesson ${m[1]}`], [/^(\d+) aulas$/, (m) => `${m[1]} lessons`], [/^Curso$/, () => 'Course'], [/^Com (.+)$/, (m) => `With ${m[1]}`],
