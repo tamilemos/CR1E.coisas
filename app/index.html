@@ -1225,6 +1225,28 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
 .cvf,.cvf>*{min-width:0;max-width:100%}
 @media(max-width:420px){.cvf .two{grid-template-columns:minmax(0,1fr)}.cvr>b{width:52px;font-size:13px}}
 @media(max-width:420px){#cvList .cvr,#lkList .cvr{flex-wrap:wrap}#cvList .cvr>span,#lkList .cvr>span{flex:1 1 60%}#cvList .cvr>button,#lkList .cvr>button{margin-left:auto}}
+
+/* estúdio: aba Editais */
+.ftab{font-size:clamp(7.5px,2.2vw,13px);padding-inline:2px}
+.ftab.t3{flex-grow:1}
+.ftab.t4{--preto:#0E0E0C;--verde:#C5FF3D;background:#E4E2D8;color:#0E0E0C}
+.fbody[data-tool="ed"]{border-top-color:#E4E2D8;box-shadow:8px 8px 0 var(--preto),inset 0 2px 0 var(--preto)}
+#tool-ed{display:flex;flex-direction:column;gap:16px}
+#tool-ed[hidden]{display:none}
+.eslist{border:1.5px solid var(--preto)}
+.esr{display:flex;flex-direction:column;gap:8px;padding:11px 12px;border-top:1px solid var(--cinza)}
+.esr:first-child{border-top:0}
+.esr.off{opacity:.55}
+.esr>span:first-child{display:flex;flex-direction:column;gap:3px;min-width:0}
+.esr b{font-family:var(--mono);font-weight:700;font-size:13px;line-height:1.35}
+.esr .note{font-size:10.5px}
+.esr-a{display:flex;gap:6px;flex-wrap:wrap}
+.esr-a .pill{cursor:pointer;text-decoration:none}
+.eslist .empty{border:0}
+#esF .pill{cursor:pointer}
+#esF .pill b{font-weight:900}
+.soon{border-style:dashed;position:relative}
+.soon-bar{height:14px;margin:6px -1px -1px;background:repeating-linear-gradient(-45deg,var(--verde) 0 14px,var(--preto) 14px 28px);border-top:2px solid var(--preto)}
 </style>
 
 <div class="gate" id="gate">
@@ -1335,7 +1357,7 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
       <!-- ESTÚDIO -->
       <section class="view" data-view="estudio" aria-labelledby="v-estudio" hidden>
         <div class="vh"><h1 class="t" id="v-estudio"><span class="ln">Seu</span><span class="ln w a">estúdio</span></h1><p>Ferramentas para profissionalizar o seu trabalho: media kit, proposta de orçamento e planejamento de conteúdo.</p></div>
-        <div class="folder"><div class="ftabs" role="group" aria-label="Ferramenta"><button class="ftab t1" type="button" data-tool="kit" aria-pressed="true">Media kit</button><button class="ftab t2" type="button" data-tool="orc" aria-pressed="false">Orçamento</button><button class="ftab t3" type="button" data-tool="plan" aria-pressed="false">Conteúdo</button></div>
+        <div class="folder"><div class="ftabs" role="group" aria-label="Ferramenta"><button class="ftab t1" type="button" data-tool="kit" aria-pressed="true">Media kit</button><button class="ftab t2" type="button" data-tool="orc" aria-pressed="false">Orçamento</button><button class="ftab t3" type="button" data-tool="plan" aria-pressed="false">Conteúdo</button><button class="ftab t4" type="button" data-tool="ed" aria-pressed="false">Editais</button></div>
         <div class="fbody" id="fbody" data-tool="kit">
         <div class="tools" id="tool-kit">
           <div class="panel card">
@@ -1387,6 +1409,21 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
             <table><tbody id="po-rows"></tbody></table>
             <div class="tot"><span class="lbl" style="color:var(--papel)">Total</span><b id="po-tot"></b></div>
             <p>Validade da proposta: 15 dias. Pagamento: 50% na aprovação e 50% na entrega.</p>
+          </div>
+        </div>
+        <div class="tools" id="tool-ed" hidden>
+          <div class="panel card">
+            <h2 class="t" style="font-size:34px">Seus <span class="w a">editais</span></h2>
+            <p class="note" style="margin:-6px 0 0">Salve os editais em que você quer se inscrever e acompanhe os prazos em um só lugar.</p>
+            <div class="pills" id="esF" role="group" aria-label="Filtrar editais"></div>
+            <div class="eslist" id="esList"></div>
+          </div>
+          <div class="panel card soon">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Em breve</span><span class="note">Em construção</span></div>
+            <h2 class="t" style="font-size:34px">Assistente de <span class="w a">editais</span></h2>
+            <p class="note" style="margin:-6px 0 0">Uma inteligência artificial para ajudar você a escrever a sua inscrição, a partir dos editais que você salvou.</p>
+            <ol class="sb-s" style="padding:6px 0 0"><li><b>Ler o edital</b><span>Resumo das exigências, dos prazos e de quem pode participar.</span></li><li><b>Organizar os documentos</b><span>Lista do que separar antes de começar.</span></li><li><b>Escrever o projeto</b><span>Apoio para apresentação, justificativa e orçamento, com a sua voz.</span></li><li><b>Revisar antes de enviar</b><span>Conferência do texto com o que o edital pede.</span></li></ol>
+            <div class="soon-bar" aria-hidden="true"></div>
           </div>
         </div>
         <div class="tools" id="tool-plan" hidden>
@@ -2296,7 +2333,7 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
     $('pk-cli').textContent = list('k-cli').join(' · '); $('pk-cliW').hidden = !list('k-cli').length;
   }
   ['k-nome', 'k-cid', 'k-esp', 'k-seg', 'k-alc', 'k-eng', 'k-pub', 'k-srv', 'k-cli', 'k-bio', 'k-ct', 'k-lk'].forEach((id) => $(id).addEventListener('input', () => { kitTouched = true; kit(); stats(); }));
-  document.querySelectorAll('[data-tool]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tool]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); $('tool-kit').hidden = b.dataset.tool !== 'kit'; $('tool-orc').hidden = b.dataset.tool !== 'orc'; $('tool-plan').hidden = b.dataset.tool !== 'plan'; $('fbody').dataset.tool = b.dataset.tool; }));
+  document.querySelectorAll('[data-tool]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tool]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); $('tool-kit').hidden = b.dataset.tool !== 'kit'; $('tool-orc').hidden = b.dataset.tool !== 'orc'; $('tool-plan').hidden = b.dataset.tool !== 'plan'; $('tool-ed').hidden = b.dataset.tool !== 'ed'; $('fbody').dataset.tool = b.dataset.tool; if (b.dataset.tool === 'ed') { try { edStudio(); } catch (er) {} } }));
   /* IA: só aparece quando a página roda dentro do Claude com a capacidade liberada */
   (async () => {
     let sample = null; try { sample = await window.claude?.use?.('sample'); } catch (e) {}
@@ -2577,10 +2614,17 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
     { t: 'Valorização do Movimento Funk', org: 'Governo do Rio de Janeiro', ar: ['Música'], uf: 'RJ', cid: '', fim: '2026-11-13', url: 'https://desenvolvecultura.rj.gov.br/desenvolve-cultura' },
     { t: 'Salão Sobral de Artes Visuais 2026', org: 'Instituto ECOA', ar: ['Artes visuais'], uf: 'CE', cid: 'Sobral', fim: '2026-11-10', url: 'https://artequemoraaqui.substack.com/p/r-146-milhao-para-fotografia-paco' },
   ];
-  S.edA = ''; S.edS = new Set(); S.edSt = 'Abertos'; S.edUF = 'Todos'; S.edC = 'Todas';
+  S.edA = ''; S.edS = new Set(); try { S.edS = new Set(JSON.parse(localStorage.getItem('cr1e-editais') || '[]')); } catch (er) {} S.edSt = 'Abertos'; S.edUF = 'Todos'; S.edC = 'Todas';
   const edDays = (e) => Math.ceil((new Date(e.fim + 'T23:59:59') - Date.now()) / 864e5);
   const edSit = (e) => e.breve ? 'b' : (!e.fim || edDays(e) >= 0) ? 'a' : 'e';
+  const edWhen = (e) => { const s = edSit(e); if (s === 'b') return 'abre em breve'; if (s === 'e') return 'encerrado'; if (!e.fim) return 'fluxo contínuo'; const n = edDays(e); return n === 0 ? 'encerra hoje' : n === 1 ? 'encerra amanhã' : `encerra em ${n} dias`; };
+  function edStudio() { if (!$('esList')) return; S.esF = S.esF || 'Salvos'; const mine = myAreas(), opts = ['Salvos', 'Minha área', 'Todos abertos'];
+    $('esF').innerHTML = opts.map((o) => `<button class="pill s" type="button" data-esf="${o}" aria-pressed="${o === S.esF}">${o}${o === 'Salvos' ? ' <b>' + S.edS.size + '</b>' : ''}</button>`).join('');
+    const l = EDITAIS.filter((e) => S.esF === 'Salvos' ? S.edS.has(e.t) : edSit(e) === 'a' && (S.esF === 'Todos abertos' || !e.ar.length || e.ar.some((a) => mine.includes(a)))).sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
+    $('esList').innerHTML = l.length ? l.map((e) => `<div class="esr${edSit(e) === 'e' ? ' off' : ''}"><span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${edWhen(e)}</span></span><span class="esr-a"><a class="pill xx" href="${e.url}" target="_blank" rel="noopener">Ver edital ↗</a><button class="pill xx${S.edS.has(e.t) ? ' k' : ''}" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></span></div>`).join('') : `<div class="empty">${S.esF === 'Salvos' ? 'Você ainda não salvou nenhum edital. Toque em Minha área ou Todos abertos e salve os que interessam.' : 'Nenhum edital aberto com esse filtro agora.'}</div>`; }
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-esf]'); if (b) { S.esF = b.dataset.esf; edStudio(); } });
   function editais() {
+    try { edStudio(); } catch (er) {}
     const mine = [...new Set(S.sk.map((x) => AREA_OF.get(x)).filter(Boolean))];
     if (!S.edA) S.edA = mine.length ? 'Minhas áreas' : 'Todas';
     const ST = { Abertos: 'a', 'Em breve': 'b', Encerrados: 'e' }, opt = (l, v) => l.map((a) => `<option value="${a}"${a === v ? ' selected' : ''}>${a}</option>`).join('');
@@ -2592,12 +2636,12 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
     const l = EDITAIS.filter((e) => inArea(e) && (S.edSt === 'Todos' || edSit(e) === ST[S.edSt]) && (S.edUF === 'Todos' || e.uf === S.edUF || e.uf === 'BR') && (S.edC === 'Todas' || e.cid === S.edC || e.uf === 'BR'))
       .sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
     $('edMini').textContent = `${EDITAIS.filter((e) => edSit(e) === 'a' && inArea(e)).length} abertos`;
-    const when = (e) => { const s = edSit(e); if (s === 'b') return 'abre em breve'; if (s === 'e') return 'encerrado'; if (!e.fim) return 'fluxo contínuo'; const n = edDays(e); return n === 0 ? 'encerra hoje' : n === 1 ? 'encerra amanhã' : `encerra em ${n} dias`; };
+    const when = edWhen;
     $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s">${e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">Ver edital ↗</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
   }
   $('edA').addEventListener('change', (e) => { S.edU = true; S.edA = e.target.value; editais(); });
   $('edSt').addEventListener('change', (e) => { S.edSt = e.target.value; editais(); }); $('edUF').addEventListener('change', (e) => { S.edUF = e.target.value; S.edC = 'Todas'; editais(); }); $('edC').addEventListener('change', (e) => { S.edC = e.target.value; editais(); });
-  document.addEventListener('click', (e) => { const b = e.target.closest('[data-eds]'); if (!b) return; const k = b.dataset.eds; S.edS.has(k) ? S.edS.delete(k) : S.edS.add(k); editais(); });
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-eds]'); if (!b) return; const k = b.dataset.eds; S.edS.has(k) ? S.edS.delete(k) : S.edS.add(k); try { localStorage.setItem('cr1e-editais', JSON.stringify([...S.edS])); } catch (er) {} editais(); });
 
   /* ---------- estúdio: planejamento de conteúdo ---------- */
   const PDAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'], PSLOT = { 2: [1, 3], 3: [0, 2, 4], 4: [0, 1, 3, 5], 5: [0, 1, 2, 3, 4] };
