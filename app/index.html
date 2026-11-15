@@ -1210,6 +1210,21 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
 .sb-flow{align-items:stretch}
 .sb-n{align-items:center;justify-content:center;text-align:center;padding:12px 8px}
 .sb-flow>i{align-self:center;height:0;border:0;border-top:4px solid var(--verde);border-radius:0;background:none;margin:0;width:clamp(18px,5vw,56px)}
+/* acordeão: verde e cinza sempre com texto preto, em qualquer tema */
+.acc-i:nth-child(4n+1){--kb:#C5FF3D;--kf:#0E0E0C}
+.acc-i:nth-child(4n){--kb:#E4E2D8;--kf:#0E0E0C}
+
+/* perfil no celular: nada vaza da tela (currículo, links e formulários) */
+[data-view="perfil"]>*,[data-view="perfil"] .pf,[data-view="perfil"] .pf>*,#pfArt,#pfArt>*,#pfArt>*>*,#pfView,#pfView>*{min-width:0;max-width:100%;box-sizing:border-box}
+.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.fld,.fld input,.fld select,.fld textarea{min-width:0;max-width:100%;box-sizing:border-box}
+.cvr>span,.cvr>span *,.pv-cv,.pv-cv *{overflow-wrap:anywhere;min-width:0}
+.cvr a{word-break:break-word}
+#pfArt .sub{flex-wrap:wrap}
+#pfArt .sub .note{flex:1 1 140px;min-width:0}
+.cvf,.cvf>*{min-width:0;max-width:100%}
+@media(max-width:420px){.cvf .two{grid-template-columns:minmax(0,1fr)}.cvr>b{width:52px;font-size:13px}}
+@media(max-width:420px){#cvList .cvr,#lkList .cvr{flex-wrap:wrap}#cvList .cvr>span,#lkList .cvr>span{flex:1 1 60%}#cvList .cvr>button,#lkList .cvr>button{margin-left:auto}}
 </style>
 
 <div class="gate" id="gate">
