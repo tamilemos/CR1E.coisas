@@ -1304,6 +1304,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
 .map-l .reqr{padding:8px 12px}
 .map-l>.note{margin:0;padding:10px 12px}
 .map-soon{border-top:1px solid var(--cinza);font-size:10.5px}
+.ed-soon{margin:0;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut)}
 </style>
 
 <div class="gate" id="gate">
@@ -1345,7 +1346,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
           <div class="kp"><div class="card" data-href="jobs" role="link" tabindex="0"><span class="lbl">Jobs abertos</span><b id="kJobs">0</b></div><div class="card" data-href="candidaturas" role="link" tabindex="0"><span class="lbl">Candidaturas</span><b id="kApp">0</b></div><div class="card" data-href="perfil" data-net="out" role="link" tabindex="0"><span class="lbl">Seguindo</span><b id="kCon">0</b></div><div class="card" data-href="aulas" role="link" tabindex="0" style="--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--verde)"><span class="lbl" style="color:var(--papel)">Aulas feitas</span><b id="kAul">0</b></div></div>
         </div>
         <details class="edx big" id="edx"><summary><h2 class="t"><span class="w a">Editais</span> abertos</h2><span class="note" id="edMini"></span><i aria-hidden="true"></i></summary>
-          <div class="edx-b"><div class="edf"><label class="lbl" for="edA">Área de atuação<select id="edA"></select></label><label class="lbl" for="edSt">Situação<select id="edSt"></select></label><label class="lbl" for="edUF">Estado<select id="edUF"></select></label><label class="lbl" for="edC">Cidade<select id="edC"></select></label></div><div class="edg" id="edList"></div><p class="note" style="margin:0">Lista atualizada em 14/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.</p></div></details>
+          <div class="edx-b"><div class="edf"><label class="lbl" for="edA">Área de atuação<select id="edA"></select></label><label class="lbl" for="edSt">Situação<select id="edSt"></select></label><label class="lbl" for="edUF">Estado<select id="edUF"></select></label><label class="lbl" for="edC">Cidade<select id="edC"></select></label></div><div class="edg" id="edList"></div><p class="note" style="margin:0">Lista atualizada em 15/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.</p><p class="ed-soon"><span class="pill xx v">Em breve</span> Editais de todos os municípios brasileiros.</p></div></details>
         <span id="tdMini" hidden></span>
         <div class="sub" style="margin-top:clamp(18px,4vw,30px)"><h2 class="t"><span class="w">Jobs</span> para você</h2><a href="#jobs">Ver todos →</a></div>
         <div class="scroll" id="homeJobs"></div>
@@ -1479,6 +1480,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
             <p class="note" style="margin:-6px 0 0">Salve os editais em que você quer se inscrever e acompanhe os prazos em um só lugar.</p>
             <div class="pills" id="esF" role="group" aria-label="Filtrar editais"></div>
             <div class="eslist" id="esList"></div>
+            <p class="ed-soon"><span class="pill xx v">Em breve</span> Editais de todos os municípios brasileiros.</p>
           </div>
           <div class="panel card soon">
             <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Em breve</span><span class="note">Em construção</span></div>
@@ -2698,6 +2700,26 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   /* ---------- editais (exemplos) ---------- */
   /* Editais: levantamento de 14/11/2026 em BRB Law (13/11) e Arte que Mora Aqui (04/11). ar: áreas ([] = todas); uf 'BR' = nacional; fim '' = fluxo contínuo; breve = ainda não abriu */
   const EDITAIS = [
+    { t: 'Edital 43/2026: comercialização de longa-metragem para cinema', org: 'Sedac RS · Iecine', ar: ['Audiovisual'], uf: 'RS', cid: '', fim: '2027-01-14', url: 'https://www.procultura.rs.gov.br/' },
+    { t: 'Edital 44/2026: produção e complementação de longa-metragem', org: 'Sedac RS · Iecine', ar: ['Audiovisual'], uf: 'RS', cid: '', fim: '2027-01-14', url: 'https://www.procultura.rs.gov.br/' },
+    { t: 'Prêmio Açorianos de Música 2026', org: 'Prefeitura de Porto Alegre', ar: ['Música'], uf: 'RS', cid: 'Porto Alegre', fim: '2026-12-08', url: 'https://dopa.portoalegre.rs.gov.br/detalhes-diario/632174' },
+    { t: 'Prêmio Açorianos de Dança 2026', org: 'Prefeitura de Porto Alegre', ar: ['Artes cênicas'], uf: 'RS', cid: 'Porto Alegre', fim: '2026-11-29', url: 'https://prefeitura.poa.br/smc/editais' },
+    { portal: true, t: 'Editais do Ministério da Cultura', org: 'MinC', ar: [], uf: 'BR', cid: '', url: 'https://www.gov.br/cultura/pt-br/assuntos/editais' },
+    { portal: true, t: 'Oportunidades no Mapa da Cultura', org: 'MinC · editais de todo o país', ar: [], uf: 'BR', cid: '', url: 'https://mapa.cultura.gov.br/oportunidades/' },
+    { portal: true, t: 'Editais abertos da Funarte', org: 'Funarte', ar: [], uf: 'BR', cid: '', url: 'https://www.gov.br/funarte/pt-br/editais-1/editais-abertos' },
+    { portal: true, t: 'Desenvolve Cultura RJ', org: 'Secretaria de Cultura do Rio de Janeiro', ar: [], uf: 'RJ', cid: '', url: 'http://cultura.rj.gov.br/desenvolve-cultura/inscricao/' },
+    { portal: true, t: 'Editais da Cultura do Rio', org: 'Prefeitura do Rio de Janeiro', ar: [], uf: 'RJ', cid: 'Rio de Janeiro', url: 'https://cultura.prefeitura.rio/' },
+    { portal: true, t: 'Mapa Cultural do Espírito Santo', org: 'Secult ES', ar: [], uf: 'ES', cid: '', url: 'https://mapa.cultura.es.gov.br/' },
+    { portal: true, t: 'Mapa Cultural de Pernambuco', org: 'Secult PE · Fundarpe', ar: [], uf: 'PE', cid: '', url: 'https://www.mapacultural.pe.gov.br/' },
+    { portal: true, t: 'Mapa Cultural do Ceará', org: 'Secult CE', ar: [], uf: 'CE', cid: '', url: 'https://mapacultural.secult.ce.gov.br/' },
+    { portal: true, t: 'Pró-Cultura RS', org: 'Sedac RS', ar: [], uf: 'RS', cid: '', url: 'https://www.procultura.rs.gov.br/' },
+    { portal: true, t: 'Editais da Cultura de Porto Alegre', org: 'Prefeitura de Porto Alegre', ar: [], uf: 'RS', cid: 'Porto Alegre', url: 'https://prefeitura.poa.br/smc/editais' },
+    { portal: true, t: 'Sistema Baru', org: 'Secult Goiás', ar: [], uf: 'GO', cid: '', url: 'https://sistemabaru.cultura.go.gov.br' },
+    { portal: true, t: 'Cadastro Único da Cultura (Cuca)', org: 'Secult Alagoas', ar: [], uf: 'AL', cid: '', url: 'https://cuca.al.gov.br' },
+    { portal: true, t: 'Editais da Secult Bahia', org: 'Secult BA', ar: [], uf: 'BA', cid: '', url: 'https://www.ba.gov.br/cultura' },
+    { portal: true, t: 'Editais da Secult Minas Gerais', org: 'Secult MG', ar: [], uf: 'MG', cid: '', url: 'https://www.secult.mg.gov.br' },
+    { portal: true, t: 'Editais da Cultura de São Paulo', org: 'Prefeitura de São Paulo', ar: [], uf: 'SP', cid: 'São Paulo', url: 'https://prefeitura.sp.gov.br/web/cultura' },
+    { portal: true, t: 'Editais da Cultura do Amazonas', org: 'Secretaria de Cultura do Amazonas', ar: [], uf: 'AM', cid: '', url: 'https://pnab.cultura.am.gov.br' },
     { t: 'XVIII Seleção Funarte Marc Ferrez de Fotografia', org: 'Funarte', ar: ['Artes visuais'], uf: 'BR', cid: '', fim: '2026-12-18', url: 'https://prosas.com.br/editais/19358-xviii-sele-o-funarte-marc-ferrez-de-fotografia' },
     { t: 'IV Bolsa Funarte Solange Zúñiga de conservação fotográfica', org: 'Funarte', ar: ['Artes visuais'], uf: 'BR', cid: '', fim: '2026-12-18', url: 'https://prosas.com.br/editais/19363-iv-bolsa-funarte-de-est-mulo-conserva-o-fotogr-fica-solange-z-iga' },
     { t: 'Funarte Aberta 2027: ocupação de espaços', org: 'Funarte', ar: ['Artes visuais', 'Artes cênicas', 'Música'], uf: 'BR', cid: '', fim: '2027-04-30', url: 'https://www.gov.br/funarte/pt-br' },
@@ -2722,11 +2744,11 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   S.edA = ''; S.edS = new Set(); try { S.edS = new Set(JSON.parse(localStorage.getItem('cr1e-editais') || '[]')); } catch (er) {} S.edSt = 'Abertos'; S.edUF = 'Todos'; S.edC = 'Todas';
   const edDays = (e) => Math.ceil((new Date(e.fim + 'T23:59:59') - Date.now()) / 864e5);
   const edSit = (e) => e.breve ? 'b' : (!e.fim || edDays(e) >= 0) ? 'a' : 'e';
-  const edWhen = (e) => { const s = edSit(e); if (s === 'b') return 'abre em breve'; if (s === 'e') return 'encerrado'; if (!e.fim) return 'fluxo contínuo'; const n = edDays(e); return n === 0 ? 'encerra hoje' : n === 1 ? 'encerra amanhã' : `encerra em ${n} dias`; };
+  const edWhen = (e) => { if (e.portal) return 'portal oficial, sempre atualizado'; const s = edSit(e); if (s === 'b') return 'abre em breve'; if (s === 'e') return 'encerrado'; if (!e.fim) return 'fluxo contínuo'; const n = edDays(e); return n === 0 ? 'encerra hoje' : n === 1 ? 'encerra amanhã' : `encerra em ${n} dias`; };
   function edStudio() { if (!$('esList')) return; S.esF = S.esF || 'Salvos'; const mine = myAreas(), opts = ['Salvos', 'Minha área', 'Todos abertos'];
     $('esF').innerHTML = opts.map((o) => `<button class="pill s" type="button" data-esf="${o}" aria-pressed="${o === S.esF}">${o}${o === 'Salvos' ? ' <b>' + S.edS.size + '</b>' : ''}</button>`).join('');
     const l = EDITAIS.filter((e) => S.esF === 'Salvos' ? S.edS.has(e.t) : edSit(e) === 'a' && (S.esF === 'Todos abertos' || !e.ar.length || e.ar.some((a) => mine.includes(a)))).sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
-    $('esList').innerHTML = l.length ? l.map((e) => `<div class="esr${edSit(e) === 'e' ? ' off' : ''}"><span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${edWhen(e)}</span></span><span class="esr-a"><a class="pill xx" href="${e.url}" target="_blank" rel="noopener">Ver edital ↗</a><button class="pill xx${S.edS.has(e.t) ? ' k' : ''}" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></span></div>`).join('') : `<div class="empty">${S.esF === 'Salvos' ? 'Você ainda não salvou nenhum edital. Toque em Minha área ou Todos abertos e salve os que interessam.' : 'Nenhum edital aberto com esse filtro agora.'}</div>`; }
+    $('esList').innerHTML = l.length ? l.map((e) => `<div class="esr${edSit(e) === 'e' ? ' off' : ''}${e.portal ? ' portal' : ''}"><span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${edWhen(e)}</span></span><span class="esr-a"><a class="pill xx" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="pill xx${S.edS.has(e.t) ? ' k' : ''}" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></span></div>`).join('') : `<div class="empty">${S.esF === 'Salvos' ? 'Você ainda não salvou nenhum edital. Toque em Minha área ou Todos abertos e salve os que interessam.' : 'Nenhum edital aberto com esse filtro agora.'}</div>`; }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-esf]'); if (b) { S.esF = b.dataset.esf; edStudio(); } });
   function editais() {
     try { edStudio(); } catch (er) {}
@@ -2739,10 +2761,10 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
     $('edUF').innerHTML = opt(['Todos', ...(S.uf && !ufs.includes(S.uf) ? [S.uf] : []), ...ufs], S.edUF); $('edC').innerHTML = opt(['Todas', ...cities], S.edC);
     const inArea = (e) => S.edA === 'Todas' || !e.ar.length || (S.edA === 'Minhas áreas' ? e.ar.some((a) => mine.includes(a)) : e.ar.includes(S.edA));
     const l = EDITAIS.filter((e) => inArea(e) && (S.edSt === 'Todos' || edSit(e) === ST[S.edSt]) && (S.edUF === 'Todos' || e.uf === S.edUF || e.uf === 'BR') && (S.edC === 'Todas' || e.cid === S.edC || e.uf === 'BR'))
-      .sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
+      .sort((a, b) => (!!a.portal - !!b.portal) || (a.fim || '9999').localeCompare(b.fim || '9999'));
     $('edMini').textContent = `${EDITAIS.filter((e) => edSit(e) === 'a' && inArea(e)).length} abertos`;
     const when = edWhen;
-    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s">${e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">Ver edital ↗</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
+    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s${e.portal ? ' v' : ''}">${e.portal ? 'Portal de editais' : e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
   }
   $('edA').addEventListener('change', (e) => { S.edU = true; S.edA = e.target.value; editais(); });
   $('edSt').addEventListener('change', (e) => { S.edSt = e.target.value; editais(); }); $('edUF').addEventListener('change', (e) => { S.edUF = e.target.value; S.edC = 'Todas'; editais(); }); $('edC').addEventListener('change', (e) => { S.edC = e.target.value; editais(); });
@@ -2857,6 +2879,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Portal de editais": "Open-call portal", "Ver editais abertos ↗": "See open calls ↗", "portal oficial, sempre atualizado": "official portal, always up to date", "Editais de todos os municípios brasileiros.": "Open calls from every Brazilian municipality.", "Lista atualizada em 15/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.": "List updated on 15/11/2026. Always check deadlines and rules at each call's official source.", "Edital 43/2026: comercialização de longa-metragem para cinema": "Call 43/2026: theatrical distribution of feature films", "Edital 44/2026: produção e complementação de longa-metragem": "Call 44/2026: feature film production and completion", "Prêmio Açorianos de Música 2026": "Açorianos Music Award 2026", "Prêmio Açorianos de Dança 2026": "Açorianos Dance Award 2026", "Editais do Ministério da Cultura": "Ministry of Culture open calls", "Oportunidades no Mapa da Cultura": "Opportunities on Mapa da Cultura", "Editais abertos da Funarte": "Funarte open calls", "MinC · editais de todo o país": "MinC · open calls from across Brazil", "Editais da Cultura do Rio": "Rio culture open calls", "Editais da Secult Bahia": "Secult Bahia open calls", "Editais da Secult Minas Gerais": "Secult Minas Gerais open calls", "Editais da Cultura de São Paulo": "São Paulo culture open calls", "Editais da Cultura do Amazonas": "Amazonas culture open calls", "Editais da Cultura de Porto Alegre": "Porto Alegre culture open calls",
     "Mapa da rede": "Network map", "Onde você está no mapa": "Where you are on the map", "Mapa do Brasil com os estados onde já tem gente na rede": "Map of Brazil showing the states that already have people on the network", "Brasil": "Brazil", "Norte": "North", "Nordeste": "Northeast", "Centro-Oeste": "Central-West", "Sudeste": "Southeast", "Sul": "South", "Capital": "Capital", "Cidade não informada": "City not given", "Contorno por município em breve.": "Municipality outlines coming soon.", "Ninguém nesta cidade ainda.": "No one in this city yet.",
     "Filtrar jobs": "Filter jobs", "Filtrar leituras": "Filter reads", "Todas as leituras": "All reads", "Ajustar foto": "Adjust photo", "Ajustar capa": "Adjust cover", "Ajustar foto de perfil": "Adjust profile photo", "Usar foto": "Use photo", "Arraste a foto para escolher o que aparece.": "Drag the photo to choose what shows.", "Ampliar a imagem da publicação": "Enlarge the post image", "Suba uma foto de capa primeiro.": "Upload a cover photo first.", "Suba uma foto de perfil primeiro.": "Upload a profile photo first.",
     "Filtrar editais": "Filter open calls", "Media kit preview": "Media kit preview",
