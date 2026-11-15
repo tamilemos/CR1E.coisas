@@ -1196,15 +1196,29 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 html.guest .view[data-view="sobre"] .back{display:inline-flex}
 .sb-n b{overflow-wrap:normal}
 .login .lg{padding:10px 0 14px}
+
+/* entrada: "como funciona" discreto e legenda só do tipo escolhido */
+.lg-how{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--preto);padding:0;border:0;background:none;margin:-4px 0 -2px}
+.lg-how>span:first-child{flex:none;display:inline;background:linear-gradient(transparent 58%,var(--verde) 58%);padding:0 2px}
+.lg-how:hover{transform:none}
+.lg-how:hover .arr{transform:translateX(4px)}
+.lg-how .arr{transition:transform .3s var(--spring)}
+.seg-cap{display:block;margin-top:-6px}
+.seg-cap .note{display:block;font-size:11px;line-height:1.4;padding:0 4px}
+.seg-cap[data-r="artista"] [data-for="empresa"],.seg-cap[data-r="empresa"] [data-for="artista"]{display:none}
+/* infográfico: linha verde ligando os três, textos centralizados */
+.sb-flow{align-items:stretch}
+.sb-n{align-items:center;justify-content:center;text-align:center;padding:12px 8px}
+.sb-flow>i{align-self:center;height:0;border:0;border-top:4px solid var(--verde);border-radius:0;background:none;margin:0;width:clamp(18px,5vw,56px)}
 </style>
 
 <div class="gate" id="gate">
   <form class="login card sh" id="login" novalidate><div style="display:flex;justify-content:flex-end;margin:-8px -8px -6px 0"><button type="button" class="thm lng" data-langt translate="no">PT</button><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></div>
     <span class="lg" aria-label="CR1E.Collab">CR1E<span class="co">.c<span class="o"></span>llab</span></span>
     <h1 class="t one"><span class="ln">A rede de quem <span class="w a">cria</span></span></h1>
-    <button type="button" class="lg-how" id="lgHow"><i aria-hidden="true"></i><span><b>Como funciona</b><span class="note">Veja o que o app faz para artistas e para marcas</span></span><span class="arr" aria-hidden="true">→</span></button>
+    <button type="button" class="lg-how" id="lgHow"><span>Como funciona o app</span> <span class="arr" aria-hidden="true">→</span></button>
     <div class="seg" role="group" aria-label="Tipo de conta"><button type="button" data-role="artista" aria-pressed="true">Sou artista</button><button type="button" data-role="empresa" aria-pressed="false">Sou empresa</button></div>
-    <div class="seg-cap"><span class="note">Rede, jobs com marcas, editais, aulas e estúdio para o seu trabalho.</span><span class="note">Publique um briefing e receba artistas indicados pela curadoria.</span></div>
+    <div class="seg-cap" id="segCap" data-r="artista" aria-live="polite"><span class="note" data-for="artista">Rede, jobs com marcas, editais, aulas e estúdio para o seu trabalho.</span><span class="note" data-for="empresa">Publique um briefing e receba artistas indicados pela curadoria.</span></div>
     <div id="st1" style="display:flex;flex-direction:column;gap:10px"><span class="lbl" id="obS1">Passo 1 de 5</span><label class="fld" for="lg-n" id="lgNw"><b class="obq">Como te chamam?</b><input id="lg-n" autocomplete="name" placeholder="Seu nome ou o da empresa"></label><div class="loc2"><label class="fld" for="lg-uf">Estado<select id="lg-uf"></select></label><label class="fld" for="lg-cid">Cidade<input id="lg-cid" autocomplete="address-level2" placeholder="De onde você é"></label></div></div>
     <div id="stL" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl">Entrar</span><b class="obq">Bom te ver de novo</b><label class="fld" for="lg-le"><b class="obq">E-mail</b><input id="lg-le" type="email" inputmode="email" autocomplete="username" placeholder="voce@email.com"></label><label class="fld" for="lg-lp"><b class="obq">Senha</b><input id="lg-lp" type="password" autocomplete="current-password" placeholder="Sua senha"></label><button type="button" class="lnk" id="lgForgot">Esqueci minha senha</button></div>
     <div id="stA" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl" id="obSA"></span><b class="obq">Crie o seu acesso</b><span class="note">Com e-mail e senha você volta direto para o app nas próximas vezes. Vamos mandar um e-mail para confirmar que ele é seu.</span><label class="fld" for="lg-e"><b class="obq">E-mail</b><input id="lg-e" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"></label><label class="fld" for="lg-p"><b class="obq">Crie uma senha</b><input id="lg-p" type="password" autocomplete="new-password" placeholder="Pelo menos 6 caracteres"></label><label class="okc" id="lgCw"><input type="checkbox" id="lg-c"><span>Li e aceito os <button type="button" class="lnk" data-terms>Termos de uso e a Política de privacidade (LGPD)</button></span></label></div>
@@ -1482,7 +1496,7 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
       <section class="view" data-view="sobre" aria-labelledby="v-sobre" hidden>
         <a class="pill back" href="#inicio" id="sbBack">← Voltar</a>
         <div class="vh"><h1 class="t" id="v-sobre"><span class="ln">Como</span><span class="ln w a">funciona</span></h1><p>O CR1E.Collab é a rede da CR1E.Coisas que aproxima artistas de todas as áreas e marcas que querem criar com eles.</p></div>
-        <div class="sb-flow" role="img" aria-label="Artistas e marcas se encontram pela curadoria da CR1E.Coisas"><div class="sb-n v"><span class="lbl">De um lado</span><b>Artistas</b></div><i></i><div class="sb-n k"><span class="lbl">No meio</span><b>Curadoria</b><span class="lbl">CR1E.Coisas</span></div><i></i><div class="sb-n"><span class="lbl">Do outro</span><b>Marcas</b></div></div>
+        <div class="sb-flow" role="img" aria-label="Artistas e marcas se encontram pela curadoria da CR1E.Coisas"><div class="sb-n v"><span class="lbl">De um lado</span><b>Artistas</b></div><i aria-hidden="true"></i><div class="sb-n k"><span class="lbl">No meio</span><b>Curadoria</b><span class="lbl">CR1E.Coisas</span></div><i aria-hidden="true"></i><div class="sb-n"><span class="lbl">Do outro</span><b>Marcas</b></div></div>
         <div class="sb-g">
           <section class="sb-c"><header class="sb-h v"><span class="lbl">Para</span><h2 class="t">Artistas</h2><p>Um lugar para mostrar o trabalho, encontrar gente e viver de arte.</p></header>
             <ol class="sb-s"><li><b>Crie o seu perfil</b><span>Áreas de atuação, portfólio, currículo e links.</span></li><li><b>Entre na rede</b><span>Siga pessoas, publique no feed e tire dúvidas no fórum.</span></li><li><b>Encontre oportunidades</b><span>Jobs com marcas e editais abertos, filtrados pela sua área.</span></li><li><b>Profissionalize o trabalho</b><span>Media kit, proposta de orçamento, planejamento de conteúdo e aulas.</span></li></ol>
@@ -2660,7 +2674,7 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
   window.CR1E_READY.then((R) => afterSplash(() => { if (decided) return; if (R.user && R.prof && R.prof.done && document.getElementById('gate')) { decided = true; applyProfile(R.prof); gate.classList.remove('splash'); gate.querySelector('.login').style.display = 'none'; enterApp(); } else asGuest(); })).catch(() => afterSplash(asGuest));
   setTimeout(asGuest, 6000);
   $('lgFeed').addEventListener('click', () => go('feed'));
-  $('lgHow').addEventListener('click', () => go('sobre')); $('sbGo').addEventListener('click', () => go(S.guest ? 'inicio' : 'perfil'));
+  $('lgHow').addEventListener('click', () => go('sobre')); gate.addEventListener('click', (e) => { const r = e.target.closest('[data-role]'); if (r) $('segCap').dataset.r = r.dataset.role; }); $('sbGo').addEventListener('click', () => go(S.guest ? 'inicio' : 'perfil'));
   document.addEventListener('click', (e) => { if (!S.guest) return; const a = e.target.closest('.tab a[href="#inicio"], .side a[href="#inicio"]'); if (a) { e.preventDefault(); e.stopPropagation(); go('feed'); } }, true);
 })();
 </script>
@@ -2669,6 +2683,7 @@ html.guest .view[data-view="sobre"] .back{display:inline-flex}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Como funciona o app": "How the app works",
     "Como funciona": "How it works", "Veja o que o app faz para artistas e para marcas": "See what the app does for artists and for brands", "Rede, jobs com marcas, editais, aulas e estúdio para o seu trabalho.": "Network, brand jobs, open calls, classes and a studio for your work.", "Publique um briefing e receba artistas indicados pela curadoria.": "Post a brief and get artists picked by our curators.", "Criar a minha conta": "Create my account", "Ver": "View",
     "Baixar vídeo com o logo animado": "Download video with animated logo", "Gravando…": "Recording…",
     "Trajetória": "Background", "Para marcas": "For brands", "Na internet": "Online", "Ver prévia": "Preview", "Ainda vazio": "Empty for now", "Editar no Estúdio →": "Edit in Studio →", "Nenhum link ainda. Adicione em Editar perfil.": "No links yet. Add them in Edit profile.",
