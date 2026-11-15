@@ -1084,6 +1084,46 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
 [data-view="perfil"] #pvEdit{align-self:flex-start;font-size:11px;padding:9px 16px;min-height:0;width:auto}
 .pf-acts .pill{font-size:9px;padding:6px 10px;min-height:0;border-width:1.5px}
 [data-view="perfil"] #pvEdit{font-size:10px;padding:8px 14px}
+
+/* configurações */
+.cfg{display:flex;flex-direction:column;gap:18px;max-width:640px}
+.cfg-s{border:2px solid var(--preto);background:var(--branco)}
+.cfg-s h2{margin:0;padding:9px 14px;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px;border-bottom:2px solid var(--preto)}
+.cfg-r{display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--cinza)}
+.cfg-s h2+.cfg-r{border-top:0}
+.cfg-r>span:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.cfg-r b{font-family:var(--mono);font-weight:700;font-size:13px}
+.cfg-r .note{font-size:11px;overflow-wrap:anywhere}
+.cfg-r .pill{flex:none;cursor:pointer}
+.cfg-o{display:flex;gap:6px;flex:none}
+.cfg-r[hidden]{display:none}
+.pf-acts #pvEdit{font-size:9px;padding:6px 10px;width:auto;align-self:auto}
+.pf-acts[hidden]{display:none}
+
+/* galeria: janela de desktop antigo, contorno único */
+dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
+.win{border:2px solid var(--preto);background:var(--papel);color:var(--preto);display:flex;flex-direction:column;width:min(760px,calc(100vw - 16px))}
+.win.max{width:calc(100vw - 16px)}
+.win-bar{--preto:#0E0E0C;--verde:#C5FF3D;display:flex;align-items:center;gap:10px;padding:5px 5px 5px 10px;background:#C5FF3D;color:#0E0E0C;border-bottom:2px solid var(--fg)}
+.win-t{flex:1;min-width:0;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win-c{display:flex;gap:4px;flex:none}
+.win-c button{all:unset;box-sizing:border-box;cursor:pointer;width:26px;height:22px;border:2px solid #0E0E0C;background:#F4F3EE;color:#0E0E0C;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:14px;line-height:1}
+.win-c button:hover,.win-c button[aria-pressed="true"]{background:#0E0E0C;color:#C5FF3D}
+.win-c button:focus-visible{outline:2px solid #0E0E0C;outline-offset:2px}
+.win.min .win-body{display:none}
+.win.min{width:min(320px,calc(100vw - 16px))}
+.win .gal-f{background:#0E0E0C;display:grid;place-items:center}
+.win .gal-f img{display:block;max-width:100%;max-height:calc(100dvh - 190px);width:auto;height:auto;object-fit:contain;image-rendering:auto}
+.win.max .gal-f img{max-height:calc(100dvh - 130px)}
+.win-st{display:flex;align-items:stretch;gap:6px;padding:6px;border-top:2px solid var(--preto)}
+.win-cap{flex:1;min-width:0;border:2px solid var(--preto);background:var(--branco);padding:6px 10px;display:flex;align-items:center;min-height:40px}
+.win-cap .gal-cap{flex:1;font-size:12px;color:var(--preto)}
+.win-cap .gal-cap.none{color:var(--mut)}
+.win-cap input.gal-cap{font-size:16px;border:0;padding:0;background:transparent}
+.win-cap input.gal-cap:focus{border:0}
+.win .gar{width:40px;height:auto;min-height:40px;border-radius:0;border:2px solid var(--preto);background:var(--papel);color:var(--preto);font-family:var(--mono);font-weight:700}
+.win .gar:hover,.win .gar:focus-visible{background:var(--verde);color:#0E0E0C;border-color:var(--preto)}
+.win .gar[hidden]{display:none}
 </style>
 
 <div class="gate" id="gate">
@@ -1364,6 +1404,40 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
       </section>
 
       <!-- PLANO -->
+      <!-- CONFIGURAÇÕES -->
+      <section class="view" data-view="config" aria-labelledby="v-config" hidden>
+        <a class="pill back" href="#perfil">← Perfil</a>
+        <div class="vh"><h1 class="t" id="v-config"><span class="w a">Configurações</span></h1><p>Conta, aparência, privacidade e ajuda.</p></div>
+        <div class="cfg">
+          <section class="cfg-s"><h2>Conta</h2>
+            <div class="cfg-r"><span><b>E-mail de acesso</b><span class="note" id="cfgMail">—</span></span></div>
+            <div class="cfg-r"><span><b>Senha</b><span class="note" id="cfgPwN">Enviamos um link para o seu e-mail.</span></span><button class="pill s" type="button" id="cfgPw">Trocar senha</button></div>
+            <div class="cfg-r"><span><b>Tipo de conta</b><span class="note">Alterne entre a visão de artista e a de empresa.</span></span><button class="pill s" type="button" id="swRole"></button></div>
+          </section>
+          <section class="cfg-s"><h2>Perfil e plano</h2>
+            <div class="cfg-r"><span><b>Perfil</b><span class="note">Nome, cidade, áreas, fotos e currículo.</span></span><button class="pill s" type="button" id="cfgEdit">Editar perfil</button></div>
+            <div class="cfg-r" id="cfgKit"><span><b>Media kit</b><span class="note">O seu cartão de visitas para marcas.</span></span><a class="pill s" href="#estudio" id="pfEdit">Editar media kit</a></div>
+            <div class="cfg-r"><span><b>Plano e assinatura</b><span class="note">Compare o Grátis e o Pro.</span></span><a class="pill s" href="#plano">Ver planos</a></div>
+          </section>
+          <section class="cfg-s"><h2>Aparência</h2>
+            <div class="cfg-r"><span><b>Tema</b><span class="note">Claro ou escuro.</span></span><span class="cfg-o" role="group" aria-label="Tema"><button class="pill s" type="button" data-cth="light">Claro</button><button class="pill s" type="button" data-cth="dark">Escuro</button></span></div>
+            <div class="cfg-r"><span><b>Idioma</b><span class="note">Português ou inglês.</span></span><span class="cfg-o" role="group" aria-label="Idioma"><button class="pill s" type="button" data-clg="pt">PT</button><button class="pill s" type="button" data-clg="en">EN</button></span></div>
+          </section>
+          <section class="cfg-s"><h2>Privacidade e dados</h2>
+            <div class="cfg-r"><span><b>Termos de uso e privacidade</b><span class="note">Como cuidamos dos seus dados (LGPD).</span></span><button class="pill s" type="button" data-terms>Ler</button></div>
+            <div class="cfg-r"><span><b>Meus dados</b><span class="note">Baixe uma cópia do seu perfil e das suas publicações.</span></span><button class="pill s" type="button" id="cfgExp">Baixar</button></div>
+            <div class="cfg-r"><span><b>Visibilidade</b><span class="note">O seu perfil fica visível para quem participa do teste.</span></span></div>
+          </section>
+          <section class="cfg-s"><h2>Ajuda</h2>
+            <div class="cfg-r"><span><b>Falar com a CR1E.Coisas</b><span class="note">Dúvidas, problemas e sugestões.</span></span><a class="pill s" href="#avisos">Abrir mensagens</a></div>
+            <div class="cfg-r"><span><b>Versão</b><span class="note">CR1E.Collab · versão de teste</span></span></div>
+          </section>
+          <section class="cfg-s"><h2>Sessão</h2>
+            <div class="cfg-r"><span><b>Sair da conta</b><span class="note">Você pode entrar de novo com e-mail e senha.</span></span><button class="pill s" type="button" id="resetB">Sair</button></div>
+            <div class="cfg-r"><span><b>Excluir a conta</b><span class="note">Apaga o acesso, o perfil e as publicações. Não dá para desfazer.</span></span><button class="pill s" type="button" id="delB">Excluir</button></div>
+          </section>
+        </div>
+      </section>
       <section class="view" data-view="plano" aria-labelledby="v-plano" hidden>
         <div class="vh"><h1 class="t" id="v-plano"><span class="ln">Plano e</span><span class="ln w a">assinatura</span></h1><p id="plDesc"></p></div>
         <div class="pay">
@@ -1426,9 +1500,8 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
               <div class="pv-port" id="pvPort"></div>
               <div class="pv-posts" id="pvPostsW"><span class="pv-l">Publicações</span><div class="plist2" id="pvPosts"></div></div>
               <div class="pv-net" id="pvNet"><div class="netc" id="netC"></div><div class="seg" role="group" aria-label="Listas da rede"><button type="button" data-nt="in" aria-pressed="true">Seguidores</button><button type="button" data-nt="out" aria-pressed="false">Seguindo</button></div><div class="reqs" id="netL"></div></div>
-              <button class="lnk" type="button" id="pvCvB">Ver currículo →</button>
               <div class="pv-cv" id="pvCv" hidden></div>
-              <button class="btn k" type="button" id="pvEdit" style="justify-content:center">Editar perfil <span class="arr" aria-hidden="true">→</span></button>
+              <div class="pf-acts"><button class="pill s" type="button" id="pvCvB">Ver currículo →</button><button class="pill s k" type="button" id="pvEdit">Editar perfil →</button><a class="pill s" href="#config">Configurações</a></div>
             </div>
             <div id="pfArt" hidden>
               <div class="sub" style="margin:0"><h2 class="t" style="font-size:28px"><span class="w a">Editar</span> perfil</h2><button class="pill s k" type="button" id="pvSave">Salvar</button></div>
@@ -1455,7 +1528,7 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
             
             </div>
             <div id="pfEmp" hidden><label class="fld" for="e-seg">Segmento<input id="e-seg" placeholder="Ex.: varejo, eventos"></label><label class="fld" for="e-site" style="margin-top:10px">Site<input id="e-site" placeholder="suaempresa.com.br"></label><span class="lbl" style="display:block;margin-top:14px">O que procura</span><div class="pills" id="pfWant" style="margin-top:6px"></div></div>
-            <div class="pf-acts"><a class="pill s k" href="#estudio" id="pfEdit">Editar media kit →</a><a class="pill s" href="#plano">Plano e assinatura</a><button class="pill s" type="button" id="swRole"></button><button class="pill s" type="button" id="resetB">Sair da conta</button><button class="lnk del" type="button" id="delB">Excluir a conta</button></div></div>
+            <div class="pf-acts" id="pfCfgE"><a class="pill s" href="#config">Configurações</a></div></div>
           <div style="display:flex;flex-direction:column;gap:18px">
             <div class="sub"><h2 class="t">Seu <span class="w a">plano</span></h2></div>
             <a class="rowc" href="#plano" style="--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)"><div class="sub"><b id="pfPlan" style="font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:26px">Grátis</b><span class="pill s k">Ver planos →</span></div><span class="note" style="color:var(--preto)">Compare o Grátis e o Pro e gerencie a assinatura.</span></a>
@@ -1470,7 +1543,7 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
 
 <nav class="tab" id="tabNav" aria-label="App"></nav>
 
-<dialog class="gal" id="gal" aria-label="Galeria do portfólio"><div class="gal-b"><div class="gal-h"><span class="lbl" id="galN"></span><button class="x" type="button" id="galX" aria-label="Fechar">×</button></div><div class="gal-f" id="galF"><img id="galI" alt=""></div><div class="gal-c"><button class="gar" type="button" id="galP" aria-label="Foto anterior">←</button><p class="gal-cap" id="galCap"></p><input class="gal-cap" id="galCapI" maxlength="120" placeholder="Escreva uma legenda" aria-label="Legenda da foto" hidden><button class="gar" type="button" id="galNx" aria-label="Próxima foto">→</button></div></div></dialog>
+<dialog class="gal" id="gal" aria-label="Galeria do portfólio"><div class="win" id="galW"><div class="win-bar"><span class="win-t" id="galN"></span><span class="win-c"><button type="button" id="galMin" aria-label="Minimizar">–</button><button type="button" id="galMax" aria-label="Expandir">□</button><button type="button" id="galX" aria-label="Fechar">×</button></span></div><div class="win-body"><div class="gal-f" id="galF"><img id="galI" alt=""></div><div class="win-st"><button class="gar" type="button" id="galP" aria-label="Foto anterior">←</button><div class="win-cap"><p class="gal-cap" id="galCap"></p><input class="gal-cap" id="galCapI" maxlength="120" placeholder="Escreva uma legenda" aria-label="Legenda da foto" hidden></div><button class="gar" type="button" id="galNx" aria-label="Próxima foto">→</button></div></div></div></dialog>
 <dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
 <dialog class="sheet terms" id="delD" aria-labelledby="del-t"><button class="x" type="button" id="delX" aria-label="Fechar">×</button>
   <form class="tm-b" id="delF"><h2 class="t" id="del-t" style="font-size:30px">Excluir a <span class="w a">conta</span></h2>
@@ -1574,7 +1647,7 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
   const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
     empresa: [['empresa', 'Painel'], ['feed', 'Feed'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']] };
   const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
-  const PARENT = { teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
+  const PARENT = { config: 'perfil', teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
   const AREAS = {
     'Artes visuais': ['Muralismo', 'Pintura', 'Ilustração', 'Graffiti', 'Lettering', 'Escultura', 'Gravura', 'Colagem', 'Cerâmica', 'Live painting'],
     'Artes cênicas': ['Teatro', 'Dança', 'Circo', 'Performance', 'Palhaçaria', 'Teatro de bonecos', 'Cenografia', 'Direção cênica', 'Stand-up'],
@@ -1693,8 +1766,10 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
     const L = LAST();
     if (S.obStep === 1) {
       const n = $('lg-n').value.trim(); if (!n) return bad('Escreva o seu nome.', $('lg-n'));
+      if (!$('lg-uf').value) return bad('Escolha o seu estado.', $('lg-uf')); if (!$('lg-cid').value.trim()) return bad('Escreva a sua cidade.', $('lg-cid'));
       S.name = n; S.uf = $('lg-uf').value; S.cid = $('lg-cid').value.trim(); S.obStep = 2; show('st2'); gate.querySelector('.have').hidden = true; obDraw(); nextBtn.innerHTML = 'Continuar' + ARROW; return;
     }
+    if (S.obStep === 2 && S.role !== 'empresa' && !(S.ob && S.ob.size)) return bad('Marque pelo menos uma área de atuação para continuar.');
     if (S.obStep < L - 1) { S.obStep++; obDraw(); nextBtn.innerHTML = 'Continuar' + ARROW; $('login').scrollTop = 0; return; }
     if (S.obStep === L - 1) {
       if (S.authed) return finish(false);
@@ -1797,11 +1872,11 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
     [$('avTop'), $('avBig')].forEach((el) => { el.classList.toggle('ph', !!S.avatar); el.style.backgroundImage = S.avatar ? `url(${S.avatar})` : ''; });
     $('hiName').textContent = $('v-perfil').textContent = S.name.split(' ')[0];
     try { covUI(); } catch (er) {} $('roleTag').textContent = emp ? 'Empresa' : 'Artista'; $('pfRole').textContent = locTxt() || (emp ? 'Empresa' : 'Adicione a sua cidade em Editar perfil'); $('pf-uf').value = S.uf || ''; $('pf-cid').value = S.cid || '';
-    $('swRole').textContent = emp ? 'Ver o app como artista' : 'Ver o app como empresa'; $('pfEdit').hidden = emp;
+    $('swRole').textContent = emp ? 'Ver o app como artista' : 'Ver o app como empresa'; $('cfgKit').hidden = emp; $('pfCfgE').hidden = !emp;
     $('sideNav').innerHTML = NAV[S.role].map(([h, l]) => `<a href="#${h}"><i></i>${l}</a>`).join('');
     $('tabNav').innerHTML = TABS[S.role].map(([h, l]) => `<a href="#${h}"><i></i><span>${l}</span></a>`).join('');
     $('tabNav').style.gridTemplateColumns = 'repeat(5,1fr)';
-    $('menu').innerHTML = [...NAV[S.role], ['plano', 'Plano']].map(([h, l]) => `<a href="#${h}"><i></i>${l}</a>`).join('');
+    $('menu').innerHTML = [...NAV[S.role], ['plano', 'Plano'], ['config', 'Configurações']].map(([h, l]) => `<a href="#${h}"><i></i>${l}</a>`).join('');
     $(emp || S.guest ? 'feedSlot' : 'homeFeedSlot').appendChild($('feedBlock')); $('homeFeed').hidden = emp;
     $('mtBack').href = $('mtMore').href = emp ? '#feed' : '#inicio'; $('mtBack').textContent = emp ? '← Feed' : '← Início';
     $('msgSub').textContent = emp ? 'Sua conversa com a curadoria da CR1E.Coisas.' : 'Conversas com a curadoria, empresas e os seus contatos.';
@@ -1837,7 +1912,7 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
     views.forEach((x) => { x.hidden = x.dataset.view !== v; });
     document.querySelectorAll('.tab a, .side a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + nv));
     $('moreBtn').classList.toggle('on', v === 'mais'); S.seen.add(v); try { todo(); save(); } catch (err) {}
-    $('crows').hidden = v === 'mensagens'; titlesIn();
+    $('crows').hidden = v === 'mensagens'; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
     scrollTo(0, 0);
   }
   addEventListener('hashchange', route);
@@ -1938,14 +2013,16 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
   let syncT = null;
   const galThumbs = (fotos, caps, who) => (fotos || []).map((f, i) => f ? `<button type="button" class="gth" data-gal="${who}" data-i="${i}" aria-label="Abrir a foto ${i + 1} do portfólio${(caps || [])[i] ? ': ' + esc(caps[i]) : ''}"><img src="${f}" alt=""></button>` : '').join('');
   const G = { list: [], i: 0, me: false };
-  function galDraw() { const it = G.list[G.i]; if (!it) return; $('galI').src = it.src; $('galI').alt = it.cap || 'Foto do portfólio'; $('galN').textContent = (G.i + 1) + ' / ' + G.list.length; const one = G.list.length < 2; $('galP').hidden = one; $('galNx').hidden = one;
-    $('galCapI').hidden = !G.me; $('galCap').hidden = G.me || !it.cap; if (G.me) $('galCapI').value = it.cap || ''; else $('galCap').textContent = it.cap || ''; }
+  function galDraw() { const it = G.list[G.i]; if (!it) return; $('galI').src = it.src; $('galI').alt = it.cap || 'Foto do portfólio'; $('galN').textContent = 'Portfólio · ' + (G.i + 1) + ' de ' + G.list.length; const one = G.list.length < 2; $('galP').hidden = one; $('galNx').hidden = one;
+    $('galCapI').hidden = !G.me; $('galCap').hidden = G.me;  if (G.me) $('galCapI').value = it.cap || ''; else { $('galCap').textContent = it.cap || 'Sem legenda'; $('galCap').classList.toggle('none', !it.cap); } }
   function galOpen(who, idx) { G.me = who === 'me'; const fotos = G.me ? S.fotos : ((S.galArt || {}).fotos || []), caps = G.me ? S.caps : ((S.galArt || {}).caps || []);
-    G.list = fotos.map((f, i) => ({ src: f, cap: caps[i] || '', k: i })).filter((x) => x.src); G.i = Math.max(0, G.list.findIndex((x) => x.k === idx)); galDraw(); const d = $('gal'); if (!d.open) d.showModal(); }
+    $('galW').classList.remove('min', 'max'); G.list = fotos.map((f, i) => ({ src: f, cap: caps[i] || '', k: i })).filter((x) => x.src); G.i = Math.max(0, G.list.findIndex((x) => x.k === idx)); galDraw(); const d = $('gal'); if (!d.open) d.showModal(); }
   const galGo = (n) => { galKeep(); G.i = (G.i + n + G.list.length) % G.list.length; galDraw(); };
   function galKeep() { if (!G.me) return; const it = G.list[G.i], v = $('galCapI').value.trim().slice(0, 120); if (!it || it.cap === v) return; it.cap = v; S.caps[it.k] = v; perfil(); syncSoon(); }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-gal]'); if (b) { e.preventDefault(); galOpen(b.dataset.gal, +b.dataset.i); } });
   $('galP').addEventListener('click', () => galGo(-1)); $('galNx').addEventListener('click', () => galGo(1)); $('galX').addEventListener('click', () => $('gal').close());
+  $('galMin').addEventListener('click', () => { const w = $('galW'); w.classList.remove('max'); w.classList.toggle('min'); $('galMin').setAttribute('aria-pressed', String(w.classList.contains('min'))); });
+  $('galMax').addEventListener('click', () => { const w = $('galW'); w.classList.remove('min'); w.classList.toggle('max'); $('galMax').setAttribute('aria-pressed', String(w.classList.contains('max'))); });
   $('gal').addEventListener('close', galKeep); $('galCapI').addEventListener('change', galKeep);
   $('gal').addEventListener('click', (e) => { if (e.target === $('gal')) $('gal').close(); });
   $('gal').addEventListener('keydown', (e) => { if (e.target === $('galCapI')) { if (e.key === 'Enter') { e.preventDefault(); galKeep(); $('galCapI').blur(); } return; } if (e.key === 'ArrowLeft') galGo(-1); if (e.key === 'ArrowRight') galGo(1); });
@@ -2413,6 +2490,19 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
   document.addEventListener('change', (e) => { const inp = e.target.closest('input[data-up]'); if (!inp || !inp.files[0]) return; const k = inp.dataset.up, im = new Image(), url = URL.createObjectURL(inp.files[0]);
     im.onload = () => { const m = (k === 'cover' ? 1800 : k === 'avatar' ? 720 : 1600) / Math.max(im.naturalWidth, im.naturalHeight), w = Math.round(im.naturalWidth * Math.min(1, m)), h = Math.round(im.naturalHeight * Math.min(1, m)), c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); const d = c.toDataURL('image/jpeg', .88); URL.revokeObjectURL(url); if (k === 'avatar') S.avatar = d; else if (k === 'cover') S.cover = d; else S.fotos[+k] = d; S.fotosDirty = true; if (document.getElementById('gate') && S.obStep === 4) obDraw(); who(); save(); if (!document.getElementById('gate') || gate.classList.contains('go')) syncSoon(); };
     im.onerror = () => { URL.revokeObjectURL(url); }; im.src = url; });
+  /* configurações */
+  const cfgLang = () => ((document.querySelector('[data-langt]') || {}).textContent || 'PT').trim().toLowerCase() === 'en' ? 'en' : 'pt';
+  function cfgDraw() { const u = RR.A && RR.A.user && RR.A.user(); $('cfgMail').textContent = (u && u.email) || '—'; const dk = document.documentElement.dataset.theme === 'dark';
+    document.querySelectorAll('[data-cth]').forEach((b) => { const on = (b.dataset.cth === 'dark') === dk; b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); });
+    document.querySelectorAll('[data-clg]').forEach((b) => { const on = b.dataset.clg === cfgLang(); b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); }); }
+  document.addEventListener('click', (e) => { let b;
+    if ((b = e.target.closest('[data-cth]'))) { const d = b.dataset.cth === 'dark'; if (d !== (document.documentElement.dataset.theme === 'dark')) { const t = document.querySelector('.top [data-thm]'); if (t) t.click(); } setTimeout(cfgDraw, 0); }
+    else if ((b = e.target.closest('[data-clg]'))) { if (b.dataset.clg !== cfgLang()) { const t = document.querySelector('[data-langt]'); if (t) t.click(); } setTimeout(cfgDraw, 0); }
+    else if (e.target.closest('[data-thm]') || e.target.closest('[data-langt]')) setTimeout(cfgDraw, 0); });
+  $('cfgEdit').addEventListener('click', () => { go('perfil'); setTimeout(() => $('pvEdit').click(), 80); });
+  $('cfgPw').addEventListener('click', async () => { const u = RR.A && RR.A.user && RR.A.user(); if (!u || !u.email) { $('cfgPwN').textContent = 'Entre de novo para trocar a senha.'; return; } $('cfgPw').disabled = true; try { await RR.A.reset(u.email); $('cfgPwN').textContent = 'Link enviado. Confira a caixa de entrada e o spam.'; } catch (er) { $('cfgPwN').textContent = 'Não consegui enviar agora. Tente de novo em instantes.'; } $('cfgPw').disabled = false; });
+  $('cfgExp').addEventListener('click', () => { const u = RR.A && RR.A.user && RR.A.user(); const data = { exportado_em: new Date().toISOString(), email: (u && u.email) || '', nome: S.name, tipo_de_conta: S.role, cidade: S.cid || '', estado: S.uf || '', areas_e_habilidades: S.sk, gostos: S.hb, bio: S.cvBio || '', curriculo: S.cv || [], links: S.links || [], legendas_das_fotos: S.caps, seguindo: [...(S.follow || [])].length, publicacoes: (S.netPosts || []).filter((p) => p.me).map((p) => ({ texto: p.t, data: p.ts })), fotos: { perfil: S.avatar || '', capa: S.cover || '', portfolio: (S.fotos || []).filter(Boolean) } };
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'cr1e-collab-meus-dados.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); toast('Arquivo com os seus dados baixado.'); });
   $('delB').addEventListener('click', () => { $('del-p').value = ''; $('delMsg').textContent = ''; $('delOk').disabled = false; $('delD').showModal(); });
   $('delX').addEventListener('click', () => $('delD').close()); $('delNo').addEventListener('click', () => $('delD').close());
   $('delF').addEventListener('submit', async (e) => { e.preventDefault(); const pw = $('del-p').value; if (!pw) { $('delMsg').textContent = 'Escreva a sua senha para confirmar.'; $('del-p').focus(); return; } if (!RR.A || !RR.A.deleteAccount) { $('delMsg').textContent = 'Não consegui excluir agora. Tente de novo em instantes.'; return; }
@@ -2435,6 +2525,9 @@ html[data-theme="dark"] .toast{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Minimizar": "Minimise", "Expandir": "Maximise", "Sem legenda": "No caption",
+    "Escolha o seu estado.": "Choose your state.", "Escreva a sua cidade.": "Type your city.", "Marque pelo menos uma área de atuação para continuar.": "Pick at least one field of work to continue.",
+    "Configurações": "Settings", "Conta, aparência, privacidade e ajuda.": "Account, appearance, privacy and help.", "Conta": "Account", "E-mail de acesso": "Sign-in email", "Senha": "Password", "Trocar senha": "Change password", "Enviamos um link para o seu e-mail.": "We send a link to your email.", "Perfil e plano": "Profile and plan", "Aparência": "Appearance", "Tema": "Theme", "Claro": "Light", "Escuro": "Dark", "Privacidade e dados": "Privacy and data", "Meus dados": "My data", "Baixar": "Download", "Visibilidade": "Visibility", "Ajuda": "Help", "Falar com a CR1E.Coisas": "Contact CR1E.Coisas", "Abrir mensagens": "Open messages", "Versão": "Version", "Sessão": "Session", "Sair": "Sign out", "Excluir": "Delete", "Ler": "Read", "Ver planos": "See plans", "Link enviado. Confira a caixa de entrada e o spam.": "Link sent. Check your inbox and spam.", "← Perfil": "← Profile",
     "Excluir a conta": "Delete account", "Excluir definitivamente": "Delete permanently", "Cancelar": "Cancel", "Confirme com a sua senha": "Confirm with your password", "Senha incorreta.": "Wrong password.", "Isso apaga de vez o seu acesso, o seu perfil, as suas fotos e as suas publicações no CR1E.Collab. Não dá para desfazer.": "This permanently deletes your access, profile, photos and posts on CR1E.Collab. It cannot be undone.",
     "Ambos se seguem": "You follow each other",
     "← Aulas do curso": "← Course lessons",
