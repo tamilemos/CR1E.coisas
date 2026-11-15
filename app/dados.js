@@ -105,6 +105,7 @@ const A = {
     }, () => {}));
     unsub.push(onSnapshot(query(collection(db, 'posts'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.posts(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
     unsub.push(onSnapshot(query(collection(db, 'forum'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.forum(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
+    if (hooks.collabs) unsub.push(onSnapshot(query(collection(db, 'collabs'), orderBy('ts', 'desc'), limit(200)), (snap) => hooks.collabs(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => hooks.collabs(null)));
   },
   async post(S, t, img) {
     const u = auth.currentUser; await addDoc(collection(db, 'posts'), { uid: u.uid, name: S.name, t, img: img || '', likes: [], reposts: [], replies: [], ts: serverTimestamp() });
@@ -126,6 +127,18 @@ const A = {
     drive('Fórum', { nome: S.name, assunto: topicTitle || id, resposta: t });
   },
   /* conversa entre dois contatos */
+  /* collabs: grupos para criar junto (coleção "collabs") */
+  async collabNew(S, c) {
+    const u = auth.currentUser; const names = { [u.uid]: S.name }; (c.people || []).forEach((p) => { names[p.uid] = p.name; });
+    const r = await addDoc(collection(db, 'collabs'), { uid: u.uid, t: c.t, kind: c.kind, d: c.d || '', open: c.open !== false, members: [u.uid, ...(c.join || [])], invites: (c.invite || []).filter((x) => x !== u.uid), names, msgs: [], tasks: [], doc: c.doc || '', docBy: '', edital: c.edital || null, from: c.from || '', ts: serverTimestamp() });
+    drive('Collabs', { nome: S.name, collab: c.t, tipo: c.kind }); return r.id;
+  },
+  collabUpd: (id, patch) => updateDoc(doc(db, 'collabs', id), patch),
+  collabMsg: (S, id, t) => updateDoc(doc(db, 'collabs', id), { msgs: arrayUnion({ uid: auth.currentUser.uid, name: S.name, t, at: Date.now() }) }),
+  collabJoin: (S, id) => updateDoc(doc(db, 'collabs', id), { members: arrayUnion(auth.currentUser.uid), invites: arrayRemove(auth.currentUser.uid), ['names.' + auth.currentUser.uid]: S.name }),
+  collabLeave: (id) => updateDoc(doc(db, 'collabs', id), { members: arrayRemove(auth.currentUser.uid), invites: arrayRemove(auth.currentUser.uid) }),
+  collabInvite: (id, p) => updateDoc(doc(db, 'collabs', id), { invites: arrayUnion(p.uid), ['names.' + p.uid]: p.name }),
+  collabDel: (id) => deleteDoc(doc(db, 'collabs', id)),
   chatId: (a, b) => [a, b].sort().join('_'),
   listenChat(otherUid, cb) {
     const u = auth.currentUser; if (!u || !otherUid) return () => {};

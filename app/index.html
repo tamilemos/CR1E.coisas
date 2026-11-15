@@ -1305,6 +1305,69 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
 .map-l>.note{margin:0;padding:10px 12px}
 .map-soon{border-top:1px solid var(--cinza);font-size:10.5px}
 .ed-soon{margin:0;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut)}
+
+/* abas da rede: quatro */
+.seg.s4{grid-template-columns:repeat(4,1fr);max-width:620px}
+.seg.s4 button{font-size:clamp(9px,2.6vw,13px);padding-inline:2px}
+/* collabs */
+.cb-hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;border:2px solid var(--preto);background:#C5FF3D;color:#0E0E0C;padding:14px 16px;margin-bottom:14px;max-width:760px;--preto:#0E0E0C}
+.cb-hero p{margin:4px 0 0;font-size:13px;line-height:1.5;max-width:520px}
+.cb-hero .lbl{color:#0E0E0C}
+.cb-hero .pill{cursor:pointer}
+.cb-new{border:2px solid var(--preto);background:var(--branco);padding:14px;display:flex;flex-direction:column;gap:10px;margin-bottom:14px;max-width:760px}
+.cb-pick{display:flex;flex-wrap:wrap;gap:10px}
+.cb-p{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;width:64px;font-size:10px;text-align:center}
+.cb-p .av{width:44px;height:44px;border-radius:50%;overflow:hidden;outline:2px solid transparent;outline-offset:2px}
+.cb-p .av img{width:100%;height:100%;object-fit:cover}
+.cb-p[aria-pressed="true"] .av{outline-color:#C5FF3D;box-shadow:0 0 0 2px var(--preto)}
+.cb-p[aria-pressed="true"] span:last-child{font-weight:700}
+.cb-l{display:block;margin:16px 0 8px}
+.cb-list{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));max-width:900px}
+.cb-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;border:2px solid var(--preto);background:var(--branco);padding:12px;transition:transform .35s var(--spring),box-shadow .2s}
+.cb-card:hover,.cb-card:focus-visible{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--verde)}
+.cb-card b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:14px;line-height:1.2}
+.cb-card .note{font-size:11px}
+.cb-top{display:flex;gap:4px;flex-wrap:wrap}
+.cb-foot{display:flex;align-items:center;gap:8px;margin-top:4px}
+.cb-avs{display:flex;align-items:center}
+.cb-avs .av{width:30px;height:30px;border-radius:50%;overflow:hidden;font-size:10px;margin-right:-8px;box-shadow:0 0 0 2px var(--branco)}
+.cb-avs .av img{width:100%;height:100%;object-fit:cover}
+.cb-avs.sm .av{width:24px;height:24px;font-size:8px}
+.cb-avs>.note{margin-left:16px}
+.cb-more{margin-left:12px;font-size:11px;font-weight:700}
+.cb-invite{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;border:2px dashed var(--preto);padding:10px 12px;margin-bottom:10px;max-width:760px}
+.cb-invite b{display:block;font-size:13px}
+.cb-invite .pill{cursor:pointer}
+.cb-mem{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;max-width:760px}
+.cb-ma{display:flex;gap:6px;flex-wrap:wrap}
+.cb-ma .pill{cursor:pointer}
+.cb-tabs{margin:14px 0 12px}
+.cb-pane{max-width:760px;display:flex;flex-direction:column;gap:10px}
+.cb-pane[hidden]{display:none}
+#cbDoc{font:inherit;font-size:14px;line-height:1.6;border:2px solid var(--preto);background:var(--branco);color:var(--preto);padding:12px;width:100%;box-sizing:border-box;min-height:300px}
+.cb-tpl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cb-tpl .pill{cursor:pointer}
+.cbt{align-items:center}
+.cbt .lnk{margin-left:auto;font-size:10px}
+.cbt em{font-style:normal}
+.cb-promo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;border:2px solid var(--preto);background:var(--branco);padding:12px 14px;margin:10px 0;max-width:760px;box-shadow:4px 4px 0 var(--verde)}
+.cb-promo b{display:block;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px}
+.cb-promo .note{font-size:11px}
+.cb-promo .pill{cursor:pointer}
+.cb-row{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid var(--cinza)}
+.cb-row[disabled]{opacity:.5;cursor:default}
+.cb-row .g{flex:1;min-width:0}
+.edc .lnk[data-cbed]{font-size:11px;align-self:flex-start}
+/* painel da marca: rede anônima */
+.emp-net{padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.emp-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.emp-h h2{font-size:clamp(26px,5vw,44px);margin:2px 0}
+.emp-h h2 b{background:#C5FF3D;color:#0E0E0C;padding:0 .12em;font-weight:900}
+.emp-f{display:flex;flex-direction:column;gap:4px;min-width:200px}
+.emp-f select{font:inherit;font-size:15px;padding:8px 10px;border:2px solid var(--preto);background:var(--branco);color:var(--preto)}
+.emp-g{display:grid;gap:12px}
+@media(min-width:820px){.emp-g{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+.emp-net .map-svg path{cursor:pointer}
 </style>
 
 <div class="gate" id="gate">
@@ -1376,7 +1439,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
       <!-- REDE -->
       <section class="view" data-view="rede" aria-labelledby="v-rede" hidden>
         <div class="vh"><h1 class="t" id="v-rede">Gente que <span class="w a">cria</span></h1><p>Conheça artistas além do portfólio: gostos, hobbies e habilidades.</p></div>
-        <div class="seg s3" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Feed</button><button type="button" data-rt="match" aria-pressed="false">Rede</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
+        <div class="seg s4" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Feed</button><button type="button" data-rt="match" aria-pressed="false">Rede</button><button type="button" data-rt="collab" aria-pressed="false">Collabs</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
         <div id="rdMatch" hidden>
           <details class="psx" id="psx"><summary><i aria-hidden="true"></i><b>Buscar pessoas</b><span class="note" id="psN"></span></summary>
             <div class="psx-b"><input id="psQ" type="search" placeholder="Nome da pessoa" aria-label="Buscar pessoas por nome" autocomplete="off">
@@ -1401,6 +1464,19 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
           <div id="postList"></div><button class="pill" type="button" id="postMore" style="align-self:center" hidden>Ver mais publicações</button></div>
           <div class="fol-box" style="margin-top:16px;max-width:600px"><span class="lbl">Quem você segue</span><div id="ctList"></div></div>
         </div>
+        <div id="rdCollab" hidden>
+          <div class="cb-hero"><div><span class="lbl">Collabs</span><p>Junte gente da rede para criar: um projeto, uma ideia, uma exposição ou a inscrição em um edital. Cada collab tem conversa, tarefas e um texto para escrever em conjunto.</p></div><button class="pill k" type="button" id="cbNewB">+ Nova collab</button></div>
+          <form class="cb-new" id="cbF" hidden novalidate>
+            <label class="fld" for="cb-t">Nome da collab<input id="cb-t" maxlength="80" placeholder="Ex.: mural coletivo no centro"></label>
+            <div class="two"><label class="fld" for="cb-k">Tipo<select id="cb-k"><option>Projeto</option><option>Ideia</option><option>Edital</option><option>Exposição</option><option>Evento</option><option>Conteúdo</option><option>Estudo</option></select></label><label class="fld" for="cb-o">Quem pode entrar<select id="cb-o"><option value="1">Aberta para a rede</option><option value="0">Só convidados</option></select></label></div>
+            <label class="fld" for="cb-d">Sobre o que é<textarea id="cb-d" maxlength="500" rows="3" placeholder="Conte a ideia e o que você procura em quem entrar"></textarea></label>
+            <span class="lbl">Convidar quem você segue</span><div class="cb-pick" id="cbPick"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="pill k" type="submit">Criar collab</button><button class="pill" type="button" id="cbCancel">Cancelar</button></div><span class="note" id="cbMsg" role="status"></span>
+          </form>
+          <div id="cbInv"></div>
+          <span class="lbl cb-l">Suas collabs</span><div class="cb-list" id="cbMine"></div>
+          <span class="lbl cb-l">Collabs abertas na rede</span><div class="cb-list" id="cbOpen"></div>
+        </div>
         <div id="rdForum" hidden>
           
           <p class="note demo">Tópicos de modelo, só para visualizar a diagramação.</p>
@@ -1410,9 +1486,23 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
           <div id="topList"></div>
         </div>
       </section>
+      <section class="view" data-view="collab" aria-labelledby="cbT" hidden>
+        <a class="pill back" href="#rede" id="cbBack">← Collabs</a>
+        <div class="vh"><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill s v" style="border-color:var(--preto)" id="cbK"></span><span class="pill s" id="cbO"></span></div><h1 class="t" id="cbT" style="font-size:clamp(30px,5vw,60px)"></h1><p id="cbD"></p></div>
+        <div class="cb-mem"><div class="cb-avs" id="cbAvs"></div><div class="cb-ma" id="cbActs"></div></div>
+        <div id="cbGate"></div>
+        <div id="cbBody">
+          <div class="seg s4 cb-tabs" role="group" aria-label="Ferramentas da collab"><button type="button" data-ct="chat" aria-pressed="true">Conversa</button><button type="button" data-ct="tasks" aria-pressed="false">Tarefas</button><button type="button" data-ct="doc" aria-pressed="false">Texto</button><button type="button" data-ct="ed" aria-pressed="false">Edital</button></div>
+          <div class="cb-pane" id="ctChat"><div id="cbMsgs"></div><form class="tpf" id="cbMF"><input id="cbMI" maxlength="600" aria-label="Mensagem para a collab" placeholder="Escreva para o grupo" autocomplete="off"><button class="pill k" type="submit">Enviar</button></form></div>
+          <div class="cb-pane" id="ctTasks" hidden><form class="tpf" id="cbTF"><input id="cbTI" maxlength="140" aria-label="Nova tarefa" placeholder="Nova tarefa, ex.: levantar orçamento de tinta" autocomplete="off"><button class="pill k" type="submit">Adicionar</button></form><div id="cbTasks"></div></div>
+          <div class="cb-pane" id="ctDoc" hidden><div class="cb-tpl"><span class="lbl">Começar de um modelo</span><button class="pill s" type="button" data-tpl="edital">Projeto para edital</button><button class="pill s" type="button" data-tpl="marca">Proposta para marca</button><button class="pill s" type="button" data-tpl="expo">Exposição</button></div><textarea id="cbDoc" rows="16" placeholder="Escrevam juntos aqui. Quem salvar por último fica com a versão final."></textarea><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="pill k" type="button" id="cbDocS">Salvar texto</button><span class="note" id="cbDocN"></span></div></div>
+          <div class="cb-pane" id="ctEd" hidden><p class="note" style="margin:0">Ligue esta collab a um edital salvo para acompanhar o prazo juntos.</p><label class="fld" for="cbEdS">Edital<select id="cbEdS"></select></label><div id="cbEdInfo"></div><p class="ed-soon"><span class="pill xx v">Em breve</span> Assistente de IA para escrever a inscrição em grupo.</p></div>
+        </div>
+      </section>
       <section class="view" data-view="topico" aria-labelledby="tpT" hidden>
         <a class="pill back" href="#rede">← Fórum</a>
         <div class="vh"><span class="pill s v" style="border-color:var(--preto);align-self:flex-start" id="tpC"></span><h1 class="t" id="tpT" style="font-size:clamp(32px,5vw,64px)"></h1><p class="note">Tópico aberto por quem está no teste.</p></div>
+        <div class="cb-promo"><span><b>Essa conversa pode virar projeto.</b><span class="note">Quem participou do tópico entra no grupo.</span></span><button class="pill k" type="button" id="tpCb">Transformar em collab</button></div>
         <div id="tpMsgs" style="max-width:760px"></div>
         <form class="tpf" id="tpF"><input id="tpI" aria-label="Sua resposta" placeholder="Responder no tópico" autocomplete="off"><button class="pill k" type="submit">Responder</button></form>
       </section>
@@ -1549,6 +1639,9 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
           <div class="hi card sh" style="--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--papel)"><span class="pill v" style="align-self:flex-start">Portal da empresa</span><h1 class="t" id="v-empresa"><span class="ln">Arte para a</span><span class="ln w" style="color:var(--verde)">sua marca</span></h1><p style="max-width:46ch;color:#D8D7D0">Publique um briefing. A curadoria da CR1E.Coisas seleciona os artistas certos, dirige o projeto e acompanha até a entrega.</p></div>
           <div class="kp"><div class="card" data-href="briefings" role="link" tabindex="0"><span class="lbl">Briefings</span><b id="eBr">0</b></div><div class="card" data-href="briefings" role="link" tabindex="0"><span class="lbl">Em curadoria</span><b id="eCur">0</b></div><div class="card" data-href="projetos" role="link" tabindex="0"><span class="lbl">Projetos</span><b id="eInv">0</b></div><div class="card" data-href="projetos" role="link" tabindex="0" style="--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)"><span class="lbl" style="color:var(--preto)">Entregas feitas</span><b id="eNet">0</b></div></div>
         </div>
+        <section class="emp-net card" aria-labelledby="enT"><div class="emp-h"><div><span class="lbl">A rede CR1E.Collab</span><h2 class="t" id="enT"><b id="enN">0</b> <span>artistas na rede</span></h2><p class="note" id="enSub"></p></div><label class="lbl emp-f" for="enA">Área de atuação<select id="enA"></select></label></div>
+          <div class="emp-g"><svg class="map-svg" id="enSvg" role="img" aria-label="Mapa do Brasil com os estados onde há artistas da rede"></svg><div><nav class="map-bc" id="enBc"></nav><div class="map-l" id="enL"></div><p class="note" style="margin:8px 0 0">Os números mostram o tamanho da rede. Quem cuida da escolha dos artistas para cada projeto é a curadoria da CR1E.Coisas.</p></div></div>
+        </section>
         <div class="steps"><div class="card"><span class="pill s" style="align-self:flex-start">1</span><b>Você conta o projeto</b><span class="note">Mural, live painting, conteúdo, oficina.</span></div><div class="card"><span class="pill s" style="align-self:flex-start">2</span><b>A CR1E.Coisas faz a curadoria</b><span class="note">Selecionamos e dirigimos os artistas. Você recebe a proposta pronta.</span></div><div class="card" style="--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)"><span class="pill s k" style="align-self:flex-start">3</span><b>O artista entra em ação</b><span class="note" style="color:var(--preto)">Com direção criativa e registro em conteúdo.</span></div></div>
         <div class="egrid">
           <form class="panel card sh" id="bForm" novalidate>
@@ -1873,10 +1966,10 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
     const PROF = { n: 'Curadoria CR1E.Coisas', r: 'Curso de modelo', b: 'Conteúdo de exemplo para mostrar a diagramação. Os cursos reais serão dados por artistas convidados.' };
     Object.entries(CX).forEach(([area, [img, ...l]]) => l.forEach(([t, tema, d, au], i) => COURSES.push({ id: 'cx-' + area.slice(0, 3).toLowerCase() + i, t, tema, area, img, d, prof: PROF, aulas: au.map((x, k) => [x, (8 + ((i + k) * 3) % 7) + ' min', 'Aula de modelo sobre ' + x.toLowerCase() + '.', ['Entender o ponto principal', 'Ver um exemplo prático', 'Aplicar no seu trabalho']]) }))); }
   const TEMAS = ['Todos', ...new Set(COURSES.map((c) => c.tema))];
-  const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
+  const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
     empresa: [['empresa', 'Painel'], ['feed', 'Feed'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']] };
-  const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
-  const PARENT = { config: 'perfil', teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
+  const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
+  const PARENT = { collab: 'rede', config: 'perfil', teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
   const AREAS = {
     'Artes visuais': ['Muralismo', 'Pintura', 'Ilustração', 'Graffiti', 'Lettering', 'Escultura', 'Gravura', 'Colagem', 'Cerâmica', 'Live painting'],
     'Artes cênicas': ['Teatro', 'Dança', 'Circo', 'Performance', 'Palhaçaria', 'Teatro de bonecos', 'Cenografia', 'Direção cênica', 'Stand-up'],
@@ -2046,6 +2139,89 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
     $('covPick').innerHTML = fs.length ? '<span class="note">Ou use uma foto do portfólio:</span>' + fs.map(([f, i]) => `<button class="covp" type="button" data-cov="${i}" aria-pressed="${S.cover === f}" aria-label="Usar a foto ${i + 1} do portfólio como capa" style="background-image:url(${f})"></button>`).join('') : '<span class="note">Adicione fotos ao portfólio para poder usar uma delas como capa.</span>'; }
   $('covX').addEventListener('click', () => { S.cover = ''; covUI(); syncSoon('fotos'); });
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-cov]'); if (!b) return; S.cover = S.fotos[+b.dataset.cov] || ''; covUI(); syncSoon('fotos'); });
+
+
+  /* painel da marca: placar e mapa da rede, sem identificar ninguém */
+  S.enUF = ''; S.enA = '';
+  function empNet() { if (!$('enSvg')) return; const L = ARTISTS.filter((a) => !S.enA || String(a.ar || '').split(' · ').includes(S.enA)), byUF = {}; L.forEach((a) => { if (a.uf && BRMAP.p[a.uf]) byUF[a.uf] = (byUF[a.uf] || 0) + 1; });
+    if (!$('enA').options.length) { $('enA').innerHTML = '<option value="">Todas as áreas</option>' + Object.keys(AREAS).map((a) => `<option>${a}</option>`).join(''); }
+    const nUF = Object.keys(byUF).length, nC = new Set(L.filter((a) => a.city).map((a) => a.uf + '|' + nrmC(a.city))).size;
+    $('enN').textContent = L.length; $('enSub').textContent = `${S.enA ? S.enA + ' · ' : ''}em ${nUF} ${nUF === 1 ? 'estado' : 'estados'} e ${nC} ${nC === 1 ? 'cidade' : 'cidades'}`;
+    const sv = $('enSvg'); if (!sv.firstChild) sv.innerHTML = Object.entries(BRMAP.p).map(([u, d]) => `<path d="${d}" data-enuf="${u}"><title>${UFN[u]}</title></path>`).join('');
+    sv.querySelectorAll('path').forEach((p) => { const u = p.dataset.enuf; p.classList.toggle('on', !!byUF[u]); p.classList.toggle('sel', u === S.enUF); p.classList.toggle('dim', !!S.enUF && u !== S.enUF); });
+    const b = S.enUF ? BRMAP.b[S.enUF] : null, m = b ? Math.max(b[2], b[3]) * .15 + 4 : 0; sv.setAttribute('viewBox', (b ? [b[0] - m, b[1] - m, b[2] + 2 * m, b[3] + 2 * m] : [-4, -4, BRMAP.w + 8, BRMAP.h + 8]).join(' '));
+    $('enBc').innerHTML = S.enUF ? `<button type="button" data-enuf="">Brasil</button><span aria-hidden="true">›</span><b>${UFN[S.enUF]}</b>` : '<b>Brasil</b>';
+    if (S.enUF) { const A = {}; L.filter((a) => a.uf === S.enUF).forEach((a) => String(a.ar || '').split(' · ').filter((x) => AREAS[x]).forEach((x) => { A[x] = (A[x] || 0) + 1; })); const l = Object.entries(A).sort((x, y) => y[1] - x[1]);
+      $('enL').innerHTML = `<div class="map-r on" style="cursor:default"><span><b>${byUF[S.enUF] || 0} ${byUF[S.enUF] === 1 ? 'artista' : 'artistas'} em ${UFN[S.enUF]}</b></span></div>` + (l.length ? l.map(([x, n]) => `<div class="map-r" style="cursor:default"><span><b>${x}</b></span><em>${n}</em></div>`).join('') : '<p class="note">Ainda não há artistas da rede neste estado.</p>'); }
+    else $('enL').innerHTML = Object.entries(REG).map(([r, ufs]) => { const n = ufs.reduce((s, u) => s + (byUF[u] || 0), 0); return `<div class="map-r${n ? ' on' : ''}" style="cursor:default"><span><b>${r}</b><span class="note">${ufs.filter((u) => byUF[u]).map((u) => u).join(' · ') || 'nenhum estado ainda'}</span></span><em>${n}</em></div>`; }).join(''); }
+  $('enA').addEventListener('change', () => { S.enA = $('enA').value; empNet(); });
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-enuf]'); if (!b || !e.target.closest('.emp-net')) return; S.enUF = S.enUF === b.dataset.enuf ? '' : b.dataset.enuf; empNet(); });
+  /* ---------- collabs ---------- */
+  const CBL = { list: null, local: [] };
+  const cbAll = () => (CBL.list || []).concat(CBL.local);
+  const cbMine = (c) => (c.members || []).includes(myUid());
+  const cbInvited = (c) => (c.invites || []).includes(myUid());
+  const cbName = (c, u) => (c.names || {})[u] || (findArt(u) || {}).n || 'Artista';
+  const cbOk = () => RR.A && RR.A.collabNew && CBL.list !== null;
+  async function cbCreate(c) { if (cbOk()) { try { return await RR.A.collabNew(S, c); } catch (er) { toast('Não consegui salvar a collab na rede. Ela fica só neste aparelho por enquanto.'); } }
+    const id = 'loc' + Date.now(), names = { [myUid() || 'me']: S.name }; (c.people || []).forEach((p) => { names[p.uid] = p.name; });
+    CBL.local.unshift({ id, local: true, uid: myUid() || 'me', t: c.t, kind: c.kind, d: c.d || '', open: c.open !== false, members: [myUid() || 'me', ...(c.join || [])], invites: c.invite || [], names, msgs: [], tasks: [], doc: c.doc || '', edital: c.edital || null, from: c.from || '', ts: Date.now() }); return id; }
+  async function cbUpd(c, patch, fn) { if (c.local || !cbOk()) { Object.assign(c, patch); if (fn) fn(c); cbDraw(); cbList(); return; } try { await (fn ? fn() : RR.A.collabUpd(c.id, patch)); } catch (er) { toast('Não consegui salvar agora. Tente de novo.'); } }
+  const avPlain = (a) => avA(a).replace(/ data-art="[^"]*" role="button" tabindex="0" aria-label="[^"]*"/, '');
+  const cbAvs = (c, max = 5, plain) => { const m = c.members || []; return m.slice(0, max).map((u) => { const a = u === myUid() ? { n: S.name, img: S.avatar, uid: u } : (findArt(u) || { n: cbName(c, u), uid: u }); return plain ? avPlain(a) : avA(a, 'cbav'); }).join('') + (m.length > max ? `<span class="cb-more">+${m.length - max}</span>` : ''); };
+  const cbCard = (c) => `<button class="cb-card" type="button" data-cb="${c.id}"><span class="cb-top"><span class="pill xx v">${esc(c.kind || 'Projeto')}</span>${c.open === false ? '<span class="pill xx">Só convidados</span>' : ''}${c.edital ? '<span class="pill xx">Edital</span>' : ''}</span><b>${esc(c.t)}</b>${c.d ? `<span class="note">${esc(c.d.slice(0, 110))}${c.d.length > 110 ? '…' : ''}</span>` : ''}<span class="cb-foot"><span class="cb-avs sm">${cbAvs(c, 4, true)}</span><span class="note">${(c.members || []).length} ${(c.members || []).length === 1 ? 'pessoa' : 'pessoas'} · ${(c.msgs || []).length} ${(c.msgs || []).length === 1 ? 'mensagem' : 'mensagens'}</span></span></button>`;
+  function cbList() { if (!$('cbMine')) return; const all = cbAll(), mine = all.filter(cbMine), inv = all.filter((c) => cbInvited(c) && !cbMine(c)), open = all.filter((c) => !cbMine(c) && !cbInvited(c) && c.open !== false);
+    $('cbInv').innerHTML = inv.map((c) => `<div class="cb-invite"><span><span class="lbl">Convite</span><b>${esc(cbName(c, c.uid))} chamou você para a collab ${esc(c.t)}</b></span><span style="display:flex;gap:6px"><button class="pill xx k" type="button" data-cbjoin="${c.id}">Entrar</button><button class="pill xx" type="button" data-cbno="${c.id}">Agora não</button></span></div>`).join('');
+    $('cbMine').innerHTML = mine.length ? mine.map(cbCard).join('') : '<div class="empty">Você ainda não está em nenhuma collab. Crie uma ou entre em uma aberta.</div>';
+    $('cbOpen').innerHTML = open.length ? open.map(cbCard).join('') : '<div class="empty">Nenhuma collab aberta agora. Que tal abrir a primeira?</div>';
+    $('cbPick').innerHTML = (S.following || []).length ? S.following.map((a) => `<button class="cb-p" type="button" data-cbp="${esc(a.uid)}" aria-pressed="${S.cbSel && S.cbSel.has(a.uid) ? 'true' : 'false'}">${avPlain(a)}<span>${esc(a.n.split(' ')[0])}</span></button>`).join('') : '<p class="note" style="margin:0">Siga pessoas na aba Rede para convidar daqui. Você também pode convidar depois, pelo perfil de cada pessoa.</p>'; }
+  function cbOpenNew(pre) { S.cbSel = new Set(pre && pre.uid ? [pre.uid] : []); go('rede'); S.rt = 'collab'; social(); $('cbF').hidden = false; $('cbNewB').hidden = true; if (pre && pre.uid && !(S.following || []).some((a) => a.uid === pre.uid)) S.cbExtra = pre; cbList(); setTimeout(() => { $('cbF').scrollIntoView({ block: 'start', behavior: 'smooth' }); $('cb-t').focus({ preventScroll: true }); }, 80); }
+  $('cbNewB').addEventListener('click', () => cbOpenNew()); $('cbCancel').addEventListener('click', () => { $('cbF').hidden = true; $('cbNewB').hidden = false; });
+  $('cbF').addEventListener('submit', async (e) => { e.preventDefault(); const t = $('cb-t').value.trim(); if (!t) { $('cbMsg').textContent = 'Dê um nome para a collab.'; $('cb-t').focus(); return; }
+    const sel = [...(S.cbSel || [])], people = sel.map((u) => { const a = findArt(u) || S.cbExtra || {}; return { uid: u, name: a.n || 'Artista' }; });
+    const id = await cbCreate({ t, kind: $('cb-k').value, d: $('cb-d').value.trim(), open: $('cb-o').value === '1', invite: sel, people });
+    e.target.reset(); S.cbSel = new Set(); S.cbExtra = null; $('cbF').hidden = true; $('cbNewB').hidden = false; $('cbMsg').textContent = ''; toast(sel.length ? 'Collab criada. Os convites foram enviados.' : 'Collab criada.'); S.cbId = id; cbList(); go('collab'); });
+  const TPL = { edital: 'PROJETO PARA EDITAL\\n\\nNome do projeto:\\n\\nApresentação\\nO que é o projeto, em poucas linhas.\\n\\nJustificativa\\nPor que ele importa e para quem.\\n\\nObjetivos\\n- \\n\\nPúblico\\n\\nPlano de trabalho e cronograma\\n- Mês 1:\\n\\nOrçamento\\n- Item · valor\\n\\nFicha técnica\\n- Nome · função\\n\\nContrapartida e acessibilidade\\n', marca: 'PROPOSTA PARA MARCA\\n\\nCliente:\\nIdeia em uma frase:\\n\\nO que vamos entregar\\n- \\n\\nComo vai ser\\n\\nEquipe\\n- Nome · função\\n\\nPrazo\\n\\nValor\\n', expo: 'EXPOSIÇÃO\\n\\nTítulo:\\nConceito\\n\\nArtistas e obras\\n- \\n\\nEspaço e montagem\\n\\nDatas\\n\\nDivulgação\\n' };
+  function cbDraw() { const c = cbAll().find((x) => x.id === S.cbId); if (!c || !$('cbT')) return; const me = cbMine(c), own = c.uid === myUid() || (c.local && c.uid === 'me');
+    $('cbK').textContent = c.kind || 'Projeto'; $('cbO').textContent = c.open === false ? 'Só convidados' : 'Aberta para a rede'; $('cbT').textContent = c.t; $('cbD').textContent = c.d || ''; $('cbD').hidden = !c.d;
+    $('cbAvs').innerHTML = cbAvs(c, 12) + `<span class="note">${(c.members || []).length} ${(c.members || []).length === 1 ? 'pessoa' : 'pessoas'}${(c.invites || []).length ? ' · ' + c.invites.length + ' convidada' + (c.invites.length > 1 ? 's' : '') : ''}</span>`;
+    $('cbActs').innerHTML = me ? `<button class="pill xx" type="button" data-cbadd="${c.id}">Convidar</button>${own ? `<button class="pill xx" type="button" data-cbdel="${c.id}">Encerrar collab</button>` : `<button class="pill xx" type="button" data-cbleave="${c.id}">Sair</button>`}` : '';
+    const can = me || c.open !== false; $('cbGate').innerHTML = me ? '' : `<div class="cb-promo"><span><b>${can ? 'Quer criar junto?' : 'Collab só para convidados.'}</b><span class="note">${can ? 'Entre para ver a conversa, as tarefas e o texto.' : 'Peça um convite a quem criou.'}</span></span>${can || cbInvited(c) ? `<button class="pill k" type="button" data-cbjoin="${c.id}">Entrar na collab</button>` : ''}</div>`; $('cbBody').hidden = !me;
+    if (!me) return; S.ct = S.ct || 'chat'; document.querySelectorAll('[data-ct]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ct === S.ct))); ['chat', 'tasks', 'doc', 'ed'].forEach((k) => { $('ct' + k[0].toUpperCase() + k.slice(1)).hidden = S.ct !== k; });
+    $('cbMsgs').innerHTML = (c.msgs || []).length ? c.msgs.map((m) => `<div class="fmsg${m.uid === myUid() ? ' me' : ''}">${m.uid === myUid() ? avA({ n: S.name, img: S.avatar, uid: m.uid }) : avA(findArt(m.uid) || { n: m.name, uid: m.uid })}<div><b>${esc(m.name)}</b><p>${esc(m.t)}</p></div></div>`).join('') : '<p class="note">Comece a conversa: apresente a ideia e combine os próximos passos.</p>';
+    $('cbTasks').innerHTML = (c.tasks || []).length ? c.tasks.map((t) => `<label class="pck cbt"><input type="checkbox" data-cbtk="${t.id}"${t.done ? ' checked' : ''}><span>${esc(t.t)} <em class="note">· ${esc(t.by || '')}</em></span><button class="lnk" type="button" data-cbtx="${t.id}" aria-label="Apagar tarefa">apagar</button></label>`).join('') : '<p class="note">Nenhuma tarefa ainda. Dividam o trabalho aqui.</p>';
+    if (document.activeElement !== $('cbDoc')) $('cbDoc').value = c.doc || ''; $('cbDocN').textContent = c.docBy ? 'Última versão salva por ' + c.docBy : '';
+    $('cbEdS').innerHTML = '<option value="">Nenhum</option>' + EDITAIS.filter((e) => !e.portal && (S.edS.has(e.t) || (c.edital && c.edital === e.t))).map((e) => `<option${c.edital === e.t ? ' selected' : ''}>${esc(e.t)}</option>`).join('') + (S.edS.size ? '' : '<option disabled>Salve editais em Estúdio › Editais</option>');
+    const ed = EDITAIS.find((e) => e.t === c.edital); $('cbEdInfo').innerHTML = ed ? `<div class="esr"><span><b>${esc(ed.t)}</b><span class="note">${esc(ed.org)} · ${edWhen(ed)}</span></span><span class="esr-a"><a class="pill xx" href="${ed.url}" target="_blank" rel="noopener">Ver edital ↗</a><button class="pill xx" type="button" data-ct="doc">Escrever o projeto</button></span></div>` : ''; }
+  document.addEventListener('click', async (e) => { let b; const c = () => cbAll().find((x) => x.id === b.dataset[Object.keys(b.dataset)[0]]);
+    if ((b = e.target.closest('[data-cb]'))) { S.cbId = b.dataset.cb; S.ct = 'chat'; go('collab'); cbDraw(); return; }
+    if ((b = e.target.closest('[data-cbp]'))) { S.cbSel = S.cbSel || new Set(); const u = b.dataset.cbp; S.cbSel.has(u) ? S.cbSel.delete(u) : S.cbSel.add(u); b.setAttribute('aria-pressed', String(S.cbSel.has(u))); return; }
+    if ((b = e.target.closest('[data-ct]'))) { S.ct = b.dataset.ct; cbDraw(); return; }
+    if ((b = e.target.closest('[data-cbjoin]'))) { const x = c(); if (!x) return; await cbUpd(x, {}, x.local || !cbOk() ? (y) => { y.members = [...new Set([...(y.members || []), myUid() || 'me'])]; y.invites = (y.invites || []).filter((u) => u !== myUid()); y.names = { ...(y.names || {}), [myUid() || 'me']: S.name }; } : () => RR.A.collabJoin(S, x.id)); toast('Você entrou na collab.'); S.cbId = x.id; go('collab'); cbDraw(); return; }
+    if ((b = e.target.closest('[data-cbno]'))) { const x = c(); if (x) await cbUpd(x, {}, x.local || !cbOk() ? (y) => { y.invites = (y.invites || []).filter((u) => u !== myUid()); } : () => RR.A.collabLeave(x.id)); return; }
+    if ((b = e.target.closest('[data-cbleave]'))) { const x = c(); if (!x) return; await cbUpd(x, {}, x.local || !cbOk() ? (y) => { y.members = (y.members || []).filter((u) => u !== (myUid() || 'me')); } : () => RR.A.collabLeave(x.id)); go('rede'); return; }
+    if ((b = e.target.closest('[data-cbdel]'))) { if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Toque de novo para encerrar'; setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Encerrar collab'; }, 4000); return; } const x = c(); if (!x) return; if (x.local || !cbOk()) CBL.local = CBL.local.filter((y) => y !== x); else { try { await RR.A.collabDel(x.id); } catch (er) { toast('Não consegui encerrar agora.'); return; } } toast('Collab encerrada.'); go('rede'); cbList(); return; }
+    if ((b = e.target.closest('[data-cbadd]'))) { cbInvSheet(null, b.dataset.cbadd); return; }
+    if ((b = e.target.closest('[data-cbinv]'))) { cbInvSheet({ uid: b.dataset.cbinv, n: b.dataset.cbn }); return; }
+    if ((b = e.target.closest('[data-cbto]'))) { const [id, u] = b.dataset.cbto.split('|'), x = cbAll().find((y) => y.id === id), a = findArt(u) || { n: b.dataset.cbn, uid: u }; if (!x) return; await cbUpd(x, {}, x.local || !cbOk() ? (y) => { y.invites = [...new Set([...(y.invites || []), u])]; y.names = { ...(y.names || {}), [u]: a.n }; } : () => RR.A.collabInvite(x.id, { uid: u, name: a.n })); $('sheet').close(); toast(`Convite para ${a.n} enviado.`); return; }
+    if ((b = e.target.closest('[data-cbnew]'))) { $('sheet').close(); const a = findArt(b.dataset.cbnew) || { uid: b.dataset.cbnew, n: b.dataset.cbn }; cbOpenNew(a); return; }
+    if ((b = e.target.closest('[data-cbtx]'))) { e.preventDefault(); const x = cbAll().find((y) => y.id === S.cbId); if (x) cbUpd(x, { tasks: (x.tasks || []).filter((t) => t.id !== b.dataset.cbtx) }); return; }
+    if ((b = e.target.closest('[data-tpl]'))) { const cur = $('cbDoc').value.trim(); if (cur && b.dataset.sure !== '1') { b.dataset.sure = '1'; toast('Já tem texto. Toque de novo para trocar pelo modelo.'); setTimeout(() => { b.dataset.sure = ''; }, 4000); return; } $('cbDoc').value = TPL[b.dataset.tpl].replace(/\\n/g, '\n'); $('cbDoc').focus(); return; }
+    if ((b = e.target.closest('[data-cbed]'))) { const ed = EDITAIS.find((x) => x.t === b.dataset.cbed); if (!ed) return; S.edS.add(ed.t); try { localStorage.setItem('cr1e-editais', JSON.stringify([...S.edS])); } catch (er) {} const id = await cbCreate({ t: 'Inscrição: ' + ed.t, kind: 'Edital', d: `Collab para escrever juntos a inscrição no edital ${ed.t} (${ed.org}).`, edital: ed.t, doc: TPL.edital.replace(/\\n/g, '\n') }); S.cbId = id; S.ct = 'doc'; go('collab'); cbDraw(); toast('Collab criada. Convide quem vai escrever com você.'); }
+  });
+  document.addEventListener('change', (e) => { const t = e.target.closest && e.target.closest('[data-cbtk]'); if (t) { const x = cbAll().find((y) => y.id === S.cbId); if (x) cbUpd(x, { tasks: (x.tasks || []).map((k) => k.id === t.dataset.cbtk ? { ...k, done: t.checked } : k) }); } if (e.target.id === 'cbEdS') { const x = cbAll().find((y) => y.id === S.cbId); if (x) cbUpd(x, { edital: e.target.value || null }); } });
+  function cbInvSheet(person, cid) { const mine = cbAll().filter(cbMine), sh = $('shBody');
+    if (cid) { const x = cbAll().find((y) => y.id === cid), ppl = (S.following || []).filter((a) => !(x.members || []).includes(a.uid) && !(x.invites || []).includes(a.uid));
+      sh.innerHTML = `<div class="tm-b"><h2 class="t" id="sh-t" style="font-size:28px">Convidar para <span class="w a">${esc(x.t)}</span></h2>${ppl.length ? `<div class="cb-list">${ppl.map((a) => `<button class="reqr cb-row" type="button" data-cbto="${x.id}|${esc(a.uid)}" data-cbn="${esc(a.n)}">${avA(a)}<span class="g"><b>${esc(a.n)}</b><br><span class="note">${esc(a.esp || '')}</span></span><span class="pill xx">Convidar</span></button>`).join('')}</div>` : '<p class="note">Todas as pessoas que você segue já estão aqui. Para chamar alguém novo, abra o perfil da pessoa e toque em "Chamar para uma collab".</p>'}</div>`; }
+    else { sh.innerHTML = `<div class="tm-b"><h2 class="t" id="sh-t" style="font-size:28px">Criar com <span class="w a">${esc(person.n.split(' ')[0])}</span></h2><p class="note" style="margin:0">Convide para uma collab sua ou abra uma nova já com essa pessoa.</p><button class="pill k" type="button" data-cbnew="${esc(person.uid)}" data-cbn="${esc(person.n)}" style="align-self:flex-start">+ Nova collab com ${esc(person.n.split(' ')[0])}</button>${mine.length ? `<span class="lbl">Ou chame para uma que já existe</span><div class="cb-list">${mine.map((x) => { const inn = (x.members || []).includes(person.uid) || (x.invites || []).includes(person.uid); return `<button class="reqr cb-row" type="button" ${inn ? 'disabled' : `data-cbto="${x.id}|${esc(person.uid)}" data-cbn="${esc(person.n)}"`}><span class="g"><b>${esc(x.t)}</b><br><span class="note">${esc(x.kind)} · ${(x.members || []).length} pessoas</span></span><span class="pill xx">${inn ? 'Já está' : 'Convidar'}</span></button>`; }).join('')}</div>` : ''}</div>`; }
+    if (!$('sheet').open) $('sheet').showModal(); }
+  $('cbMF').addEventListener('submit', async (e) => { e.preventDefault(); const v = $('cbMI').value.trim(), x = cbAll().find((y) => y.id === S.cbId); if (!v || !x) return; $('cbMI').value = ''; if (x.local || !cbOk()) { x.msgs = [...(x.msgs || []), { uid: myUid() || 'me', name: S.name, t: v, at: Date.now() }]; cbDraw(); return; } try { await RR.A.collabMsg(S, x.id, v); } catch (er) { $('cbMI').value = v; toast('Não consegui enviar agora.'); } });
+  $('cbTF').addEventListener('submit', (e) => { e.preventDefault(); const v = $('cbTI').value.trim(), x = cbAll().find((y) => y.id === S.cbId); if (!v || !x) return; $('cbTI').value = ''; cbUpd(x, { tasks: [...(x.tasks || []), { id: 't' + Date.now(), t: v, done: false, by: S.name.split(' ')[0] }] }); });
+  $('cbDocS').addEventListener('click', () => { const x = cbAll().find((y) => y.id === S.cbId); if (!x) return; cbUpd(x, { doc: $('cbDoc').value.slice(0, 20000), docBy: S.name }); $('cbDocN').textContent = 'Salvo.'; });
+  $('tpCb').addEventListener('click', async () => { const tp = S.forum.find((x) => x.id === S.top) || S.forum[0]; if (!tp) return; const ppl = [...new Map((tp.msgs || []).filter((m) => m.uid && m.uid !== myUid()).map((m) => [m.uid, { uid: m.uid, name: m.name }])).values()];
+    const names = [...new Set((tp.msgs || []).map((m) => m[0] || m.name).filter((n) => n && n !== S.name))];
+    const id = await cbCreate({ t: tp.t, kind: 'Ideia', d: `Nasceu no fórum (${tp.cat}). Participaram: ${names.join(', ') || 'só você até agora'}.`, invite: ppl.map((p) => p.uid), people: ppl, from: 'forum:' + tp.id });
+    toast(ppl.length ? `Collab criada. ${ppl.length} ${ppl.length === 1 ? 'pessoa foi convidada' : 'pessoas foram convidadas'}.` : 'Collab criada a partir do tópico.'); S.cbId = id; S.ct = 'chat'; go('collab'); cbDraw(); });
   /* ---------- stories: imagem 1080 × 1920 para chamar gente para o app ---------- */
   const APP_URL = 'https://cr1e.co/app/', APP_TXT = 'cr1e.co/app';
   const imgOf = (src) => new Promise((ok) => { if (!src) return ok(null); const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
@@ -2182,6 +2358,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
     views.forEach((x) => { x.hidden = x.dataset.view !== v; });
     document.querySelectorAll('.tab a, .side a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + nv));
     $('moreBtn').classList.toggle('on', v === 'mais'); S.seen.add(v); try { todo(); save(); } catch (err) {}
+    if (v === 'collab') { try { cbDraw(); } catch (er) {} }
     if (v === 'sobre') { $('sbGo').hidden = !S.guest; $('sbBack').href = S.guest ? '#inicio' : '#config'; }
     $('crows').hidden = v === 'mensagens'; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
     scrollTo(0, 0);
@@ -2315,9 +2492,10 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   function netStart() {
     if (netOn || !RR.A) return; netOn = true; const me = () => RR.A.user() && RR.A.user().uid;
     RR.A.listen({
-      profiles: (l) => { S.pmap = new Map(l.map((p) => [p.uid, p])); ARTISTS = l.filter((p) => p.done && p.role !== 'empresa').map(toArt); netRefresh(); },
+      profiles: (l) => { S.pmap = new Map(l.map((p) => [p.uid, p])); ARTISTS = l.filter((p) => p.done && p.role !== 'empresa').map(toArt); netRefresh(); try { empNet(); } catch (er) {} },
       posts: (l) => { S.netPosts = l.map((p) => ({ me: p.uid === me(), uid: p.uid, id: p.id, a: p.name || 'Artista', t: p.t, img: p.img || '', ts: p.ts && p.ts.toDate ? p.ts.toDate() : new Date(), likes: p.likes || [], reposts: p.reposts || [], replies: p.replies || [] })); try { social(); } catch (er) {} },
-      forum: (l) => { S.forum = l.map((t) => ({ id: t.id, cat: t.cat, t: t.t, msgs: (t.msgs || []).map((m) => [m.name || 'Artista', m.t, m.uid === me()]) })).concat(FORUM); try { social(); } catch (er) {} },
+      collabs: (l) => { CBL.list = l; try { cbList(); cbDraw(); } catch (er) {} },
+      forum: (l) => { S.forum = l.map((t) => ({ id: t.id, cat: t.cat, t: t.t, msgs: (t.msgs || []).map((m) => Object.assign([m.name || 'Artista', m.t, m.uid === me()], { uid: m.uid, name: m.name })) })).concat(FORUM); try { social(); } catch (er) {} },
     });
   }
   let syncT = null;
@@ -2383,7 +2561,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   });
 
   /* empresa */
-  function empresa() {
+  function empresa() { try { empNet(); } catch (er) {}
     $('eBr').textContent = S.briefs.length; $('eCur').textContent = S.briefs.filter((b) => (b.step ?? 1) < 2).length; $('eInv').textContent = S.proj.length; $('eNet').textContent = S.proj.reduce((n, p) => n + p.tasks.filter((t) => t[1]).length, 0);
     $('bList').innerHTML = S.briefs.map((b) => `<button class="rowc" type="button" data-bid="${b.id}" style="padding:14px"><div class="sub"><b style="font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:18px;line-height:1.05">${esc(b.t)}</b><span class="pill s v" style="border-color:var(--preto)">${BSTEPS[b.step ?? 1]}</span></div><div class="meta" style="margin:0"><span>${esc(b.tipo)}</span><span>${esc(b.local)}</span></div></button>`).join('');
   }
@@ -2599,7 +2777,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
     const l = ARTISTS.filter((a) => !q || (a.n + a.esp + a.sk.join(' ') + a.hb.join(' ') + a.cid).toLowerCase().includes(q));
     $('arList').innerHTML = l.length ? l.map((a) => acard(a, S.inv.has(a.n) ? '<span class="pill s k">Convidado</span>' : '')).join('') : '<div class="empty">Nenhum artista com esse termo. Tente outra habilidade.</div>';
     const a = findArt(S.aid); if (!a) return;
-    $('apAv').innerHTML = a.img ? `<img src="${a.img}" alt="Foto de ${esc(a.n)}">` : esc(a.n.slice(0, 2).toUpperCase()); covSet($('apCov'), a.cover); $('apN').textContent = a.n; $('apR').textContent = a.cid || ''; $('apR').hidden = !a.cid; $('apAr').innerHTML = ARB(a.ar); { const c = S.conns.includes(a), f = S.follow.has(a.uid), back = a.tf.includes(myUid()), emp2 = S.role === 'empresa'; $('apActs').hidden = false; $('apActs').innerHTML = `<button class="btn k" type="button" data-cmsg="${esc(a.n)}" style="justify-content:center;width:100%">Mensagem <span class="arr" aria-hidden="true">→</span></button>`; $('apFol').innerHTML = emp2 ? '' : `<button class="pill xx${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f && back ? 'Ambos se seguem' : f ? 'Seguindo' : back ? 'Seguir de volta' : 'Seguir'}</button>`; $('apMsg').hidden = true; $('apMsgN').hidden = true; } $('apBack').href = '#rede'; $('apBack').textContent = '← Rede'; $('apB').textContent = a.bio;
+    $('apAv').innerHTML = a.img ? `<img src="${a.img}" alt="Foto de ${esc(a.n)}">` : esc(a.n.slice(0, 2).toUpperCase()); covSet($('apCov'), a.cover); $('apN').textContent = a.n; $('apR').textContent = a.cid || ''; $('apR').hidden = !a.cid; $('apAr').innerHTML = ARB(a.ar); { const c = S.conns.includes(a), f = S.follow.has(a.uid), back = a.tf.includes(myUid()), emp2 = S.role === 'empresa'; $('apActs').hidden = false; $('apActs').innerHTML = `<button class="btn k" type="button" data-cmsg="${esc(a.n)}" style="justify-content:center;width:100%">Mensagem <span class="arr" aria-hidden="true">→</span></button>` + (emp2 ? '' : `<button class="btn ln" type="button" data-cbinv="${esc(a.uid || '')}" data-cbn="${esc(a.n)}" style="justify-content:center;width:100%;margin-top:8px">Chamar para uma collab</button>`); $('apFol').innerHTML = emp2 ? '' : `<button class="pill xx${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f && back ? 'Ambos se seguem' : f ? 'Seguindo' : back ? 'Seguir de volta' : 'Seguir'}</button>`; $('apMsg').hidden = true; $('apMsgN').hidden = true; } $('apBack').href = '#rede'; $('apBack').textContent = '← Rede'; $('apB').textContent = a.bio;
     $('apSk').innerHTML = a.sk.map((x) => `<span class="pill s">${x}</span>`).join(''); $('apHb').innerHTML = a.hb.length ? a.hb.map((x) => `<span class="pill s">${esc(x)}</span>`).join('') : '<span class="note">Nada marcado ainda.</span>';
     S.galArt = a; $('apPort').innerHTML = galThumbs(a.fotos, a.caps, 'art') || '<p class="note">Sem fotos de trabalho ainda.</p>';
     try { apPostsDraw(); } catch (er) {} $('apSeg').textContent = '—'; $('apAlc').textContent = '—'; $('apInv').textContent = S.inv.has(a.n) ? 'Convidado · desfazer' : 'Convidar para um briefing';
@@ -2642,7 +2820,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   function apPostsDraw() { const a = findArt(S.aid); if (!a) return; const l = S.netPosts.filter((p) => p.uid === a.uid || p.reposts.includes(a.uid)); $('apPosts').innerHTML = l.length ? l.map((p, i) => (p.uid !== a.uid ? `<p class="tw-rp rp2">${ICO.rp} ${esc(a.n)} repostou</p>` : '') + twOne(p, i)).join('') : '<p class="note" style="margin:0">Nenhuma publicação ainda.</p>'; }
   function social() {
     document.querySelectorAll('#rdSeg [data-rt]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.rt === S.rt)));
-    $('rdMatch').hidden = S.rt !== 'match'; $('rdSocial').hidden = S.rt !== 'social'; $('rdForum').hidden = S.rt !== 'forum';
+    $('rdMatch').hidden = S.rt !== 'match'; $('rdSocial').hidden = S.rt !== 'social'; $('rdForum').hidden = S.rt !== 'forum'; $('rdCollab').hidden = S.rt !== 'collab'; if (S.rt === 'collab') { try { cbList(); } catch (er) {} }
     { const fl = S.following || []; $('ctList').innerHTML = fl.length ? `<div class="crow">${fl.map((a) => `<div class="cc"><button class="avb" type="button" data-art="${esc(a.n)}" aria-label="Ver perfil de ${esc(a.n)}">${avA(a)}</button><b>${esc(a.n)}</b><div class="tiny"><button type="button" data-cmsg="${esc(a.n)}">mensagem</button><button type="button" data-art="${esc(a.n)}">perfil</button></div></div>`).join('')}</div>` : '<div class="empty">Você ainda não segue ninguém. Siga pessoas na aba Match e elas aparecem aqui.</div>'; }
     const isC = (n) => S.conns.some((a) => a.n === n);
     const keep = document.activeElement && document.activeElement.closest && document.activeElement.closest('[data-twf]') ? [document.activeElement.closest('[data-twf]').dataset.twf, document.activeElement.value] : null;
@@ -2653,7 +2831,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
       const th = op ? `<div class="tw-th">${p.replies.map((r) => `<div class="rp"><b>${esc(r.name || 'Artista')}</b>${esc(r.t)}<span>${rel(new Date(r.at))}</span></div>`).join('')}<form data-twf="${p.id}"><input maxlength="280" aria-label="Responder" placeholder="Responda ${esc(nm)}"><button class="pill s k" type="submit">Responder</button></form></div>` : '';
       return `<article class="tw"><button class="tw-av" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, nm)}</span></button><div>${rp ? `<p class="tw-rp">${ICO.rp} Você repostou</p>` : ''}<div class="tw-h"><button class="nm" type="button" data-art="${esc(p.uid || p.a)}"><b>${esc(nm)}</b></button><button class="hd" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}">${handle(nm)}</button><span class="tm">· ${rel(p.ts)}</span>${!p.me && isC(p.a) ? ' <span class="pill xx v">vocês se seguem</span>' : ''}</div>${p.t ? `<p class="tx">${esc(p.t)}</p>` : ''}${p.img ? `<button class="tw-ib" type="button" data-zoom="${p.id}" aria-label="Ampliar a imagem da publicação"><img class="tw-img" src="${p.img}" alt="Imagem da publicação" loading="lazy"></button>` : ''}<div class="tw-a"><button type="button" data-twr="${p.id}" aria-expanded="${op}" aria-label="Responder">${ICO.re}<span>${p.replies.length || ''}</span></button><button type="button" data-twp="${p.id}" aria-pressed="${rp}" aria-label="Repostar">${ICO.rp}<span>${p.reposts.length || ''}</span></button><button class="lk" type="button" data-twl="${p.id}" aria-pressed="${lk}" aria-label="Curtir">${ICO.lk}<span>${p.likes.length || ''}</span></button><button type="button" data-tws="${p.id}" aria-label="Compartilhar">${ICO.sh}</button>${p.me ? `<button type="button" data-twd="${p.id}" aria-label="Apagar publicação">${ICO.del}</button>` : ''}</div>${th}</div></article>`;
     };
-    $('postList').innerHTML = !S.netPosts.length ? '<div class="empty">Ninguém publicou ainda. Conte o que você está criando e abra o feed da rede.</div>' : S.netPosts.slice(0, S.feedN).map(twOne).join(''); $('postMore').hidden = S.netPosts.length <= S.feedN;
+    $('postList').innerHTML = !S.netPosts.length ? '<div class="empty">Ninguém publicou ainda. Conte o que você está criando e abra o feed da rede.</div>' : S.netPosts.slice(0, S.feedN).map((p, i) => twOne(p, i) + (i === 2 ? '<div class="cb-promo"><span><b>Viu alguém com quem criaria junto?</b><span class="note">Abra uma collab e chame quem você segue para um projeto.</span></span><button class="pill k" type="button" data-rt="collab">Ver collabs</button></div>' : '')).join(''); $('postMore').hidden = S.netPosts.length <= S.feedN;
     { const mine = S.netPosts.filter((p) => p.me || p.reposts.includes(myUid())); $('pvPosts').innerHTML = mine.length ? mine.map(twOne).join('') : '<p class="note" style="margin:0">Você ainda não publicou. O que você postar no feed da rede aparece aqui.</p>'; }
     try { apPostsDraw(); } catch (er) {}
     if (keep) { const f = document.querySelector(`[data-twf="${keep[0]}"] input`); if (f) { f.value = keep[1]; f.focus(); } }
@@ -2749,7 +2927,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   function edStudio() { if (!$('esList')) return; S.esF = S.esF || 'Salvos'; const mine = myAreas(), opts = ['Salvos', 'Minha área', 'Todos abertos'];
     $('esF').innerHTML = opts.map((o) => `<button class="pill s" type="button" data-esf="${o}" aria-pressed="${o === S.esF}">${o}${o === 'Salvos' ? ' <b>' + S.edS.size + '</b>' : ''}</button>`).join('');
     const l = EDITAIS.filter((e) => S.esF === 'Salvos' ? S.edS.has(e.t) : edSit(e) === 'a' && (S.esF === 'Todos abertos' || !e.ar.length || e.ar.some((a) => mine.includes(a)))).sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
-    $('esList').innerHTML = l.length ? l.map((e) => `<div class="esr${edSit(e) === 'e' ? ' off' : ''}${e.portal ? ' portal' : ''}"><span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${edWhen(e)}</span></span><span class="esr-a"><a class="pill xx" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="pill xx${S.edS.has(e.t) ? ' k' : ''}" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></span></div>`).join('') : `<div class="empty">${S.esF === 'Salvos' ? 'Você ainda não salvou nenhum edital. Toque em Minha área ou Todos abertos e salve os que interessam.' : 'Nenhum edital aberto com esse filtro agora.'}</div>`; }
+    $('esList').innerHTML = l.length ? l.map((e) => `<div class="esr${edSit(e) === 'e' ? ' off' : ''}${e.portal ? ' portal' : ''}"><span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${edWhen(e)}</span></span><span class="esr-a"><a class="pill xx" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="pill xx${S.edS.has(e.t) ? ' k' : ''}" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button>${e.portal || edSit(e) === 'e' ? '' : `<button class="pill xx" type="button" data-cbed="${esc(e.t)}">Escrever em collab</button>`}</span></div>`).join('') : `<div class="empty">${S.esF === 'Salvos' ? 'Você ainda não salvou nenhum edital. Toque em Minha área ou Todos abertos e salve os que interessam.' : 'Nenhum edital aberto com esse filtro agora.'}</div>`; }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-esf]'); if (b) { S.esF = b.dataset.esf; edStudio(); } });
   function editais() {
     try { edStudio(); } catch (er) {}
@@ -2765,7 +2943,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
       .sort((a, b) => (!!a.portal - !!b.portal) || (a.fim || '9999').localeCompare(b.fim || '9999'));
     $('edMini').textContent = `${EDITAIS.filter((e) => edSit(e) === 'a' && inArea(e)).length} abertos`;
     const when = edWhen;
-    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s${e.portal ? ' v' : ''}">${e.portal ? 'Portal de editais' : e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button></div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
+    $('edList').innerHTML = l.length ? l.map((e) => `<div class="edc card${edSit(e) === 'e' ? ' off' : ''}"><span class="pill s${e.portal ? ' v' : ''}">${e.portal ? 'Portal de editais' : e.ar.length ? e.ar[0] + (e.ar.length > 1 ? ' +' + (e.ar.length - 1) : '') : 'Todas as áreas'}</span><b>${e.t}</b><span class="note">${e.org} · ${e.uf === 'BR' ? 'Nacional' : (e.cid ? e.cid + ', ' : '') + e.uf} · ${when(e)}</span><a class="edl" href="${e.url}" target="_blank" rel="noopener">${e.portal ? 'Ver editais abertos ↗' : 'Ver edital ↗'}</a><button class="sk" type="button" data-eds="${e.t}" aria-pressed="${S.edS.has(e.t)}">${S.edS.has(e.t) ? 'Salvo' : 'Salvar'}</button>${e.portal || edSit(e) === 'e' ? '' : `<button class="lnk" type="button" data-cbed="${esc(e.t)}">Escrever em collab →</button>`}</div>`).join('') : '<p class="note" style="padding:10px 2px">Nenhum edital com esses filtros agora. Mude a situação, o estado ou escolha "Todas" em área.</p>';
   }
   $('edA').addEventListener('change', (e) => { S.edU = true; S.edA = e.target.value; editais(); });
   $('edSt').addEventListener('change', (e) => { S.edSt = e.target.value; editais(); }); $('edUF').addEventListener('change', (e) => { S.edUF = e.target.value; S.edC = 'Todas'; editais(); }); $('edC').addEventListener('change', (e) => { S.edC = e.target.value; editais(); });
@@ -2880,6 +3058,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Collabs": "Collabs", "+ Nova collab": "+ New collab", "Junte gente da rede para criar: um projeto, uma ideia, uma exposição ou a inscrição em um edital. Cada collab tem conversa, tarefas e um texto para escrever em conjunto.": "Bring people from the network together to create: a project, an idea, an exhibition or an open-call application. Each collab has a chat, tasks and a shared text.", "Nome da collab": "Collab name", "Ex.: mural coletivo no centro": "E.g. collective mural downtown", "Tipo": "Type", "Ideia": "Idea", "Edital": "Open call", "Exposição": "Exhibition", "Evento": "Event", "Estudo": "Study group", "Quem pode entrar": "Who can join", "Aberta para a rede": "Open to the network", "Só convidados": "Invite only", "Sobre o que é": "What it is about", "Conte a ideia e o que você procura em quem entrar": "Describe the idea and what you are looking for in people who join", "Convidar quem você segue": "Invite people you follow", "Criar collab": "Create collab", "Suas collabs": "Your collabs", "Collabs abertas na rede": "Open collabs on the network", "← Collabs": "← Collabs", "Conversa": "Chat", "Tarefas": "Tasks", "Texto": "Text", "Escreva para o grupo": "Write to the group", "Começar de um modelo": "Start from a template", "Projeto para edital": "Open-call project", "Proposta para marca": "Brand proposal", "Salvar texto": "Save text", "Escrevam juntos aqui. Quem salvar por último fica com a versão final.": "Write together here. Whoever saves last keeps the final version.", "Ligue esta collab a um edital salvo para acompanhar o prazo juntos.": "Link this collab to a saved open call to track the deadline together.", "Assistente de IA para escrever a inscrição em grupo.": "AI assistant to write the application as a group.", "Essa conversa pode virar projeto.": "This conversation could become a project.", "Quem participou do tópico entra no grupo.": "Everyone who took part in the topic joins the group.", "Transformar em collab": "Turn into a collab", "Chamar para uma collab": "Invite to a collab", "Escrever em collab →": "Write as a collab →", "Escrever em collab": "Write as a collab", "Viu alguém com quem criaria junto?": "Seen someone you would create with?", "Abra uma collab e chame quem você segue para um projeto.": "Open a collab and invite people you follow to a project.", "Ver collabs": "See collabs", "Convidar": "Invite", "Encerrar collab": "End collab", "Entrar na collab": "Join the collab", "Quer criar junto?": "Want to create together?", "Entre para ver a conversa, as tarefas e o texto.": "Join to see the chat, tasks and text.", "Collab só para convidados.": "Invite-only collab.", "Peça um convite a quem criou.": "Ask the creator for an invite.", "Convite": "Invite", "Agora não": "Not now", "Você ainda não está em nenhuma collab. Crie uma ou entre em uma aberta.": "You are not in any collab yet. Create one or join an open one.", "Nenhuma collab aberta agora. Que tal abrir a primeira?": "No open collabs right now. How about starting the first one?", "Comece a conversa: apresente a ideia e combine os próximos passos.": "Start the conversation: present the idea and agree on next steps.", "Nenhuma tarefa ainda. Dividam o trabalho aqui.": "No tasks yet. Split the work here.", "Nenhum": "None", "A rede CR1E.Collab": "The CR1E.Collab network", "artistas na rede": "artists on the network", "Os números mostram o tamanho da rede. Quem cuida da escolha dos artistas para cada projeto é a curadoria da CR1E.Coisas.": "The numbers show the size of the network. Choosing artists for each project is done by the CR1E.Coisas curators.", "Ainda não há artistas da rede neste estado.": "No artists from the network in this state yet.", "nenhum estado ainda": "no states yet", "Dê um nome para a collab.": "Give the collab a name.", "Collab criada.": "Collab created.", "Collab criada. Os convites foram enviados.": "Collab created. Invites sent.", "Você entrou na collab.": "You joined the collab.", "Collab encerrada.": "Collab ended.", "Salvo.": "Saved.",
     "Portal de editais": "Open-call portal", "Ver editais abertos ↗": "See open calls ↗", "portal oficial, sempre atualizado": "official portal, always up to date", "Editais de todos os municípios brasileiros.": "Open calls from every Brazilian municipality.", "Lista atualizada em 15/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.": "List updated on 15/11/2026. Always check deadlines and rules at each call's official source.", "Edital 43/2026: comercialização de longa-metragem para cinema": "Call 43/2026: theatrical distribution of feature films", "Edital 44/2026: produção e complementação de longa-metragem": "Call 44/2026: feature film production and completion", "Prêmio Açorianos de Música 2026": "Açorianos Music Award 2026", "Prêmio Açorianos de Dança 2026": "Açorianos Dance Award 2026", "Editais do Ministério da Cultura": "Ministry of Culture open calls", "Oportunidades no Mapa da Cultura": "Opportunities on Mapa da Cultura", "Editais abertos da Funarte": "Funarte open calls", "MinC · editais de todo o país": "MinC · open calls from across Brazil", "Editais da Cultura do Rio": "Rio culture open calls", "Editais da Secult Bahia": "Secult Bahia open calls", "Editais da Secult Minas Gerais": "Secult Minas Gerais open calls", "Editais da Cultura de São Paulo": "São Paulo culture open calls", "Editais da Cultura do Amazonas": "Amazonas culture open calls", "Editais da Cultura de Porto Alegre": "Porto Alegre culture open calls",
     "Mapa da rede": "Network map", "Onde você está no mapa": "Where you are on the map", "Mapa do Brasil com os estados onde já tem gente na rede": "Map of Brazil showing the states that already have people on the network", "Brasil": "Brazil", "Norte": "North", "Nordeste": "Northeast", "Centro-Oeste": "Central-West", "Sudeste": "Southeast", "Sul": "South", "Capital": "Capital", "Cidade não informada": "City not given", "Contorno por município em breve.": "Municipality outlines coming soon.", "Ninguém nesta cidade ainda.": "No one in this city yet.",
     "Filtrar jobs": "Filter jobs", "Filtrar leituras": "Filter reads", "Todas as leituras": "All reads", "Ajustar foto": "Adjust photo", "Ajustar capa": "Adjust cover", "Ajustar foto de perfil": "Adjust profile photo", "Usar foto": "Use photo", "Arraste a foto para escolher o que aparece.": "Drag the photo to choose what shows.", "Ampliar a imagem da publicação": "Enlarge the post image", "Suba uma foto de capa primeiro.": "Upload a cover photo first.", "Suba uma foto de perfil primeiro.": "Upload a profile photo first.",
