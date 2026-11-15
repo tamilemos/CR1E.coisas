@@ -868,6 +868,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 .top .lg .co,.side .lg .co,.login .lg .co{animation:blw 3.4s ease-in-out infinite}
 @keyframes blo{0%,55%,100%{width:1.45em}25%{width:.53em}}
 @keyframes blw{0%,55%,100%{letter-spacing:0}25%{letter-spacing:.04em}}
+.top .lg,.side .lg{cursor:pointer}
 </style>
 
 <div class="gate" id="gate">
@@ -1481,6 +1482,8 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 
   /* rotas */
   const views = [...document.querySelectorAll('[data-view]')], names = views.map((v) => v.dataset.view);
+  document.addEventListener('click', (e) => { const l = e.target.closest('.top .lg, .side .lg'); if (l) go(S.guest ? 'feed' : S.role === 'empresa' ? 'empresa' : 'inicio'); });
+  document.querySelectorAll('.top .lg, .side .lg').forEach((l) => { l.setAttribute('role', 'link'); l.tabIndex = 0; l.setAttribute('aria-label', 'CR1E.Collab, início'); l.addEventListener('keydown', (e) => { if (e.key === 'Enter') l.click(); }); });
   /* movimento: faixas e títulos */
   { const TK = ['A rede de quem cria', 'Jobs com marcas', 'Editais abertos', 'Fórum da rede', 'Aulas de quem vive de arte', 'Artistas primeiro'];
     $('tick').innerHTML = Array(4).fill(TK.map((t, i) => `<span>${t}</span><i${i % 2 ? ' class="f"' : ''}></i>`).join('')).join('');
@@ -1917,7 +1920,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   const postPrev = () => { $('postPrev').hidden = !S.postImg; $('postImg').src = S.postImg || ''; };
   $('postImgX').addEventListener('click', () => { S.postImg = ''; postPrev(); });
   $('postFoto').addEventListener('change', (e) => { const f = e.target.files[0]; e.target.value = ''; if (!f) return; const im = new Image(), url = URL.createObjectURL(f);
-    im.onload = () => { const m = Math.min(1, 1000 / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * m); c.height = Math.round(im.naturalHeight * m); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); S.postImg = c.toDataURL('image/jpeg', .78); URL.revokeObjectURL(url); postPrev(); };
+    im.onload = () => { const c = document.createElement('canvas'); let dim = 1600, q = .86, d = ''; for (let n = 0; n < 8; n++) { const m = Math.min(1, dim / Math.max(im.naturalWidth, im.naturalHeight)); c.width = Math.round(im.naturalWidth * m); c.height = Math.round(im.naturalHeight * m); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); d = c.toDataURL('image/jpeg', q); if (d.length <= 800000) break; if (q > .72) q -= .07; else dim = Math.round(dim * .85); } S.postImg = d; URL.revokeObjectURL(url); postPrev(); };
     im.onerror = () => { URL.revokeObjectURL(url); toast('Não consegui abrir essa imagem.'); }; im.src = url; });
   $('postGif').addEventListener('change', (e) => { const f = e.target.files[0]; e.target.value = ''; if (!f) return; if (f.size > 700 * 1024) { toast('Esse GIF é pesado demais. Escolha um de até 700 KB.'); return; } const fr = new FileReader(); fr.onload = () => { S.postImg = fr.result; postPrev(); }; fr.readAsDataURL(f); });
   $('postF').addEventListener('submit', (e) => { e.preventDefault(); const t = $('postI').value.trim(), img = S.postImg; if ((!t && !img) || !RR.A) { if (!t && !img) $('postI').focus(); return; } $('postI').value = ''; S.postImg = ''; postPrev(); postN(); RR.A.post(S, t, img).then(() => toast('Publicado no feed da rede.')).catch(() => { $('postI').value = t; S.postImg = img; postPrev(); postN(); toast('Não consegui publicar agora. Tente de novo.'); }); });
@@ -2015,7 +2018,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   planLocal(); planDraw();
   /* ---------- versão de teste ---------- */
   const KEY = 'cr1e-collab-teste';
-  function save() { try { localStorage.setItem(KEY, JSON.stringify({ name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, avatar: S.avatar, fotos: S.fotos, seen: [...S.seen], fb: S.fb, in: !document.getElementById('gate') || gate.classList.contains('go') })); } catch (err) {} }
+  function save() { const o = { name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, avatar: S.avatar, fotos: S.fotos, seen: [...S.seen], fb: S.fb, in: !document.getElementById('gate') || gate.classList.contains('go') }; try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (err) { try { localStorage.setItem(KEY, JSON.stringify({ ...o, avatar: '', fotos: ['', '', ''] })); } catch (er) {} } }
   function summary() {
     const grp = (sel, MAP) => { const known = new Map(Object.entries(MAP).flatMap(([a, l]) => l.map((x) => [x, a]))), g = {}; sel.forEach((x) => { (g[known.get(x) || 'Outras'] ||= []).push(x); }); return Object.entries(g).map(([a, l]) => `- ${a}: ${l.join(', ')}`).join('\n') || '- (nada marcado)'; };
     return `Teste CR1E.Collab\nNome: ${S.name}\nPerfil: ${S.role === 'empresa' ? 'empresa' : 'artista'}\n` + (S.role === 'empresa' ? `O que procura: ${S.want.join(', ') || '(nada marcado)'}\n` : `Áreas e habilidades:\n${grp(S.sk, AREAS)}\nGostos e hobbies:\n${grp(S.hb, GOSTOS)}\n`) + `Telas visitadas: ${[...S.seen].join(', ')}\nO que achei: ${S.fb.trim() || '(sem comentário)'}`;
@@ -2031,7 +2034,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   $('copyB').addEventListener('click', async () => { $('shareMsg').textContent = (await copyTxt()) ? 'Texto copiado. Cole na conversa com quem te convidou.' : 'Não consegui copiar sozinho: selecione o texto acima e copie.'; });
   $('shareB').addEventListener('click', async () => { if (RR.A) RR.A.drive('Feedback', { nome: S.name, resumo: summary() }); try { if (!navigator.share) throw 0; await navigator.share({ text: summary() }); $('shareMsg').textContent = 'Pronto. Obrigada por testar.'; } catch (err) { if (err && err.name === 'AbortError') return; $('shareMsg').textContent = (await copyTxt()) ? 'Texto copiado. Cole na conversa com quem te convidou.' : 'Selecione o texto acima, copie e envie para quem te convidou.'; } });
   document.addEventListener('change', (e) => { const inp = e.target.closest('input[data-up]'); if (!inp || !inp.files[0]) return; const k = inp.dataset.up, im = new Image(), url = URL.createObjectURL(inp.files[0]);
-    im.onload = () => { const m = (k === 'cover' ? 1200 : 640) / Math.max(im.naturalWidth, im.naturalHeight), w = Math.round(im.naturalWidth * Math.min(1, m)), h = Math.round(im.naturalHeight * Math.min(1, m)), c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); const d = c.toDataURL('image/jpeg', .8); URL.revokeObjectURL(url); if (k === 'avatar') S.avatar = d; else if (k === 'cover') S.cover = d; else S.fotos[+k] = d; S.fotosDirty = true; if (document.getElementById('gate') && S.obStep === 4) obDraw(); who(); save(); if (!document.getElementById('gate') || gate.classList.contains('go')) syncSoon(); };
+    im.onload = () => { const m = (k === 'cover' ? 1800 : k === 'avatar' ? 720 : 1600) / Math.max(im.naturalWidth, im.naturalHeight), w = Math.round(im.naturalWidth * Math.min(1, m)), h = Math.round(im.naturalHeight * Math.min(1, m)), c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); const d = c.toDataURL('image/jpeg', .88); URL.revokeObjectURL(url); if (k === 'avatar') S.avatar = d; else if (k === 'cover') S.cover = d; else S.fotos[+k] = d; S.fotosDirty = true; if (document.getElementById('gate') && S.obStep === 4) obDraw(); who(); save(); if (!document.getElementById('gate') || gate.classList.contains('go')) syncSoon(); };
     im.onerror = () => { URL.revokeObjectURL(url); }; im.src = url; });
   $('resetB').addEventListener('click', async () => { try { localStorage.removeItem(KEY); } catch (err) {} try { if (RR.A) await RR.A.logout(); } catch (err) {} location.reload(); });
   bPickDraw(); who(); jobs(); drawDeck(); cursos(); curso(); empresa(); canvaUI(); kit(); orcRows(); feed(); materia(); cands(); briefings(); artistas(); projetos(); social(); fitT(); route();

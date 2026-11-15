@@ -27,11 +27,14 @@ const MSG = {
 };
 const msg = (err) => MSG[err && err.code] || 'Algo deu errado. Tente de novo em instantes.';
 
-/* fotos menores para a rede (o original vai para o Drive) */
-const shrink = (dataUrl, max = 480) => new Promise((ok) => {
+/* fotos para a rede: a maior resolução que cabe no limite do banco (o original vai para o Drive) */
+const shrink = (dataUrl, max = 1280, cap = 225000) => new Promise((ok) => {
   if (!dataUrl) return ok('');
+  if (dataUrl.length <= cap) return ok(dataUrl);
   const im = new Image();
-  im.onload = () => { const m = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * m); c.height = Math.round(im.naturalHeight * m); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ok(c.toDataURL('image/jpeg', .72)); };
+  im.onload = () => { const c = document.createElement('canvas'); let dim = max, q = .86, d = '';
+    for (let n = 0; n < 12; n++) { const m = Math.min(1, dim / Math.max(im.naturalWidth, im.naturalHeight)); c.width = Math.round(im.naturalWidth * m); c.height = Math.round(im.naturalHeight * m); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); d = c.toDataURL('image/jpeg', q); if (d.length <= cap) break; if (q > .7) q -= .06; else dim = Math.round(dim * .86); }
+    ok(d); };
   im.onerror = () => ok(''); im.src = dataUrl;
 });
 
@@ -74,7 +77,8 @@ const A = {
   /* salva o perfil na rede e manda o registro para o Drive */
   async saveProfile(S, event) {
     const u = auth.currentUser; if (!u) return;
-    const avatar = await shrink(S.avatar), fotos = await Promise.all((S.fotos || []).map((f) => shrink(f))); const cover = await shrink(S.cover, 900);
+    /* o perfil inteiro precisa caber em 1 MB no Firestore: 3 fotos de até ~225 KB, capa ~170 KB, avatar ~50 KB */
+    const avatar = await shrink(S.avatar, 560, 50000), fotos = await Promise.all((S.fotos || []).map((f) => shrink(f, 1280, 225000))); const cover = await shrink(S.cover, 1400, 170000);
     await setDoc(doc(db, 'profiles', u.uid), { ...pub(S), avatar, fotos, cover, ...(event === 'cadastro' ? { created: serverTimestamp(), consent: true } : {}) }, { merge: true });
     if (event) {
       const files = event === 'cadastro' || event === 'fotos' ? [fileOf('perfil.jpg', S.avatar), fileOf('capa.jpg', S.cover), ...(S.fotos || []).map((f, i) => fileOf(`trabalho-${i + 1}.jpg`, f))].filter(Boolean) : [];
