@@ -1150,13 +1150,61 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 .pvl .arr{grid-row:1/3;grid-column:2}
 #pvKitP .kit h2{font-size:clamp(34px,9vw,56px)}
 .kit .lg .co{background:none;padding:0}
+
+/* entrada: como funciona e legendas por tipo de conta */
+.lg-how{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;padding:9px 12px;border:2px solid var(--preto);background:var(--verde);color:#0E0E0C;--preto:#0E0E0C;transition:transform .35s var(--spring)}
+.lg-how:hover{transform:translate(-2px,-2px)}
+.lg-how:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.lg-how>span:nth-child(2){flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.lg-how b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px}
+.lg-how .note{color:#0E0E0C;font-size:10px;line-height:1.3}
+.lg-how i{flex:none;width:30px;height:13px;border:2px solid #0E0E0C;border-radius:999px;background:#F4F3EE}
+.seg-cap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:-6px}
+.seg-cap .note{font-size:10px;line-height:1.35;padding:0 6px}
+.login.s2 .lg-how,.login.s2 .seg-cap{display:none}
+/* como funciona: infográfico */
+.sb-flow{display:flex;align-items:center;max-width:900px}
+.sb-n{flex:1;min-width:0;border:2px solid var(--preto);background:var(--branco);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.sb-n b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:clamp(10px,2.6vw,15px);line-height:1.15;overflow-wrap:anywhere}
+.sb-n .lbl{font-size:8.5px}
+.sb-n.v{--preto:#0E0E0C;--verde:#C5FF3D;background:#C5FF3D;color:#0E0E0C;border-color:var(--fg)}
+.sb-n.v .lbl{color:#0E0E0C}
+.sb-n.k{--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);background:var(--preto);color:var(--verde);border-color:var(--fg)}
+.sb-n.k .lbl{color:var(--papel)}
+.sb-flow>i{flex:none;width:clamp(16px,4vw,44px);height:10px;border:2px solid var(--preto);border-radius:999px;background:var(--verde);margin:0 -2px;position:relative;z-index:1}
+.sb-g{display:grid;gap:18px;max-width:900px;margin-top:18px}
+@media(min-width:820px){.sb-g{grid-template-columns:1fr 1fr}}
+.sb-c{border:2px solid var(--preto);background:var(--branco);display:flex;flex-direction:column}
+.sb-h{padding:14px 16px;border-bottom:2px solid var(--preto);display:flex;flex-direction:column;gap:4px}
+.sb-h h2{font-size:clamp(34px,8vw,48px);margin:0}
+.sb-h p{margin:0;font-size:13px;line-height:1.45}
+.sb-h.v{--preto:#0E0E0C;--verde:#C5FF3D;background:#C5FF3D;color:#0E0E0C;border-bottom-color:var(--fg)}
+.sb-h.v .lbl{color:#0E0E0C}
+.sb-h.k{--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);background:var(--preto);color:var(--papel);border-bottom-color:var(--fg)}
+.sb-h.k .lbl,.sb-h.k h2{color:var(--verde)}
+.sb-s{list-style:none;margin:0;padding:14px 16px 6px;counter-reset:sb;display:flex;flex-direction:column}
+.sb-s li{counter-increment:sb;position:relative;padding:0 0 18px 50px;display:flex;flex-direction:column;gap:2px}
+.sb-s li::before{content:counter(sb);position:absolute;left:0;top:0;width:36px;height:20px;border:2px solid var(--preto);border-radius:999px;background:var(--verde);color:#0E0E0C;font-family:var(--display);font-weight:900;font-size:11px;display:grid;place-items:center;box-sizing:border-box}
+.sb-s li::after{content:"";position:absolute;left:17px;top:22px;bottom:2px;border-left:2px solid var(--preto)}
+.sb-s li:last-child::after{display:none}
+.sb-s b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px;line-height:1.25}
+.sb-s span{font-size:13px;line-height:1.45}
+.sb-t{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px 16px;border-top:1.5px solid var(--preto);margin-top:auto}
+.sb-t span{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:9px;border:1.5px solid var(--preto);border-radius:999px;padding:4px 9px}
+.sb-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:18px;max-width:900px}
+.sb-cta .btn[hidden]{display:none}
+html.guest .view[data-view="sobre"] .back{display:inline-flex}
+.sb-n b{overflow-wrap:normal}
+.login .lg{padding:10px 0 14px}
 </style>
 
 <div class="gate" id="gate">
   <form class="login card sh" id="login" novalidate><div style="display:flex;justify-content:flex-end;margin:-8px -8px -6px 0"><button type="button" class="thm lng" data-langt translate="no">PT</button><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></div>
     <span class="lg" aria-label="CR1E.Collab">CR1E<span class="co">.c<span class="o"></span>llab</span></span>
     <h1 class="t one"><span class="ln">A rede de quem <span class="w a">cria</span></span></h1>
+    <button type="button" class="lg-how" id="lgHow"><i aria-hidden="true"></i><span><b>Como funciona</b><span class="note">Veja o que o app faz para artistas e para marcas</span></span><span class="arr" aria-hidden="true">→</span></button>
     <div class="seg" role="group" aria-label="Tipo de conta"><button type="button" data-role="artista" aria-pressed="true">Sou artista</button><button type="button" data-role="empresa" aria-pressed="false">Sou empresa</button></div>
+    <div class="seg-cap"><span class="note">Rede, jobs com marcas, editais, aulas e estúdio para o seu trabalho.</span><span class="note">Publique um briefing e receba artistas indicados pela curadoria.</span></div>
     <div id="st1" style="display:flex;flex-direction:column;gap:10px"><span class="lbl" id="obS1">Passo 1 de 5</span><label class="fld" for="lg-n" id="lgNw"><b class="obq">Como te chamam?</b><input id="lg-n" autocomplete="name" placeholder="Seu nome ou o da empresa"></label><div class="loc2"><label class="fld" for="lg-uf">Estado<select id="lg-uf"></select></label><label class="fld" for="lg-cid">Cidade<input id="lg-cid" autocomplete="address-level2" placeholder="De onde você é"></label></div></div>
     <div id="stL" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl">Entrar</span><b class="obq">Bom te ver de novo</b><label class="fld" for="lg-le"><b class="obq">E-mail</b><input id="lg-le" type="email" inputmode="email" autocomplete="username" placeholder="voce@email.com"></label><label class="fld" for="lg-lp"><b class="obq">Senha</b><input id="lg-lp" type="password" autocomplete="current-password" placeholder="Sua senha"></label><button type="button" class="lnk" id="lgForgot">Esqueci minha senha</button></div>
     <div id="stA" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl" id="obSA"></span><b class="obq">Crie o seu acesso</b><span class="note">Com e-mail e senha você volta direto para o app nas próximas vezes. Vamos mandar um e-mail para confirmar que ele é seu.</span><label class="fld" for="lg-e"><b class="obq">E-mail</b><input id="lg-e" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"></label><label class="fld" for="lg-p"><b class="obq">Crie uma senha</b><input id="lg-p" type="password" autocomplete="new-password" placeholder="Pelo menos 6 caracteres"></label><label class="okc" id="lgCw"><input type="checkbox" id="lg-c"><span>Li e aceito os <button type="button" class="lnk" data-terms>Termos de uso e a Política de privacidade (LGPD)</button></span></label></div>
@@ -1430,6 +1478,21 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
       </section>
 
       <!-- PLANO -->
+      <!-- COMO FUNCIONA -->
+      <section class="view" data-view="sobre" aria-labelledby="v-sobre" hidden>
+        <a class="pill back" href="#inicio" id="sbBack">← Voltar</a>
+        <div class="vh"><h1 class="t" id="v-sobre"><span class="ln">Como</span><span class="ln w a">funciona</span></h1><p>O CR1E.Collab é a rede da CR1E.Coisas que aproxima artistas de todas as áreas e marcas que querem criar com eles.</p></div>
+        <div class="sb-flow" role="img" aria-label="Artistas e marcas se encontram pela curadoria da CR1E.Coisas"><div class="sb-n v"><span class="lbl">De um lado</span><b>Artistas</b></div><i></i><div class="sb-n k"><span class="lbl">No meio</span><b>Curadoria</b><span class="lbl">CR1E.Coisas</span></div><i></i><div class="sb-n"><span class="lbl">Do outro</span><b>Marcas</b></div></div>
+        <div class="sb-g">
+          <section class="sb-c"><header class="sb-h v"><span class="lbl">Para</span><h2 class="t">Artistas</h2><p>Um lugar para mostrar o trabalho, encontrar gente e viver de arte.</p></header>
+            <ol class="sb-s"><li><b>Crie o seu perfil</b><span>Áreas de atuação, portfólio, currículo e links.</span></li><li><b>Entre na rede</b><span>Siga pessoas, publique no feed e tire dúvidas no fórum.</span></li><li><b>Encontre oportunidades</b><span>Jobs com marcas e editais abertos, filtrados pela sua área.</span></li><li><b>Profissionalize o trabalho</b><span>Media kit, proposta de orçamento, planejamento de conteúdo e aulas.</span></li></ol>
+            <div class="sb-t"><span>Feed</span><span>Rede</span><span>Fórum</span><span>Jobs</span><span>Editais</span><span>Aulas</span><span>Estúdio</span></div></section>
+          <section class="sb-c"><header class="sb-h k"><span class="lbl">Para</span><h2 class="t">Marcas</h2><p>Um caminho direto para criar com artistas, com a curadoria da CR1E.Coisas.</p></header>
+            <ol class="sb-s"><li><b>Conte o que precisa</b><span>Publique um briefing com o tipo de trabalho, o local e o prazo.</span></li><li><b>Receba indicações</b><span>A curadoria indica artistas da rede que combinam com o pedido.</span></li><li><b>Acompanhe o projeto</b><span>Veja o andamento de cada etapa até a entrega.</span></li></ol>
+            <div class="sb-t"><span>Briefings</span><span>Curadoria</span><span>Projetos</span><span>Feed</span></div></section>
+        </div>
+        <div class="sb-cta"><button class="btn k" type="button" id="sbGo">Criar a minha conta <span class="arr" aria-hidden="true">→</span></button><span class="note">Versão de teste. Jobs e aulas entram pela curadoria.</span></div>
+      </section>
       <!-- CONFIGURAÇÕES -->
       <section class="view" data-view="config" aria-labelledby="v-config" hidden>
         <a class="pill back" href="#perfil">← Perfil</a>
@@ -1456,6 +1519,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
           </section>
           <section class="cfg-s"><h2>Ajuda</h2>
             <div class="cfg-r"><span><b>Falar com a CR1E.Coisas</b><span class="note">Dúvidas, problemas e sugestões.</span></span><a class="pill s" href="#avisos">Abrir mensagens</a></div>
+            <div class="cfg-r"><span><b>Como funciona</b><span class="note">O que o app faz para artistas e para marcas.</span></span><a class="pill s" href="#sobre">Ver</a></div>
             <div class="cfg-r"><span><b>Versão</b><span class="note">CR1E.Collab · versão de teste</span></span></div>
           </section>
           <section class="cfg-s"><h2>Sessão</h2>
@@ -1980,12 +2044,13 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
   function titlesIn() { if (!wIO) return; setTimeout(() => document.querySelectorAll('.view:not([hidden]) .t .w').forEach((el) => { wIO.unobserve(el); wIO.observe(el); }), 140); }
   function route() {
     const emp = S.role === 'empresa'; let h = location.hash.slice(1); const gst = S.guest && !!document.getElementById('gate');
-    if (gst) { const open = h === 'feed' || h === 'materia'; if (!open && gate.classList.contains('go')) toast('Entre ou crie a sua conta para desbloquear esta área.'); gate.classList.toggle('go', open); document.documentElement.classList.toggle('lock', !open); }
+    if (gst) { const open = h === 'feed' || h === 'materia' || h === 'sobre'; if (!open && gate.classList.contains('go')) toast('Entre ou crie a sua conta para desbloquear esta área.'); gate.classList.toggle('go', open); document.documentElement.classList.toggle('lock', !open); }
     else if (emp ? ['artistas', 'artista', 'rede', 'topico'].includes(h) : ['feed', 'artistas'].includes(h)) h = '';
     const v = names.includes(h) ? h : (emp ? 'empresa' : 'inicio'), nv = gst && (v === 'feed' || v === 'materia') ? 'inicio' : v === 'materia' ? (emp ? 'feed' : 'inicio') : (PARENT[v] || v);
     views.forEach((x) => { x.hidden = x.dataset.view !== v; });
     document.querySelectorAll('.tab a, .side a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + nv));
     $('moreBtn').classList.toggle('on', v === 'mais'); S.seen.add(v); try { todo(); save(); } catch (err) {}
+    if (v === 'sobre') { $('sbGo').hidden = !S.guest; $('sbBack').href = S.guest ? '#inicio' : '#config'; }
     $('crows').hidden = v === 'mensagens'; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
     scrollTo(0, 0);
   }
@@ -2595,6 +2660,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
   window.CR1E_READY.then((R) => afterSplash(() => { if (decided) return; if (R.user && R.prof && R.prof.done && document.getElementById('gate')) { decided = true; applyProfile(R.prof); gate.classList.remove('splash'); gate.querySelector('.login').style.display = 'none'; enterApp(); } else asGuest(); })).catch(() => afterSplash(asGuest));
   setTimeout(asGuest, 6000);
   $('lgFeed').addEventListener('click', () => go('feed'));
+  $('lgHow').addEventListener('click', () => go('sobre')); $('sbGo').addEventListener('click', () => go(S.guest ? 'inicio' : 'perfil'));
   document.addEventListener('click', (e) => { if (!S.guest) return; const a = e.target.closest('.tab a[href="#inicio"], .side a[href="#inicio"]'); if (a) { e.preventDefault(); e.stopPropagation(); go('feed'); } }, true);
 })();
 </script>
@@ -2603,6 +2669,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Como funciona": "How it works", "Veja o que o app faz para artistas e para marcas": "See what the app does for artists and for brands", "Rede, jobs com marcas, editais, aulas e estúdio para o seu trabalho.": "Network, brand jobs, open calls, classes and a studio for your work.", "Publique um briefing e receba artistas indicados pela curadoria.": "Post a brief and get artists picked by our curators.", "Criar a minha conta": "Create my account", "Ver": "View",
     "Baixar vídeo com o logo animado": "Download video with animated logo", "Gravando…": "Recording…",
     "Trajetória": "Background", "Para marcas": "For brands", "Na internet": "Online", "Ver prévia": "Preview", "Ainda vazio": "Empty for now", "Editar no Estúdio →": "Edit in Studio →", "Nenhum link ainda. Adicione em Editar perfil.": "No links yet. Add them in Edit profile.",
     "Arte": "Design",
