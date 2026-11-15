@@ -1650,6 +1650,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
           <section class="cfg-s"><h2>Ajuda</h2>
             <div class="cfg-r"><span><b>Falar com a CR1E.Coisas</b><span class="note">Dúvidas, problemas e sugestões.</span></span><a class="pill s" href="#avisos">Abrir mensagens</a></div>
             <div class="cfg-r"><span><b>Como funciona</b><span class="note">O que o app faz para artistas e para marcas.</span></span><a class="pill s" href="#sobre">Ver</a></div>
+            <div class="cfg-r" id="cfgAdm" hidden><span><b>Painel de administração</b><span class="note">Números, cadastros e moderação. Só aparece para a conta de admin.</span></span><a class="pill s k" href="/admin/" target="_blank" rel="noopener">Abrir</a></div>
             <div class="cfg-r"><span><b>Versão</b><span class="note">CR1E.Collab · versão de teste</span></span></div>
           </section>
           <section class="cfg-s"><h2>Sessão</h2>
@@ -2845,7 +2846,7 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
   document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('[data-href]')) e.target.click(); });
   /* configurações */
   const cfgLang = () => ((document.querySelector('[data-langt]') || {}).textContent || 'PT').trim().toLowerCase() === 'en' ? 'en' : 'pt';
-  function cfgDraw() { const u = RR.A && RR.A.user && RR.A.user(); $('cfgMail').textContent = (u && u.email) || '—'; const dk = document.documentElement.dataset.theme === 'dark';
+  function cfgDraw() { const u = RR.A && RR.A.user && RR.A.user(); $('cfgMail').textContent = (u && u.email) || '—'; $('cfgAdm').hidden = !(u && (u.email || '').toLowerCase() === 'tami@cr1e.co'); const dk = document.documentElement.dataset.theme === 'dark';
     document.querySelectorAll('[data-cth]').forEach((b) => { const on = (b.dataset.cth === 'dark') === dk; b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); });
     document.querySelectorAll('[data-clg]').forEach((b) => { const on = b.dataset.clg === cfgLang(); b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); }); }
   document.addEventListener('click', (e) => { let b;

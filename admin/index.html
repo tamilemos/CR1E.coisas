@@ -63,6 +63,25 @@ tr:hover td{background:var(--grafite)}
 .fotos{display:flex;gap:4px;margin-top:6px}
 .fotos img{width:44px;height:44px;object-fit:cover;border:1px solid var(--linha)}
 [hidden]{display:none!important}
+.kpis{gap:0;background:none;border-width:1px 0 0 1px}.kpi{border-right:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+@media(max-width:600px){.kpi b{font-size:30px}.kpis{grid-template-columns:repeat(2,1fr)}}
+.g2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.card{border:1px solid var(--linha);background:var(--grafite);padding:16px;min-width:0}
+.h{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:14px;margin:0 0 12px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bars{display:flex;align-items:flex-end;gap:3px;height:140px;border-bottom:1px solid var(--linha)}
+.bars i{flex:1;background:var(--verde);min-height:2px;position:relative}
+.bars i:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--papel);color:var(--preto);font-style:normal;font-size:11px;padding:2px 6px;white-space:nowrap}
+.bars-x{display:flex;justify-content:space-between;font-size:10px;color:var(--cinza);margin-top:4px}
+.hb{display:grid;grid-template-columns:minmax(90px,38%) 1fr auto;gap:8px;align-items:center;font-size:12px;padding:4px 0}
+.hb span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hb .tr{height:10px;background:var(--linha)}
+.hb .tr i{display:block;height:100%;background:var(--verde)}
+.hb b{font-family:var(--display);font-weight:900;font-size:13px;min-width:28px;text-align:right}
+.st{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:13px}
+.st b{font-family:var(--display);font-weight:900;color:var(--verde);text-align:right}
+.pct{display:inline-block;min-width:40px;font-weight:700}
+.pct.ok{color:var(--verde)}
+
 </style>
 </head>
 <body>
@@ -95,18 +114,35 @@ tr:hover td{background:var(--grafite)}
     <a class="pill" target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1IPnzg7tqFJJjxeet_rGv4zL_TFjY4tlB">Arquivos dos testadores ↗</a>
     <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/authentication/users">Contas (Firebase) ↗</a>
     <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/firestore/data">Banco de dados ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/firestore/rules">Regras de segurança ↗</a>
+    <a class="pill" target="_blank" rel="noopener" href="https://console.firebase.google.com/project/cr1e-collab-bcf3e/usage">Uso e cobrança ↗</a>
     <a class="pill" target="_blank" rel="noopener" href="../app/">Abrir o app ↗</a>
   </div>
 
   <div class="tabs" role="tablist">
-    <button class="pill" type="button" data-tab="pessoas" aria-pressed="true">Cadastros</button>
+    <button class="pill" type="button" data-tab="geral" aria-pressed="true">Visão geral</button>
+    <button class="pill" type="button" data-tab="pessoas" aria-pressed="false">Cadastros</button>
+    <button class="pill" type="button" data-tab="lugares" aria-pressed="false">Lugares</button>
     <button class="pill" type="button" data-tab="mural" aria-pressed="false">Mural</button>
     <button class="pill" type="button" data-tab="forum" aria-pressed="false">Fórum</button>
   </div>
 
-  <section id="t-pessoas">
+  <section id="t-geral">
+    <div class="g2">
+      <div class="card"><h2 class="h">Cadastros por dia <span class="mut">últimos 30 dias</span></h2><div class="bars" id="cDays"></div></div>
+      <div class="card"><h2 class="h">Perfil completo <span class="mut">funil</span></h2><div id="cFunnel"></div></div>
+      <div class="card"><h2 class="h">Áreas de atuação</h2><div id="cAreas"></div></div>
+      <div class="card"><h2 class="h">Habilidades mais marcadas</h2><div id="cSkills"></div></div>
+      <div class="card"><h2 class="h">Rede</h2><div id="cNet"></div></div>
+      <div class="card"><h2 class="h">Mais ativos <span class="mut">posts, respostas e tópicos</span></h2><div id="cTop"></div></div>
+    </div>
+  </section>
+  <section id="t-lugares" hidden>
+    <div class="g2"><div class="card"><h2 class="h">Por estado</h2><div id="cUF"></div></div><div class="card"><h2 class="h">Por cidade</h2><div id="cCity"></div></div></div>
+  </section>
+  <section id="t-pessoas" hidden>
     <div class="bar"><input id="q" type="search" placeholder="Buscar por nome, área ou e-mail"><select id="fr"><option value="">Todos</option><option value="artista">Artistas</option><option value="empresa">Empresas</option></select><button class="pill" type="button" id="csv">Baixar CSV</button></div>
-    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Áreas e habilidades</th><th>Gostos</th><th>Cadastro</th></tr></thead><tbody id="tb"></tbody></table></div>
+    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Local</th><th>Áreas e habilidades</th><th>Rede</th><th>Completo</th><th>Cadastro</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
   </section>
   <section id="t-mural" hidden><div id="ml"></div></section>
   <section id="t-forum" hidden><div id="fl"></div></section>
@@ -175,17 +211,54 @@ const rows = () => {
     .filter((p) => (!f || p.role === f) && (!q || [p.name, p.email, ...(p.sk || []), ...(p.want || [])].join(' ').toLowerCase().includes(q)))
     .sort((a, b) => ms(b.created) - ms(a.created));
 };
+const AREAS = {
+    'Artes visuais': ['Muralismo', 'Pintura', 'Ilustração', 'Graffiti', 'Lettering', 'Escultura', 'Gravura', 'Colagem', 'Cerâmica', 'Live painting'],
+    'Artes cênicas': ['Teatro', 'Dança', 'Circo', 'Performance', 'Palhaçaria', 'Teatro de bonecos', 'Cenografia', 'Direção cênica', 'Stand-up'],
+    'Audiovisual': ['Vídeo vertical', 'Direção', 'Roteiro', 'Edição', 'Fotografia', 'Motion', 'Animação 2D', 'Captação de som'],
+    'Música': ['Canto', 'Composição', 'Produção musical', 'DJ', 'Instrumentista', 'Trilha sonora', 'Percussão'],
+    'Moda': ['Estilismo', 'Customização', 'Figurino', 'Styling', 'Estamparia', 'Upcycling', 'Joalheria autoral'],
+    'Design': ['Design gráfico', 'Identidade visual', 'Tipografia', 'UX/UI', '3D', 'Design de produto'],
+    'Arquitetura': ['Projeto arquitetônico', 'Arquitetura de interiores', 'Paisagismo', 'Urbanismo', 'Arquitetura efêmera', 'Expografia', 'Maquete física', 'Render e visualização 3D', 'Desenho à mão livre', 'Iluminação'],
+    'Literatura': ['Poesia', 'Slam', 'Escrita criativa', 'Roteiro de quadrinhos', 'Contação de histórias'],
+    'Artesanato': ['Bordado', 'Crochê', 'Marcenaria', 'Macramê', 'Trançado', 'Tecelagem'],
+    'Arte digital': ['Arte generativa', 'Realidade aumentada', 'Games', 'Projeção mapeada', 'Criação de conteúdo'],
+    'Educação': ['Oficinas', 'Arte-educação', 'Mediação cultural', 'Palestras'],
+  };
+const AREA_OF = new Map(Object.entries(AREAS).flatMap(([a, l]) => l.map((x) => [x, a])));
+const UFN = { AC: 'Acre', AL: 'Alagoas', AP: 'Amapá', AM: 'Amazonas', BA: 'Bahia', CE: 'Ceará', DF: 'Distrito Federal', ES: 'Espírito Santo', GO: 'Goiás', MA: 'Maranhão', MT: 'Mato Grosso', MS: 'Mato Grosso do Sul', MG: 'Minas Gerais', PA: 'Pará', PB: 'Paraíba', PR: 'Paraná', PE: 'Pernambuco', PI: 'Piauí', RJ: 'Rio de Janeiro', RN: 'Rio Grande do Norte', RS: 'Rio Grande do Sul', RO: 'Rondônia', RR: 'Roraima', SC: 'Santa Catarina', SP: 'São Paulo', SE: 'Sergipe', TO: 'Tocantins' };
+const fol = (p) => [...new Set([...(p.follow || []), ...(p.conns || [])])];
+const comp = (p) => { const c = [!!p.avatar, (p.sk || []).length > 0 || (p.want || []).length > 0, !!(p.uf && p.cid), !!p.cvBio, (p.fotos || []).filter(Boolean).length > 0, (p.hb || []).length > 0]; return Math.round(100 * c.filter(Boolean).length / c.length); };
+const hbars = (l, max) => l.length ? l.map(([t, n]) => `<div class="hb"><span title="${esc(t)}">${esc(t)}</span><span class="tr"><i style="width:${max ? 100 * n / max : 0}%"></i></span><b>${n}</b></div>`).join('') : '<div class="empty">Sem dados ainda.</div>';
+const count = (arr) => { const m = {}; arr.forEach((x) => { if (x) m[x] = (m[x] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
 function draw() {
-  const P = D.profiles, wk = Date.now() - 7 * 864e5;
-  const k = [[P.length, 'perfis'], [P.filter((p) => p.role !== 'empresa').length, 'artistas'], [P.filter((p) => p.role === 'empresa').length, 'empresas'], [P.filter((p) => ms(p.created) > wk).length, 'novos em 7 dias'], [D.posts.length, 'posts no mural'], [D.forum.length, 'tópicos no fórum']];
+  const P = D.profiles, now = Date.now(), wk = now - 7 * 864e5, mo = now - 30 * 864e5, ids = new Set(P.map((p) => p.uid));
+  const edges = P.flatMap((p) => fol(p).filter((u) => ids.has(u) && u !== p.uid).map((u) => [p.uid, u])), eset = new Set(edges.map((e) => e.join('>'))), mutual = edges.filter(([a, b]) => a < b && eset.has(b + '>' + a)).length;
+  const chats = new Set(P.flatMap((p) => (p.chats || []).map((c) => [p.uid, c].sort().join('|')))).size;
+  const ufs = new Set(P.map((p) => p.uf).filter(Boolean)), cities = new Set(P.filter((p) => p.cid).map((p) => (p.uf || '') + '|' + p.cid.trim().toLowerCase()));
+  const likes = D.posts.reduce((s, p) => s + (p.likes || []).length, 0), reps = D.posts.reduce((s, p) => s + (p.replies || []).length, 0), fmsgs = D.forum.reduce((s, t) => s + (t.msgs || []).length, 0);
+  const k = [[P.length, 'perfis'], [P.filter((p) => p.role !== 'empresa').length, 'artistas'], [P.filter((p) => p.role === 'empresa').length, 'empresas'], [P.filter((p) => ms(p.created) > wk).length, 'novos em 7 dias'], [P.filter((p) => ms(p.created) > mo).length, 'novos em 30 dias'], [P.filter((p) => comp(p) === 100).length, 'perfis 100% completos'], [ufs.size, 'estados'], [cities.size, 'cidades'], [edges.length, 'seguindo (total)'], [mutual, 'pares que se seguem'], [chats, 'conversas abertas'], [D.posts.length, 'posts no mural'], [likes, 'curtidas'], [reps, 'respostas a posts'], [D.forum.length, 'tópicos no fórum'], [fmsgs, 'mensagens no fórum']];
   $('kpis').innerHTML = k.map(([n, l]) => `<div class="kpi"><b>${n}</b><span>${l}</span></div>`).join('');
+  /* cadastros por dia */
+  const days = [...Array(30)].map((_, i) => { const d = new Date(now - (29 - i) * 864e5); d.setHours(0, 0, 0, 0); return d; }), dc = days.map((d) => P.filter((p) => { const t = ms(p.created); return t >= d.getTime() && t < d.getTime() + 864e5; }).length), dmax = Math.max(1, ...dc);
+  $('cDays').innerHTML = dc.map((n, i) => `<i style="height:${100 * n / dmax}%" data-t="${days[i].toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}: ${n}"></i>`).join('') ; $('cDays').insertAdjacentHTML('afterend', ''); if (!$('cDaysX')) $('cDays').insertAdjacentHTML('afterend', '<div class="bars-x" id="cDaysX"></div>'); $('cDaysX').innerHTML = `<span>${days[0].toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</span><span>hoje</span>`;
+  /* funil */
+  const A = P.filter((p) => p.role !== 'empresa'), F = [['Cadastro criado', A.length], ['Cidade e estado', A.filter((p) => p.uf && p.cid).length], ['Áreas marcadas', A.filter((p) => (p.sk || []).length).length], ['Foto de perfil', A.filter((p) => p.avatar).length], ['Mini bio', A.filter((p) => p.cvBio).length], ['Fotos do portfólio', A.filter((p) => (p.fotos || []).filter(Boolean).length).length], ['Publicou no mural', A.filter((p) => D.posts.some((q) => q.uid === p.uid)).length]];
+  $('cFunnel').innerHTML = hbars(F, A.length);
+  $('cAreas').innerHTML = (() => { const l = count(A.flatMap((p) => [...new Set((p.sk || []).map((x) => AREA_OF.get(x)).filter(Boolean))])); return hbars(l, l[0] ? l[0][1] : 0); })();
+  $('cSkills').innerHTML = (() => { const l = count(A.flatMap((p) => p.sk || [])).slice(0, 12); return hbars(l, l[0] ? l[0][1] : 0); })();
+  const fc = P.map((p) => P.filter((q) => fol(q).includes(p.uid)).length);
+  $('cNet').innerHTML = `<div class="st"><span>Média de seguidores por perfil</span><b>${P.length ? (fc.reduce((a, b) => a + b, 0) / P.length).toFixed(1) : 0}</b><span>Perfis sem nenhum seguidor</span><b>${fc.filter((n) => !n).length}</b><span>Perfis que não seguem ninguém</span><b>${P.filter((p) => !fol(p).length).length}</b><span>Média de curtidas por post</span><b>${D.posts.length ? (likes / D.posts.length).toFixed(1) : 0}</b><span>Posts com imagem</span><b>${D.posts.filter((p) => p.img).length}</b></div>`;
+  $('cTop').innerHTML = (() => { const sc = {}; D.posts.forEach((p) => { sc[p.name || '?'] = (sc[p.name || '?'] || 0) + 3; (p.replies || []).forEach((r) => { const n = r.name || r.a || '?'; sc[n] = (sc[n] || 0) + 1; }); }); D.forum.forEach((t) => (t.msgs || []).forEach((m) => { sc[m.name || '?'] = (sc[m.name || '?'] || 0) + 1; })); const l = Object.entries(sc).sort((a, b) => b[1] - a[1]).slice(0, 10); return hbars(l, l[0] ? l[0][1] : 0) + '<p class="mut" style="margin:8px 0 0">Pontos: post = 3, resposta ou mensagem no fórum = 1.</p>'; })();
+  /* lugares */
+  const ul = count(P.map((p) => p.uf)).map(([u, n]) => [`${UFN[u] || u} (${u})`, n]); $('cUF').innerHTML = hbars(ul, ul[0] ? ul[0][1] : 0) + `<p class="mut" style="margin:8px 0 0">${27 - ufs.size} estados ainda sem ninguém. ${P.filter((p) => !p.uf).length} perfis sem estado.</p>`;
+  const cl = count(P.filter((p) => p.cid).map((p) => `${p.cid.trim()}, ${p.uf || '?'}`)); $('cCity').innerHTML = hbars(cl.slice(0, 40), cl[0] ? cl[0][1] : 0);
   const R = rows();
-  $('tb').innerHTML = R.length ? R.map((p) => `<tr><td><div class="who">${av(p.avatar, p.name)}<div><b>${esc(p.name)}</b>${p.cvBio ? `<div class="mut">${esc(p.cvBio).slice(0, 140)}</div>` : ''}${(p.fotos || []).filter(Boolean).length ? `<div class="fotos">${p.fotos.filter(Boolean).map((f) => `<img src="${f}" alt="">`).join('')}</div>` : ''}</div></div></td><td>${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : '<span class="mut">na planilha</span>'}</td><td>${p.role === 'empresa' ? 'Empresa' : 'Artista'}</td><td>${(p.role === 'empresa' ? p.want : p.sk || []).map((x) => `<span class="tag">${esc(x)}</span>`).join('') || '<span class="mut">—</span>'}</td><td>${(p.hb || []).map((x) => `<span class="tag">${esc(x)}</span>`).join('') || '<span class="mut">—</span>'}</td><td class="mut" style="white-space:nowrap">${dt(p.created)}</td></tr>`).join('') : '<tr><td colspan="6"><div class="empty">Ninguém se cadastrou ainda.</div></td></tr>';
+  $('tb').innerHTML = R.length ? R.map((p) => { const c = comp(p), fs = P.filter((q) => fol(q).includes(p.uid)).length; return `<tr><td><div class="who">${av(p.avatar, p.name)}<div><b>${esc(p.name)}</b>${p.cvBio ? `<div class="mut">${esc(p.cvBio).slice(0, 140)}</div>` : ''}${(p.fotos || []).filter(Boolean).length ? `<div class="fotos">${p.fotos.filter(Boolean).map((f) => `<img src="${f}" alt="">`).join('')}</div>` : ''}</div></div></td><td>${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : '<span class="mut">—</span>'}</td><td>${esc(p.role || 'artista')}</td><td>${esc([p.cid, p.uf].filter(Boolean).join(', ') || '—')}</td><td>${(p.role === 'empresa' ? p.want : p.sk || []).map((x) => `<span class="tag">${esc(x)}</span>`).join('') || '<span class="mut">—</span>'}</td><td class="mut">${fs} seguidores<br>${fol(p).length} seguindo<br>${D.posts.filter((q) => q.uid === p.uid).length} posts</td><td><span class="pct${c === 100 ? ' ok' : ''}">${c}%</span></td><td class="mut">${dt(p.created)}</td><td><button class="del" type="button" data-del="profiles/${p.uid}">Apagar</button></td></tr>`; }).join('') : '<tr><td colspan="9"><div class="empty">Nenhum cadastro encontrado.</div></td></tr>';
   $('ml').innerHTML = D.posts.length ? D.posts.map((p) => `<div class="item"><div class="row"><div><b>${esc(p.name)}</b> <span class="mut">· ${dt(p.ts)} · ${(p.likes || []).length} curtidas · ${(p.reposts || []).length} reposts · ${(p.replies || []).length} respostas</span></div><button class="del" type="button" data-del="posts/${p.id}">Apagar</button></div><p>${esc(p.t)}</p>${(p.replies || []).map((r) => `<p class="mut">↳ <b>${esc(r.name)}</b>: ${esc(r.t)}</p>`).join('')}</div>`).join('') : '<div class="empty">Nenhum post no mural ainda.</div>';
   $('fl').innerHTML = D.forum.length ? D.forum.map((t) => `<div class="item"><div class="row"><div><span class="tag">${esc(t.cat)}</span> <b>${esc(t.t)}</b> <span class="mut">· ${dt(t.ts)} · ${(t.msgs || []).length} mensagens</span></div><button class="del" type="button" data-del="forum/${t.id}">Apagar</button></div>${(t.msgs || []).map((m) => `<p><b>${esc(m.name)}</b>: ${esc(m.t)}</p>`).join('')}</div>`).join('') : '<div class="empty">Nenhum tópico no fórum ainda.</div>';
 }
 $('q').addEventListener('input', draw); $('fr').addEventListener('change', draw);
-document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['pessoas', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
+document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['geral', 'pessoas', 'lugares', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
 document.addEventListener('click', async (e) => {
   const b = e.target.closest('[data-del]'); if (!b) return;
   if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Confirmar'; setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Apagar'; }, 4000); return; }
@@ -193,9 +266,9 @@ document.addEventListener('click', async (e) => {
   try { await deleteDoc(doc(db, c, id)); } catch (er) { b.disabled = false; b.textContent = 'Sem permissão'; }
 });
 $('csv').addEventListener('click', () => {
-  const cols = ['nome', 'email', 'perfil', 'areas_habilidades', 'gostos', 'bio', 'cadastro'];
+  const cols = ['nome', 'email', 'perfil', 'cidade', 'estado', 'areas_habilidades', 'gostos', 'bio', 'seguidores', 'seguindo', 'completo', 'cadastro'];
   const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-  const lines = [cols.join(','), ...rows().map((p) => [p.name, p.email, p.role, (p.role === 'empresa' ? p.want : p.sk || []).join('; '), (p.hb || []).join('; '), p.cvBio, dt(p.created)].map(q).join(','))];
+  const lines = [cols.join(','), ...rows().map((p) => [p.name, p.email, p.role, p.cid, p.uf, (p.role === 'empresa' ? p.want : p.sk || []).join('; '), (p.hb || []).join('; '), p.cvBio, D.profiles.filter((q) => fol(q).includes(p.uid)).length, fol(p).length, comp(p) + '%', dt(p.created)].map(q).join(','))];
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv' })); a.download = 'cr1e-collab-cadastros.csv'; a.click();
 });
 </script>
