@@ -523,7 +523,7 @@ button.pill.s.rmv::after{content:"×";margin-left:6px}
 .ftab.t3{flex-grow:1.3}
 .folder{display:block}
 .ftab.t1{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;background:var(--verde);color:var(--preto)}
-.ftab.t2{background:var(--branco);color:var(--preto)}
+.ftab.t2{--preto:#0E0E0C;background:#fff;color:#0E0E0C}
 .ftab.t3{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;background:var(--preto);color:var(--verde)}
 .ftab:nth-child(1){transform:translateY(8px) rotate(-1deg)}
 .ftab:nth-child(3){transform:translateY(8px) rotate(1deg)}
@@ -888,6 +888,26 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 button.hd{all:unset;box-sizing:border-box;cursor:pointer}
 button.hd:hover{color:var(--preto)}
 button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
+
+/* planejamento de conteúdo: calendário de verdade, leve */
+.cal2{display:grid;grid-template-columns:22px repeat(7,minmax(0,1fr));gap:4px;align-items:stretch}
+.cal2-h{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);text-align:center;padding-bottom:2px}
+.cal2-w{font-size:10px;letter-spacing:.04em;color:var(--mut);display:grid;place-items:center}
+.cal2-d{all:unset;box-sizing:border-box;aspect-ratio:1;border:1px dashed var(--cinza);display:grid;place-items:center;min-width:0}
+.cal2-d.on{cursor:pointer;border:1.5px solid var(--preto);background:var(--papel);place-content:center;gap:4px;justify-items:center}
+.cal2-d i{display:block;width:20px;height:9px;border:2px solid var(--preto);border-radius:999px;background:var(--verde)}
+.cal2-d.dn i{background:var(--preto)}
+.cal2-d em{display:none;font-style:normal;font-family:var(--display);font-weight:800;font-stretch:62%;text-transform:uppercase;font-size:11px;line-height:1.05;text-align:center;padding:0 2px}
+.cal2-d[aria-pressed="true"]{--preto:#0E0E0C;background:var(--verde);border-color:#0E0E0C;color:#0E0E0C}
+.cal2-d[aria-pressed="true"] i{background:#0E0E0C}
+.cal2-d.on:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+@media(min-width:760px){.cal2{grid-template-columns:30px repeat(7,minmax(0,1fr));gap:6px}.cal2-d{aspect-ratio:auto;min-height:78px}.cal2-d em{display:block}}
+.cal2-x{margin-top:12px;border-top:1.5px solid var(--preto);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+.cal2-p{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.cal2-p b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px}
+.cal2-p p{margin:2px 0 0;font-size:13px;line-height:1.45}
+.cal2-p.dn p{text-decoration:line-through;color:var(--mut)}
+.cal2-p .pill{flex:none;cursor:pointer}
 </style>
 
 <div class="gate" id="gate">
@@ -2026,10 +2046,13 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
   }
   function planDraw() {
     $('pStrat').innerHTML = S.plan.strat;
-    $('pCal').innerHTML = [0, 1, 2, 3].map((w) => `<div class="pwk"><span class="lbl">Semana ${w + 1}</span>${PDAYS.map((dn, d) => { const ps = S.plan.posts.map((p, i) => [p, i]).filter(([p]) => p.w === w && p.d === d); return `<div class="pday${ps.length ? '' : ' off'}"><span>${dn}</span>${ps.map(([p, i]) => `<button class="ppost" type="button" data-pp="${i}" aria-pressed="${p.done}"><b>${esc(p.f)}</b><span>${esc(p.t)}</span></button>`).join('')}</div>`; }).join('')}</div>`).join('');
+    const at = (w, d) => S.plan.posts.map((p, i) => [p, i]).filter(([p]) => p.w === w && p.d === d);
+    if (!S.pSel || !at(S.pSel.w, S.pSel.d).length) { const f = S.plan.posts[0]; S.pSel = f ? { w: f.w, d: f.d } : null; }
+    $('pCal').innerHTML = `<div class="cal2" role="grid" aria-label="Calendário de 4 semanas"><span></span>${PDAYS.map((d) => `<span class="cal2-h">${d}</span>`).join('')}${[0, 1, 2, 3].map((w) => `<span class="cal2-w" aria-label="Semana ${w + 1}">S${w + 1}</span>` + PDAYS.map((dn, d) => { const ps = at(w, d); if (!ps.length) return '<span class="cal2-d"></span>'; const done = ps.every(([p]) => p.done), sel = S.pSel && S.pSel.w === w && S.pSel.d === d; return `<button class="cal2-d on${done ? ' dn' : ''}" type="button" data-pd="${w},${d}" aria-pressed="${sel}" aria-label="Semana ${w + 1}, ${dn}: ${esc(ps.map(([p]) => p.f).join(', '))}${done ? ' (feito)' : ''}"><i></i><em>${esc(ps[0][0].f)}</em></button>`; }).join('')).join('')}</div>`
+      + (S.pSel ? `<div class="cal2-x"><span class="lbl">Semana ${S.pSel.w + 1} · ${PDAYS[S.pSel.d]}</span>${at(S.pSel.w, S.pSel.d).map(([p, i]) => `<div class="cal2-p${p.done ? ' dn' : ''}"><div><b>${esc(p.f)}</b><p>${esc(p.t)}</p></div><button class="pill s${p.done ? ' k' : ''}" type="button" data-pp="${i}" aria-pressed="${p.done}">${p.done ? 'Feito' : 'Marcar feito'}</button></div>`).join('')}</div>` : '');
   }
   $('pForm').addEventListener('submit', (e) => { e.preventDefault(); planLocal(); planDraw(); $('pMsg').textContent = 'Calendário atualizado a partir do seu canvas.'; });
-  document.addEventListener('click', (e) => { const b = e.target.closest('[data-pp]'); if (!b) return; const p = S.plan.posts[+b.dataset.pp]; p.done = !p.done; planDraw(); });
+  document.addEventListener('click', (e) => { const c = e.target.closest('[data-pd]'); if (c) { const [w, d] = c.dataset.pd.split(',').map(Number); S.pSel = { w, d }; planDraw(); return; } const b = e.target.closest('[data-pp]'); if (!b) return; const p = S.plan.posts[+b.dataset.pp]; p.done = !p.done; planDraw(); });
   (async () => { let smp = null; try { smp = await window.claude?.use?.('sample'); } catch (err) {} if (!smp) return; const bt = $('pAI'); bt.hidden = false;
     bt.addEventListener('click', async () => { const c = pCanvas(); bt.disabled = true; $('pMsg').textContent = 'Gerando o planejamento…';
       try { const r = await smp(`Você é estrategista de conteúdo para artistas. Monte um planejamento de 4 semanas em português do Brasil. Dados: objetivo "${c.obj}"; público "${c.pub}"; pilares ${c.pil.join(', ')}; ${c.freq} posts por semana; diferencial "${c.dif || 'não informado'}"; áreas e habilidades: ${S.sk.join(', ') || 'não informadas'}. Responda só com JSON válido, sem texto fora dele, no formato {"estrategia":"3 frases curtas","posts":[{"semana":1,"dia":"Seg","formato":"Vídeo curto","ideia":"até 12 palavras"}]}. Use dias entre Seg, Ter, Qua, Qui, Sex, Sáb, Dom e exatamente ${c.freq * 4} posts. Não cite nomes de redes sociais nem invente números.`);
@@ -2075,6 +2098,7 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Marcar feito": "Mark done", "Feito": "Done",
     "Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis.": "No one else around for now. You have seen every profile.", "Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.": "No one here yet. Profiles of people who join the test show up here for you to follow.",
     "Ver o seu perfil": "View your profile",
     "A rede de quem cria": "The network for makers",
