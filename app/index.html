@@ -883,6 +883,8 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 .compose3 .c3-bal textarea:focus{box-shadow:4px 4px 0 var(--verde)}
 .av[data-art]{cursor:pointer}
 .av[data-art]:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+.deck.em{height:auto}
+.deck.em .empty{padding:14px 16px;font-size:13px}
 </style>
 
 <div class="gate" id="gate">
@@ -959,7 +961,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
           </div>
         </div>
         <div id="rdSocial">
-          <div class="feedw" style="margin-top:0"><h2 class="feed-t">Feed <span>da rede</span></h2>
+          <div class="feedw" style="margin-top:0"><h2 class="feed-t"><span>Feed</span></h2>
             <form class="compose3" id="postF"><b class="c3-t">Criar publicação</b><div class="c3-row"><span class="av" id="postAv"></span><div class="c3-bal"><textarea id="postI" maxlength="600" rows="2" aria-label="Escreva a sua publicação" placeholder="O que você está criando? Conte para a rede."></textarea></div></div>
               <div class="c3-prev" id="postPrev" hidden><img id="postImg" alt="Prévia da imagem"><button type="button" id="postImgX" aria-label="Tirar imagem">×</button></div>
               <div class="ft2"><label class="c3-b"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Foto<input type="file" accept="image/jpeg,image/png,image/webp" id="postFoto"></label><label class="c3-b"><b>GIF</b><input type="file" accept="image/gif" id="postGif"></label><span class="cnt" id="postN">0/600</span><button class="btn k" type="submit">Publicar</button></div></form>
@@ -1261,9 +1263,9 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   let ARTISTS = [];
   const COURSES = [];
   const TEMAS = ['Todos', ...new Set(COURSES.map((c) => c.tema))];
-  const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
+  const NAV = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas'], ['candidaturas', 'Candidaturas'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']],
     empresa: [['empresa', 'Painel'], ['feed', 'Feed'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['avisos', 'Avisos e mensagens'], ['perfil', 'Perfil']] };
-  const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Rede'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
+  const TABS = { artista: [['inicio', 'Início'], ['estudio', 'Estúdio'], ['rede', 'Feed'], ['jobs', 'Jobs'], ['aulas', 'Aulas']], empresa: [['empresa', 'Painel'], ['briefings', 'Briefings'], ['projetos', 'Projetos'], ['mensagens', 'Mensagens'], ['mais', 'Mais']] };
   const PARENT = { teste: 'inicio', curso: 'aulas', materia: 'feed', briefing: 'briefings', artista: 'rede', topico: 'rede' };
   const AREAS = {
     'Artes visuais': ['Muralismo', 'Pintura', 'Ilustração', 'Graffiti', 'Lettering', 'Escultura', 'Gravura', 'Colagem', 'Cerâmica', 'Live painting'],
@@ -1551,7 +1553,8 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
   function drawDeck() {
     const rest = DECK.slice(S.di);
     deck.innerHTML = rest.length ? rest.slice(0, 3).map((a, d) => `<article class="pc" style="--d:${d}" data-d="${d}" data-n="${a.n}"><span class="stamp y">Seguir</span><span class="stamp n">Pular</span><div class="pc-i">${a.cover || a.img ? `<img src="${a.cover || a.img}" alt="">` : ''}<span class="ini avc">${a.img ? `<img src="${a.img}" alt="">` : esc(a.n.slice(0, 2).toUpperCase())}</span></div><div class="pc-b"><h3 class="t"><span class="w">${esc(a.n)}</span></h3>${a.cid ? `<span class="pf-loc">${esc(a.cid)}</span>` : ''}${ARB(a.ar, true)}<p style="font-size:14px">${esc(a.bio)}</p><span class="lbl sm">Habilidades</span><div class="pills sm">${a.sk.map((s) => `<span class="pill s">${s}</span>`).join('')}</div><span class="lbl">Gostos e hobbies</span><div class="pills">${a.hb.map((s) => `<span class="pill s v" style="border-color:var(--preto)">${s}</span>`).join('')}</div></div></article>`).reverse().join('')
-      : (DECK.length ? '<div class="empty" style="height:100%;display:grid;place-items:center;text-align:left">Você viu todos os perfis por enquanto. <button class="pill" type="button" id="again" style="margin-top:10px">Ver de novo</button></div>' : '<div class="empty" style="height:100%;display:grid;place-items:center;text-align:left">A rede está começando. Os perfis de quem entrar no teste aparecem aqui para você conectar.</div>');
+      : (DECK.length ? '<div class="empty">Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis. <button class="pill s" type="button" id="again" style="margin-top:8px">Ver de novo</button></div>' : '<div class="empty">Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.</div>');
+    deck.classList.toggle('em', !rest.length); deck.parentElement.querySelector('.acts').hidden = !rest.length;
     const ag = $('again'); if (ag) ag.onclick = () => { S.skip = new Set(); deckBuild(); drawDeck(); };
     const top = deck.querySelector('.pc[data-d="0"]'); if (top) bindDrag(top);
     $('skip').disabled = $('conn').disabled = !rest.length;
@@ -2069,6 +2072,7 @@ input.gal-cap:focus{border-bottom:2px solid var(--preto)}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis.": "No one else around for now. You have seen every profile.", "Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.": "No one here yet. Profiles of people who join the test show up here for you to follow.",
     "Ver o seu perfil": "View your profile",
     "A rede de quem cria": "The network for makers",
     "Jobs com marcas": "Jobs with brands", "Editais abertos": "Open calls", "Fórum da rede": "Network forum", "Aulas de quem vive de arte": "Classes by working artists", "Artistas primeiro": "Artists first",
