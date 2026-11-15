@@ -1577,7 +1577,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 <nav class="tab" id="tabNav" aria-label="App"></nav>
 
 <dialog class="gal" id="gal" aria-label="Galeria do portfólio"><div class="win" id="galW"><div class="win-bar"><span class="win-t" id="galN"></span><span class="win-c"><button type="button" id="galMin" aria-label="Minimizar">–</button><button type="button" id="galMax" aria-label="Expandir">□</button><button type="button" id="galX" aria-label="Fechar">×</button></span></div><div class="win-body"><div class="gal-f" id="galF"><img id="galI" alt=""></div><div class="win-st"><button class="gar" type="button" id="galP" aria-label="Foto anterior">←</button><div class="win-cap"><p class="gal-cap" id="galCap"></p><input class="gal-cap" id="galCapI" maxlength="120" placeholder="Escreva uma legenda" aria-label="Legenda da foto" hidden></div><button class="gar" type="button" id="galNx" aria-label="Próxima foto">→</button></div></div></div></dialog>
-<dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="st-arts" id="stArts" role="group" aria-label="Escolher a arte" hidden><span class="lbl">Arte</span><button class="pill s" type="button" data-art-n="0">1</button><button class="pill s" type="button" data-art-n="1">2</button><button class="pill s" type="button" data-art-n="2">3</button></div><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
+<dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="st-arts" id="stArts" role="group" aria-label="Escolher a arte" hidden><span class="lbl">Arte</span><button class="pill s" type="button" data-art-n="0">1</button><button class="pill s" type="button" data-art-n="1">2</button><button class="pill s" type="button" data-art-n="2">3</button></div><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stVid" hidden>Baixar vídeo com o logo animado</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
 <dialog class="sheet terms" id="delD" aria-labelledby="del-t"><button class="x" type="button" id="delX" aria-label="Fechar">×</button>
   <form class="tm-b" id="delF"><h2 class="t" id="del-t" style="font-size:30px">Excluir a <span class="w a">conta</span></h2>
   <p style="margin:0;font-size:14px;line-height:1.55">Isso apaga de vez o seu acesso, o seu perfil, as suas fotos e as suas publicações no CR1E.Collab. Não dá para desfazer.</p>
@@ -1853,7 +1853,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
   /* ---------- stories: imagem 1080 × 1920 para chamar gente para o app ---------- */
   const APP_URL = 'https://cr1e.co/app/', APP_TXT = 'cr1e.co/app';
   const imgOf = (src) => new Promise((ok) => { if (!src) return ok(null); const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = src; });
-  async function storyDraw(o) {
+  async function storyDraw(o, ph) {
     const cv = $('stC'), x = cv.getContext('2d'), W = 1080, H = 1920, K = '#0E0E0C', PA = '#F4F3EE', G = '#C5FF3D';
     const F = (w, st, px) => `${w} ${st} ${px}px Archivo, "Arial Black", sans-serif`, MO = (px, b) => `${b ? '700 ' : ''}${px}px "Space Mono", "Courier New", monospace`;
     try { await Promise.all([document.fonts.load(F(900, 'expanded', 80)), document.fonts.load(F(800, 'extra-condensed', 80)), document.fonts.load(MO(40)), document.fonts.load(MO(40, true))]); } catch (er) {}
@@ -1861,28 +1861,34 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
     const box = (bx, by, bw, bh, fill, sh = 18) => { x.fillStyle = K; x.fillRect(bx + sh, by + sh, bw, bh); x.fillStyle = fill; x.fillRect(bx, by, bw, bh); x.lineWidth = 8; x.strokeStyle = K; x.strokeRect(bx, by, bw, bh); };
     const pill = (px, py, pw, ph, col, lw) => { x.lineWidth = lw; x.strokeStyle = col; x.beginPath(); x.roundRect(px, py, pw, ph, ph / 2); x.stroke(); };
     x.textBaseline = 'alphabetic'; x.textAlign = 'left';
-    const logoAt = (lx, by, px, c1, c2) => { x.textAlign = 'left'; x.font = F(900, 'expanded', px); x.fillStyle = c1; x.fillText('CR1E', lx, by); lx += x.measureText('CR1E').width + px * .08; x.font = F(900, 'expanded', px * .67); x.fillStyle = c2; x.fillText('.c', lx, by); lx += x.measureText('.c').width + px * .07; const pw = px * .97, ph = px * .36; pill(lx, by - ph, pw, ph, c2, px * .105); lx += pw + px * .1; x.fillText('llab', lx, by); return lx + x.measureText('llab').width; };
-    const cta = (cy, bg, fg) => { x.fillStyle = bg; x.beginPath(); x.roundRect(80, cy, 920, 150, 75); x.fill(); x.font = F(900, 'expanded', 50); x.fillStyle = fg; x.textAlign = 'center'; x.fillText('ENTRE: ' + APP_TXT.toUpperCase(), W / 2, cy + 93); x.textAlign = 'left'; };
-    if (o.kind !== 'post' && o.art === 1) {
-      /* arte 2: as faixas da abertura, com um convite no meio */
-      const bh = H / 8; for (let i = 0; i < 8; i++) { const on = i % 2 === 0; x.fillStyle = on ? G : K; x.fillRect(0, i * bh, W, bh); let lx = -((i * 190) % 620) - 60; while (lx < W) lx = logoAt(lx, i * bh + bh * .72, 150, on ? K : G, on ? K : G) + 70; }
-      x.save(); x.translate(W / 2, 960); x.rotate(-3 * Math.PI / 180); x.fillStyle = K; x.fillRect(-430 + 20, -470 + 20, 860, 940); x.fillStyle = PA; x.fillRect(-430, -470, 860, 940); x.lineWidth = 8; x.strokeStyle = K; x.strokeRect(-430, -470, 860, 940);
-      x.textAlign = 'left'; x.fillStyle = K; x.font = MO(32, true); x.fillText('CONVITE', -374, -392);
-      x.font = F(800, 'extra-condensed', 176); x.fillText('VEM CRIAR', -374, -222); x.fillText('COM A', -374, -62);
-      let gf = 150; x.font = F(900, 'expanded', gf); while (x.measureText('GENTE').width > 700 && gf > 50) { gf -= 4; x.font = F(900, 'expanded', gf); } const gw = x.measureText('GENTE').width; x.fillStyle = G; x.fillRect(-374, -22, gw + 40, gf * 1.14); x.fillStyle = K; x.fillText('GENTE', -354, -22 + gf * .92);
-      x.font = MO(38); wrap('A rede de quem cria: artistas, jobs, editais e aulas.', 740, 3).forEach((l, i) => x.fillText(l, -374, 232 + i * 54));
-      if (o.name) { x.font = MO(32, true); x.fillText(wrap(`${o.name} já está lá.`, 740, 1)[0], -374, 342); }
-      x.fillStyle = K; x.beginPath(); x.roundRect(-374, 366, 748, 80, 40); x.fill(); x.font = F(900, 'expanded', 36); x.fillStyle = G; x.textAlign = 'center'; x.fillText(APP_TXT.toUpperCase(), 0, 420); x.restore(); return;
-    }
-    if (o.kind !== 'post' && o.art === 2) {
-      /* arte 3: fundo preto, artistas primeiro */
-      x.fillStyle = K; x.fillRect(0, 0, W, H); logoAt(80, 330, 84, PA, G);
-      x.fillStyle = PA; let af = 330; x.font = F(800, 'extra-condensed', af); while (x.measureText('ARTISTAS').width > 920 && af > 120) { af -= 6; x.font = F(800, 'extra-condensed', af); } x.fillText('ARTISTAS', 80, 700);
-      let pf = 170; x.font = F(900, 'expanded', pf); while (x.measureText('PRIMEIRO').width > 880 && pf > 60) { pf -= 4; x.font = F(900, 'expanded', pf); } const pw2 = x.measureText('PRIMEIRO').width; x.fillStyle = G; x.fillRect(80, 740, pw2 + 40, pf * 1.12); x.fillStyle = K; x.fillText('PRIMEIRO', 100, 740 + pf * .9);
-      const y0 = 740 + pf * 1.12 + 130; x.font = MO(46); ['Rede de quem cria', 'Jobs com marcas', 'Editais abertos', 'Aulas de quem vive de arte'].forEach((t, i) => { const ly = y0 + i * 96; if (i % 2) { x.fillStyle = G; x.beginPath(); x.roundRect(80, ly - 34, 78, 34, 17); x.fill(); } else pill(84, ly - 30, 70, 26, G, 8); x.fillStyle = PA; x.fillText(t, 190, ly); });
-      x.strokeStyle = PA; x.lineWidth = 4; x.beginPath(); x.moveTo(80, y0 + 4 * 96 - 20); x.lineTo(1000, y0 + 4 * 96 - 20); x.stroke();
-      if (o.name) { x.font = MO(36, true); x.fillStyle = G; x.fillText(wrap(`${o.name} te chamou. Vem também.`, 920, 1)[0], 80, y0 + 4 * 96 + 60); }
-      cta(1480, G, K); x.font = MO(32); x.fillStyle = PA; x.textAlign = 'center'; x.fillText('Human generated, human connected.', W / 2, 1700); x.textAlign = 'left'; return;
+    /* logo com a pílula que respira (ph: 0 a 1, um ciclo) */
+    const pk = (() => { const p = (ph || 0) % 1, e = (u) => .5 - Math.cos(Math.PI * u) / 2; return p < .25 ? 1 - .635 * e(p / .25) : p < .55 ? .365 + .635 * e((p - .25) / .3) : 1; })();
+    const logoW = (px) => { x.font = F(900, 'expanded', px); const a = x.measureText('CR1E').width; x.font = F(900, 'expanded', px * .67); return a + px * .08 + x.measureText('.c').width + px * .07 + px * .97 + px * .1 + x.measureText('llab').width; };
+    const logoAt = (lx, by, px, c1, c2, hl, still) => { x.textAlign = 'left'; x.font = F(900, 'expanded', px); x.fillStyle = c1; x.fillText('CR1E', lx, by); lx += x.measureText('CR1E').width + px * .08; x.font = F(900, 'expanded', px * .67); const k = still ? 1 : pk, pw = px * .97 * k, ph2 = px * .36, wc = x.measureText('.c').width, wl = x.measureText('llab').width;
+      if (hl) { x.fillStyle = hl; x.fillRect(lx - px * .05, by - px * .62, wc + px * .07 + pw + px * .1 + wl + px * .12, px * .82); }
+      x.fillStyle = c2; x.fillText('.c', lx, by); lx += wc + px * .07; pill(lx, by - ph2, pw, ph2, c2, px * .105); lx += pw + px * .1; x.fillText('llab', lx, by); return lx + wl; };
+    const cta = (cx0, cy, cw0, bg, fg, ch = 150, fs = 50) => { x.fillStyle = bg; x.beginPath(); x.roundRect(cx0, cy, cw0, ch, ch / 2); x.fill(); x.font = F(900, 'expanded', fs); x.fillStyle = fg; x.textAlign = 'center'; x.fillText('ENTRE: ' + APP_TXT.toUpperCase(), cx0 + cw0 / 2, cy + ch / 2 + fs * .36); x.textAlign = 'left'; };
+    /* mesmo texto nas três artes: título menor, logo maior */
+    const copy = (lx, ty, mw, ink, hi, onHi, sz = 1) => { x.textAlign = 'left'; x.fillStyle = ink; x.font = F(800, 'extra-condensed', 128 * sz); x.fillText('A REDE DE QUEM', lx, ty); let cf = 128 * sz; x.font = F(900, 'expanded', cf); const cwid = x.measureText('CRIA').width; x.fillStyle = hi; x.fillRect(lx, ty + 28 * sz, cwid + 44 * sz, cf * 1.12); x.fillStyle = onHi; x.fillText('CRIA', lx + 20 * sz, ty + 28 * sz + cf * .92);
+      let yy = ty + 28 * sz + cf * 1.12 + 96 * sz; x.fillStyle = ink; x.font = MO(40 * sz); wrap('Artistas de todas as áreas num só lugar: rede, jobs, editais e aulas.', mw, 4).forEach((l) => { x.fillText(l, lx, yy); yy += 58 * sz; });
+      if (o.name) { yy += 26 * sz; x.font = MO(34 * sz, true); x.fillText(wrap(`${o.name} já está lá. Vem também.`, mw, 1)[0], lx, yy); yy += 20 * sz; } return yy; };
+    const tick = (ty, bg, fg, hi) => { x.fillStyle = bg; x.fillRect(0, ty, W, 76); x.font = MO(26, true); let lx = -40 - ((ph || 0) * 420); const its = ['ARTISTAS PRIMEIRO', 'JOBS COM MARCAS', 'EDITAIS ABERTOS', 'AULAS', 'FÓRUM DA REDE']; let i = 0; while (lx < W) { const t = its[i % its.length]; x.fillStyle = fg; x.fillText(t, lx, ty + 48); lx += x.measureText(t).width + 30; if (i % 2) { x.fillStyle = hi; x.beginPath(); x.roundRect(lx, ty + 26, 52, 22, 11); x.fill(); } else pill(lx + 3, ty + 29, 46, 16, fg, 5); lx += 82; i++; } };
+    if (o.kind !== 'post') {
+      const art = o.art || 0;
+      if (art === 0) { /* papel, como o site: logo grande, faixa passando, título à esquerda */
+        x.fillStyle = PA; x.fillRect(0, 0, W, H); let lp = 132; while (logoW(lp) > 900 && lp > 60) lp -= 4; logoAt(80, 430, lp, K, K, G);
+        tick(520, K, PA, G); const yy = copy(80, 800, 900, K, G, K); cta(80, Math.max(yy + 70, 1400), 920, K, G);
+        x.font = MO(32); x.fillStyle = K; x.textAlign = 'center'; x.fillText('Human generated, human connected.', W / 2, Math.max(yy + 70, 1400) + 226); x.textAlign = 'left';
+        x.fillStyle = G; x.fillRect(0, 1740, W, 180); x.fillStyle = K; x.fillRect(0, 1736, W, 6); let lx = -120; while (lx < W) lx = logoAt(lx, 1868, 120, K, K, null, true) + 60; return; }
+      if (art === 1) { /* as faixas da abertura, com o convite no meio */
+        const bh = H / 8; for (let i = 0; i < 8; i++) { const on = i % 2 === 0; x.fillStyle = on ? G : K; x.fillRect(0, i * bh, W, bh); let lx = -((i * 190) % 620) - 60; while (lx < W) lx = logoAt(lx, i * bh + bh * .72, 150, on ? K : G, on ? K : G, null, true) + 70; }
+        x.fillStyle = K; x.fillRect(110 + 18, 400 + 18, 860, 1120); x.fillStyle = PA; x.fillRect(110, 400, 860, 1120); x.lineWidth = 8; x.strokeStyle = K; x.strokeRect(110, 400, 860, 1120);
+        let lp = 112; while (logoW(lp) > 740 && lp > 50) lp -= 4; logoAt(166, 560, lp, K, K, G); x.fillStyle = K; x.fillRect(166, 620, 748, 6);
+        const yy = copy(166, 800, 740, K, G, K, .86); cta(166, Math.max(yy + 50, 1350), 748, K, G, 110, 38); return; }
+      /* fundo preto */
+      x.fillStyle = K; x.fillRect(0, 0, W, H); let lp = 132; while (logoW(lp) > 900 && lp > 60) lp -= 4; logoAt(80, 430, lp, PA, G);
+      tick(520, G, K, K); const yy = copy(80, 800, 900, PA, G, K); cta(80, Math.max(yy + 70, 1400), 920, G, K);
+      x.font = MO(32); x.fillStyle = PA; x.textAlign = 'center'; x.fillText('Human generated, human connected.', W / 2, Math.max(yy + 70, 1400) + 226); x.textAlign = 'left'; return;
     }
     x.fillStyle = G; x.fillRect(0, 0, W, H);
     x.fillStyle = 'rgba(14,14,12,.10)'; for (let yy = 24; yy < H; yy += 40) for (let xx = 24; xx < W; xx += 40) { x.beginPath(); x.arc(xx, yy, 3.2, 0, 7); x.fill(); }
@@ -1913,9 +1919,19 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
   }
   let stCur = null;
   const stArtUI = () => { const inv = stCur && stCur.kind !== 'post'; $('stArts').hidden = !inv; document.querySelectorAll('[data-art-n]').forEach((b) => { const on = +b.dataset.artN === ((stCur && stCur.art) || 0); b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); }); };
-  async function storyOpen(o) { stCur = o; const dg = $('story'); if (!dg.open) dg.showModal(); stArtUI(); await storyDraw(o); }
-  $('stArts').addEventListener('click', async (e) => { const b = e.target.closest('[data-art-n]'); if (!b || !stCur) return; stCur.art = +b.dataset.artN; stArtUI(); await storyDraw(stCur); });
-  const stBlob = () => new Promise((ok) => $('stC').toBlob(ok, 'image/png'));
+  let stRaf = 0, stRec = false; const ST_LOOP = 3400;
+  function stAnim() { cancelAnimationFrame(stRaf); if (!stCur || stCur.kind === 'post' || matchMedia('(prefers-reduced-motion: reduce)').matches) return; const t0 = performance.now(); let busy = false;
+    const f = async (now) => { if (!$('story').open || !stCur || stCur.kind === 'post') return; if (!busy && !stRec) { busy = true; try { await storyDraw(stCur, ((now - t0) % ST_LOOP) / ST_LOOP); } catch (er) {} busy = false; } stRaf = requestAnimationFrame(f); }; stRaf = requestAnimationFrame(f); }
+  async function storyOpen(o) { stCur = o; const dg = $('story'); if (!dg.open) dg.showModal(); stArtUI(); $('stVid').hidden = o.kind === 'post' || !window.MediaRecorder || !$('stC').captureStream; await storyDraw(o, 0); stAnim(); }
+  $('story').addEventListener('close', () => cancelAnimationFrame(stRaf));
+  $('stVid').addEventListener('click', async () => { if (stRec || !stCur) return; const mt = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find((m) => MediaRecorder.isTypeSupported(m)); if (!mt) { toast('Este navegador não grava vídeo. Use a imagem.'); return; }
+    stRec = true; $('stVid').disabled = true; $('stVid').textContent = 'Gravando…'; const cv = $('stC'), rec = new MediaRecorder(cv.captureStream(30), { mimeType: mt, videoBitsPerSecond: 6000000 }), parts = []; rec.ondataavailable = (e) => { if (e.data.size) parts.push(e.data); };
+    const done = new Promise((ok) => { rec.onstop = ok; }); rec.start(); const t0 = performance.now(), dur = ST_LOOP * 2;
+    await new Promise((ok) => { const f = async (now) => { const el = now - t0; await storyDraw(stCur, (el % ST_LOOP) / ST_LOOP); if (el < dur) requestAnimationFrame(f); else ok(); }; requestAnimationFrame(f); });
+    rec.stop(); await done; stRec = false; $('stVid').disabled = false; $('stVid').textContent = 'Baixar vídeo com o logo animado';
+    const ext = mt.includes('mp4') ? 'mp4' : 'webm', a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(parts, { type: mt.split(';')[0] })); a.download = 'cr1e-collab-story.' + ext; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast(ext === 'mp4' ? 'Vídeo baixado.' : 'Vídeo baixado em WebM. Se os stories não aceitarem, use a imagem.'); });
+  $('stArts').addEventListener('click', async (e) => { const b = e.target.closest('[data-art-n]'); if (!b || !stCur) return; stCur.art = +b.dataset.artN; stArtUI(); await storyDraw(stCur, 0); stAnim(); });
+  const stBlob = async () => { stRec = true; try { await storyDraw(stCur, 0); return await new Promise((ok) => $('stC').toBlob(ok, 'image/png')); } finally { stRec = false; } };
   const stDown = async () => { const bl = await stBlob(); const a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'cr1e-collab-story.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Imagem baixada. Abra os stories e escolha a imagem.'); };
   $('stX').addEventListener('click', () => $('story').close());
   $('story').addEventListener('click', (e) => { if (e.target === $('story')) $('story').close(); });
@@ -2587,6 +2603,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Baixar vídeo com o logo animado": "Download video with animated logo", "Gravando…": "Recording…",
     "Trajetória": "Background", "Para marcas": "For brands", "Na internet": "Online", "Ver prévia": "Preview", "Ainda vazio": "Empty for now", "Editar no Estúdio →": "Edit in Studio →", "Nenhum link ainda. Adicione em Editar perfil.": "No links yet. Add them in Edit profile.",
     "Arte": "Design",
     "Minimizar": "Minimise", "Expandir": "Maximise", "Sem legenda": "No caption",
