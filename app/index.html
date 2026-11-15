@@ -908,6 +908,39 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
 .cal2-p p{margin:2px 0 0;font-size:13px;line-height:1.45}
 .cal2-p.dn p{text-decoration:line-through;color:var(--mut)}
 .cal2-p .pill{flex:none;cursor:pointer}
+
+/* editais: sem legenda, claro no tema escuro, e transição para o feed */
+#edMini{visibility:hidden}
+html[data-theme="dark"] .edx summary{background:#F4F3EE;color:#0E0E0C}
+html[data-theme="dark"] .edx summary i{border-color:#0E0E0C}
+html[data-theme="dark"] .edx.big{box-shadow:6px 6px 0 var(--verde)}
+.sep{display:flex;align-items:center;gap:10px;margin:clamp(22px,5vw,40px) 0 clamp(20px,4vw,32px)}
+.sep::before,.sep::after{content:"";flex:1;border-top:2px solid var(--preto)}
+.sep i{flex:none;width:36px;height:14px;border:2px solid var(--preto);border-radius:999px;background:var(--verde)}
+/* framework de conteúdo */
+.gce{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:6px 0 0;font-size:13px;line-height:1.45}
+.gce dt{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding-top:2px}
+.gce dd{margin:0}
+.cal2-p.dn .gce{text-decoration:line-through;color:var(--mut)}
+.pchk{border:1.5px solid var(--preto);margin-top:4px}
+.pchk summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:10px 12px}
+.pchk summary::-webkit-details-marker{display:none}
+.pchk summary b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px}
+.pchk summary .note{flex:1}
+.pchk summary i{flex:none;width:28px;height:12px;border:2px solid var(--preto);border-radius:999px;transition:width .4s var(--spring),background .2s}
+.pchk[open] summary i{width:12px;background:var(--verde)}
+.pchk[open] summary{border-bottom:1.5px solid var(--preto)}
+#pChk{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px}
+#pChk .lbl{margin-top:6px}
+.pck{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.4;cursor:pointer}
+.pck input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:13px;margin:3px 0 0;border:2px solid var(--preto);border-radius:999px;background:transparent;cursor:pointer}
+.pck input:checked{background:var(--verde)}
+.pck input:checked+span{color:var(--mut);text-decoration:line-through}
+.pck input:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+.cal2-p{flex-direction:column;gap:8px}
+.cal2-p>div{width:100%}
+.cal2-p .pill{align-self:flex-start}
+.pchk summary .note{white-space:nowrap;text-align:right}
 </style>
 
 <div class="gate" id="gate">
@@ -949,7 +982,7 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
         <details class="edx big" id="edx"><summary><h2 class="t"><span class="w a">Editais</span> abertos</h2><span class="note" id="edMini"></span><i aria-hidden="true"></i></summary>
           <div class="edx-b"><div class="edf"><label class="lbl" for="edA">Área de atuação<select id="edA"></select></label><label class="lbl" for="edSt">Situação<select id="edSt"></select></label><label class="lbl" for="edUF">Estado<select id="edUF"></select></label><label class="lbl" for="edC">Cidade<select id="edC"></select></label></div><div class="edg" id="edList"></div><p class="note" style="margin:0">Lista atualizada em 14/11/2026. Confira sempre prazos e regras na fonte oficial de cada edital.</p></div></details>
         <span id="tdMini" hidden></span>
-        <div id="homeFeed"><div class="sub"><h2 class="t">O que está <span class="w a">acontecendo</span></h2><span class="note">Leituras da CR1E.Coisas</span></div><div id="homeFeedSlot"></div></div>
+        <div id="homeFeed"><div class="sep" aria-hidden="true"><i></i></div><div class="sub"><h2 class="t">O que está <span class="w a">acontecendo</span></h2><span class="note">Leituras da CR1E.Coisas</span></div><div id="homeFeedSlot"></div></div>
         <div class="sub"><h2 class="t"><span class="w">Jobs</span> para você</h2><a href="#jobs">Ver todos →</a></div>
         <div class="scroll" id="homeJobs"></div>
         <div class="sub"><h2 class="t">Continue no <span class="w a">lab</span></h2><a href="#aulas">Todos os cursos →</a></div>
@@ -1050,13 +1083,15 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
         </div>
         <div class="tools" id="tool-plan" hidden>
           <form class="panel card" id="pForm" novalidate>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Assinatura</span><span class="note">Liberado durante o teste</span></div>
             <h2 class="t" style="font-size:34px"><span class="w a">Canvas</span> de conteúdo</h2>
+            <p class="note" style="margin:-6px 0 0">Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.</p>
             <label class="fld" for="p-obj">Objetivo<select id="p-obj"><option>Atrair marcas</option><option>Vender obras e serviços</option><option>Crescer a audiência</option><option>Divulgar um evento ou lançamento</option></select></label>
-            <label class="fld" for="p-pub">Para quem você fala?<input id="p-pub" placeholder="Ex.: marcas de moda, donos de loja, outros artistas"></label>
-            <span class="lbl">Três pilares de conteúdo</span>
-            <div class="two"><label class="fld" for="p-p1">Pilar 1<input id="p-p1" value="Processo"></label><label class="fld" for="p-p2">Pilar 2<input id="p-p2" value="Bastidores"></label></div>
-            <div class="two"><label class="fld" for="p-p3">Pilar 3<input id="p-p3" value="Obra pronta"></label><label class="fld" for="p-freq">Posts por semana<select id="p-freq"><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label></div>
-            <label class="fld" for="p-dif">O que só você tem?<textarea id="p-dif" placeholder="Seu traço, sua história, seu jeito de trabalhar"></textarea></label>
+            <label class="fld" for="p-pub">Comunidade: com quem você fala?<input id="p-pub" placeholder="Ex.: quem ama arte urbana, leitores, mães criativas"></label>
+            <label class="fld" for="p-dif">Talento: o que só você tem?<textarea id="p-dif" placeholder="Seu traço, sua história, seu jeito de falar e de trabalhar"></textarea></label>
+            <div class="two"><label class="fld" for="p-ent">O que o público sente<select id="p-ent"><option>Conexão</option><option>Humor</option><option>Emoção</option><option>Intriga</option><option>Nostalgia</option><option>Satisfação</option></select></label><label class="fld" for="p-con">O que você apresenta<select id="p-con"><option>Processo</option><option>Educação</option><option>Narrativa</option><option>POV</option><option>Review</option><option>Entrevista</option><option>Exploração</option></select></label></div>
+            <div class="two"><label class="fld" for="p-trend">Trend que você consegue seguir<select id="p-trend"><option>Formato em alta</option><option>Áudio em alta</option><option>Modelo pronto</option></select></label><label class="fld" for="p-face">Você aparece?<select id="p-face"><option>Com rosto</option><option>Sem rosto</option></select></label></div>
+            <label class="fld" for="p-freq">Posts por semana<select id="p-freq"><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
             <div class="short"><button class="btn k" type="submit">Gerar calendário <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="pAI" hidden>Gerar com IA</button></div>
             <p class="note" id="pMsg" role="status" aria-live="polite">O calendário é montado a partir do seu canvas. Toque em um post para marcar como feito.</p>
           </form>
@@ -1065,6 +1100,7 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
             <div class="pstrat" id="pStrat"></div>
             <div class="sub"><h2 class="t">Calendário de <span class="w a">postagens</span></h2><span class="note">4 semanas</span></div>
             <div class="pcal" id="pCal"></div>
+            <details class="pchk" id="pChkW"><summary><b>Checklist antes de publicar</b><span class="note" id="pChkN"></span><i aria-hidden="true"></i></summary><div id="pChk"></div></details>
           </div>
         </div>
         </div></div>
@@ -2038,29 +2074,42 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
   const PFMT = ['Vídeo curto', 'Carrossel', 'Foto', 'Stories', 'Vídeo curto', 'Ao vivo'];
   const PIDEA = ['mostre o começo de um trabalho', 'responda uma dúvida que sempre te fazem', 'antes e depois', 'um erro que virou acerto', 'o material que você mais usa', 'um trabalho antigo e o que mudou', 'convide para algo que vai acontecer', 'conte quanto tempo levou', 'um detalhe que quase ninguém repara', 'quem te inspira e por quê', 'o lugar onde você cria', 'um pedido de cliente e como você resolveu'];
   S.plan = { posts: [], strat: '' };
-  const pCanvas = () => ({ obj: $('p-obj').value, pub: $('p-pub').value.trim() || 'quem pode contratar o seu trabalho', pil: [$('p-p1').value.trim() || 'Processo', $('p-p2').value.trim() || 'Bastidores', $('p-p3').value.trim() || 'Obra pronta'], freq: +$('p-freq').value, dif: $('p-dif').value.trim() });
+  const pCanvas = () => ({ obj: $('p-obj').value, pub: $('p-pub').value.trim() || 'quem pode contratar o seu trabalho', dif: $('p-dif').value.trim(), ent: $('p-ent').value, con: $('p-con').value, trend: $('p-trend').value, face: $('p-face').value === 'Com rosto', freq: +$('p-freq').value });
+  /* framework de conteúdo da CR1E.Coisas (Tami Lemos): formatos por tipo de conteúdo, ganchos por técnica, convite por objetivo */
+  const FW_FMT = { 'Processo': ['Processo criativo', 'Antes e depois', 'Bastidores'], 'Educação': ['Aprenda comigo', 'Passo a passo', 'Fala com fundo editado'], 'Narrativa': ['Contando história', 'Vlog'], 'POV': ['POV', 'Um dia na vida'], 'Review': ['React', 'Review de material'], 'Entrevista': ['Entrevista na rua', 'Pergunta e resposta'], 'Exploração': ['Explorando a cidade', 'Insights reflexivos'] };
+  const FW_NOFACE = ['Sem rosto + processo', 'Sem rosto + aprenda', 'Sem rosto + reflexão', 'Sem rosto + review'];
+  const FW_HOOK = [['Pergunta', (t) => `"Você já viu ${t} de perto?"`], ['Suspense', (t) => `"Espera até o final para ver ${t}."`], ['Surpresa', (t) => `Abra com o resultado e só depois mostre ${t}.`], ['Texto na tela', (t) => `Frase grande nos 3 primeiros segundos sobre ${t}.`], ['Dado', (t) => `Um número real seu sobre ${t} (tempo, tamanho, quantidade).`]];
+  const FW_TEMA = ['o começo de um trabalho', 'uma dúvida que sempre te fazem', 'um antes e depois', 'um erro que virou acerto', 'o material que você mais usa', 'um trabalho antigo e o que mudou', 'algo que vai acontecer', 'quanto tempo levou', 'um detalhe que quase ninguém repara', 'quem te inspira', 'o lugar onde você cria', 'um pedido de cliente e como você resolveu'];
+  const FW_CTA = { 'Atrair marcas': 'Convide marcas a chamar por mensagem.', 'Vender obras e serviços': 'Diga onde comprar ou encomendar.', 'Crescer a audiência': 'Peça para seguir e comentar.', 'Divulgar um evento ou lançamento': 'Convide com data e local.' };
+  const FW_CHECK = [['Edição e criatividade', ['Transições pensadas', 'Efeito ou filtro a favor da ideia', 'Áudio com energia', 'Texto na tela reforça a mensagem']], ['Estrutura do vídeo', ['Gancho prende em 1 a 3 segundos', 'Corpo entrega a mensagem', 'Encerramento com convite claro', 'Duração entre 15 e 60 segundos']], ['Som', ['Fala direta para a câmera ou narração', 'Música combina com o ritmo', 'Som liberado para uso', 'Voz audível, sem ruído']], ['Comunidade', ['Comunidade definida', 'Trend relevante incorporada', 'Seu talento aparece', 'Formato nativo, feito para a tela vertical']]];
   function planLocal() {
     const c = pCanvas(), slots = PSLOT[c.freq], posts = []; let n = 0;
-    for (let w = 0; w < 4; w++) slots.forEach((d) => { posts.push({ w, d, f: PFMT[n % PFMT.length], t: `${c.pil[n % 3]}: ${PIDEA[n % PIDEA.length]}`, done: false }); n++; });
-    S.plan = { posts, strat: `<b>Objetivo:</b> ${esc(c.obj.toLowerCase())}.<br><b>Público:</b> ${esc(c.pub)}.<br><b>Ritmo:</b> ${c.freq} posts por semana, sempre nos mesmos dias.<br><b>Pilares:</b> ${c.pil.map(esc).join(', ')}.` + (c.dif ? `<br><b>Diferencial:</b> ${esc(c.dif)}.` : '') + '<br><b>Regra:</b> cada post puxa um pilar e termina com um convite claro.' };
+    const main = c.face ? FW_FMT[c.con] : FW_NOFACE, others = c.face ? Object.keys(FW_FMT).filter((k) => k !== c.con).flatMap((k) => FW_FMT[k]) : FW_NOFACE;
+    for (let w = 0; w < 4; w++) slots.forEach((d) => { const f = n % 3 === 2 ? others[(n / 3 | 0) % others.length] : main[n % main.length], tema = FW_TEMA[n % FW_TEMA.length], hk = FW_HOOK[n % FW_HOOK.length];
+      posts.push({ w, d, f, t: `Mostre ${tema}.`, g: `${hk[0]}: ${hk[1](tema)}`, c: `${f}: mostre ${tema}, buscando ${c.ent.toLowerCase()}.`, e: FW_CTA[c.obj] || 'Termine com um convite claro.', done: false }); n++; });
+    S.plan = { posts, strat: `<b>Formato nativo:</b> vídeo vertical, pensado para a plataforma, com o som fazendo parte da ideia.<br><b>Comunidade:</b> ${esc(c.pub)}.<br><b>Talento:</b> ${esc(c.dif || 'escreva no canvas o que só você tem')}.<br><b>Trend:</b> ${esc(c.trend.toLowerCase())}; siga o que se repete na sua comunidade.<br><b>Estrutura:</b> gancho (1 a 3 s), corpo e encerramento com convite.<br><b>Fórmula:</b> ${esc(c.ent)} + ${esc(c.con)}, ${c.freq} posts por semana. Objetivo: ${esc(c.obj.toLowerCase())}.<br><b>Novidade familiar:</b> o familiar é a trend e o formato; a novidade é o seu talento.` };
   }
+  function chkDraw() { S.pChk = S.pChk || new Set(); const tot = FW_CHECK.reduce((a, g) => a + g[1].length, 0);
+    $('pChk').innerHTML = FW_CHECK.map(([g, its], gi) => `<span class="lbl">${g}</span>${its.map((t, i) => `<label class="pck"><input type="checkbox" data-pck="${gi}-${i}"${S.pChk.has(gi + '-' + i) ? ' checked' : ''}><span>${t}</span></label>`).join('')}`).join('');
+    $('pChkN').textContent = `${S.pChk.size} de ${tot}` + (S.pChk.size === tot ? ' · pronto para publicar' : ''); }
+  document.addEventListener('change', (e) => { const b = e.target.closest && e.target.closest('[data-pck]'); if (!b) return; b.checked ? S.pChk.add(b.dataset.pck) : S.pChk.delete(b.dataset.pck); chkDraw(); });
   function planDraw() {
     $('pStrat').innerHTML = S.plan.strat;
     const at = (w, d) => S.plan.posts.map((p, i) => [p, i]).filter(([p]) => p.w === w && p.d === d);
     if (!S.pSel || !at(S.pSel.w, S.pSel.d).length) { const f = S.plan.posts[0]; S.pSel = f ? { w: f.w, d: f.d } : null; }
     $('pCal').innerHTML = `<div class="cal2" role="grid" aria-label="Calendário de 4 semanas"><span></span>${PDAYS.map((d) => `<span class="cal2-h">${d}</span>`).join('')}${[0, 1, 2, 3].map((w) => `<span class="cal2-w" aria-label="Semana ${w + 1}">S${w + 1}</span>` + PDAYS.map((dn, d) => { const ps = at(w, d); if (!ps.length) return '<span class="cal2-d"></span>'; const done = ps.every(([p]) => p.done), sel = S.pSel && S.pSel.w === w && S.pSel.d === d; return `<button class="cal2-d on${done ? ' dn' : ''}" type="button" data-pd="${w},${d}" aria-pressed="${sel}" aria-label="Semana ${w + 1}, ${dn}: ${esc(ps.map(([p]) => p.f).join(', '))}${done ? ' (feito)' : ''}"><i></i><em>${esc(ps[0][0].f)}</em></button>`; }).join('')).join('')}</div>`
-      + (S.pSel ? `<div class="cal2-x"><span class="lbl">Semana ${S.pSel.w + 1} · ${PDAYS[S.pSel.d]}</span>${at(S.pSel.w, S.pSel.d).map(([p, i]) => `<div class="cal2-p${p.done ? ' dn' : ''}"><div><b>${esc(p.f)}</b><p>${esc(p.t)}</p></div><button class="pill s${p.done ? ' k' : ''}" type="button" data-pp="${i}" aria-pressed="${p.done}">${p.done ? 'Feito' : 'Marcar feito'}</button></div>`).join('')}</div>` : '');
+      + (S.pSel ? `<div class="cal2-x"><span class="lbl">Semana ${S.pSel.w + 1} · ${PDAYS[S.pSel.d]}</span>${at(S.pSel.w, S.pSel.d).map(([p, i]) => `<div class="cal2-p${p.done ? ' dn' : ''}"><div><b>${esc(p.f)}</b>${p.g ? `<dl class="gce"><dt>Gancho</dt><dd>${esc(p.g)}</dd><dt>Corpo</dt><dd>${esc(p.c)}</dd><dt>Encerramento</dt><dd>${esc(p.e)}</dd></dl>` : `<p>${esc(p.t)}</p>`}</div><button class="pill s${p.done ? ' k' : ''}" type="button" data-pp="${i}" aria-pressed="${p.done}">${p.done ? 'Feito' : 'Marcar feito'}</button></div>`).join('')}</div>` : '');
   }
   $('pForm').addEventListener('submit', (e) => { e.preventDefault(); planLocal(); planDraw(); $('pMsg').textContent = 'Calendário atualizado a partir do seu canvas.'; });
   document.addEventListener('click', (e) => { const c = e.target.closest('[data-pd]'); if (c) { const [w, d] = c.dataset.pd.split(',').map(Number); S.pSel = { w, d }; planDraw(); return; } const b = e.target.closest('[data-pp]'); if (!b) return; const p = S.plan.posts[+b.dataset.pp]; p.done = !p.done; planDraw(); });
   (async () => { let smp = null; try { smp = await window.claude?.use?.('sample'); } catch (err) {} if (!smp) return; const bt = $('pAI'); bt.hidden = false;
     bt.addEventListener('click', async () => { const c = pCanvas(); bt.disabled = true; $('pMsg').textContent = 'Gerando o planejamento…';
-      try { const r = await smp(`Você é estrategista de conteúdo para artistas. Monte um planejamento de 4 semanas em português do Brasil. Dados: objetivo "${c.obj}"; público "${c.pub}"; pilares ${c.pil.join(', ')}; ${c.freq} posts por semana; diferencial "${c.dif || 'não informado'}"; áreas e habilidades: ${S.sk.join(', ') || 'não informadas'}. Responda só com JSON válido, sem texto fora dele, no formato {"estrategia":"3 frases curtas","posts":[{"semana":1,"dia":"Seg","formato":"Vídeo curto","ideia":"até 12 palavras"}]}. Use dias entre Seg, Ter, Qua, Qui, Sex, Sáb, Dom e exatamente ${c.freq * 4} posts. Não cite nomes de redes sociais nem invente números.`);
-        const j = JSON.parse(r.text.slice(r.text.indexOf('{'), r.text.lastIndexOf('}') + 1)); const posts = (j.posts || []).map((p) => ({ w: Math.min(3, Math.max(0, (+p.semana || 1) - 1)), d: Math.max(0, PDAYS.indexOf(p.dia)), f: String(p.formato || 'Post').slice(0, 24), t: String(p.ideia || '').slice(0, 140), done: false })).filter((p) => p.t);
+      try { const r = await smp(`Você é estrategista de conteúdo para artistas e aplica o framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Os cinco pilares: (1) formato nativo: vídeo vertical feito para a plataforma, som como parte da ideia, 15 a 60 segundos; (2) comunidade: falar com uma subcultura específica, na linguagem e nos valores dela; (3) talento: a autenticidade e a identidade de quem cria; (4) trend: usar o que está em alta (áudio, formato ou modelo pronto) como molde; (5) estrutura: gancho de 1 a 3 segundos (pergunta, suspense, surpresa, texto na tela ou dado), corpo que entrega a mensagem e encerramento com um convite claro. Fórmula: comunidade certa + trend em alta + formato autêntico. Cada post combina uma emoção (o que o público sente) com um tipo de conteúdo (o que é apresentado). Regra da novidade familiar: o familiar é a trend e o formato; a novidade é o talento. Monte um planejamento de 4 semanas em português do Brasil. Dados: objetivo "${c.obj}"; comunidade "${c.pub}"; talento "${c.dif || 'não informado'}"; emoção principal "${c.ent}"; conteúdo principal "${c.con}"; trend "${c.trend}"; ${c.face ? 'aparece no vídeo' : 'não aparece no vídeo, use formatos sem rosto'}; ${c.freq} posts por semana; áreas e habilidades: ${S.sk.join(', ') || 'não informadas'}. Responda só com JSON válido, sem texto fora dele, no formato {"estrategia":"3 frases curtas","posts":[{"semana":1,"dia":"Seg","formato":"até 3 palavras","gancho":"até 14 palavras","corpo":"até 18 palavras","encerramento":"até 10 palavras"}]}. Use dias entre Seg, Ter, Qua, Qui, Sex, Sáb, Dom e exatamente ${c.freq * 4} posts. Não invente números nem cite marcas.`);
+        const j = JSON.parse(r.text.slice(r.text.indexOf('{'), r.text.lastIndexOf('}') + 1)); const posts = (j.posts || []).map((p) => ({ w: Math.min(3, Math.max(0, (+p.semana || 1) - 1)), d: Math.max(0, PDAYS.indexOf(p.dia)), f: String(p.formato || 'Post').slice(0, 28), t: String(p.corpo || p.ideia || '').slice(0, 160), g: String(p.gancho || '').slice(0, 160), c: String(p.corpo || p.ideia || '').slice(0, 200), e: String(p.encerramento || '').slice(0, 120), done: false })).filter((p) => p.t);
         if (!posts.length) throw new Error('vazio'); S.plan = { posts, strat: esc(String(j.estrategia || '')) + '<br><b>Gerado com IA:</b> revise antes de usar.' }; planDraw(); $('pMsg').textContent = 'Planejamento gerado com IA. Revise e ajuste ao seu jeito.'; }
       catch (err) { $('pMsg').textContent = 'Não consegui gerar com IA agora. O calendário do canvas continua disponível.'; }
       bt.disabled = false; }); })();
-  planLocal(); planDraw();
+  planLocal(); planDraw(); chkDraw();
   /* ---------- versão de teste ---------- */
   const KEY = 'cr1e-collab-teste';
   function save() { const o = { name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, avatar: S.avatar, fotos: S.fotos, seen: [...S.seen], fb: S.fb, in: !document.getElementById('gate') || gate.classList.contains('go') }; try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (err) { try { localStorage.setItem(KEY, JSON.stringify({ ...o, avatar: '', fotos: ['', '', ''] })); } catch (er) {} } }
@@ -2098,6 +2147,7 @@ button.hd:focus-visible{outline:2px solid var(--preto);outline-offset:2px}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Liberado durante o teste": "Open during the test", "Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.": "CR1E.Coisas content framework, created by Tami Lemos. Five pillars: native format, community, talent, trend and structure.", "Comunidade: com quem você fala?": "Community: who do you talk to?", "Talento: o que só você tem?": "Talent: what do only you have?", "O que o público sente": "What the audience feels", "O que você apresenta": "What you present", "Trend que você consegue seguir": "Trend you can follow", "Você aparece?": "Do you appear?", "Com rosto": "On camera", "Sem rosto": "Faceless", "Formato em alta": "Trending format", "Áudio em alta": "Trending audio", "Modelo pronto": "Ready-made template", "Checklist antes de publicar": "Pre-publish checklist", "Gancho": "Hook", "Corpo": "Body", "Encerramento": "Closing",
     "Marcar feito": "Mark done", "Feito": "Done",
     "Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis.": "No one else around for now. You have seen every profile.", "Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.": "No one here yet. Profiles of people who join the test show up here for you to follow.",
     "Ver o seu perfil": "View your profile",
