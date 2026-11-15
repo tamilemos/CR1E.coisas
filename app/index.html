@@ -947,22 +947,48 @@ html[data-theme="dark"] .edx.big{box-shadow:6px 6px 0 var(--verde)}
 html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px 8px 0 var(--verde)}
 .fbody[data-tool="orc"]{color-scheme:light}
 .fbody[data-tool="orc"] input,.fbody[data-tool="orc"] select,.fbody[data-tool="orc"] textarea{color:#0E0E0C}
+
+/* entrada: logo maior e com respiro, título em uma linha */
+.login .lg{font-size:clamp(28px,8.4vw,34px);padding:16px 0 20px;margin-bottom:6px}
+.login h1.one{font-size:clamp(19px,5.6vw,24px);text-align:left}
+.login h1.one .ln{display:block;white-space:nowrap}
+.login.s2 .lg{font-size:22px;padding:6px 0 12px}
+.login.s2 h1.one{font-size:18px}
+.okc .lnk{display:inline;padding:0;text-align:left;font-size:inherit}
+/* termos */
+dialog.terms{width:min(560px,calc(100vw - 20px))}
+.tm-b{padding:22px 20px 20px;display:flex;flex-direction:column;gap:12px}
+.tm-s{max-height:min(46dvh,420px);overflow:auto;border:1.5px solid var(--preto);padding:4px 14px 12px;background:var(--branco)}
+.tm-s h3{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:11px;margin:14px 0 4px}
+.tm-s p{margin:0;font-size:12.5px;line-height:1.55}
+.tm-s:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
+/* painel do início mais compacto: cerca de metade da tela */
+.hello{gap:10px}
+.hi{padding:14px 16px;gap:10px;min-height:0}
+.hi h1{font-size:clamp(30px,3.6vw,46px);display:flex;flex-wrap:wrap;gap:0 .25em;align-items:baseline}
+.hi h1 .ln{display:inline}
+.kp{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.kp div{padding:9px 9px 10px;min-height:0;gap:6px}
+.kp .lbl{font-size:8px;letter-spacing:0;line-height:1.25}
+.kp b{font-size:clamp(20px,2.6vw,34px)}
+@media(min-width:820px){.hello{grid-template-columns:1fr 1fr}.kp{grid-template-columns:1fr 1fr}.kp .lbl{font-size:10px;letter-spacing:.08em}}
+.login{max-height:calc(100dvh - 130px)}
 </style>
 
 <div class="gate" id="gate">
   <form class="login card sh" id="login" novalidate><div style="display:flex;justify-content:flex-end;margin:-8px -8px -6px 0"><button type="button" class="thm lng" data-langt translate="no">PT</button><button type="button" class="thm" data-thm aria-label="Tema escuro" title="Tema escuro"><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button></div>
     <span class="lg" aria-label="CR1E.Collab">CR1E<span class="co">.c<span class="o"></span>llab</span></span>
-    <h1 class="t"><span class="ln">A rede de quem</span><span class="ln"><span class="w a">cria</span></span></h1>
+    <h1 class="t one"><span class="ln">A rede de quem <span class="w a">cria</span></span></h1>
     <div class="seg" role="group" aria-label="Tipo de conta"><button type="button" data-role="artista" aria-pressed="true">Sou artista</button><button type="button" data-role="empresa" aria-pressed="false">Sou empresa</button></div>
     <div id="st1" style="display:flex;flex-direction:column;gap:10px"><span class="lbl" id="obS1">Passo 1 de 5</span><label class="fld" for="lg-n" id="lgNw"><b class="obq">Como te chamam?</b><input id="lg-n" autocomplete="name" placeholder="Seu nome ou o da empresa"></label><div class="loc2"><label class="fld" for="lg-uf">Estado<select id="lg-uf"></select></label><label class="fld" for="lg-cid">Cidade<input id="lg-cid" autocomplete="address-level2" placeholder="De onde você é"></label></div></div>
     <div id="stL" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl">Entrar</span><b class="obq">Bom te ver de novo</b><label class="fld" for="lg-le"><b class="obq">E-mail</b><input id="lg-le" type="email" inputmode="email" autocomplete="username" placeholder="voce@email.com"></label><label class="fld" for="lg-lp"><b class="obq">Senha</b><input id="lg-lp" type="password" autocomplete="current-password" placeholder="Sua senha"></label><button type="button" class="lnk" id="lgForgot">Esqueci minha senha</button></div>
-    <div id="stA" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl" id="obSA"></span><b class="obq">Crie o seu acesso</b><span class="note">Com e-mail e senha você volta direto para o app nas próximas vezes. Vamos mandar um e-mail para confirmar que ele é seu.</span><label class="fld" for="lg-e"><b class="obq">E-mail</b><input id="lg-e" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"></label><label class="fld" for="lg-p"><b class="obq">Crie uma senha</b><input id="lg-p" type="password" autocomplete="new-password" placeholder="Pelo menos 6 caracteres"></label><label class="okc" id="lgCw"><input type="checkbox" id="lg-c"><span>Concordo que a CR1E.Coisas guarde os meus dados (nome, e-mail, perfil e fotos) para este teste. Meu perfil fica visível para quem participa do teste.</span></label></div>
+    <div id="stA" style="display:flex;flex-direction:column;gap:10px" hidden><span class="lbl" id="obSA"></span><b class="obq">Crie o seu acesso</b><span class="note">Com e-mail e senha você volta direto para o app nas próximas vezes. Vamos mandar um e-mail para confirmar que ele é seu.</span><label class="fld" for="lg-e"><b class="obq">E-mail</b><input id="lg-e" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"></label><label class="fld" for="lg-p"><b class="obq">Crie uma senha</b><input id="lg-p" type="password" autocomplete="new-password" placeholder="Pelo menos 6 caracteres"></label><label class="okc" id="lgCw"><input type="checkbox" id="lg-c"><span>Li e aceito os <button type="button" class="lnk" data-terms>Termos de uso e a Política de privacidade (LGPD)</button></span></label></div>
     <div class="ob" id="st2" hidden><span class="lbl" id="obS"></span><b class="obq" id="obQ"></b><span class="note" id="obH" style="display:block;margin-top:4px"></span><div id="obP" style="margin-top:10px"></div></div>
     <span class="note" id="lgErr" role="alert" style="color:var(--preto);font-weight:700"></span>
     <button class="btn k" type="submit" id="lgBtn" style="justify-content:center">Começar <span class="arr" aria-hidden="true">→</span></button>
     <div class="have"><span class="note" id="lgHaveT">Já tem conta?</span><button type="button" class="lnk" id="lgHave">Já tenho senha</button></div>
     <button type="button" class="lnk" id="lgFeed" style="align-self:center">Ler o feed sem login →</button>
-    <p class="note">Versão de teste. A sua conta e o seu perfil ficam guardados com segurança pela CR1E.Coisas apenas para este teste. Jobs e aulas entram pela curadoria.</p>
+    <p class="note">Versão de teste. Jobs e aulas entram pela curadoria. <button type="button" class="lnk" data-terms>Termos de uso e privacidade</button></p>
   </form>
 </div>
 
@@ -1310,6 +1336,23 @@ html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px
 
 <dialog class="gal" id="gal" aria-label="Galeria do portfólio"><div class="gal-b"><div class="gal-h"><span class="lbl" id="galN"></span><button class="x" type="button" id="galX" aria-label="Fechar">×</button></div><div class="gal-f" id="galF"><img id="galI" alt=""></div><div class="gal-c"><button class="gar" type="button" id="galP" aria-label="Foto anterior">←</button><p class="gal-cap" id="galCap"></p><input class="gal-cap" id="galCapI" maxlength="120" placeholder="Escreva uma legenda" aria-label="Legenda da foto" hidden><button class="gar" type="button" id="galNx" aria-label="Próxima foto">→</button></div></div></dialog>
 <dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
+<dialog class="sheet terms" id="terms" aria-labelledby="tm-t"><button class="x" type="button" id="tmX" aria-label="Fechar">×</button>
+  <div class="tm-b"><span class="lbl">Versão de teste · atualizado em 15 de novembro de 2026</span><h2 class="t" id="tm-t" style="font-size:30px"><span class="w a">Termos</span> de uso e privacidade</h2>
+  <div class="tm-s" tabindex="0">
+    <h3>1. Quem cuida dos seus dados</h3><p>O CR1E.Collab é um aplicativo da CR1E.Coisas, que é a responsável (controladora) pelos dados pessoais tratados aqui, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+    <h3>2. Versão de teste</h3><p>O aplicativo está em fase de teste. Funções podem mudar, ficar fora do ar ou ser encerradas. Jobs e aulas entram pela curadoria da CR1E.Coisas.</p>
+    <h3>3. Dados que coletamos</h3><p>Nome, e-mail e senha de acesso (a senha fica protegida e não é visível para nós); cidade e estado; áreas de atuação, habilidades, gostos, bio e links; foto de perfil, capa e fotos de portfólio com legendas; publicações, respostas, tópicos do fórum e mensagens; quem você segue; e respostas dadas no teste.</p>
+    <h3>4. Para que usamos</h3><p>Para criar e manter a sua conta, mostrar o seu perfil na rede, conectar artistas entre si e a oportunidades, enviar avisos do aplicativo e melhorar o produto durante o teste. A base legal é o seu consentimento e a execução do serviço que você pediu.</p>
+    <h3>5. O que fica visível</h3><p>O seu perfil, as suas fotos e as suas publicações ficam visíveis para as pessoas que participam do teste. As mensagens ficam visíveis para quem participa da conversa; elas não têm criptografia de ponta a ponta e podem ser acessadas pela administração do aplicativo para segurança e suporte.</p>
+    <h3>6. Onde os dados ficam</h3><p>Em serviços do Google (Firebase e Google Drive), com conexão criptografada. Esses servidores podem ficar fora do Brasil.</p>
+    <h3>7. Compartilhamento</h3><p>Não vendemos os seus dados. Só compartilhamos com os serviços necessários para o aplicativo funcionar e quando a lei exigir. Empresas não recebem a sua lista de contatos nem os seus dados de acesso.</p>
+    <h3>8. Seus direitos</h3><p>Você pode pedir acesso, correção, portabilidade ou exclusão dos seus dados e retirar o seu consentimento a qualquer momento, pelos canais de contato da CR1E.Coisas em cr1e.co. Ao excluir a conta, os seus dados são apagados, salvo o que a lei obrigar a manter.</p>
+    <h3>9. Regras de uso</h3><p>O aplicativo é destinado a maiores de 18 anos. Publique apenas conteúdo que seja seu ou que você tenha direito de usar. Não é permitido assédio, discriminação, spam, golpes nem conteúdo ilegal. Contas que descumprirem estas regras podem ser suspensas.</p>
+    <h3>10. O seu trabalho continua seu</h3><p>Você mantém todos os direitos sobre o que publica. Ao publicar, você autoriza a CR1E.Coisas a exibir esse conteúdo dentro do aplicativo. Qualquer outro uso depende da sua autorização.</p>
+    <h3>11. Mudanças</h3><p>Se estes termos mudarem de forma relevante, avisaremos no aplicativo e pediremos um novo aceite.</p>
+  </div>
+  <label class="okc" id="tmCw"><input type="checkbox" id="tm-c"><span>Li e aceito os Termos de uso e a Política de privacidade.</span></label>
+  <button class="btn k" type="button" id="tmOk" style="justify-content:center" disabled>Aceitar e continuar <span class="arr" aria-hidden="true">→</span></button></div></dialog>
 <dialog class="sheet" id="sheet" aria-labelledby="sh-t"><button class="x" type="button" id="shX" aria-label="Fechar">×</button><div id="shBody"></div></dialog>
 
 <script src="config.js"></script>
@@ -1455,7 +1498,7 @@ html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px
     const em = $('lg-e').value.trim(), pw = $('lg-p').value;
     if (!/^\S+@\S+\.\S+$/.test(em)) return bad('Escreva um e-mail válido.', $('lg-e'));
     if (pw.length < 6) return bad('A senha precisa ter pelo menos 6 caracteres.', $('lg-p'));
-    if (!$('lg-c').checked) return bad('Para criar a conta, marque que você concorda com o uso dos dados no teste.', $('lg-c'));
+    if (!$('lg-c').checked) { termsOpen(true); return; }
     const R = await window.CR1E_READY; if (!R.A) return bad('O login está em manutenção. Tente de novo em alguns minutos.');
     nextBtn.disabled = true; $('lgErr').textContent = 'Criando a sua conta…';
     try { await R.A.signUp(S.name, em, pw); } catch (er) { nextBtn.disabled = false; return bad(R.A.msg(er)); }
@@ -1567,6 +1610,12 @@ html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px
   document.querySelectorAll('.top .lg, .side .lg').forEach((l) => { l.setAttribute('role', 'link'); l.tabIndex = 0; l.setAttribute('aria-label', 'CR1E.Collab, início'); l.addEventListener('keydown', (e) => { if (e.key === 'Enter') l.click(); }); });
   document.addEventListener('click', (e) => { const s = e.target.closest('.av[data-art]'); if (!s) return; e.preventDefault(); e.stopPropagation(); const k = s.dataset.art; if (k === myUid() || k === S.name) { go('perfil'); return; } if (!findArt(k)) { toast('Não encontrei esse perfil agora. Tente de novo em instantes.'); return; } S.aid = k; artistas(); go('artista'); }, true);
   document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('.av[data-art]')) e.target.click(); });
+  let tmGo = false;
+  function termsOpen(go) { tmGo = !!go; $('tm-c').checked = $('lg-c').checked; $('tmOk').disabled = !$('tm-c').checked; $('tmCw').hidden = $('tmOk').hidden = !document.getElementById('gate'); const d = $('terms'); if (!d.open) d.showModal(); d.querySelector('.tm-s').scrollTop = 0; }
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-terms]')) { e.preventDefault(); termsOpen(false); } });
+  $('tm-c').addEventListener('change', () => { $('tmOk').disabled = !$('tm-c').checked; });
+  $('tmX').addEventListener('click', () => $('terms').close());
+  $('tmOk').addEventListener('click', () => { $('lg-c').checked = true; $('terms').close(); if (tmGo) $('login').requestSubmit(); });
   /* movimento: faixas e títulos */
   { const TK = ['A rede de quem cria', 'Jobs com marcas', 'Editais abertos', 'Fórum da rede', 'Aulas de quem vive de arte', 'Artistas primeiro'];
     $('tick').innerHTML = Array(4).fill(TK.map((t, i) => `<span>${t}</span><i${i % 2 ? ' class="f"' : ''}></i>`).join('')).join('');
@@ -2155,6 +2204,7 @@ html[data-theme="dark"] .fbody[data-tool="orc"]{border-color:#fff;box-shadow:8px
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Aceitar e continuar": "Accept and continue", "Li e aceito os Termos de uso e a Política de privacidade.": "I have read and accept the Terms of use and the Privacy policy.", "Termos de uso e privacidade": "Terms of use and privacy", "Termos de uso e a Política de privacidade (LGPD)": "Terms of use and Privacy policy (LGPD)", "Li e aceito os": "I have read and accept the",
     "A IA ainda não foi ativada para este app. Por enquanto, use Gerar calendário: ele já segue o framework.": "AI is not enabled for this app yet. For now, use Generate calendar: it already follows the framework.",
     "Liberado durante o teste": "Open during the test", "Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.": "CR1E.Coisas content framework, created by Tami Lemos. Five pillars: native format, community, talent, trend and structure.", "Comunidade: com quem você fala?": "Community: who do you talk to?", "Talento: o que só você tem?": "Talent: what do only you have?", "O que o público sente": "What the audience feels", "O que você apresenta": "What you present", "Trend que você consegue seguir": "Trend you can follow", "Você aparece?": "Do you appear?", "Com rosto": "On camera", "Sem rosto": "Faceless", "Formato em alta": "Trending format", "Áudio em alta": "Trending audio", "Modelo pronto": "Ready-made template", "Checklist antes de publicar": "Pre-publish checklist", "Gancho": "Hook", "Corpo": "Body", "Encerramento": "Closing",
     "Marcar feito": "Mark done", "Feito": "Done",
