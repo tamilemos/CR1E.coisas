@@ -1124,6 +1124,32 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 .win .gar{width:40px;height:auto;min-height:40px;border-radius:0;border:2px solid var(--preto);background:var(--papel);color:var(--preto);font-family:var(--mono);font-weight:700}
 .win .gar:hover,.win .gar:focus-visible{background:var(--verde);color:#0E0E0C;border-color:var(--preto)}
 .win .gar[hidden]{display:none}
+.st-arts{display:flex;align-items:center;gap:6px;justify-content:center;margin-top:12px}
+.st-arts[hidden]{display:none}
+.st-arts .pill{cursor:pointer;min-width:34px;justify-content:center}
+
+/* perfil: currículo, media kit e links como blocos principais */
+.pv-docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:2px solid var(--preto);margin-top:4px}
+.pvd{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:3px;padding:10px 10px 12px;min-width:0;position:relative;border-left:2px solid var(--preto);background:var(--branco)}
+.pvd:first-child{border-left:0}
+.pvd .lbl{font-size:8.5px;letter-spacing:.06em}
+.pvd b{font-family:var(--display);font-weight:800;font-stretch:62%;text-transform:uppercase;font-size:clamp(20px,5.6vw,26px);line-height:1}
+.pvd .note{font-size:10px}
+.pvd i{display:block;width:26px;height:11px;border:2px solid var(--preto);border-radius:999px;margin-top:6px;transition:width .4s var(--spring),background .2s}
+.pvd[aria-expanded="true"]{--preto:#0E0E0C;--verde:#C5FF3D;background:#C5FF3D;color:#0E0E0C;border-left-color:var(--fg)}
+.pvd[aria-expanded="true"] .lbl,.pvd[aria-expanded="true"] .note{color:#0E0E0C}
+.pvd[aria-expanded="true"] i{width:11px;background:#0E0E0C}
+.pvd:focus-visible{outline:3px solid var(--preto);outline-offset:-3px}
+.pv-docs[hidden]{display:none}
+.pv-docs+.pv-cv,.pv-docs~.pv-cv{border:2px solid var(--preto);border-top:0;padding:12px;margin-top:-14px;display:flex;flex-direction:column;gap:8px}
+.pv-docs~.pv-cv[hidden]{display:none}
+.pvl{display:grid;grid-template-columns:1fr auto;gap:0 10px;align-items:center;padding:8px 0;border-top:1px solid var(--cinza);text-decoration:none;color:inherit}
+.pvl:first-child{border-top:0}
+.pvl b{font-family:var(--mono);font-size:13px}
+.pvl .note{grid-column:1;font-size:10.5px;overflow-wrap:anywhere}
+.pvl .arr{grid-row:1/3;grid-column:2}
+#pvKitP .kit h2{font-size:clamp(34px,9vw,56px)}
+.kit .lg .co{background:none;padding:0}
 </style>
 
 <div class="gate" id="gate">
@@ -1500,8 +1526,15 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
               <div class="pv-port" id="pvPort"></div>
               <div class="pv-posts" id="pvPostsW"><span class="pv-l">Publicações</span><div class="plist2" id="pvPosts"></div></div>
               <div class="pv-net" id="pvNet"><div class="netc" id="netC"></div><div class="seg" role="group" aria-label="Listas da rede"><button type="button" data-nt="in" aria-pressed="true">Seguidores</button><button type="button" data-nt="out" aria-pressed="false">Seguindo</button></div><div class="reqs" id="netL"></div></div>
+              <div class="pv-docs" role="group" aria-label="Currículo, media kit e links">
+                <button class="pvd" type="button" data-pvd="cv" aria-expanded="false"><span class="lbl">Trajetória</span><b>Currículo</b><span class="note" id="pvdCv"></span><i aria-hidden="true"></i></button>
+                <button class="pvd" type="button" data-pvd="kit" aria-expanded="false"><span class="lbl">Para marcas</span><b>Media kit</b><span class="note" id="pvdKit">Ver prévia</span><i aria-hidden="true"></i></button>
+                <button class="pvd" type="button" data-pvd="lk" aria-expanded="false"><span class="lbl">Na internet</span><b>Links</b><span class="note" id="pvdLk"></span><i aria-hidden="true"></i></button>
+              </div>
               <div class="pv-cv" id="pvCv" hidden></div>
-              <div class="pf-acts"><button class="pill s" type="button" id="pvCvB">Ver currículo →</button><button class="pill s k" type="button" id="pvEdit">Editar perfil →</button><a class="pill s" href="#config">Configurações</a></div>
+              <div class="pv-cv" id="pvKitP" hidden></div>
+              <div class="pv-cv" id="pvLkP" hidden></div>
+              <div class="pf-acts"><button class="pill s k" type="button" id="pvEdit">Editar perfil →</button><a class="pill s" href="#config">Configurações</a></div>
             </div>
             <div id="pfArt" hidden>
               <div class="sub" style="margin:0"><h2 class="t" style="font-size:28px"><span class="w a">Editar</span> perfil</h2><button class="pill s k" type="button" id="pvSave">Salvar</button></div>
@@ -1544,7 +1577,7 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 <nav class="tab" id="tabNav" aria-label="App"></nav>
 
 <dialog class="gal" id="gal" aria-label="Galeria do portfólio"><div class="win" id="galW"><div class="win-bar"><span class="win-t" id="galN"></span><span class="win-c"><button type="button" id="galMin" aria-label="Minimizar">–</button><button type="button" id="galMax" aria-label="Expandir">□</button><button type="button" id="galX" aria-label="Fechar">×</button></span></div><div class="win-body"><div class="gal-f" id="galF"><img id="galI" alt=""></div><div class="win-st"><button class="gar" type="button" id="galP" aria-label="Foto anterior">←</button><div class="win-cap"><p class="gal-cap" id="galCap"></p><input class="gal-cap" id="galCapI" maxlength="120" placeholder="Escreva uma legenda" aria-label="Legenda da foto" hidden></div><button class="gar" type="button" id="galNx" aria-label="Próxima foto">→</button></div></div></div></dialog>
-<dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
+<dialog class="story" id="story" aria-labelledby="stT"><button class="x" type="button" id="stX" aria-label="Fechar">×</button><h2 id="stT">Compartilhar nos stories</h2><canvas id="stC" width="1080" height="1920" role="img" aria-label="Prévia da imagem para os stories"></canvas><div class="st-arts" id="stArts" role="group" aria-label="Escolher a arte" hidden><span class="lbl">Arte</span><button class="pill s" type="button" data-art-n="0">1</button><button class="pill s" type="button" data-art-n="1">2</button><button class="pill s" type="button" data-art-n="2">3</button></div><div class="acts3"><button class="btn k" type="button" id="stShare">Compartilhar <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="stSave">Baixar imagem</button><button class="btn ln" type="button" id="stLink">Copiar link do app</button></div><span class="note" id="stN">A imagem tem o formato dos stories (1080 × 1920). Depois de compartilhar, você pode colar o link do app como figurinha de link.</span></dialog>
 <dialog class="sheet terms" id="delD" aria-labelledby="del-t"><button class="x" type="button" id="delX" aria-label="Fechar">×</button>
   <form class="tm-b" id="delF"><h2 class="t" id="del-t" style="font-size:30px">Excluir a <span class="w a">conta</span></h2>
   <p style="margin:0;font-size:14px;line-height:1.55">Isso apaga de vez o seu acesso, o seu perfil, as suas fotos e as suas publicações no CR1E.Collab. Não dá para desfazer.</p>
@@ -1828,6 +1861,29 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
     const box = (bx, by, bw, bh, fill, sh = 18) => { x.fillStyle = K; x.fillRect(bx + sh, by + sh, bw, bh); x.fillStyle = fill; x.fillRect(bx, by, bw, bh); x.lineWidth = 8; x.strokeStyle = K; x.strokeRect(bx, by, bw, bh); };
     const pill = (px, py, pw, ph, col, lw) => { x.lineWidth = lw; x.strokeStyle = col; x.beginPath(); x.roundRect(px, py, pw, ph, ph / 2); x.stroke(); };
     x.textBaseline = 'alphabetic'; x.textAlign = 'left';
+    const logoAt = (lx, by, px, c1, c2) => { x.textAlign = 'left'; x.font = F(900, 'expanded', px); x.fillStyle = c1; x.fillText('CR1E', lx, by); lx += x.measureText('CR1E').width + px * .08; x.font = F(900, 'expanded', px * .67); x.fillStyle = c2; x.fillText('.c', lx, by); lx += x.measureText('.c').width + px * .07; const pw = px * .97, ph = px * .36; pill(lx, by - ph, pw, ph, c2, px * .105); lx += pw + px * .1; x.fillText('llab', lx, by); return lx + x.measureText('llab').width; };
+    const cta = (cy, bg, fg) => { x.fillStyle = bg; x.beginPath(); x.roundRect(80, cy, 920, 150, 75); x.fill(); x.font = F(900, 'expanded', 50); x.fillStyle = fg; x.textAlign = 'center'; x.fillText('ENTRE: ' + APP_TXT.toUpperCase(), W / 2, cy + 93); x.textAlign = 'left'; };
+    if (o.kind !== 'post' && o.art === 1) {
+      /* arte 2: as faixas da abertura, com um convite no meio */
+      const bh = H / 8; for (let i = 0; i < 8; i++) { const on = i % 2 === 0; x.fillStyle = on ? G : K; x.fillRect(0, i * bh, W, bh); let lx = -((i * 190) % 620) - 60; while (lx < W) lx = logoAt(lx, i * bh + bh * .72, 150, on ? K : G, on ? K : G) + 70; }
+      x.save(); x.translate(W / 2, 960); x.rotate(-3 * Math.PI / 180); x.fillStyle = K; x.fillRect(-430 + 20, -470 + 20, 860, 940); x.fillStyle = PA; x.fillRect(-430, -470, 860, 940); x.lineWidth = 8; x.strokeStyle = K; x.strokeRect(-430, -470, 860, 940);
+      x.textAlign = 'left'; x.fillStyle = K; x.font = MO(32, true); x.fillText('CONVITE', -374, -392);
+      x.font = F(800, 'extra-condensed', 176); x.fillText('VEM CRIAR', -374, -222); x.fillText('COM A', -374, -62);
+      let gf = 150; x.font = F(900, 'expanded', gf); while (x.measureText('GENTE').width > 700 && gf > 50) { gf -= 4; x.font = F(900, 'expanded', gf); } const gw = x.measureText('GENTE').width; x.fillStyle = G; x.fillRect(-374, -22, gw + 40, gf * 1.14); x.fillStyle = K; x.fillText('GENTE', -354, -22 + gf * .92);
+      x.font = MO(38); wrap('A rede de quem cria: artistas, jobs, editais e aulas.', 740, 3).forEach((l, i) => x.fillText(l, -374, 232 + i * 54));
+      if (o.name) { x.font = MO(32, true); x.fillText(wrap(`${o.name} já está lá.`, 740, 1)[0], -374, 342); }
+      x.fillStyle = K; x.beginPath(); x.roundRect(-374, 366, 748, 80, 40); x.fill(); x.font = F(900, 'expanded', 36); x.fillStyle = G; x.textAlign = 'center'; x.fillText(APP_TXT.toUpperCase(), 0, 420); x.restore(); return;
+    }
+    if (o.kind !== 'post' && o.art === 2) {
+      /* arte 3: fundo preto, artistas primeiro */
+      x.fillStyle = K; x.fillRect(0, 0, W, H); logoAt(80, 330, 84, PA, G);
+      x.fillStyle = PA; let af = 330; x.font = F(800, 'extra-condensed', af); while (x.measureText('ARTISTAS').width > 920 && af > 120) { af -= 6; x.font = F(800, 'extra-condensed', af); } x.fillText('ARTISTAS', 80, 700);
+      let pf = 170; x.font = F(900, 'expanded', pf); while (x.measureText('PRIMEIRO').width > 880 && pf > 60) { pf -= 4; x.font = F(900, 'expanded', pf); } const pw2 = x.measureText('PRIMEIRO').width; x.fillStyle = G; x.fillRect(80, 740, pw2 + 40, pf * 1.12); x.fillStyle = K; x.fillText('PRIMEIRO', 100, 740 + pf * .9);
+      const y0 = 740 + pf * 1.12 + 130; x.font = MO(46); ['Rede de quem cria', 'Jobs com marcas', 'Editais abertos', 'Aulas de quem vive de arte'].forEach((t, i) => { const ly = y0 + i * 96; if (i % 2) { x.fillStyle = G; x.beginPath(); x.roundRect(80, ly - 34, 78, 34, 17); x.fill(); } else pill(84, ly - 30, 70, 26, G, 8); x.fillStyle = PA; x.fillText(t, 190, ly); });
+      x.strokeStyle = PA; x.lineWidth = 4; x.beginPath(); x.moveTo(80, y0 + 4 * 96 - 20); x.lineTo(1000, y0 + 4 * 96 - 20); x.stroke();
+      if (o.name) { x.font = MO(36, true); x.fillStyle = G; x.fillText(wrap(`${o.name} te chamou. Vem também.`, 920, 1)[0], 80, y0 + 4 * 96 + 60); }
+      cta(1480, G, K); x.font = MO(32); x.fillStyle = PA; x.textAlign = 'center'; x.fillText('Human generated, human connected.', W / 2, 1700); x.textAlign = 'left'; return;
+    }
     x.fillStyle = G; x.fillRect(0, 0, W, H);
     x.fillStyle = 'rgba(14,14,12,.10)'; for (let yy = 24; yy < H; yy += 40) for (let xx = 24; xx < W; xx += 40) { x.beginPath(); x.arc(xx, yy, 3.2, 0, 7); x.fill(); }
     /* faixa preta com o logo (abaixo da área dos ícones do story) */
@@ -1856,7 +1912,9 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
     x.font = MO(34); x.fillStyle = K; x.fillText('Human generated, human connected.', W / 2, y + 230); x.textAlign = 'left'; x.restore();
   }
   let stCur = null;
-  async function storyOpen(o) { stCur = o; const dg = $('story'); if (!dg.open) dg.showModal(); await storyDraw(o); }
+  const stArtUI = () => { const inv = stCur && stCur.kind !== 'post'; $('stArts').hidden = !inv; document.querySelectorAll('[data-art-n]').forEach((b) => { const on = +b.dataset.artN === ((stCur && stCur.art) || 0); b.setAttribute('aria-pressed', String(on)); b.classList.toggle('k', on); }); };
+  async function storyOpen(o) { stCur = o; const dg = $('story'); if (!dg.open) dg.showModal(); stArtUI(); await storyDraw(o); }
+  $('stArts').addEventListener('click', async (e) => { const b = e.target.closest('[data-art-n]'); if (!b || !stCur) return; stCur.art = +b.dataset.artN; stArtUI(); await storyDraw(stCur); });
   const stBlob = () => new Promise((ok) => $('stC').toBlob(ok, 'image/png'));
   const stDown = async () => { const bl = await stBlob(); const a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'cr1e-collab-story.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Imagem baixada. Abra os stories e escolha a imagem.'); };
   $('stX').addEventListener('click', () => $('story').close());
@@ -2256,11 +2314,15 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
     $('pvHb').innerHTML = tagHTML(S.hb, 'hb'); $('pvHb').parentElement.hidden = emp;
     const bio = (S.cvBio || '').trim(); $('pvBio').textContent = bio || (emp ? '' : 'Escreva a sua mini bio em Editar perfil.'); $('pvBio').classList.toggle('none', !bio); $('pvBio').hidden = emp && !bio;
     const fs = (S.fotos || []).filter(Boolean); $('pvPort').innerHTML = galThumbs(S.fotos, S.caps, 'me'); $('pvPort').hidden = emp || !fs.length;
-    $('pvCvB').hidden = emp;
+    document.querySelector('.pv-docs').hidden = emp;
     $('pvCv').innerHTML = (S.cv.length ? [...S.cv].sort((a, b) => String(b.a).localeCompare(String(a.a))).map((c) => `<div class="cvr"><b>${esc(c.a)}</b><span><b>${esc(c.t)}</b>${c.o ? `<br><span class="note">${esc(c.o)}</span>` : ''}</span></div>`).join('') : '<p class="note" style="margin:0">Nenhuma experiência no currículo ainda.</p>')
-      + (S.links.length ? '<span class="pv-l" style="margin-top:6px">Links</span>' + S.links.map((l) => `<a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(l.n)} ↗</a>`).join('') : '');
+;
+    $('pvLkP').innerHTML = S.links.length ? S.links.map((l) => `<a class="pvl" href="${esc(l.u)}" target="_blank" rel="noopener"><b>${esc(l.n)}</b><span class="note">${esc(l.u.replace(/^https?:\/\//, ''))}</span><span class="arr" aria-hidden="true">↗</span></a>`).join('') : '<p class="note" style="margin:0">Nenhum link ainda. Adicione em Editar perfil.</p>';
+    $('pvdCv').textContent = S.cv.length ? `${S.cv.length} ${S.cv.length === 1 ? 'experiência' : 'experiências'}` : 'Ainda vazio'; $('pvdLk').textContent = S.links.length ? `${S.links.length} ${S.links.length === 1 ? 'link' : 'links'}` : 'Ainda vazio'; pvdDraw();
   }
-  $('pvCvB').addEventListener('click', () => { const h = !$('pvCv').hidden; $('pvCv').hidden = h; $('pvCvB').textContent = h ? 'Ver currículo →' : 'Fechar currículo'; });
+  function pvdDraw() { document.querySelectorAll('[data-pvd]').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.pvd === S.pvd))); $('pvCv').hidden = S.pvd !== 'cv'; $('pvLkP').hidden = S.pvd !== 'lk'; $('pvKitP').hidden = S.pvd !== 'kit';
+    if (S.pvd === 'kit') { const k = document.querySelector('#tool-kit .kit').cloneNode(true); k.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id')); k.classList.remove('sh'); k.style.cssText = 'position:static;box-shadow:none'; $('pvKitP').innerHTML = ''; $('pvKitP').appendChild(k); const a = document.createElement('a'); a.className = 'pill s'; a.href = '#estudio'; a.textContent = 'Editar no Estúdio →'; a.style.alignSelf = 'flex-start'; $('pvKitP').appendChild(a); } }
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-pvd]'); if (!b) return; S.pvd = S.pvd === b.dataset.pvd ? null : b.dataset.pvd; try { kit(); } catch (er) {} pvdDraw(); });
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-pvx]'); if (!b) return; const k = 'pvOpen' + b.dataset.pvx; S[k] = !S[k]; pview(); });
   $('pvEdit').addEventListener('click', () => { S.editing = true; perfil(); $('pfArt').scrollIntoView({ block: 'start' }); });
   $('pvSave2').addEventListener('click', () => $('pvSave').click());
@@ -2525,6 +2587,8 @@ dialog.gal{padding:0;width:auto;max-width:calc(100vw - 16px);overflow:visible}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
+    "Trajetória": "Background", "Para marcas": "For brands", "Na internet": "Online", "Ver prévia": "Preview", "Ainda vazio": "Empty for now", "Editar no Estúdio →": "Edit in Studio →", "Nenhum link ainda. Adicione em Editar perfil.": "No links yet. Add them in Edit profile.",
+    "Arte": "Design",
     "Minimizar": "Minimise", "Expandir": "Maximise", "Sem legenda": "No caption",
     "Escolha o seu estado.": "Choose your state.", "Escreva a sua cidade.": "Type your city.", "Marque pelo menos uma área de atuação para continuar.": "Pick at least one field of work to continue.",
     "Configurações": "Settings", "Conta, aparência, privacidade e ajuda.": "Account, appearance, privacy and help.", "Conta": "Account", "E-mail de acesso": "Sign-in email", "Senha": "Password", "Trocar senha": "Change password", "Enviamos um link para o seu e-mail.": "We send a link to your email.", "Perfil e plano": "Profile and plan", "Aparência": "Appearance", "Tema": "Theme", "Claro": "Light", "Escuro": "Dark", "Privacidade e dados": "Privacy and data", "Meus dados": "My data", "Baixar": "Download", "Visibilidade": "Visibility", "Ajuda": "Help", "Falar com a CR1E.Coisas": "Contact CR1E.Coisas", "Abrir mensagens": "Open messages", "Versão": "Version", "Sessão": "Session", "Sair": "Sign out", "Excluir": "Delete", "Ler": "Read", "Ver planos": "See plans", "Link enviado. Confira a caixa de entrada e o spam.": "Link sent. Check your inbox and spam.", "← Perfil": "← Profile",
