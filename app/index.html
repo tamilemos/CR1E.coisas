@@ -1481,75 +1481,6 @@ html[data-theme="dark"] .mk>span:first-child,html[data-theme="dark"] .lg-how>spa
 /* matéria em destaque: nunca verde sobre branco */
 .feat h2 .a{color:var(--xv)}
 html[data-theme="dark"] .feat h2 .ln.a{display:inline;white-space:normal;background:#C5FF3D;color:#0E0E0C;padding:0 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.08}
-
-/* ===== seções no estilo do site ===== */
-.sh2{position:relative;display:grid;grid-template-columns:1fr;gap:6px;margin:38px 0 14px;padding-top:18px;border-top:2px solid var(--preto);text-align:left;min-width:0}
-.sh2 .n{position:absolute;top:-12px;left:0;min-width:38px;height:22px;padding:0 10px;display:grid;place-items:center;border-radius:999px;border:2px solid var(--preto);background:var(--verde);color:#0E0E0C;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:11px;letter-spacing:.04em;line-height:1}
-.sh2 h2.t{margin:0;font-size:clamp(24px,6.4vw,40px);line-height:1;white-space:normal;text-align:left;align-self:start}
-.sh2 h2.t .w{font-size:1em!important}
-.sh2 p{margin:0;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--mut);max-width:46ch}
-.sh2{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 28px}.sh2 h2.t{flex:0 1 auto}.sh2 p{flex:1 1 240px;max-width:40ch}
-@media(min-width:760px){.sh2 p{flex:0 1 34ch;margin-left:auto}}
-html[data-theme="dark"] .sh2 .n{border-color:#0E0E0C}
-html[data-theme="dark"] .sh2 p{color:#A9A9A1}
-/* painel com barra de título, sombra dura como os cartões do site */
-.pbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--preto);color:var(--papel);border:2px solid var(--preto);padding:8px 12px}
-.pbar b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px;letter-spacing:.05em}
-.pbar span{font-family:var(--mono);font-size:11px;opacity:.8}
-.pbar+#postList,.pbar+.pnl{border-top:0!important}
-#postList.twbox,.pnl{box-shadow:8px 8px 0 var(--preto)}
-html[data-theme="dark"] #postList.twbox,html[data-theme="dark"] .pnl{box-shadow:8px 8px 0 #C5FF3D}
-.pbar{box-shadow:8px 0 0 var(--preto)}
-html[data-theme="dark"] .pbar{box-shadow:8px 0 0 #C5FF3D}
-.pbar:has(+#postList:not(.twbox)){box-shadow:none}
-#topList.pnl{border:2px solid var(--preto);background:var(--branco);padding:0 12px}
-#topList.pnl .tlist{border:0}
-.fol-box.pnl{border:2px solid var(--preto);background:var(--branco);padding:10px 12px 4px}
-/* rede e fórum: menos aperto entre blocos */
-[data-view="rede"] #rdSocial,[data-view="rede"] #rdMatch,[data-view="rede"] #rdCollab,[data-view="rede"] #rdForum{display:flex;flex-direction:column;gap:12px}
-#rdSocial .feedw{gap:12px}
-#rdSocial .c3-t{display:none}
-#rdCollab .sh2,#rdForum .sh2,#rdMatch .sh2{margin-bottom:2px}
-.deck-w>div>.sh2{margin-bottom:14px}
-.net>.sh2{margin-top:38px;margin-bottom:0}
-@media(min-width:900px){.net>.sh2{margin-top:6px}.deck-w>div>.sh2{margin-top:6px}}
-/* perfil: cartão de identidade + seções abaixo */
-.pf-col{display:flex;flex-direction:column;min-width:0}
-.pf-more{display:flex;flex-direction:column;gap:12px;min-width:0}
-.pf-more .sh2:first-child{margin-top:44px}
-.pf-more .pv-posts,.pf-more .pv-net{border-top:0;padding-top:0}
-.pf-more .pv-docs{margin-top:0;background:var(--branco);box-shadow:8px 8px 0 var(--preto)}
-html[data-theme="dark"] .pf-more .pv-docs{box-shadow:8px 8px 0 #C5FF3D}
-.pf-more .pv-net{border:2px solid var(--preto);background:var(--branco);padding:12px;box-shadow:8px 8px 0 var(--preto)}
-html[data-theme="dark"] .pf-more .pv-net{box-shadow:8px 8px 0 #C5FF3D}
-.pf-more #pvPosts.twbox{box-shadow:8px 8px 0 var(--preto)}
-html[data-theme="dark"] .pf-more #pvPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
-#netC{margin:6px 0 2px}
-#netC button{all:unset;cursor:pointer;font-size:13px;display:inline-flex;align-items:baseline;gap:4px}
-#netC button:hover b,#netC button:focus-visible b{background:var(--verde);color:#0E0E0C}
-#netC button:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
-.pub>div:last-child>.sh2:first-child{margin-top:4px}
-#apPosts.twbox{box-shadow:8px 8px 0 var(--preto)}
-html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
-/* estúdio: blocos numerados com mais ar */
-.tools .panel .kstep{margin-top:16px}
-.tools .panel .kstep+.orc-m,.tools .panel .kstep+.two,.tools .panel .kstep+.fld,.tools .panel .kstep+table,.tools .panel .kstep+.pills{margin-top:2px}
-#tool-plan>div:last-child>.sh2{margin-bottom:4px}
-
-#rdForum .hot-h b{display:none}
-#rdForum .hot-h{justify-content:flex-end}
-.sh2.pl{margin-top:44px}
-@media(min-width:900px){.prof>div:last-child>.sh2.pl:first-child{margin-top:12px}}
-
-@media(min-width:900px){
-  .pf-col{display:contents}
-  [data-view="perfil"] .prof{grid-template-areas:"card plan" "card more";grid-template-rows:auto 1fr;align-items:start}
-  [data-view="perfil"] .prof .pf.card{grid-area:card}
-  [data-view="perfil"] .pf-more{grid-area:more}
-  [data-view="perfil"] .prof>div:last-child{grid-area:plan}
-  [data-view="perfil"] .pf-more .sh2:first-child{margin-top:30px}
-}
-#rdSocial>.sh2,#rdSocial>.fol-box{max-width:600px;width:100%}
 </style>
 
 <div class="gate" id="gate">
@@ -1624,7 +1555,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
         <div class="vh"><h1 class="t" id="v-rede">Gente que <span class="w a">cria</span></h1><p>Conheça artistas além do portfólio: gostos, hobbies e habilidades.</p></div>
         <div class="seg s4" id="rdSeg" role="group" aria-label="Seções da rede"><button type="button" data-rt="social" aria-pressed="true">Feed</button><button type="button" data-rt="match" aria-pressed="false">Rede</button><button type="button" data-rt="collab" aria-pressed="false">Collabs</button><button type="button" data-rt="forum" aria-pressed="false">Fórum</button></div>
         <div id="rdMatch" hidden>
-          <header class="sh2" style="margin-top:6px"><span class="n">01</span><h2 class="t">Encontre <span class="w a">gente</span></h2><p>Busque por nome, @, área ou habilidade, ou explore o mapa da rede.</p></header>
           <details class="psx" id="psx"><summary><i aria-hidden="true"></i><b>Buscar pessoas</b><span class="note" id="psN"></span></summary>
             <div class="psx-b"><input id="psQ" type="search" placeholder="Nome ou @ da pessoa" aria-label="Buscar pessoas por nome ou @" autocomplete="off">
               <details class="psf" id="psf"><summary>Filtros<span class="note" id="psFn"></span></summary><div class="edf"><label class="lbl" for="psA">Área de atuação<select id="psA"></select></label><label class="lbl" for="psS">Habilidade<select id="psS"></select></label><label class="lbl" for="psH">Gostos e hobbies<select id="psH"></select></label></div><button class="lnk" type="button" id="psClr">Limpar filtros</button></details>
@@ -1636,18 +1566,17 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
               <div class="map-l" id="mapL"></div></div>
           </details>
           <div class="deck-w">
-            <div><header class="sh2"><span class="n">02</span><h2 class="t">Pessoas para <span class="w a">conhecer</span></h2><p>Siga quem combina com você. Quem se segue pode conversar.</p></header><div class="deck" id="deck"></div><div class="acts"><button class="btn ln" type="button" id="skip">Pular</button><button class="btn k" type="button" id="conn">Seguir <span class="arr" aria-hidden="true">→</span></button></div></div>
-            <div class="net"><header class="sh2"><span class="n">03</span><h2 class="t">Você <span class="w a">segue</span></h2><p>Toque numa pessoa para ver o perfil.</p></header><div id="conns"></div><button class="mk" type="button" data-rt="social"><span>Ver o feed da rede</span> <span class="arr" aria-hidden="true">→</span></button></div>
+            <div><div class="deck" id="deck"></div><div class="acts"><button class="btn ln" type="button" id="skip">Pular</button><button class="btn k" type="button" id="conn">Seguir <span class="arr" aria-hidden="true">→</span></button></div></div>
+            <div class="net"><h2 class="t">Você <span class="w">segue</span></h2><div id="conns"></div><button class="mk" type="button" data-rt="social"><span>Ver o feed da rede</span> <span class="arr" aria-hidden="true">→</span></button></div>
           </div>
         </div>
         <div id="rdSocial">
-          <div class="feedw" style="margin-top:0"><header class="sh2" style="margin-top:6px"><span class="n">01</span><h2 class="t">Publicar <span class="w a">na rede</span></h2><p>Conte o que você está criando, com texto, foto ou GIF.</p></header>
+          <div class="feedw" style="margin-top:0"><h2 class="feed-t"><span>Feed</span></h2>
             <form class="compose3" id="postF"><b class="c3-t">Criar publicação</b><div class="c3-row"><span class="av" id="postAv"></span><div class="c3-bal"><textarea id="postI" maxlength="600" rows="2" aria-label="Escreva a sua publicação" placeholder="O que você está criando? Conte para a rede."></textarea></div></div>
               <div class="c3-prev" id="postPrev" hidden><img id="postImg" alt="Prévia da imagem"><button type="button" id="postImgX" aria-label="Tirar imagem">×</button></div>
               <div class="ft2"><label class="c3-b"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Foto<input type="file" accept="image/jpeg,image/png,image/webp" id="postFoto"></label><label class="c3-b"><b>GIF</b><input type="file" accept="image/gif" id="postGif"></label><span class="cnt" id="postN">0/600</span><button class="btn k" type="submit">Publicar</button></div></form>
-          <header class="sh2"><span class="n">02</span><h2 class="t">Feed <span class="w a">da sua rede</span></h2><p>O que a sua rede está criando agora. Toque num post para abrir a conversa.</p></header><div class="pbar" id="postBar"><b>Publicações</b><span id="postCnt"></span></div>
           <div id="postList"></div><button class="pill" type="button" id="postMore" style="align-self:center" hidden>Ver mais publicações</button></div>
-          <header class="sh2"><span class="n">03</span><h2 class="t">Quem você <span class="w a">segue</span></h2><p>As pessoas cujas publicações aparecem no seu feed.</p></header><div class="fol-box pnl" style="max-width:none"><div id="ctList"></div></div>
+          <div class="fol-box" style="margin-top:16px;max-width:600px"><span class="lbl">Quem você segue</span><div id="ctList"></div></div>
         </div>
         <div id="rdCollab" hidden>
           <div class="cb-hero"><div><span class="lbl">Collabs</span><p>Junte gente da rede para criar: um projeto, uma ideia, uma exposição ou a inscrição em um edital. Cada collab tem conversa, tarefas e um texto para escrever em conjunto.</p></div><button class="pill k" type="button" id="cbNewB">+ Nova collab</button></div>
@@ -1659,17 +1588,16 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
             <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="pill k" type="submit">Criar collab</button><button class="pill" type="button" id="cbCancel">Cancelar</button></div><span class="note" id="cbMsg" role="status"></span>
           </form>
           <div id="cbInv"></div>
-          <header class="sh2"><span class="n">01</span><h2 class="t">Suas <span class="w a">collabs</span></h2><p>Os grupos em que você está ou que você criou.</p></header><div class="cb-list" id="cbMine"></div>
-          <header class="sh2"><span class="n">02</span><h2 class="t">Abertas <span class="w a">na rede</span></h2><p>Grupos abertos para entrar e criar junto.</p></header><div class="cb-list" id="cbOpen"></div>
+          <span class="lbl cb-l">Suas collabs</span><div class="cb-list" id="cbMine"></div>
+          <span class="lbl cb-l">Collabs abertas na rede</span><div class="cb-list" id="cbOpen"></div>
         </div>
         <div id="rdForum" hidden>
           
           <p class="note demo">Tópicos de modelo, só para visualizar a diagramação.</p>
-          <header class="sh2" style="margin-top:6px"><span class="n">01</span><h2 class="t">Em <span class="w a">alta</span></h2><p>Os tópicos com mais conversa agora.</p></header>
           <div class="hot" id="hotBox"><div class="hot-h"><b>Em alta agora</b><span class="note" id="hotN"></span></div><div id="hotList"></div></div>
           <details class="newtop"><summary>+ Abrir um tópico</summary><form id="topF"><label class="lbl" for="top-t">Assunto</label><input id="top-t" placeholder="Ex.: como cobrar oficina para empresa?"><label class="lbl" for="top-c">Categoria</label><select id="top-c"></select><label class="lbl" for="top-m">Mensagem</label><textarea id="top-m" rows="3" placeholder="Conte o contexto"></textarea><button class="btn k" type="submit" style="align-self:flex-start">Publicar tópico</button><span class="note" id="topMsg" role="status" aria-live="polite"></span></form></details>
-          <header class="sh2"><span class="n">02</span><h2 class="t">Todos os <span class="w a">tópicos</span></h2><p>Filtre por categoria e entre na conversa.</p></header><div class="pills fcr" id="fcats" role="group" aria-label="Filtrar tópicos"></div>
-          <div class="pbar"><b>Tópicos</b><span id="topCnt"></span></div><div id="topList" class="pnl tl"></div>
+          <span class="lbl" style="display:block;font-size:10px;margin:6px 0 6px">Todos os tópicos por categoria</span><div class="pills fcr" id="fcats" role="group" aria-label="Filtrar tópicos"></div>
+          <div id="topList"></div>
         </div>
       </section>
       <section class="view" data-view="post" aria-labelledby="poT" hidden>
@@ -1743,11 +1671,8 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
           <div class="panel card">
             <h2 class="t" style="font-size:34px">Proposta de <span class="w a">orçamento</span></h2>
             <p class="note" style="margin:-6px 0 0">Monte a proposta que vai para o cliente: liste os itens, as quantidades e os valores. O total é somado sozinho e a prévia já sai organizada para enviar.</p>
-            <div class="kstep"><span class="kn">1</span><b>Comece por um modelo</b></div>
-            <div class="orc-m"><div class="two"><label class="fld" for="o-area">Área de atuação<select id="o-area"></select></label><label class="fld" for="o-tipo">Tipo de trabalho<select id="o-tipo"></select></label></div><p class="note" style="margin:0">Escolha o tipo de trabalho e a proposta já vem com os itens mais comuns. Depois é só ajustar quantidades e valores.</p></div>
-            <div class="kstep"><span class="kn">2</span><b>Cliente e projeto</b></div>
+            <div class="orc-m"><span class="lbl">Comece por um modelo</span><div class="two"><label class="fld" for="o-area">Área de atuação<select id="o-area"></select></label><label class="fld" for="o-tipo">Tipo de trabalho<select id="o-tipo"></select></label></div><p class="note" style="margin:0">Escolha o tipo de trabalho e a proposta já vem com os itens mais comuns. Depois é só ajustar quantidades e valores.</p></div>
             <div class="two"><label class="fld" for="o-cli">Cliente<input id="o-cli" value="Marca exemplo"></label><label class="fld" for="o-proj">Projeto<input id="o-proj" value="Mural para loja"></label></div>
-            <div class="kstep"><span class="kn">3</span><b>Itens e valores</b><span class="note">O total é somado sozinho na prévia.</span></div>
             <table class="orc"><thead><tr><th>Item</th><th>Qtd</th><th>Valor (R$)</th><th><span style="position:absolute;left:-9999px">Remover</span></th></tr></thead><tbody id="o-rows"></tbody></table>
             <button class="pill" type="button" id="o-add" style="align-self:flex-start">+ Adicionar item</button>
             <p class="note">Os valores são exemplos para mostrar o cálculo. Use os seus.</p>
@@ -1766,7 +1691,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
           <div class="panel card">
             <h2 class="t" style="font-size:34px">Seus <span class="w a">editais</span></h2>
             <p class="note" style="margin:-6px 0 0">Salve os editais em que você quer se inscrever e acompanhe os prazos em um só lugar.</p>
-            <div class="kstep"><span class="kn">1</span><b>Seus editais</b><span class="note">Filtre entre os salvos, os da sua área e todos os abertos.</span></div>
             <div class="pills" id="esF" role="group" aria-label="Filtrar editais"></div>
             <div class="eslist" id="esList"></div>
             <p class="ed-soon"><span class="pill xx v">Em breve</span> Editais de todos os municípios brasileiros.</p>
@@ -1784,23 +1708,19 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
             <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Assinatura</span><span class="note">Liberado durante o teste</span></div>
             <h2 class="t" style="font-size:34px"><span class="w a">Canvas</span> de conteúdo</h2>
             <p class="note" style="margin:-6px 0 0">Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.</p>
-            <div class="kstep"><span class="kn">1</span><b>Aonde você quer chegar</b></div>
             <label class="fld" for="p-obj">Objetivo<select id="p-obj"><option value="Atrair marcas">Atrair marcas</option><option value="Vender obras e serviços">Vender obras e serviços</option><option value="Crescer a audiência">Crescer a audiência</option><option value="Divulgar um evento ou lançamento">Divulgar um evento ou lançamento</option></select></label>
-            <div class="kstep"><span class="kn">2</span><b>Comunidade e talento</b></div>
             <label class="fld" for="p-pub">Comunidade: com quem você fala?<input id="p-pub" placeholder="Ex.: quem ama arte urbana, leitores, mães criativas"></label>
             <label class="fld" for="p-dif">Talento: o que só você tem?<textarea id="p-dif" placeholder="Seu traço, sua história, seu jeito de falar e de trabalhar"></textarea></label>
-            <div class="kstep"><span class="kn">3</span><b>Emoção e formato</b></div>
             <div class="two"><label class="fld" for="p-ent">O que o público sente<select id="p-ent"><option value="Conexão">Conexão</option><option value="Humor">Humor</option><option value="Emoção">Emoção</option><option value="Intriga">Intriga</option><option value="Nostalgia">Nostalgia</option><option value="Satisfação">Satisfação</option></select></label><label class="fld" for="p-con">O que você apresenta<select id="p-con"><option value="Processo">Processo</option><option value="Educação">Educação</option><option value="Narrativa">Narrativa</option><option value="POV">POV</option><option value="Review">Review</option><option value="Entrevista">Entrevista</option><option value="Exploração">Exploração</option></select></label></div>
             <div class="two"><label class="fld" for="p-trend">Trend que você consegue seguir<select id="p-trend"><option value="Formato em alta">Formato em alta</option><option value="Áudio em alta">Áudio em alta</option><option value="Modelo pronto">Modelo pronto</option></select></label><label class="fld" for="p-face">Você aparece?<select id="p-face"><option value="Com rosto">Com rosto</option><option value="Sem rosto">Sem rosto</option></select></label></div>
-            <div class="kstep"><span class="kn">4</span><b>Ritmo</b></div>
             <label class="fld" for="p-freq">Posts por semana<select id="p-freq"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select></label>
             <div class="short"><button class="btn k" type="submit">Gerar calendário <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="pAI" hidden>Gerar com IA</button></div>
             <p class="note" id="pMsg" role="status" aria-live="polite">O calendário é montado a partir do seu canvas. Toque em um post para marcar como feito.</p>
           </form>
           <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
-            <header class="sh2" style="margin-top:0"><span class="n">01</span><h2 class="t">Sua <span class="w a">estratégia</span></h2><p>O resumo do seu canvas, pilar por pilar.</p></header>
+            <div class="sub"><h2 class="t"><span class="w">Estratégia</span></h2></div>
             <div class="pstrat" id="pStrat"></div>
-            <header class="sh2"><span class="n">02</span><h2 class="t">Calendário de <span class="w a">postagens</span></h2><p>Quatro semanas de posts. Toque num dia para ver o roteiro.</p></header>
+            <div class="sub"><h2 class="t">Calendário de <span class="w a">postagens</span></h2><span class="note">4 semanas</span></div>
             <div class="pcal" id="pCal"></div>
             <details class="pchk" id="pChkW"><summary><b>Checklist antes de publicar</b><span class="note" id="pChkN"></span><i aria-hidden="true"></i></summary><div id="pChk"></div></details>
           </div>
@@ -1993,9 +1913,9 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
         <div class="pub">
           <div class="pf card sh" style="transform:rotate(-1deg)"><div class="cov" id="apCov" role="img" aria-label="Foto de capa"></div><div class="ap-top"><span class="av big avc" id="apAv"></span><div class="ap-fol" id="apFol"></div></div><h1 class="t w" id="apN"></h1><span class="hdl" id="apHd"></span><div id="apAr"></div><span class="pf-loc" id="apR"></span><p id="apB"></p><span class="lbl sm">Habilidades</span><div class="pills sm" id="apSk"></div><span class="lbl sm">Gostos e hobbies</span><div class="pills sm" id="apHb"></div><div class="apacts" id="apActs"></div>
             <button class="btn k" type="button" id="apInv" style="justify-content:center" hidden></button><button class="btn ln" type="button" id="apMsg" style="justify-content:center">Enviar mensagem</button><span class="note" id="apMsgN">As mensagens abrem quando vocês dois se seguem.</span></div>
-          <div style="display:flex;flex-direction:column;gap:18px"><header class="sh2" style="margin-top:0"><span class="n">01</span><h2 class="t"><span class="w a">Portfólio</span></h2><p>Trabalhos escolhidos pela própria artista.</p></header><div class="grid3" id="apPort"></div>
-            <header class="sh2"><span class="n">02</span><h2 class="t"><span class="w a">Publicações</span></h2><p>O que essa pessoa anda publicando na rede.</p></header><div class="plist2" id="apPosts"></div>
-            <header class="sh2"><span class="n">03</span><h2 class="t">Media <span class="w a">kit</span></h2><p>Números e serviços, para conhecer o trabalho.</p></header><div class="kit" style="position:static"><div class="sub"><span class="pill">Media kit</span></div><div class="kit-n"><div><b id="apSeg"></b><span class="lbl" style="color:var(--cinza)">seguidores</span></div><div><b id="apAlc"></b><span class="lbl" style="color:var(--cinza)">alcance mensal</span></div></div><p>Os números aparecem quando o artista preencher o media kit.</p></div></div>
+          <div style="display:flex;flex-direction:column;gap:18px"><div class="sub"><h2 class="t"><span class="w">Portfólio</span></h2></div><div class="grid3" id="apPort"></div>
+            <div class="sub"><h2 class="t"><span class="w">Publicações</span></h2></div><div class="plist2" id="apPosts"></div>
+            <div class="kit" style="position:static"><div class="sub"><span class="pill">Media kit</span></div><div class="kit-n"><div><b id="apSeg"></b><span class="lbl" style="color:var(--cinza)">seguidores</span></div><div><b id="apAlc"></b><span class="lbl" style="color:var(--cinza)">alcance mensal</span></div></div><p>Os números aparecem quando o artista preencher o media kit.</p></div></div>
         </div>
       </section>
 
@@ -2009,7 +1929,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
       <section class="view" data-view="perfil" aria-labelledby="v-perfil" hidden>
         <div class="pfh"><h1 class="pft">Perfil</h1><p id="pfLead" hidden></p></div>
         <div class="prof">
-          <div class="pf-col">
           <div class="pf card sh">
             <div class="pv" id="pfView">
               <div class="cov" id="pvCov" role="img" aria-label="Foto de capa"></div><div class="pv-top"><span class="av big" id="avBig">TL</span><div class="pv-id"><h1 class="t w" id="v-perfil">Tami</h1><span class="hdl" id="pvHd"></span><span class="pf-loc" id="pfRole"></span></div></div>
@@ -2018,7 +1937,16 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
               <div class="pv-grp sm"><span class="pv-l">Habilidades</span><div class="tags" id="pvSk"></div></div>
               <div class="pv-grp sm"><span class="pv-l">Gostos e hobbies</span><div class="tags g" id="pvHb"></div></div>
               <div class="pv-port" id="pvPort"></div>
-              <div class="netc" id="netC"></div>
+              <div class="pv-posts" id="pvPostsW"><span class="pv-l">Publicações</span><div class="plist2" id="pvPosts"></div></div>
+              <div class="pv-net" id="pvNet"><div class="netc" id="netC"></div><div class="seg" role="group" aria-label="Listas da rede"><button type="button" data-nt="in" aria-pressed="true">Seguidores</button><button type="button" data-nt="out" aria-pressed="false">Seguindo</button></div><div class="reqs" id="netL"></div></div>
+              <div class="pv-docs" role="group" aria-label="Currículo, media kit e links">
+                <button class="pvd" type="button" data-pvd="cv" aria-expanded="false"><span class="lbl">Trajetória</span><b>Currículo</b><span class="note" id="pvdCv"></span><i aria-hidden="true"></i></button>
+                <button class="pvd" type="button" data-pvd="kit" aria-expanded="false"><span class="lbl">Para marcas</span><b>Media kit</b><span class="note" id="pvdKit">Ver prévia</span><i aria-hidden="true"></i></button>
+                <button class="pvd" type="button" data-pvd="lk" aria-expanded="false"><span class="lbl">Na internet</span><b>Links</b><span class="note" id="pvdLk"></span><i aria-hidden="true"></i></button>
+              </div>
+              <div class="pv-cv" id="pvCv" hidden></div>
+              <div class="pv-cv" id="pvKitP" hidden></div>
+              <div class="pv-cv" id="pvLkP" hidden></div>
               <div class="pf-acts"><button class="pill s k" type="button" id="pvEdit">Editar perfil →</button><a class="pill s" href="#config">Configurações</a></div>
             </div>
             <div id="pfArt" hidden>
@@ -2047,24 +1975,8 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
             </div>
             <div id="pfEmp" hidden><label class="fld" for="e-seg">Segmento<input id="e-seg" placeholder="Ex.: varejo, eventos"></label><label class="fld" for="e-site" style="margin-top:10px">Site<input id="e-site" placeholder="suaempresa.com.br"></label><span class="lbl" style="display:block;margin-top:14px">O que procura</span><div class="pills" id="pfWant" style="margin-top:6px"></div></div>
             <div class="pf-acts" id="pfCfgE"><a class="pill s" href="#config">Configurações</a></div></div>
-            <div class="pf-more" id="pfMore">
-              <header class="sh2"><span class="n">01</span><h2 class="t">Sua <span class="w a">trajetória</span></h2><p>Currículo, media kit e links num só lugar. É o que a curadoria mostra para as marcas.</p></header>
-              <div class="pv-docs" role="group" aria-label="Currículo, media kit e links">
-                <button class="pvd" type="button" data-pvd="cv" aria-expanded="false"><span class="lbl">Trajetória</span><b>Currículo</b><span class="note" id="pvdCv"></span><i aria-hidden="true"></i></button>
-                <button class="pvd" type="button" data-pvd="kit" aria-expanded="false"><span class="lbl">Para marcas</span><b>Media kit</b><span class="note" id="pvdKit">Ver prévia</span><i aria-hidden="true"></i></button>
-                <button class="pvd" type="button" data-pvd="lk" aria-expanded="false"><span class="lbl">Na internet</span><b>Links</b><span class="note" id="pvdLk"></span><i aria-hidden="true"></i></button>
-              </div>
-              <div class="pv-cv" id="pvCv" hidden></div>
-              <div class="pv-cv" id="pvKitP" hidden></div>
-              <div class="pv-cv" id="pvLkP" hidden></div>
-              <header class="sh2"><span class="n">02</span><h2 class="t">Suas <span class="w a">publicações</span></h2><p>Tudo o que você publicou e repostou na rede.</p></header>
-              <div class="pv-posts" id="pvPostsW"><div class="plist2" id="pvPosts"></div></div>
-              <header class="sh2"><span class="n">03</span><h2 class="t">Sua <span class="w a">rede</span></h2><p>Quem segue você e quem você segue.</p></header>
-              <div class="pv-net" id="pvNet"><div class="seg" role="group" aria-label="Listas da rede"><button type="button" data-nt="in" aria-pressed="true">Seguidores</button><button type="button" data-nt="out" aria-pressed="false">Seguindo</button></div><div class="reqs" id="netL"></div></div>
-            </div>
-          </div>
           <div style="display:flex;flex-direction:column;gap:18px">
-            <header class="sh2 pl"><span class="n">Plano</span><h2 class="t">Seu <span class="w a">plano</span></h2><p>O que está liberado na sua conta.</p></header>
+            <div class="sub"><h2 class="t">Seu <span class="w a">plano</span></h2></div>
             <a class="rowc" href="#plano" style="--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)"><div class="sub"><b id="pfPlan" style="font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:26px">Grátis</b><span class="pill s k">Ver planos →</span></div><span class="note" style="color:var(--preto)">Compare o Grátis e o Pro e gerencie a assinatura.</span></a>
 
           </div>
@@ -2717,13 +2629,11 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
   $('psClr').addEventListener('click', () => { ['psA', 'psS', 'psH'].forEach((id) => { $(id).value = ''; }); psDraw(); });
   function netRefresh() { netCalc(); deckBuild(); try { if ($('mapx').open) mapDraw(); else { const n = mapPeople(); $('mapN').textContent = n.length ? n.length + (n.length === 1 ? ' pessoa' : ' pessoas') : ''; } } catch (er) {} try { if ($('psx').open) { psOpts(); psDraw(); } } catch (er) {} try { drawDeck(); } catch (er) {} try { social(); } catch (er) {} try { artistas(); } catch (er) {} try { threads(); } catch (er) {} try { netTab(); stats(); todo(); } catch (er) {} }
   function ask(a) { if (!a || !a.uid) return; S.follow.add(a.uid); syncSoon(); }
-  function netTab() { if (!$('netC')) return; const emp = S.role === 'empresa'; $('pvNet').hidden = emp; $('netC').hidden = emp; if (emp) return;
+  function netTab() { if (!$('netC')) return; const emp = S.role === 'empresa'; $('pvNet').hidden = emp; if (emp) return;
     const following = S.following || [];
-    $('netC').innerHTML = `<button type="button" data-ntj="in"><b>${S.followers.length}</b> seguidores</button><button type="button" data-ntj="out"><b>${following.length}</b> seguindo</button>`;
     document.querySelectorAll('[data-nt]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.nt === S.nt)); b.innerHTML = `<b>${b.dataset.nt === 'in' ? S.followers.length : following.length}</b> ${b.dataset.nt === 'in' ? 'seguidores' : 'seguindo'}`; });
     const l = S.nt === 'in' ? S.followers : following;
     $('netL').innerHTML = l.length ? l.map((a) => { const f = S.follow.has(a.uid), bk = a.tf.includes(myUid()); return `<div class="reqr"><button class="avb" type="button" data-art="${esc(a.uid || a.n)}" aria-label="Ver perfil de ${esc(a.n)}">${avA(a)}</button><button class="g gbt" type="button" data-art="${esc(a.uid || a.n)}"><b>${esc(a.n)}</b><br><span class="note">${esc([a.esp, a.cid].filter(Boolean).join(' · '))}</span></button><button class="pill xx${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f && bk ? 'Ambos se seguem' : f ? 'Seguindo' : bk ? 'Seguir de volta' : 'Seguir'}</button></div>`; }).join('') : `<p class="note" style="margin:8px 0 0">${S.nt === 'in' ? 'Ninguém te segue ainda.' : 'Você ainda não segue ninguém. Encontre pessoas na aba Rede.'}</p>`; }
-  document.addEventListener('click', (e) => { const b = e.target.closest('[data-ntj]'); if (!b) return; S.nt = b.dataset.ntj; netTab(); $('pvNet').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   const myAreas = () => [...new Set((S.sk || []).map((x) => AREA_OF.get(x) || (AREAS[x] ? x : '')).filter(Boolean))];
   const AREA_OF = new Map(Object.entries(AREAS).flatMap(([a, l]) => l.map((x) => [x, a])));
   const toArt = (p) => ({ hd: p.hd || '', uf: p.uf || '', city: p.cid || '', uid: p.uid, n: p.name || 'Artista', esp: (p.sk || [])[0] || '', ar: [...new Set((p.sk || []).map((x) => AREA_OF.get(x)).filter(Boolean))].join(' · ') || 'Artista', cid: [p.cid, p.uf].filter(Boolean).join(', '), tf: [...new Set([...(p.follow || []), ...(p.conns || [])])], caps: p.caps || [], cover: p.cover || '', tch: p.chats || [], img: p.avatar || '', fotos: p.fotos || [], sk: p.sk || [], hb: p.hb || [], bio: p.cvBio || '', cv: p.cv || [], links: p.links || [] });
@@ -2985,7 +2895,7 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
   };
   function perfil() {
     const emp = S.role === 'empresa';
-    $('pfArt').hidden = emp || !S.editing; $('pfView').hidden = !!S.editing && !emp; $('pfMore').hidden = !!S.editing || emp; $('pfEmp').hidden = !emp; $('pvEdit').hidden = emp; $('pfPortH').hidden = $('pfPort').hidden = emp;
+    $('pfArt').hidden = emp || !S.editing; $('pfView').hidden = !!S.editing && !emp; $('pfEmp').hidden = !emp; $('pvEdit').hidden = emp; $('pfPortH').hidden = $('pfPort').hidden = emp;
     pickUI('sk', AREAS, ''); pickUI('hb', GOSTOS, 'v');
     $('pfPort').innerHTML = [0, 1, 2].map((i) => upBox(i, 'Foto ' + (i + 1), '')).join(''); try { todo(); save(); } catch (err) {} pfTab(); $('pfLead').textContent = emp ? 'Os dados da sua empresa no CR1E.Collab.' : 'É assim que a curadoria e a rede veem você. Complete para se candidatar aos jobs.';
     $('pfWant').innerHTML = (S.want.length ? S.want : ['Ainda não definido']).map((x) => `<span class="pill s">${esc(x)}</span>`).join('');
@@ -3096,7 +3006,7 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
       const stats = [st(p.replies.length, 'comentário', 'comentários'), st(p.reposts.length, 'repost', 'reposts'), st(p.likes.length, 'curtida', 'curtidas')].filter(Boolean).join('');
       return `<article class="tw big"><div class="tw-bh"><button class="tw-av" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}"><span class="av${pr.avatar ? '' : ' txt'}">${avIn(pr.avatar, nm)}</span></button><span class="tw-bn"><button class="nm" type="button" data-art="${esc(p.uid || p.a)}"><b>${esc(nm)}</b></button><button class="hd" type="button" data-art="${esc(p.uid || p.a)}" aria-label="Ver perfil de ${esc(nm)}">${handle(nm, p.me ? myUid() : p.uid)}</button></span>${!p.me && isC(p.a) ? '<span class="pill xx v">vocês se seguem</span>' : ''}</div>${rp ? `<p class="tw-rp">${ICO.rp} Você repostou</p>` : ''}${p.t ? `<p class="tx">${esc(p.t)}</p>` : ''}${p.img ? `<button class="tw-ib" type="button" data-zoom="${p.id}" aria-label="Ampliar a imagem da publicação"><img class="tw-img" src="${p.img}" alt="Imagem da publicação"></button>` : ''}<p class="tw-when">${when}</p>${stats ? `<div class="tw-st">${stats}</div>` : ''}<div class="tw-a"><button type="button" data-pofocus aria-label="Comentar">${ICO.re}</button><button type="button" data-twp="${p.id}" aria-pressed="${rp}" aria-label="Repostar">${ICO.rp}</button><button class="lk" type="button" data-twl="${p.id}" aria-pressed="${lk}" aria-label="Curtir">${ICO.lk}</button><button type="button" data-tws="${p.id}" aria-label="Compartilhar">${ICO.sh}</button>${p.me ? `<button type="button" data-twd="${p.id}" aria-label="Apagar publicação">${ICO.del}</button>` : ''}</div></article>`;
     };
-    $('postList').innerHTML = !S.netPosts.length ? '<div class="empty">Ninguém publicou ainda. Conte o que você está criando e abra o feed da rede.</div>' : S.netPosts.slice(0, S.feedN).map((p, i) => twOne(p, i) + (i === 2 ? '<div class="cb-promo"><span><b>Viu alguém com quem criaria junto?</b><span class="note">Abra uma collab e chame quem você segue para um projeto.</span></span><button class="pill k" type="button" data-rt="collab">Ver collabs</button></div>' : '')).join('') + twMore('feed', S.netPosts.length - S.feedN); $('postList').classList.toggle('twbox', !!S.netPosts.length); $('postCnt').textContent = S.netPosts.length ? S.netPosts.length + (S.netPosts.length === 1 ? ' publicação' : ' publicações') : ''; $('postMore').hidden = true;
+    $('postList').innerHTML = !S.netPosts.length ? '<div class="empty">Ninguém publicou ainda. Conte o que você está criando e abra o feed da rede.</div>' : S.netPosts.slice(0, S.feedN).map((p, i) => twOne(p, i) + (i === 2 ? '<div class="cb-promo"><span><b>Viu alguém com quem criaria junto?</b><span class="note">Abra uma collab e chame quem você segue para um projeto.</span></span><button class="pill k" type="button" data-rt="collab">Ver collabs</button></div>' : '')).join('') + twMore('feed', S.netPosts.length - S.feedN); $('postList').classList.toggle('twbox', !!S.netPosts.length); $('postMore').hidden = true;
     { const mine = S.netPosts.filter((p) => p.me || p.reposts.includes(myUid())); $('pvPosts').classList.toggle('twbox', !!mine.length); $('pvPosts').innerHTML = mine.length ? mine.slice(0, S.pvN).map(twOne).join('') + twMore('pv', mine.length - S.pvN) : '<p class="note" style="margin:0">Você ainda não publicou. O que você postar no feed da rede aparece aqui.</p>'; }
     try { apPostsDraw(); } catch (er) {}
     try { if (!document.querySelector('[data-view="post"]').hidden) poDraw(); } catch (er) {}
@@ -3105,7 +3015,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
     { const hot = [...S.forum].sort((a, b) => b.msgs.length - a.msgs.length).slice(0, 4); $('hotBox').hidden = !hot.length; $('hotN').textContent = hot.length ? `${S.forum.length} ${S.forum.length === 1 ? 'tópico' : 'tópicos'} na rede` : '';
       $('hotList').innerHTML = hot.map((t, i) => `<button class="hot-r" type="button" data-top="${t.id}"><i>${i + 1}</i><span><b>${esc(t.t)}</b><span class="note">${t.cat} · ${t.msgs.length} ${t.msgs.length === 1 ? 'mensagem' : 'mensagens'}</span></span><span class="arr" aria-hidden="true">→</span></button>`).join(''); }
     const tl = S.forum.filter((t) => S.fcat === 'Todos' || t.cat === S.fcat);
-    $('topCnt').textContent = tl.length ? tl.length + (tl.length === 1 ? ' tópico' : ' tópicos') : '';
     $('topList').innerHTML = tl.length ? `<div class="tlist">${tl.map((t) => `<button class="tl-r" type="button" data-top="${t.id}"><span><b>${esc(t.t)}</b><span class="note"><em>${t.cat}</em> · ${t.msgs.length} ${t.msgs.length === 1 ? 'mensagem' : 'mensagens'} · aberto por ${esc(t.msgs[0][0])}</span></span><span class="arr" aria-hidden="true">→</span></button>`).join('')}</div>` : '<div class="empty">Nenhum tópico nessa categoria ainda. Abra o primeiro.</div>';
     const t = S.forum.find((x) => x.id === S.top) || S.forum[0]; if (!t) return;
     $('tpC').textContent = t.cat; $('tpT').textContent = t.t;
@@ -3369,8 +3278,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
 /* PT/EN: traduz o que está na tela, sem mexer na lógica do app */
 (() => {
   const M = {
-    "Aonde você quer chegar": "Where you want to get to", "Plano": "Plan", "O que está liberado na sua conta.": "What's unlocked on your account.",
-    "Publicar": "Post", "na rede": "to the network", "Conte o que você está criando, com texto, foto ou GIF.": "Share what you're creating, with text, a photo or a GIF.", "da sua rede": "from your network", "O que a sua rede está criando agora. Toque num post para abrir a conversa.": "What your network is creating right now. Tap a post to open the conversation.", "Publicações": "Posts", "Quem você": "Who you", "segue": "follow", "As pessoas cujas publicações aparecem no seu feed.": "The people whose posts show up in your feed.", "Encontre": "Find", "gente": "people", "Busque por nome, @, área ou habilidade, ou explore o mapa da rede.": "Search by name, @, field or skill, or explore the network map.", "Pessoas para": "People to", "conhecer": "meet", "Siga quem combina com você. Quem se segue pode conversar.": "Follow the people who match you. People who follow each other can chat.", "Você": "You", "Toque numa pessoa para ver o perfil.": "Tap someone to see their profile.", "Suas": "Your", "collabs": "collabs", "Os grupos em que você está ou que você criou.": "The groups you're in or created.", "Abertas": "Open", "Grupos abertos para entrar e criar junto.": "Open groups to join and create together.", "Em": "Trending", "alta": "now", "Os tópicos com mais conversa agora.": "The topics with the most conversation right now.", "Todos os": "All", "tópicos": "topics", "Filtre por categoria e entre na conversa.": "Filter by category and join the conversation.", "Tópicos": "Topics", "Sua": "Your", "trajetória": "track record", "Currículo, media kit e links num só lugar. É o que a curadoria mostra para as marcas.": "CV, media kit and links in one place. It's what our curation shows to brands.", "publicações": "posts", "Tudo o que você publicou e repostou na rede.": "Everything you've posted and reposted on the network.", "rede": "network", "Quem segue você e quem você segue.": "Who follows you and who you follow.", "Portfólio": "Portfolio", "Trabalhos escolhidos pela própria artista.": "Work chosen by the artist.", "O que essa pessoa anda publicando na rede.": "What this person has been posting on the network.", "Media": "Media", "kit": "kit", "Números e serviços, para conhecer o trabalho.": "Numbers and services, to get to know the work.", "Escolha a área e o tipo de trabalho.": "Pick the field and the type of work.", "Cliente e projeto": "Client and project", "Itens e valores": "Items and prices", "O total é somado sozinho na prévia.": "The total adds up by itself in the preview.", "Objetivo": "Goal", "Comunidade e talento": "Community and talent", "Emoção e formato": "Emotion and format", "Ritmo": "Pace", "estratégia": "strategy", "O resumo do seu canvas, pilar por pilar.": "Your canvas summarised, pillar by pillar.", "Calendário de": "Calendar of", "postagens": "posts", "Quatro semanas de posts. Toque num dia para ver o roteiro.": "Four weeks of posts. Tap a day to see the script.", "Seus editais": "Your open calls", "Filtre entre os salvos, os da sua área e todos os abertos.": "Filter between saved, your field and all open calls.", "seguidores": "followers", "seguindo": "following",
     "Comece por um modelo": "Start from a template", "Tipo de trabalho": "Type of work", "Em branco": "Blank", "Escolha o tipo de trabalho e a proposta já vem com os itens mais comuns. Depois é só ajustar quantidades e valores.": "Pick the type of work and the proposal comes with the most common items. Then just adjust quantities and prices.", "Novo item": "New item",
     "Culinária": "Cooking", "Catering": "Catering", "Chef de cozinha": "Chef", "Gastronomia autoral": "Signature cuisine", "Confeitaria artística": "Artistic pastry", "Panificação": "Baking", "Food styling": "Food styling", "Coquetelaria": "Mixology", "Cozinha ao vivo": "Live cooking", "Comida de rua": "Street food", "Catering para evento": "Event catering", "Chef em ativação de marca": "Chef at a brand activation", "Food styling para campanha": "Food styling for a campaign", "Coquetelaria em evento": "Mixology at an event", "Oficina de cozinha": "Cooking workshop", "Catering para lançamento de exposição": "Catering for an exhibition opening", "Cozinha ao vivo em estande de marca": "Live cooking at a brand booth", "Food styling para cardápio de restaurante": "Food styling for a restaurant menu", "Drinks autorais para festa de marca": "Signature drinks for a brand party", "Oficina de cozinha para equipe de empresa": "Cooking workshop for a company team", "Cardápio de finger food autoral para cento e cinquenta convidados na abertura de uma exposição.": "Signature finger-food menu for 150 guests at an exhibition opening.", "Preparo de receitas ao vivo com os produtos de uma marca de alimentos em uma feira.": "Cooking recipes live with a food brand's products at a trade fair.", "Montagem e arrumação dos pratos para as fotos do novo cardápio de um restaurante.": "Plating and styling dishes for the photos of a restaurant's new menu.", "Criação de três drinks com a identidade da marca e serviço de bar na festa de lançamento.": "Creating three drinks with the brand's identity and running the bar at the launch party.", "Oficina prática de cozinha como atividade de integração para vinte pessoas.": "Hands-on cooking workshop as a team-building activity for twenty people.", "Catering do zero": "Catering from scratch", "Como calcular, montar e entregar um catering para eventos.": "How to plan, prepare and deliver catering for events.", "Cardápio e porções": "Menu and portions", "Custo e preço por pessoa": "Cost and price per person", "Logística no dia": "Logistics on the day", "Food styling para fotos e vídeos": "Food styling for photos and video", "Como deixar a comida bonita e apetitosa na câmera.": "How to make food look beautiful and appetising on camera.", "Montagem do prato": "Plating", "Truques que seguram na luz": "Tricks that hold up under lights", "Trabalho com o fotógrafo": "Working with the photographer",
     "Maquiagem": "Makeup", "Maquiagem social": "Event makeup", "Maquiagem artística": "Artistic makeup", "Beauty": "Beauty", "Caracterização": "Character makeup", "Efeitos especiais (FX)": "Special effects (FX)", "Body painting": "Body painting", "Face painting": "Face painting", "Maquiagem para audiovisual": "Makeup for film and video", "Penteado": "Hairstyling", "Maquiagem para campanha": "Campaign makeup", "Caracterização de personagem": "Character design makeup", "Body painting em evento": "Body painting at an event", "Maquiagem para desfile": "Runway makeup", "Ativação de beleza": "Beauty activation", "Maquiagem para campanha de cosméticos": "Makeup for a cosmetics campaign", "Caracterização para curta-metragem": "Character makeup for a short film", "Body painting ao vivo em festa de marca": "Live body painting at a brand party", "Maquiagem de backstage para desfile": "Backstage makeup for a fashion show", "Estação de maquiagem em evento": "Makeup station at an event", "2 diárias": "2 days", "5 diárias": "5 days", "Maquiagem de quatro modelos para as fotos e o vídeo da campanha de uma marca de cosméticos.": "Makeup for four models for the photos and video of a cosmetics brand campaign.", "Caracterização do elenco de um curta de época, com envelhecimento e cicatrizes.": "Character makeup for the cast of a period short film, including ageing and scars.", "Pintura corporal ao vivo em dois performers durante a festa de lançamento de uma bebida.": "Live body painting on two performers during a drink launch party.", "Equipe de backstage para a maquiagem de doze modelos em um desfile de moda autoral.": "Backstage team doing makeup for twelve models at an independent fashion show.", "Atendimento ao público em uma estação de maquiagem artística no estande de uma marca.": "Doing artistic makeup for the public at a brand's booth.", "Maquiagem para câmera": "Makeup for camera", "Como a pele, a cor e a luz mudam no vídeo e na foto.": "How skin, colour and light change on video and in photos.", "Pele que funciona na câmera": "Skin that works on camera", "Cor e luz no set": "Colour and light on set", "Retoques durante a gravação": "Touch-ups during the shoot", "Caracterização e efeitos especiais": "Character makeup and special effects", "Do estudo do personagem ao efeito pronto em cena.": "From studying the character to the finished effect on screen.", "Estudo do personagem": "Studying the character", "Materiais e segurança": "Materials and safety", "Aplicação e remoção": "Application and removal",
@@ -3890,7 +3797,6 @@ html[data-theme="dark"] #apPosts.twbox{box-shadow:8px 8px 0 #C5FF3D}
   try { LANG = localStorage.getItem(KEY) || ((navigator.language || 'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en'); } catch (e) {}
   const pl = (n, a, b) => `${n} ${+n === 1 ? a : b}`;
   const RULES = [
-    [/^(\d+) publicaç(ão|ões)$/, (m) => `${m[1]} post${m[1] === '1' ? '' : 's'}`], [/^(\d+) tópicos?$/, (m) => `${m[1]} topic${m[1] === '1' ? '' : 's'}`],
     [/^Comentários \((\d+)\)$/, (m) => `Comments (${m[1]})`], [/^Abrir a publicação de (.+)$/, (m) => `Open ${m[1]}'s post`], [/^Respondendo a (.+)$/, (m) => `Replying to ${m[1]}`],
     [/^@(.+) está livre\.$/, (m) => `@${m[1]} is available.`], [/^Pronto: agora você é @(.+)\.$/, (m) => `Done: you are now @${m[1]}.`],
     [/^(\d+) (pessoa|pessoas) · (\d+) (estado|estados)( · (\d+) (cidade|cidades))?$/, (m) => `${m[1]} ${m[1] === '1' ? 'person' : 'people'} · ${m[3]} ${m[3] === '1' ? 'state' : 'states'}${m[5] ? ` · ${m[6]} ${m[6] === '1' ? 'city' : 'cities'}` : ''}`], [/^(\d+) de (\d+) estados$/, (m) => `${m[1]} of ${m[2]} states`], [/^(\d+) (pessoa|pessoas)$/, (m) => `${m[1]} ${m[1] === '1' ? 'person' : 'people'}`],
