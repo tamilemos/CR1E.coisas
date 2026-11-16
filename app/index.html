@@ -1538,6 +1538,13 @@ html[data-theme="dark"] input::placeholder,html[data-theme="dark"] textarea::pla
 .pw-t{all:unset;box-sizing:border-box;position:absolute;right:3px;top:50%;transform:translateY(-50%);width:42px;height:42px;display:grid;place-items:center;cursor:pointer;color:var(--preto);border-radius:999px}
 .pw-t:hover{color:var(--preto);background:var(--papel-2)}
 .pw-t:focus-visible{outline:3px solid var(--verde);outline-offset:-3px}
+/* abertura: título e "como funciona" maiores */
+.login:not(.s2) h1.one{font-size:clamp(24px,7vw,30px)}
+.login:not(.s2) .lg-how{font-size:13px;margin:-4px 0 2px}
+@media (max-height:720px){.login:not(.s2) h1.one{font-size:clamp(21px,6.2vw,26px)}.login:not(.s2) .lg-how{font-size:12px}}
+/* abertura: sem a barra de baixo enquanto o cadastro/login está na tela */
+html.lock .tab{display:none}
+html.guest.lock .login{top:50%;max-height:calc(100dvh - 40px)}
 </style>
 
 <div class="gate" id="gate">
