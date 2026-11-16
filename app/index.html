@@ -1647,6 +1647,10 @@ html[data-theme="dark"] .ms-l input{accent-color:#C5FF3D}
 .canva [data-cv-txt] b{font-family:inherit;font-size:inherit;text-transform:none;font-stretch:normal;font-weight:700}
 /* abertura em inglês: "makers" na linha de baixo */
 html[lang="en"] .login h1.one .w{display:table;margin-top:4px}
+.hi-pf{align-self:flex-start}
+.hi .hi-pf,html[data-theme="dark"] .hi .hi-pf{color:#0E0E0C}
+.hi .hi-pf>span:first-child,html[data-theme="dark"] .hi .hi-pf>span:first-child{color:#0E0E0C;background:linear-gradient(transparent 58%,#fff 58%)}
+.hi .hi-pf:focus-visible{outline-color:#0E0E0C}
 </style>
 
 <div class="gate" id="gate">
@@ -1685,7 +1689,7 @@ html[lang="en"] .login h1.one .w{display:table;margin-top:4px}
         <div class="sub"><h2 class="t">Seu <span class="w a">painel</span></h2><span class="note">Acompanhe o seu perfil, vagas, rede e aulas</span></div>
         <div class="hello">
           <div class="hi card sh"><span class="pill k" id="roleTag" style="align-self:flex-start">Artista</span><h1 class="t" id="v-inicio"><span class="ln">Oi,</span><span class="ln w" id="hiName">Tami</span></h1>
-            <div><div class="sub" style="margin-bottom:6px"><span class="lbl" style="color:var(--preto)">Perfil completo</span><b id="pctTxt">60%</b></div><div class="bar"><i id="pct" style="width:60%"></i></div><details class="miss" id="miss"><summary>O que falta no perfil</summary><ul id="missL"></ul></details></div></div>
+            <div id="pctW"><div class="sub" style="margin-bottom:6px"><span class="lbl" style="color:var(--preto)">Perfil completo</span><b id="pctTxt">60%</b></div><div class="bar"><i id="pct" style="width:60%"></i></div><details class="miss" id="miss"><summary>O que falta no perfil</summary><ul id="missL"></ul></details></div><a class="mk hi-pf" href="#perfil"><span>Ver perfil</span> <span class="arr" aria-hidden="true">→</span></a></div>
           <div class="kp"><div class="card" data-href="jobs" role="link" tabindex="0"><span class="lbl">Vagas abertas</span><b id="kJobs">0</b></div><div class="card" data-href="candidaturas" role="link" tabindex="0"><span class="lbl">Candidaturas</span><b id="kApp">0</b></div><div class="card" data-href="perfil" data-net="out" role="link" tabindex="0"><span class="lbl">Seguindo</span><b id="kCon">0</b></div><div class="card" data-href="aulas" role="link" tabindex="0" style="--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--verde)"><span class="lbl" style="color:var(--papel)">Aulas feitas</span><b id="kAul">0</b></div></div>
         </div>
         <button class="inst-b vw-b" type="button" id="vwIni" data-vw hidden><span class="ip" aria-hidden="true"></span><span><b>Voltar a ver como marca</b><span class="note">Você está vendo o app como um artista vê. A sua conta continua sendo de marca.</span></span><span class="go">→</span></button>
@@ -3128,7 +3132,7 @@ html[lang="en"] .login h1.one .w{display:table;margin-top:4px}
   function stats() {
     $('kJobs').textContent = JOBS.length; $('kApp').textContent = S.applied.size; $('kCon').textContent = S.follow.size; $('kAul').textContent = S.done.size + '/' + COURSES.reduce((n, c) => n + c.aulas.length, 0);
     const m = missing(), p = Math.round(m.filter((x) => x[2]).length / m.length * 100);
-    $('pct').style.width = p + '%'; $('pctTxt').textContent = p + '%';
+    $('pct').style.width = p + '%'; $('pctTxt').textContent = p + '%'; $('pctW').hidden = p === 100;
     $('missL').innerHTML = m.map(([t, h, d]) => `<li><a href="#${h}" class="${d ? 'dn' : ''}"><i></i><span>${t}</span></a></li>`).join(''); $('miss').querySelector('summary').textContent = p === 100 ? 'Perfil completo' : `O que falta no perfil (${m.filter((x) => !x[2]).length})`;
   }
   function pfTab() {
