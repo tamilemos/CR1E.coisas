@@ -1067,7 +1067,7 @@ button.conn:focus-visible{outline:3px solid var(--preto);outline-offset:2px}
 
 /* tema escuro: formas pretas viram claras (texto preto), verdes continuam verdes */
 :root{--xk:#0E0E0C;--xf:#F4F3EE;--xv:#C5FF3D;--xm:#5F5F58}
-html[data-theme="dark"]{--xk:#F4F3EE;--xf:#0E0E0C;--xv:#0E0E0C;--xm:#5F5F58}
+html[data-theme="dark"]{--xk:#F4F3EE;--xf:#0E0E0C;--xv:#0E0E0C;--xm:#0E0E0C}
 html[data-theme="dark"] .kit p{color:#0E0E0C}
 html[data-theme="dark"] .cband.k{background:#F4F3EE;color:#0E0E0C;border-color:#F4F3EE}
 html[data-theme="dark"] .tab{border-top:1.5px solid #F4F3EE}
@@ -1388,11 +1388,11 @@ html[data-theme="dark"]{--mapline:#6A6A63;--mapbg:#0E0E0C}
 .inst-b .ip{flex:none;width:38px;height:20px;border:2px solid var(--preto);border-radius:999px;background:var(--verde)}
 .inst-b>span:nth-child(2){flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .inst-b b{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:14px;line-height:1.1}
-.inst-b .note{color:var(--mut)}
+.inst-b .note{color:var(--preto)}
 .inst-b .go{flex:none;font-family:var(--mono);font-size:12px;white-space:nowrap}
 html[data-theme="dark"] .inst-b{background:#fff;color:#0E0E0C;border-color:#fff}
 html[data-theme="dark"] .inst-b .ip{border-color:#0E0E0C}
-html[data-theme="dark"] .inst-b .note{color:#5F5F58}
+html[data-theme="dark"] .inst-b .note{color:#0E0E0C}
 html[data-theme="dark"] .inst-b:hover{background:#C5FF3D;border-color:#C5FF3D}
 .standalone .inst-b,.standalone #cfgInst{display:none!important}
 #instD .seg{max-width:none}
@@ -1497,6 +1497,12 @@ html[data-theme="dark"] .vw-bar{background:#fff;color:#0E0E0C;border-color:#fff}
 html[data-theme="dark"] .vw-bar .x{color:#0E0E0C}
 html[data-theme="dark"] .vw-bar .x:focus-visible{outline-color:#0E0E0C}
 [data-view="empresa"] .vw-b{margin:14px 0 4px}
+.hi-p{color:#D8D7D0}
+html[data-theme="dark"] .hi-p{color:#0E0E0C}
+/* modo escuro: em qualquer box claro, texto preto */
+html[data-theme="dark"] .kit .a,html[data-theme="dark"] .kit .lbl,html[data-theme="dark"] .kit .note,html[data-theme="dark"] .plan-c.pro .note,html[data-theme="dark"] .plan-c.pro p{color:#0E0E0C!important}
+/* fundo branco: texto sempre preto (sem cinza) */
+.sk,.acc .chips .sk,.cfg-s .note,.pvd .note,.pvd .lbl,#jobPick .lbl,.sb-n .lbl,.compose3 .cnt,.flt .note{color:var(--preto)}
 </style>
 
 <div class="gate" id="gate">
@@ -1776,7 +1782,7 @@ html[data-theme="dark"] .vw-bar .x:focus-visible{outline-color:#0E0E0C}
       <!-- EMPRESA -->
       <section class="view" data-view="empresa" aria-labelledby="v-empresa" hidden>
         <div class="hello">
-          <div class="hi card sh" style="--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--papel)"><span class="pill v" style="align-self:flex-start">Portal da empresa</span><h1 class="t" id="v-empresa"><span class="ln">Arte para a</span><span class="ln w" style="color:var(--verde)">sua marca</span></h1><p style="max-width:46ch;color:#D8D7D0">Publique um briefing. A curadoria da CR1E.Coisas seleciona os artistas certos, dirige o projeto e acompanha até a entrega.</p></div>
+          <div class="hi card sh" style="--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--papel)"><span class="pill v" style="align-self:flex-start">Portal da empresa</span><h1 class="t" id="v-empresa"><span class="ln">Arte para a</span><span class="ln w" style="color:var(--verde)">sua marca</span></h1><p class="hi-p" style="max-width:46ch">Publique um briefing. A curadoria da CR1E.Coisas seleciona os artistas certos, dirige o projeto e acompanha até a entrega.</p></div>
           <div class="kp"><div class="card" data-href="briefings" role="link" tabindex="0"><span class="lbl">Briefings</span><b id="eBr">0</b></div><div class="card" data-href="briefings" role="link" tabindex="0"><span class="lbl">Em curadoria</span><b id="eCur">0</b></div><div class="card" data-href="projetos" role="link" tabindex="0"><span class="lbl">Projetos</span><b id="eInv">0</b></div><div class="card" data-href="projetos" role="link" tabindex="0" style="--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)"><span class="lbl" style="color:var(--preto)">Entregas feitas</span><b id="eNet">0</b></div></div>
         </div>
         <button class="inst-b vw-b" type="button" id="vwEmp" data-vw><span class="ip" aria-hidden="true"></span><span><b>Ver o app como artista</b><span class="note">Veja a rede, o estúdio e as ferramentas como um artista vê. A sua conta continua sendo de marca.</span></span><span class="go">→</span></button>
