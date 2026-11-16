@@ -72,6 +72,11 @@ const A = {
     const s = await getDoc(doc(db, 'profiles', uid || auth.currentUser.uid));
     return s.exists() ? s.data() : null;
   },
+  /* estado do app (estúdio, salvos, candidaturas, briefings…): fica na conta para ser o mesmo no celular e no computador */
+  async loadState(uid) {
+    try { const s = await getDoc(doc(db, 'private', uid || auth.currentUser.uid)); return s.exists() ? (s.data().app || null) : null; } catch (e) { console.warn('estado: leitura', e && e.code); return null; }
+  },
+  async saveState(st) { const u = auth.currentUser; if (!u) return; await setDoc(doc(db, 'private', u.uid), { app: st, appAt: serverTimestamp() }, { merge: true }); },
   reset: (email) => sendPasswordResetEmail(auth, email),
   /* exclui a conta: confirma a senha, apaga perfil, dados privados e publicações, e por fim o acesso */
   async deleteAccount(pass) {
@@ -155,7 +160,7 @@ window.CR1E_AUTH = A;
 let first = true;
 onAuthStateChanged(auth, async (u) => {
   if (!first) return; first = false;
-  let prof = null;
-  if (u) { try { prof = await A.loadProfile(u.uid); } catch (e) {} }
-  window.__cr1eResolve && window.__cr1eResolve({ A, user: u, prof });
+  let prof = null, state = null;
+  if (u) { try { prof = await A.loadProfile(u.uid); } catch (e) { console.warn('perfil: leitura', e && e.code); } state = await A.loadState(u.uid); }
+  window.__cr1eResolve && window.__cr1eResolve({ A, user: u, prof, state });
 });
