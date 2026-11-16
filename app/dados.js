@@ -77,6 +77,8 @@ const A = {
     try { const s = await getDoc(doc(db, 'private', uid || auth.currentUser.uid)); return s.exists() ? (s.data().app || null) : null; } catch (e) { console.warn('estado: leitura', e && e.code); return null; }
   },
   async saveState(st) { const u = auth.currentUser; if (!u) return; await setDoc(doc(db, 'private', u.uid), { app: st, appAt: serverTimestamp() }, { merge: true }); },
+  /* banco de sugestões: palavras novas do cadastro (opção Outro) para virar categoria */
+  sugestao: (S, tipo, valor) => addDoc(collection(db, 'sugestoes'), { tipo, valor, uid: auth.currentUser ? auth.currentUser.uid : '', nome: S.name || '', perfil: S.realRole || S.role || '', ts: serverTimestamp() }),
   reset: (email) => sendPasswordResetEmail(auth, email),
   /* exclui a conta: confirma a senha, apaga perfil, dados privados e publicações, e por fim o acesso */
   async deleteAccount(pass) {

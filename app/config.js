@@ -12,5 +12,7 @@ window.CR1E_CONFIG = {
   /* IA do planejamento (Firebase AI Logic). Deixe recaptcha vazio enquanto não ativar no console do Firebase.
      provider: "v3" ou "enterprise", conforme o tipo de chave reCAPTCHA registrada no App Check. */
   ia: { recaptcha: "", provider: "v3", model: "gemini-3.5-flash-lite" },
+  /* WhatsApp da Tami para o recado de boas-vindas (só números, com DDI e DDD, ex.: 5511999999999). Vazio esconde o botão. */
+  whatsapp: "",
   drive: "https://script.google.com/macros/s/AKfycbwVruBCw4Ru6UzQI6orfEZuTMp4kAa2yqAe2RS8x121sEqrk5ruyPI8Xnt8TX0gB-Nv/exec"
 };
