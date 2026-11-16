@@ -51,7 +51,7 @@ async function drive(type, data, files = []) {
 const fileOf = (name, dataUrl) => dataUrl ? { name, mime: 'image/jpeg', b64: dataUrl.split(',')[1] } : null;
 
 /* perfil público (sem e-mail) */
-const pub = (S) => ({ hd: S.hd || '', name: S.name, role: S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], uf: S.uf || '', cid: S.cid || '', caps: (S.caps || []).map((c) => String(c || '').slice(0, 120)), conns: [...(S.follow || [])], follow: [...(S.follow || [])], chats: [...(S.chats || [])], done: true, updated: serverTimestamp() });
+const pub = (S) => ({ hd: S.hd || '', name: S.name, role: S.realRole || S.role, sk: S.sk, hb: S.hb, want: S.want, cvBio: S.cvBio || '', cv: S.cv || [], links: S.links || [], uf: S.uf || '', cid: S.cid || '', caps: (S.caps || []).map((c) => String(c || '').slice(0, 120)), conns: [...(S.follow || [])], follow: [...(S.follow || [])], chats: [...(S.chats || [])], done: true, updated: serverTimestamp() });
 
 let unsub = [];
 const A = {
@@ -92,7 +92,7 @@ const A = {
     await setDoc(doc(db, 'profiles', u.uid), { ...pub(S), avatar, fotos, cover, ...(event === 'cadastro' ? { created: serverTimestamp(), consent: true } : {}) }, { merge: true });
     if (event) {
       const files = event === 'cadastro' || event === 'fotos' ? [fileOf('perfil.jpg', S.avatar), fileOf('capa.jpg', S.cover), ...(S.fotos || []).map((f, i) => fileOf(`trabalho-${i + 1}.jpg`, f))].filter(Boolean) : [];
-      drive(event === 'cadastro' ? 'Cadastros' : 'Perfis', { evento: event, nome: S.name, perfil: S.role, cidade: [S.cid, S.uf].filter(Boolean).join(', '), areas_habilidades: (S.role === 'empresa' ? S.want : S.sk).join(', '), gostos: (S.hb || []).join(', '), bio: S.cvBio || '', curriculo: (S.cv || []).map((c) => `${c.a} · ${c.t} · ${c.o}`).join(' | '), links: (S.links || []).map((l) => `${l.n}: ${l.u}`).join(' | ') }, files);
+      drive(event === 'cadastro' ? 'Cadastros' : 'Perfis', { evento: event, nome: S.name, perfil: S.realRole || S.role, cidade: [S.cid, S.uf].filter(Boolean).join(', '), areas_habilidades: (S.role === 'empresa' ? S.want : S.sk).join(', '), gostos: (S.hb || []).join(', '), bio: S.cvBio || '', curriculo: (S.cv || []).map((c) => `${c.a} · ${c.t} · ${c.o}`).join(' | '), links: (S.links || []).map((l) => `${l.n}: ${l.u}`).join(' | ') }, files);
     }
   },
   drive,
@@ -102,7 +102,7 @@ const A = {
     unsub.push(onSnapshot(query(collection(db, 'profiles'), limit(300)), (snap) => {
       const me = auth.currentUser && auth.currentUser.uid;
       hooks.profiles(snap.docs.filter((d) => d.id !== me).map((d) => ({ uid: d.id, ...d.data() })));
-    }, () => {}));
+    }, (er) => { console.warn('perfis', er && er.code); hooks.profiles(null); }));
     unsub.push(onSnapshot(query(collection(db, 'posts'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.posts(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
     unsub.push(onSnapshot(query(collection(db, 'forum'), orderBy('ts', 'desc'), limit(100)), (snap) => hooks.forum(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => {}));
     if (hooks.collabs) unsub.push(onSnapshot(query(collection(db, 'collabs'), orderBy('ts', 'desc'), limit(200)), (snap) => hooks.collabs(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), () => hooks.collabs(null)));
