@@ -1,7 +1,7 @@
 /* CR1E.Coisas · base compartilhada: tokens, tipografia, pílulas, portal, formulário, barra de app */
 :root{
   --preto:#0E0E0C; --papel:#F4F3EE; --verde:#C5FF3D; --grafite:#1C1C19; --papel-2:#E9E8E1;
-  --cinza:#9A9A92; --cinza-p:#5F5F58; --linha-e:#34342F;
+  --cinza:#9A9A92; --cinza-p:#3A3A36; --linha-e:#34342F;
   --display:'Archivo','Arial Black',system-ui,sans-serif;
   --mono:'Space Mono',ui-monospace,Menlo,monospace;
   --spring:cubic-bezier(.34,1.45,.5,1);
@@ -16,7 +16,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit}
-::selection{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto)}
+::selection{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto)}
 :focus-visible{outline:3px solid var(--foco,var(--verde));outline-offset:3px}
 .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1480px;margin:0 auto;width:100%}
 @media(min-width:900px){.wrap{padding-left:max(44px,env(safe-area-inset-left,0px));padding-right:max(44px,env(safe-area-inset-right,0px))}}
@@ -44,9 +44,9 @@ a.lg:hover .o{width:.53em}
 /* pílulas e botões */
 .pill{display:inline-flex;align-items:center;gap:.5em;border-radius:999px;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px;letter-spacing:.05em;padding:9px 16px;white-space:nowrap;text-decoration:none;border:2px solid currentColor;background:none;cursor:default}
 a.pill,button.pill{cursor:pointer}
-.pill.v{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto);border-color:var(--verde)}
+.pill.v{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto);border-color:var(--verde)}
 .pill.k{--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--verde);border-color:var(--preto)}
-.btn{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;display:inline-flex;align-items:center;gap:.6em;border:0;cursor:pointer;border-radius:999px;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:15px;letter-spacing:.03em;padding:16px 26px;min-height:52px;text-decoration:none;transition:transform .35s var(--spring);background:var(--verde);color:var(--preto)}
+.btn{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;display:inline-flex;align-items:center;gap:.6em;border:0;cursor:pointer;border-radius:999px;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:15px;letter-spacing:.03em;padding:16px 26px;min-height:52px;text-decoration:none;transition:transform .35s var(--spring);background:var(--verde);color:var(--preto)}
 .btn.k{--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff;--mut:var(--xm);--papel-2:#E9E8E1;background:var(--preto);color:var(--verde)}
 .btn.ln{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
 .btn .arr{display:inline-block;transition:transform .45s var(--spring)}
@@ -59,7 +59,7 @@ a.pill,button.pill{cursor:pointer}
 .hd .lg{font-size:24px}
 .nav{display:none;gap:2px}
 .nav a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:9px 12px;border-radius:999px;color:var(--mut);transition:color .2s,background .2s}
-.nav a:hover,.nav a.on{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)}
+.nav a:hover,.nav a.on{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);background:var(--verde)}
 @media(min-width:1000px){.nav{display:flex}}
 .hd-r{display:flex;align-items:center;gap:8px}
 .lang{display:flex;border:2px solid var(--line);border-radius:999px;padding:2px}
@@ -71,7 +71,7 @@ a.pill,button.pill{cursor:pointer}
 .tab a,.tab button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px 4px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza);min-height:48px}
 .tab i{display:block;width:26px;height:12px;border:2px solid currentColor;border-radius:999px;transition:width .5s var(--spring),background .2s}
 .tab .on{color:var(--verde)}
-.tab .on i{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);width:40px;background:var(--verde)}
+.tab .on i{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;color:var(--preto);width:40px;background:var(--verde)}
 .tab .ptl i{border-style:dashed}
 @media(max-width:999px){:root{--tab-h:calc(70px + env(safe-area-inset-bottom,0px))}}
 @media(min-width:1000px){.tab{display:none}}
@@ -81,7 +81,7 @@ dialog.ptl-d{--preto:var(--xk);--papel:var(--xf);--verde:var(--xv);--branco:#fff
 dialog.ptl-d::backdrop{background:rgba(14,14,12,.72);backdrop-filter:blur(4px)}
 .ptl-g{display:grid}
 @media(min-width:760px){.ptl-g{grid-template-columns:1fr 1fr}}
-.ptl-l{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#5F5F58;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto);padding:32px;display:flex;flex-direction:column;gap:18px;justify-content:space-between;min-height:260px}
+.ptl-l{--preto:#0E0E0C;--papel:#F4F3EE;--branco:#fff;--mut:#3A3A36;--papel-2:#E9E8E1;--verde:#C5FF3D;background:var(--verde);color:var(--preto);padding:32px;display:flex;flex-direction:column;gap:18px;justify-content:space-between;min-height:260px}
 .ptl-l .t{font-size:clamp(40px,6vw,64px)}
 .ptl-r{padding:32px;display:flex;flex-direction:column;gap:14px}
 .ptl-r label{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
