@@ -1744,6 +1744,11 @@ html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[
 .anl{display:flex;flex-direction:column;gap:6px;max-height:60vh;overflow:auto}
 .anl .reqr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--tw-ln)}
 .anl .reqr .av{width:46px;height:46px}
+
+/* avatar da CR1E.Coisas: símbolo c + pílula */
+.av.av-cr{background:#0E0E0C!important;color:#C5FF3D;display:inline-grid;place-items:center;overflow:hidden}
+.avcr{display:inline-flex;align-items:center;font-family:var(--display);font-weight:900;font-stretch:125%;font-size:15px;line-height:1;text-transform:lowercase;letter-spacing:0}
+.avcr i{display:block;width:1.3em;height:.55em;border:.16em solid currentColor;border-radius:999px;margin-left:.06em}
 </style>
 
 <div class="gate" id="gate">
@@ -2695,7 +2700,7 @@ html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[
   const ARB = (ar, sm) => `<div class="pf-ar${sm ? ' sm' : ''}">${String(ar || '').split(' · ').filter(Boolean).map((x) => `<span class="arb">${esc(x)}</span>`).join('')}</div>`;
   const avKey = (a) => (a && (a.uid || (a.n && a.n === S.name && myUid()) || (a.n && findArt(a.n) ? a.n : ''))) || '';
   const avA = (a, cls = '') => { const k = avKey(a); return `<span class="av avc ${cls}"${k ? ` data-art="${esc(k)}" role="button" tabindex="0" aria-label="Ver perfil de ${esc(a.n || '')}"` : ''}>${a && a.img ? `<img src="${a.img}" alt="">` : esc(((a && a.n) || '?').slice(0, 2).toUpperCase())}</span>`; };
-  const avN = (n, cls = '') => avA(ARTISTS.find((x) => x.n === n) || { n }, cls);
+  const avN = (n, cls = '') => /^Curadoria CR1E/.test(n) ? `<span class="av av-cr ${cls}" role="img" aria-label="CR1E.Coisas"><span class="avcr">c<i></i></span></span>` : avA(ARTISTS.find((x) => x.n === n) || { n }, cls);
   /* encolhe o título quando ele não cabe em uma linha */
   function fitV() { document.querySelectorAll('.view:not([hidden]) .vh h1').forEach((el) => { el.style.fontSize = ''; const box = el.parentElement.clientWidth; let n = 0; while (el.scrollWidth > box + 1 && n++ < 40) { el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * .94) + 'px'; } }); }
   addEventListener('hashchange', () => setTimeout(fitV, 60)); addEventListener('resize', () => setTimeout(fitV, 60)); try { document.fonts.ready.then(() => setTimeout(fitV, 60)); } catch (er) {}
