@@ -1775,6 +1775,25 @@ html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[
 .oit-d>span{align-self:flex-start;background:#C5FF3D;color:#0E0E0C!important;font-weight:700;font-size:10.5px!important;padding:2px 7px;margin-bottom:2px}
 .oit{margin-top:6px}
 .oit:first-child{margin-top:0}
+
+/* sugestões: cartão como o perfil (capa, foto, nome, áreas) e faixa com o portfólio */
+.pc3{overflow:hidden;background:var(--papel)}
+.pc3 .pc-cov{margin:0;height:25%;flex:none;border-bottom:2px solid var(--preto)}
+.pc3 .pc-b{position:relative;padding:0 16px 10px;gap:6px;flex:1;min-height:0;overflow:visible;background:var(--papel);z-index:1}
+.pc3 .pc-av{position:relative;z-index:2;width:96px;height:96px;margin-top:-52px;font-size:26px;flex:none;box-shadow:5px 5px 0 #0E0E0C}
+.pc3 .pc-av img{width:100%;height:100%;object-fit:cover;border-radius:999px}
+.pc3 .pc-nm{font-stretch:125%;font-weight:900;font-size:24px;line-height:1;margin:4px 0 0;overflow-wrap:anywhere}
+.pc3 .hdl{font-family:var(--mono);font-size:13px;font-weight:700}
+.pc3 .pf-ar{margin:2px 0 0}
+.pc3 .pf-loc{font-size:12px}
+.pc-pl{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.pc-pl span{font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--cinza);border-radius:999px;color:var(--preto)}
+html[data-theme="dark"] .pc-pl span{border-color:transparent;background:#2A2A25}
+.pc-port{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;height:30%;flex:none;background:#0E0E0C;border-top:2px solid var(--preto)}
+.pc-port img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;min-height:0}
+.deck .pc:not([data-d="0"]) .pc-b,.deck .pc:not([data-d="0"]) .pc-port{visibility:hidden}
+.pc-port.n1{grid-template-columns:1fr}.pc-port.n2{grid-template-columns:1fr 1fr}
+.pc3 .pc-bio{margin:2px 0 0}
 </style>
 
 <div class="gate" id="gate">
@@ -3069,8 +3088,8 @@ html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[
   const deck = $('deck');
   function drawDeck() {
     const rest = DECK.slice(S.di);
-    deck.innerHTML = rest.length ? rest.slice(0, 3).map((a, d) => { const fs = (a.fotos || []).filter(Boolean).slice(0, 3), ph = fs.length ? `<div class="pc-g n${fs.length}">${fs.map((f) => `<img src="${f}" alt="">`).join('')}</div>` : `<div class="pc-g n0">${a.cover || a.img ? `<img src="${a.cover || a.img}" alt="">` : '<span class="pc-e">Sem fotos de portfólio ainda</span>'}</div>`;
-      return `<article class="pc pc2" style="--d:${d}" data-d="${d}" data-n="${esc(a.n)}"><span class="stamp y">Seguir</span><span class="stamp n">Pular</span>${ph}<div class="pc-b"><div class="pc-h"><span class="av">${a.img ? `<img src="${a.img}" alt="">` : esc(a.n.slice(0, 2).toUpperCase())}</span><div><h3 class="t"><span class="w">${esc(a.n)}</span></h3><span class="note">${esc([a.ar, a.city].filter(Boolean).join(' · '))}</span></div></div>${a.bio ? `<p class="pc-bio">${esc(a.bio)}</p>` : ''}${a.sk.length ? `<p class="pc-sk">${a.sk.slice(0, 5).map(esc).join(' · ')}</p>` : ''}</div></article>`; }).reverse().join('')
+    deck.innerHTML = rest.length ? rest.slice(0, 3).map((a, d) => { const fs = (a.fotos || []).filter(Boolean).slice(0, 3);
+      return `<article class="pc pc3" style="--d:${d}" data-d="${d}" data-n="${esc(a.n)}"><span class="stamp y">Seguir</span><span class="stamp n">Pular</span><div class="cov pc-cov${a.cover ? ' has' : ''}"${a.cover ? ` style="background-image:url(${a.cover})"` : ''}></div><div class="pc-b"><span class="av big pc-av">${a.img ? `<img src="${a.img}" alt="">` : esc(a.n.slice(0, 2).toUpperCase())}</span><h3 class="t pc-nm">${esc(a.n)}</h3>${a.hd ? `<span class="hdl">@${esc(a.hd)}</span>` : ''}${ARB(a.ar, true)}${a.city ? `<span class="pf-loc">${esc(a.city)}</span>` : ''}${a.bio ? `<p class="pc-bio">${esc(a.bio)}</p>` : ''}${a.sk.length ? `<div class="pc-pl">${a.sk.slice(0, 4).map((x) => `<span>${esc(x)}</span>`).join('')}</div>` : ''}</div>${fs.length ? `<div class="pc-port n${fs.length}">${fs.map((f) => `<img src="${f}" alt="">`).join('')}</div>` : ''}</article>`; }).reverse().join('')
       : (DECK.length ? '<div class="empty">Não tem mais ninguém por aqui por enquanto. Você já viu todos os perfis. <button class="pill s" type="button" id="again" style="margin-top:8px">Ver de novo</button></div>' : '<div class="empty">Ainda não tem ninguém por aqui. Os perfis de quem entrar no teste aparecem neste espaço para você seguir.</div>');
     deck.classList.toggle('em', !rest.length); deck.parentElement.querySelector('.acts').hidden = !rest.length;
     const ag = $('again'); if (ag) ag.onclick = () => { S.skip = new Set(); deckBuild(); drawDeck(); };
