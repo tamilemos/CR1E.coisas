@@ -2546,7 +2546,8 @@ html[data-theme="dark"] .pc-pl span{border-color:transparent;background:#2A2A25}
   /* entrada */
   const gate = $('gate');
   for (let i = 0; i < Math.max(6, Math.round(innerHeight / 84)); i++) { const r = document.createElement('div'); r.className = 'row'; r.style.setProperty('--i', i); r.setAttribute('aria-hidden', 'true'); r.innerHTML = `<div class="row-t" style="animation-duration:${24 + (i % 3) * 8}s">${Array(16).fill('<span>CR1E<b>.c<i></i>llab</b></span>').join('')}</div>`; gate.appendChild(r); }
-  document.documentElement.classList.add('lock'); gate.classList.add('splash'); const T0 = Date.now(); S.guest = false;
+  let splashSeen = false; try { splashSeen = !!sessionStorage.getItem('cr1e-splash'); sessionStorage.setItem('cr1e-splash', '1'); } catch (er) {}
+  document.documentElement.classList.add('lock'); gate.classList.add('splash'); if (splashSeen) gate.classList.add('quick'); const T0 = Date.now(); S.guest = false;
   const LAST = () => (S.role === 'empresa' ? 3 : 5);
   gate.querySelectorAll('[data-role]').forEach((b) => b.addEventListener('click', () => { S.role = b.dataset.role; $('obS1').textContent = 'Passo 1 de ' + LAST(); gate.querySelectorAll('[data-role]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); }));
   const ARROW = ' <span class="arr" aria-hidden="true">→</span>';
@@ -3942,7 +3943,7 @@ html[data-theme="dark"] .pc-pl span{border-color:transparent;background:#2A2A25}
 
   let decided = false;
   const asGuest = () => { if (decided) return; decided = true; S.guest = true; document.documentElement.classList.add('guest'); gate.classList.remove('splash'); $('feedSlot').appendChild($('feedBlock')); route(); setTimeout(instAsk, 3500); };
-  const afterSplash = (fn) => setTimeout(fn, Math.max(0, 1800 - (Date.now() - T0)));
+  const afterSplash = (fn) => setTimeout(fn, splashSeen ? 0 : Math.max(0, 1500 - (Date.now() - T0)));
   window.CR1E_READY.then((R) => afterSplash(() => { if (decided) return; if (R.user && blocked(R.prof, R.user)) { decided = true; blockOut(); }
     else if (R.user && R.prof && R.prof.done && document.getElementById('gate')) { decided = true; applyProfile(R.prof); gate.classList.remove('splash'); gate.querySelector('.login').style.display = 'none'; enterApp(); stLoad(R.state); profHeal(); }
     else if (R.user && document.getElementById('gate')) {

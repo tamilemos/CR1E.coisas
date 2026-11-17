@@ -663,13 +663,14 @@ dialog.sheet{width:min(860px,calc(100vw - 20px))}
 
   /* abertura: cortina de estampa */
   const intro = $('intro');
-  if (reduce) intro.remove(); else {
+  let introSeen = false; try { introSeen = !!sessionStorage.getItem('cr1e-intro'); sessionStorage.setItem('cr1e-intro', '1'); } catch (er) {}
+  if (reduce || introSeen) intro.remove(); else {
     const word = 'CR1E<b>.C<i></i>ISAS</b>';
     const n = Math.max(6, Math.round(innerHeight / 90));
     for (let i = 0; i < n; i++) { const r = document.createElement('div'); r.className = 'row'; r.style.setProperty('--i', i); r.setAttribute('aria-hidden', 'true'); r.innerHTML = `<div class="row-t" style="animation-duration:${24 + (i % 3) * 8}s">${Array(16).fill(`<span>${word}</span>`).join('')}</div>`; intro.appendChild(r); }
     document.documentElement.classList.add('lock');
     const go = () => { intro.classList.add('go'); document.documentElement.classList.remove('lock'); setTimeout(() => intro.remove(), 1500); };
-    intro.addEventListener('click', go); $('open').focus({ preventScroll: true });
+    intro.addEventListener('click', go, { once: true }); $('open').focus({ preventScroll: true }); setTimeout(() => { if (!intro.classList.contains('go')) go(); }, 1500);
   }
 
   Object.assign(C.T, {
