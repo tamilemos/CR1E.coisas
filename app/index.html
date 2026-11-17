@@ -1728,6 +1728,16 @@ html[lang="en"] .login h1.one .w{display:table;margin-top:4px}
 .am-more{display:block;margin:14px 0 6px}
 /* modo escuro: sem contorno branco em grupos de muitas caixas */
 html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[data-theme="dark"] .chips .sk:not([aria-pressed="true"]),html[data-theme="dark"] .pills .pill.s:not(.k):not([aria-pressed="true"]),html[data-theme="dark"] .sgl .sg,html[data-theme="dark"] .nf:not(.new),html[data-theme="dark"] .pn-card,html[data-theme="dark"] .pn-k,html[data-theme="dark"] .reqr,html[data-theme="dark"] .conn,html[data-theme="dark"] .crow .cc,html[data-theme="dark"] .ms>summary,html[data-theme="dark"] .pn-tabs button:not([aria-selected="true"]),html[data-theme="dark"] .areas button:not([aria-pressed="true"]){border-color:transparent!important;background:#2A2A25;box-shadow:none}
+
+/* listas de pessoas: avatar e nome com mais peso, botões menores */
+.ps-res .reqr{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:6px;align-items:center;padding:12px 0}
+.ps-res .reqr .avb .av{width:58px;height:58px;font-size:16px}
+.ps-res .reqr .gbt{display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left}
+.ps-nm{font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:16px;line-height:1.1;overflow-wrap:anywhere}
+.ps-hd{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--preto)}
+.ps-res .reqr .gbt .note{font-size:11px}
+.ps-res .reqr .short{grid-column:2;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;margin-left:0!important;width:auto}
+.ps-res .reqr .short .pill{font-size:9.5px;padding:5px 11px;min-height:0}
 </style>
 
 <div class="gate" id="gate">
@@ -3116,7 +3126,7 @@ html[data-theme="dark"] .tags .tag,html[data-theme="dark"] .pills.sm .pill,html[
     if (k === 'net' && !q && !nf) { el.innerHTML = ''; return; }
     const any = (set, l) => !set.size || l.some((x) => set.has(x));
     const l = pool.filter((a) => (!q || nrmS(a.n).includes(q) || (a.hd && a.hd.includes(q))) && any(F.a, arOf(a)) && any(F.s, a.sk || []) && any(F.h, a.hb || []));
-    const row = (a) => { const f = S.follow.has(a.uid); return `<div class="reqr"><button class="avb" type="button" data-art="${esc(a.uid || a.n)}" aria-label="Ver perfil de ${esc(a.n)}">${avA(a)}</button><button class="g gbt" type="button" data-art="${esc(a.uid || a.n)}"><b>${esc(a.n)}</b>${a.hd ? ` <span class="note">@${esc(a.hd)}</span>` : ''}<br><span class="note">${esc([a.esp || arOf(a)[0], a.cid].filter(Boolean).join(' · '))}</span></button><span class="short">${k === 'am' ? `<button class="pill s" type="button" data-cmsg="${esc(a.n)}">Mensagem</button>` : ''}<button class="pill s${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f ? 'Seguindo' : 'Seguir'}</button></span></div>`; };
+    const row = (a) => { const f = S.follow.has(a.uid); return `<div class="reqr"><button class="avb" type="button" data-art="${esc(a.uid || a.n)}" aria-label="Ver perfil de ${esc(a.n)}">${avA(a)}</button><button class="g gbt" type="button" data-art="${esc(a.uid || a.n)}"><b class="ps-nm">${esc(a.n)}</b>${a.hd ? `<span class="ps-hd">@${esc(a.hd)}</span>` : ''}<span class="note">${esc([a.esp || arOf(a)[0], a.cid].filter(Boolean).join(' · '))}</span></button><span class="short">${k === 'am' ? `<button class="pill xx" type="button" data-cmsg="${esc(a.n)}">Mensagem</button>` : ''}<button class="pill xx${f ? ' k' : ''}" type="button" data-fol="${a.uid}" aria-pressed="${f}">${f ? 'Seguindo' : 'Seguir'}</button></span></div>`; };
     el.innerHTML = l.length ? `<p class="note ps-n">${l.length} ${l.length === 1 ? 'pessoa' : 'pessoas'}</p>` + l.slice(0, 60).map(row).join('') : `<div class="empty">${k === 'am' && !pool.length ? 'Você ainda não segue ninguém. Busque pessoas na aba Amigos.' : 'Ninguém encontrado com essa busca.'}</div>`;
   }
   document.addEventListener('input', (e) => { const q = e.target.closest && e.target.closest('[data-psq]'); if (q) { PSF[q.dataset.psq].q = q.value; psList(q.dataset.psq); } });
