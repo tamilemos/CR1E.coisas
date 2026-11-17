@@ -16,6 +16,7 @@ const db = getFirestore(app);
 
 const MSG = {
   'auth/email-already-in-use': 'Já existe uma conta com esse e-mail. Toque em "Já tenho senha" para entrar.',
+  'auth/user-disabled': 'O CR1E.Collab está fora do ar por enquanto. Tente de novo mais tarde.',
   'auth/invalid-email': 'Esse e-mail não parece válido.',
   'auth/weak-password': 'A senha precisa ter pelo menos 6 caracteres.',
   'auth/missing-password': 'Escreva a sua senha.',

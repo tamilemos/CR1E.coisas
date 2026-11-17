@@ -14,5 +14,7 @@ window.CR1E_CONFIG = {
   ia: { recaptcha: "", provider: "v3", model: "gemini-3.5-flash-lite" },
   /* WhatsApp da Tami para o recado de boas-vindas (só números, com DDI e DDD, ex.: 5511999999999). Vazio esconde o botão. */
   whatsapp: "",
+  /* contas bloqueadas: @, e-mail ou uid. Quem estiver aqui vê "fora do ar" ao entrar e some da rede. */
+  bloqueados: ["sabrinasister"],
   drive: "https://script.google.com/macros/s/AKfycbwVruBCw4Ru6UzQI6orfEZuTMp4kAa2yqAe2RS8x121sEqrk5ruyPI8Xnt8TX0gB-Nv/exec"
 };
