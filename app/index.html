@@ -2678,7 +2678,7 @@ html[data-theme="dark"] .chat-h{background:#30302A;--preto:#F4F3EE;color:#F4F3EE
 
 <script src="config.js?v=2611e"></script>
 <script>window.CR1E_READY = new Promise((r) => { window.__cr1eResolve = r; }); if (!window.CR1E_CONFIG || !window.CR1E_CONFIG.firebase) window.__cr1eResolve({ A: null }); setTimeout(() => window.__cr1eResolve({ A: null }), 25000);</script>
-<script type="module" src="dados.js?v=1911a"></script>
+<script type="module" src="dados.js?v=1911b"></script>
 <script src="canva.js?v=2" defer></script>
 <script>
 (() => {
@@ -3324,6 +3324,8 @@ html[data-theme="dark"] .chat-h{background:#30302A;--preto:#F4F3EE;color:#F4F3EE
   function titlesIn() { if (!wIO) return; setTimeout(() => document.querySelectorAll('.view:not([hidden]) .t .w').forEach((el) => { wIO.unobserve(el); wIO.observe(el); }), 140); }
   /* faixas animadas do rodapé: só na primeira vez que o app abre neste aparelho */
   const BANDS_OFF = (() => { try { const k = 'cr1e-faixas-vistas'; if (localStorage.getItem(k)) return true; localStorage.setItem(k, '1'); } catch (er) {} return false; })();
+  /* uso por pessoa: abas da Rede e ferramentas do Estúdio também contam como páginas no painel */
+  document.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('[data-rt],.ftab[data-tool]'); if (!b || !window.CR1E_TRACK) return; window.CR1E_TRACK(b.dataset.rt ? 'rede_' + b.dataset.rt : 'estudio_' + b.dataset.tool); });
   function route() {
     const emp = S.role === 'empresa'; let h = location.hash.slice(1); const gst = S.guest && !!document.getElementById('gate');
     if (gst) { const open = h === 'feed' || h === 'materia' || h === 'sobre'; if (!open && gate.classList.contains('go')) toast('Entre ou crie a sua conta para desbloquear esta área.'); gate.classList.toggle('go', open); document.documentElement.classList.toggle('lock', !open); }

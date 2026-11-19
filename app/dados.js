@@ -161,11 +161,31 @@ window.CR1E_AUTH = A;
 
 /* registro de acesso (para o painel de administração): e-mail, último acesso, quantas vezes e tipo de aparelho */
 let touched = '';
+const hoje = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 onAuthStateChanged(auth, (u) => {
   if (!u || touched === u.uid) return; touched = u.uid;
   const dev = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'celular' : 'computador';
-  setDoc(doc(db, 'private', u.uid), { email: u.email || '', lastAt: serverTimestamp(), visits: increment(1), dev }, { merge: true }).catch(() => {});
+  setDoc(doc(db, 'private', u.uid), { email: u.email || '', lastAt: serverTimestamp(), visits: increment(1), dev, days: arrayUnion(hoje()) }, { merge: true }).catch(() => {});
+  trView();
 });
+
+/* uso por pessoa (só para o painel de administração): páginas abertas, tempo com o app aberto e o caminho da última visita.
+   Acumula em memória e grava no máximo a cada minuto, ou quando o app sai da tela. */
+const TR = { v: {}, s: 0, path: [] };
+const trAdd = (k) => { if (!/^[a-z_]{2,40}$/.test(k)) return; TR.v[k] = (TR.v[k] || 0) + 1; TR.path.push(k); if (TR.path.length > 30) TR.path.shift(); };
+function trView() { trAdd((location.hash.slice(1) || 'inicio').split(/[?&]/)[0]); }
+window.CR1E_TRACK = (k) => trAdd(String(k || '').toLowerCase());
+addEventListener('hashchange', trView);
+setInterval(() => { if (document.visibilityState === 'visible' && auth.currentUser) TR.s += 15; }, 15000);
+async function trFlush() {
+  const u = auth.currentUser; if (!u) return; const v = TR.v, s = TR.s; if (!Object.keys(v).length && !s) return; TR.v = {}; TR.s = 0;
+  const views = {}; Object.entries(v).forEach(([k, n]) => { views[k] = increment(n); });
+  try { await setDoc(doc(db, 'private', u.uid), { stats: { views, secs: increment(s) }, lastPath: TR.path.slice(-15), lastAt: serverTimestamp(), days: arrayUnion(hoje()) }, { merge: true }); }
+  catch (e) { Object.entries(v).forEach(([k, n]) => { TR.v[k] = (TR.v[k] || 0) + n; }); TR.s += s; }
+}
+setInterval(trFlush, 60000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') trFlush(); });
+addEventListener('pagehide', () => { trFlush(); });
 
 /* sessão: quem já entrou antes volta direto para o app */
 let first = true;

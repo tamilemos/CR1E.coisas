@@ -86,6 +86,20 @@ tr:hover td{background:var(--grafite)}
 .pw input{width:100%;box-sizing:border-box;padding-right:48px}
 .pw-t{all:unset;box-sizing:border-box;position:absolute;right:3px;top:50%;transform:translateY(-50%);width:42px;height:42px;display:grid;place-items:center;cursor:pointer;color:var(--papel)}
 .pw-t:focus-visible{outline:2px solid var(--verde,#C5FF3D)}
+/* perfil de uso */
+#axT tr{cursor:pointer}
+dialog#axD{background:var(--grafite);color:var(--papel);border:1px solid var(--linha);padding:0;width:min(720px,94vw);max-height:90vh}
+dialog#axD::backdrop{background:rgba(0,0,0,.7)}
+.axd{padding:22px;display:flex;flex-direction:column;gap:16px}
+.axd .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.axd h3{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza);margin:0 0 6px;font-weight:700}
+.axd .kpis{margin:0}
+.path{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.path span{border:1px solid var(--linha);border-radius:999px;padding:2px 9px;font-size:11px}
+.path i{color:var(--cinza);font-style:normal}
+.dots{display:flex;flex-wrap:wrap;gap:3px}
+.dots b{width:14px;height:14px;background:var(--linha);display:block}
+.dots b.on{background:var(--verde)}
 </style>
 </head>
 <body>
@@ -150,7 +164,9 @@ tr:hover td{background:var(--grafite)}
     <p class="mut" style="margin:0 0 10px">Todas as contas criadas com e-mail, inclusive quem ainda não terminou o cadastro. O último acesso e o número de acessos começaram a ser registrados em 19/11/2026.</p>
     <div class="kpis" id="axK" style="margin-bottom:12px"></div>
     <div class="bar"><input id="axQ" type="search" placeholder="Buscar por nome ou e-mail"><select id="axF"><option value="">Todas as contas</option><option value="ok">Cadastro concluído</option><option value="no">Cadastro não concluído</option><option value="7">Acessaram nos últimos 7 dias</option></select><button class="pill" type="button" id="axCsv">Baixar planilha (CSV)</button></div>
-    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Local</th><th>Conta criada</th><th>Último acesso</th><th>Acessos</th><th>Aparelho</th></tr></thead><tbody id="axT"></tbody></table></div>
+    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Local</th><th>Conta criada</th><th>Último acesso</th><th>Acessos</th><th>Dias</th><th>Tempo no app</th><th>Aparelho</th></tr></thead><tbody id="axT"></tbody></table></div>
+    <p class="mut" style="margin:8px 0 0">Toque em uma pessoa para ver o perfil de uso: páginas, tempo e retornos.</p>
+    <dialog id="axD" aria-labelledby="axDT"><div class="axd"><div class="row"><h2 class="t" id="axDT" style="font-size:26px"></h2><button class="pill" type="button" id="axDX">Fechar</button></div><div id="axDB"></div></div></dialog>
   </section>
   <section id="t-pessoas" hidden>
     <div class="bar"><input id="q" type="search" placeholder="Buscar por nome, área ou e-mail"><select id="fr"><option value="">Todos</option><option value="artista">Artistas</option><option value="empresa">Empresas</option></select><button class="pill" type="button" id="csv">Baixar CSV</button></div>
@@ -279,18 +295,35 @@ function draw() {
 }
 $('q').addEventListener('input', draw); $('fr').addEventListener('change', draw);
 /* acessos: contas do login (coleção private) cruzadas com os perfis */
+const PG = { inicio: 'Início', estudio: 'Estúdio', estudio_kit: 'Estúdio · Media kit', estudio_orc: 'Estúdio · Orçamento', estudio_plan: 'Estúdio · Conteúdo', estudio_ed: 'Estúdio · Editais', rede: 'Rede', rede_social: 'Rede · Feed', rede_match: 'Rede · Amigos', rede_collab: 'Rede · Collabs', rede_forum: 'Rede · Fórum', jobs: 'Vagas', aulas: 'Academia', curso: 'Curso', perfil: 'Perfil', artista: 'Perfil de outra pessoa', artistas: 'Artistas', amigos: 'Quem você segue', feed: 'Leituras', materia: 'Matéria', mais: 'Mais', config: 'Configurações', avisos: 'Notificações', mensagens: 'Mensagens', post: 'Publicação aberta', topico: 'Tópico do fórum', collab: 'Collab aberta', projetos: 'Projetos', candidaturas: 'Candidaturas', plano: 'Plano', sobre: 'Sobre o app', empresa: 'Painel da marca', briefing: 'Briefing', briefings: 'Briefings', teste: 'Teste' };
+const tempo = (sec) => { sec = sec || 0; if (sec < 60) return sec ? sec + ' s' : '—'; const h = Math.floor(sec / 3600), m = Math.round((sec % 3600) / 60); return h ? `${h} h ${m} min` : `${m} min`; };
 const axRows = () => { const pm = Object.fromEntries(D.profiles.map((p) => [p.uid, p])), q = $('axQ').value.trim().toLowerCase(), f = $('axF').value, wk = Date.now() - 7 * 864e5;
-  return Object.entries(D.priv || {}).map(([uid, v]) => { const p = pm[uid] || {}; return { uid, name: p.name || v.name || '', email: v.email || '', role: p.role || '', ok: !!pm[uid], local: [p.cid, p.uf].filter(Boolean).join(', '), created: ms(v.created) || ms(p.created), last: Math.max(ms(v.lastAt), ms(v.appAt)), visits: v.visits || 0, dev: v.dev || '' }; })
+  return Object.entries(D.priv || {}).map(([uid, v]) => { const p = pm[uid] || {}; return { uid, name: p.name || v.name || '', email: v.email || '', role: p.role || '', ok: !!pm[uid], local: [p.cid, p.uf].filter(Boolean).join(', '), created: ms(v.created) || ms(p.created), last: Math.max(ms(v.lastAt), ms(v.appAt)), visits: v.visits || 0, dev: v.dev || '', days: (v.days || []).length, secs: (v.stats && v.stats.secs) || 0 }; })
     .filter((r) => (!q || (r.name + ' ' + r.email).toLowerCase().includes(q)) && (!f || (f === 'ok' ? r.ok : f === 'no' ? !r.ok : r.last > wk)))
     .sort((a, b) => (b.last || b.created) - (a.last || a.created)); };
 function axDraw() { const all = Object.keys(D.priv || {}).length, R = axRows(), wk = Date.now() - 7 * 864e5, pm = new Set(D.profiles.map((p) => p.uid));
   const allR = Object.entries(D.priv || {}); $('axK').innerHTML = [[all, 'contas'], [allR.filter(([u]) => pm.has(u)).length, 'cadastro concluído'], [allR.filter(([u]) => !pm.has(u)).length, 'não concluíram'], [allR.filter(([, v]) => Math.max(ms(v.lastAt), ms(v.appAt)) > wk).length, 'acessaram em 7 dias']].map(([n, l]) => `<div class="kpi"><b>${n}</b><span>${l}</span></div>`).join('');
   const d = (t) => t ? dt({ toDate: () => new Date(t) }) : '—';
-  $('axT').innerHTML = D.privErr ? '<tr><td colspan="8"><div class="empty">Sem permissão para ler as contas. Nas regras do Firestore, a coleção private precisa permitir leitura para tami@cr1e.co.</div></td></tr>'
-    : R.length ? R.map((r) => `<tr><td><b>${esc(r.name || '(sem nome)')}</b></td><td>${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '—'}</td><td>${r.ok ? esc(r.role === 'empresa' ? 'Empresa' : 'Artista') : '<span class="mut">cadastro não concluído</span>'}</td><td>${esc(r.local || '—')}</td><td>${d(r.created)}</td><td>${d(r.last)}</td><td>${r.visits || '—'}</td><td>${esc(r.dev || '—')}</td></tr>`).join('') : '<tr><td colspan="8"><div class="empty">Nenhuma conta com esse filtro.</div></td></tr>'; }
+  $('axT').innerHTML = D.privErr ? '<tr><td colspan="10"><div class="empty">Sem permissão para ler as contas. Nas regras do Firestore, a coleção private precisa permitir leitura para tami@cr1e.co.</div></td></tr>'
+    : R.length ? R.map((r) => `<tr data-ax="${esc(r.uid)}" tabindex="0"><td><b>${esc(r.name || '(sem nome)')}</b></td><td>${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '—'}</td><td>${r.ok ? esc(r.role === 'empresa' ? 'Empresa' : 'Artista') : '<span class="mut">cadastro não concluído</span>'}</td><td>${esc(r.local || '—')}</td><td>${d(r.created)}</td><td>${d(r.last)}</td><td>${r.visits || '—'}</td><td>${r.days || '—'}</td><td>${tempo(r.secs)}</td><td>${esc(r.dev || '—')}</td></tr>`).join('') : '<tr><td colspan="10"><div class="empty">Nenhuma conta com esse filtro.</div></td></tr>'; }
+function axOpen(uid) { const v = (D.priv || {})[uid] || {}, p = D.profiles.find((x) => x.uid === uid) || {}, st = v.stats || {}, vw = Object.entries(st.views || {}).sort((a, b) => b[1] - a[1]), tot = vw.reduce((a, [, n]) => a + n, 0), visits = v.visits || 0, days = (v.days || []).slice().sort();
+  const last30 = [...Array(30)].map((_, i) => { const d = new Date(Date.now() - (29 - i) * 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }), ds = new Set(days);
+  const d = (t) => t ? dt({ toDate: () => new Date(t) }) : '—';
+  $('axDT').textContent = p.name || v.name || v.email || 'Conta';
+  $('axDB').innerHTML = `<p class="mut" style="margin:0">${esc(v.email || '')}${p.role ? ' · ' + (p.role === 'empresa' ? 'Empresa' : 'Artista') : ' · cadastro não concluído'}${p.cid ? ' · ' + esc(p.cid) + (p.uf ? ', ' + esc(p.uf) : '') : ''}${v.dev ? ' · ' + esc(v.dev) : ''}</p>
+    <div class="kpis">${[[visits || '—', 'acessos'], [days.length || '—', 'dias diferentes'], [tempo(st.secs), 'tempo no app'], [visits && st.secs ? tempo(Math.round(st.secs / visits)) : '—', 'média por acesso'], [tot || '—', 'páginas abertas']].map(([n, l]) => `<div class="kpi"><b style="font-size:26px">${n}</b><span>${l}</span></div>`).join('')}</div>
+    <div><h3>Conta criada · último acesso</h3><p style="margin:0">${d(ms(v.created) || ms(p.created))} · ${d(Math.max(ms(v.lastAt), ms(v.appAt)))}</p></div>
+    <div><h3>Dias em que entrou (últimos 30)</h3><div class="dots">${last30.map((x) => `<b class="${ds.has(x) ? 'on' : ''}" title="${x.split('-').reverse().join('/')}"></b>`).join('')}</div></div>
+    <div><h3>Páginas mais abertas</h3>${vw.length ? hbars(vw.map(([k, n]) => [PG[k] || k, n]), vw[0][1]) : '<div class="empty">Ainda sem registro de páginas. O registro começou em 19/11/2026.</div>'}</div>
+    <div><h3>Caminho no último acesso</h3>${(v.lastPath || []).length ? `<div class="path">${v.lastPath.map((k) => `<span>${esc(PG[k] || k)}</span>`).join('<i>→</i>')}</div>` : '<p class="mut" style="margin:0">Sem registro ainda.</p>'}</div>`;
+  const dl = $('axD'); if (!dl.open) dl.showModal(); }
+document.addEventListener('click', (e) => { const r = e.target.closest('[data-ax]'); if (r && !e.target.closest('a')) axOpen(r.dataset.ax); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches && e.target.matches('[data-ax]')) axOpen(e.target.dataset.ax); });
+$('axDX').addEventListener('click', () => $('axD').close());
+$('axD').addEventListener('click', (e) => { if (e.target === $('axD')) $('axD').close(); });
 $('axQ').addEventListener('input', axDraw); $('axF').addEventListener('change', axDraw);
 $('axCsv').addEventListener('click', () => { const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"', d = (t) => t ? new Date(t).toLocaleString('pt-BR') : '';
-  const lines = [['nome', 'email', 'perfil', 'local', 'conta_criada', 'ultimo_acesso', 'acessos', 'aparelho'].join(','), ...axRows().map((r) => [r.name, r.email, r.ok ? (r.role || 'artista') : 'cadastro não concluído', r.local, d(r.created), d(r.last), r.visits, r.dev].map(q).join(','))];
+  const lines = [['nome', 'email', 'perfil', 'local', 'conta_criada', 'ultimo_acesso', 'acessos', 'dias', 'tempo_no_app_min', 'aparelho'].join(','), ...axRows().map((r) => [r.name, r.email, r.ok ? (r.role || 'artista') : 'cadastro não concluído', r.local, d(r.created), d(r.last), r.visits, r.days, Math.round((r.secs || 0) / 60), r.dev].map(q).join(','))];
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv' })); a.download = 'cr1e-collab-acessos.csv'; a.click(); });
 document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['geral', 'acessos', 'pessoas', 'lugares', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
 document.addEventListener('click', async (e) => {
