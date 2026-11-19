@@ -1927,6 +1927,16 @@ html[data-theme="dark"] .ms-l .ms-g{color:#3A3A36}
 .fbody .two:has(>.psel){display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-start}
 .fbody .fmt b,.fbody .fmt:has(input:checked) b,.fbody .fmt:has(input:checked) .note{color:#0E0E0C}
 html[data-theme="dark"] .fbody[data-tool="orc"] .ms:not([open])>summary{background:#fff!important;color:#0E0E0C!important;border-color:#0E0E0C!important}
+/* mobile: nada foge para a lateral; o que expande, expande para baixo */
+.tools{grid-template-columns:minmax(0,1fr)}
+.tools>*,.fbody .panel.card,.fbody .jn,.fbody .jn-b,.fbody .jn-b>*,.fbody .two>*,.fbody .three>*{min-width:0;max-width:100%}
+.fbody [data-cv-txt],.fbody .note,.fbody .lbl{overflow-wrap:anywhere}
+.fbody .cv-a{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.fbody .cv-a .btn{white-space:normal;text-align:center;justify-content:center;max-width:100%}
+.fbody .cv-a .lnk{align-self:center}
+.cv-prev{flex-wrap:wrap;overflow:visible}
+.cv-prev .pv.l{width:min(200px,100%)}
+.fbody .fmts{grid-template-columns:repeat(auto-fill,minmax(min(112px,100%),1fr))}
 </style>
 
 <div class="gate" id="gate">
