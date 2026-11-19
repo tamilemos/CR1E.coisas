@@ -1803,6 +1803,11 @@ html[data-theme="dark"] .ms-l label:hover{background:#E9E8E1}
 html[data-theme="dark"] .ms-l input{accent-color:#0E0E0C}
 html[data-theme="dark"] .ms-l .ms-all{border-bottom-color:#0E0E0C}
 html[data-theme="dark"] .tags .tag.none{background:transparent!important;color:#CFCEC6!important;border:1.5px dashed #CFCEC6!important}
+.po-box{display:flex;flex-direction:column;gap:8px;border:2px solid var(--preto);background:var(--branco);padding:10px}
+.po-box .plist2.twbox{border:0;padding:0;background:transparent}
+.po-box .po-f{border:0;background:var(--papel-2)}
+.po-box .po-h{padding:6px 4px 0}
+html[data-theme="dark"] .po-box .po-f{background:#30302A}
 </style>
 
 <div class="gate" id="gate">
@@ -1932,10 +1937,10 @@ html[data-theme="dark"] .tags .tag.none{background:transparent!important;color:#
       <section class="view" data-view="post" aria-labelledby="poT" hidden>
         <a class="pill back" href="#rede" id="poBack">← Voltar ao feed</a>
         <div class="po-w"><h1 class="po-t" id="poT">Publicação na rede</h1>
-          <div class="plist2 twbox" id="poOne"></div>
+          <div class="po-box"><div class="plist2 twbox" id="poOne"></div>
           <form class="po-f" id="poF"><span class="av" id="poAv"></span><input id="poI" maxlength="280" aria-label="Escreva um comentário" placeholder="Escreva um comentário"><button class="pill s k" type="submit">Responder</button></form>
           <div class="po-h"><span class="lbl" id="poN">Comentários</span></div>
-          <div class="plist2" id="poRep"></div></div>
+          <div class="plist2" id="poRep"></div></div></div>
       </section>
       <section class="view" data-view="collab" aria-labelledby="cbT" hidden>
         <a class="pill back" href="#rede" id="cbBack">← Collabs</a>
