@@ -145,7 +145,9 @@
 
   function init() {
     let saved = null; try { saved = localStorage.getItem('cr1e-lang'); } catch (e) {}
-    root.lang = saved || (navigator.language && !navigator.language.toLowerCase().startsWith('pt') ? 'en' : 'pt-BR');
+    /* sem escolha salva: português no Brasil (pelo fuso horário do aparelho), inglês fora dele */
+    const noBrasil = () => { try { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; if (tz) return /^America\/(Sao_Paulo|Rio_Branco|Manaus|Cuiaba|Campo_Grande|Porto_Velho|Boa_Vista|Belem|Fortaleza|Recife|Maceio|Bahia|Araguaina|Santarem|Noronha|Eirunepe)$|^Brazil\//.test(tz); } catch (e) {} return (navigator.language || 'pt').toLowerCase() === 'pt-br'; };
+    root.lang = saved || (noBrasil() ? 'pt-BR' : 'en');
     document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
     apply();
 
