@@ -1808,6 +1808,97 @@ html[data-theme="dark"] .tags .tag.none{background:transparent!important;color:#
 .po-box .po-f{border:0;background:var(--papel-2)}
 .po-box .po-h{padding:6px 4px 0}
 html[data-theme="dark"] .po-box .po-f{background:#30302A}
+
+/* ===== Estúdio: leve e padronizado (janelas que descem, um só contorno) ===== */
+.ftabs{gap:8px;flex-wrap:wrap;padding:0;margin:0 0 12px}
+.ftab,.ftab.t1,.ftab.t2,.ftab.t3,.ftab.t4{--preto:inherit;--papel:inherit;--verde:inherit;--branco:inherit;--mut:inherit;--papel-2:inherit;flex:0 0 auto;border:2px solid var(--preto);border-radius:999px;padding:9px 16px;margin:0;font-size:12px;background:transparent;color:var(--preto);transform:none!important}
+.ftab[aria-pressed="true"],.ftab.t1[aria-pressed="true"],.ftab.t2[aria-pressed="true"],.ftab.t3[aria-pressed="true"],.ftab.t4[aria-pressed="true"]{background:#0E0E0C;color:#C5FF3D;border-color:#0E0E0C;padding-bottom:9px}
+html[data-theme="dark"] .ftab[aria-pressed="true"],html[data-theme="dark"] .ftab.t1[aria-pressed="true"],html[data-theme="dark"] .ftab.t2[aria-pressed="true"],html[data-theme="dark"] .ftab.t3[aria-pressed="true"],html[data-theme="dark"] .ftab.t4[aria-pressed="true"]{background:#C5FF3D;color:#0E0E0C;border-color:#C5FF3D}
+.fbody,.fbody[data-tool]{border:2px solid var(--preto);box-shadow:none;padding:clamp(12px,2.4vw,22px);background:var(--papel);color:var(--preto)}
+html[data-theme="dark"] .fbody,html[data-theme="dark"] .fbody[data-tool]{border-color:var(--preto);box-shadow:none;background:var(--papel)}
+.fbody .panel.card{border:0;box-shadow:none;background:transparent;padding:0;gap:10px}
+.fbody .panel.card .t{margin-bottom:2px}
+.jn{display:block}
+.jn>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 16px 8px 10px;border:2px solid var(--preto);border-radius:999px;color:var(--preto);font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:13px}
+.jn>summary::-webkit-details-marker{display:none}
+.jn>summary b{flex:1;min-width:0;font:inherit}
+.jn>summary .kn{border:0;height:24px;min-width:28px}
+.jn>summary i{flex:none;width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .35s cubic-bezier(.34,1.45,.5,1)}
+.jn[open]>summary i{transform:rotate(-135deg) translate(-2px,-2px)}
+.jn[open]>summary{background:#0E0E0C;color:#F4F3EE;border-color:#0E0E0C}
+html[data-theme="dark"] .jn[open]>summary{background:#C5FF3D;color:#0E0E0C;border-color:#C5FF3D}
+.jn>summary:focus-visible{outline:3px solid #C5FF3D;outline-offset:2px}
+.jn-b{display:flex;flex-direction:column;gap:12px;padding:14px 2px 8px;animation:jnIn .3s ease-out}
+@keyframes jnIn{from{opacity:0;transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.jn-b{animation:none}}
+.jn-b>.note{margin:0}
+.fmts{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px}
+.fmt{position:relative;display:flex;flex-direction:column;gap:6px;cursor:pointer;padding:8px;border:2px solid var(--preto);color:var(--preto)}
+.fmt input{position:absolute;opacity:0;pointer-events:none}
+.fmt b{font-family:var(--mono);font-size:12px;line-height:1.3}
+.fmt .note{font-size:11px;line-height:1.35}
+.fmt:has(input:checked){background:#C5FF3D;color:#0E0E0C;border-color:#0E0E0C}
+.fmt:has(input:checked) .note{color:#0E0E0C}
+.fmt:has(input:focus-visible){outline:3px solid #C5FF3D;outline-offset:2px}
+.fmt-th{display:grid;place-items:center;height:96px;background:#E9E8E1}
+.fmt-th svg,.cv-prev svg{height:100%;width:auto;display:block}
+.chps{display:flex;gap:8px;flex-wrap:wrap}
+.chp{position:relative}
+.chp input{position:absolute;opacity:0;pointer-events:none}
+.chp span{display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border:2px solid var(--preto);border-radius:999px;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:12px;cursor:pointer;color:var(--preto)}
+.chp input:checked+span{background:#0E0E0C;color:#C5FF3D;border-color:#0E0E0C}
+html[data-theme="dark"] .chp input:checked+span{background:#C5FF3D;color:#0E0E0C;border-color:#C5FF3D}
+.chp input:focus-visible+span{outline:3px solid #C5FF3D;outline-offset:2px}
+.cv-prev{display:flex;gap:12px;overflow-x:auto;padding:14px;background:#E9E8E1;height:268px;box-sizing:border-box;align-items:center}
+.cv-prev svg{height:100%;flex:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.cv-tpl{display:flex;flex-direction:column;gap:8px;border-top:1.5px solid var(--preto);padding-top:12px}
+.cv-lk{display:flex;flex-wrap:wrap;gap:6px 18px}
+.cv-lk a{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--preto);text-decoration:none;background:linear-gradient(transparent 55%,#C5FF3D 55%);padding:0 2px}
+html[data-theme="dark"] .cv-lk a{background:linear-gradient(transparent 55%,rgba(197,255,61,.55) 55%);color:#F4F3EE}
+.fbody .kit{--preto:#0E0E0C;--papel:#0E0E0C;--verde:#0E0E0C;--mut:#3A3A36;background:#fff;color:#0E0E0C;box-shadow:none!important;border:1.5px solid #0E0E0C;padding:clamp(14px,2.4vw,24px)}
+.fbody .kit .a{background:#C5FF3D;color:#0E0E0C;padding:0 8px}
+.fbody .kit p,.fbody .kit td,.fbody .kit b,.fbody .kit .lbl{color:#0E0E0C}
+.fbody .kit .pill{color:#0E0E0C;border-color:#0E0E0C;background:#C5FF3D}
+.fbody .kit .tot{border-top-color:#0E0E0C}
+.fbody .kit td{border-bottom-color:#C9C8C0}
+
+.fmt-th{gap:6px;grid-auto-flow:column}
+.fmt-th .pg{display:flex;flex-direction:column;gap:3px;padding:5px;background:#fff;border:1.5px solid #0E0E0C;height:80px;width:57px}
+.fmt-th .pg.l{height:40px;width:70px}
+.fmt-th .pg b{display:block;height:3px;background:#0E0E0C}.fmt-th .pg b:first-child{width:60%;height:5px;background:#C5FF3D;outline:1px solid #0E0E0C}
+.cv-prev{display:flex;gap:10px;overflow-x:auto;padding:4px 2px}
+.cv-prev .pv{flex:none;position:relative;display:flex;flex-direction:column;gap:6px;padding:12px;background:#fff;color:#0E0E0C;border:2px solid #0E0E0C}
+.cv-prev .pv.p{width:120px;height:170px}.cv-prev .pv.l{width:200px;height:112px}
+.cv-prev .pv-k{font:10px var(--mono)}.cv-prev .pv-t{font:700 12px var(--mono);line-height:1.2;overflow:hidden;max-height:30px;text-transform:none}
+.cv-prev .pv i{display:block;height:5px;background:#BDBDB6}.cv-prev .pv i:first-of-type{width:70%}
+.cv-prev[data-est="cr1e"] .pv{background:#F4F3EE}.cv-prev[data-est="cr1e"] .pv i:first-of-type{background:#C5FF3D;outline:1px solid #0E0E0C}
+
+/* menos linhas: só o contorno macro; dentro, sem molduras */
+.fbody .kit{border:0!important;background:transparent!important;padding:0!important;color:inherit}
+.fbody{border-width:1px}
+.fbody .fld input,.fbody .fld select,.fbody .fld textarea{font-size:14px;padding:9px 10px;border-width:1.5px}
+.fbody .two,.fbody .three{align-items:end}
+.fbody .two>.fld,.fbody .three>.fld{justify-content:flex-end}
+.fbody .fld input,.fbody .fld select{height:42px;box-sizing:border-box}
+.fbody .fld textarea{box-sizing:border-box}
+.fmt{border-width:1.5px}.jn>summary{border-width:1.5px}
+#postList.twbox,.plist2.twbox,.twbox{border-width:1px}
+.twbox .tw,.plist2.twbox .tw,#postList.twbox .tw{border:0!important;outline:0!important}
+.post,#postList .tw,.plist2 .tw{border-width:1px}
+
+/* janelas do estúdio = mesmo desenho dos filtros (pílula pequena + painel que desce) */
+.jn{margin:0 0 8px}
+.jn>summary{display:inline-flex;min-height:0;padding:8px 12px;gap:8px;border:1.5px solid var(--preto);background:var(--branco);color:var(--preto);font-family:var(--mono);font-size:11px;letter-spacing:.06em;font-weight:700;font-stretch:100%;text-transform:uppercase}
+.jn>summary b{flex:none;font:inherit}
+.jn>summary .kn{height:18px;min-width:18px;font-size:10px;background:var(--verde);color:#0E0E0C;border-radius:999px;display:inline-grid;place-items:center}
+.jn>summary i{width:8px;height:8px;border-width:2px}
+.jn[open]>summary{background:var(--preto);color:var(--papel);border-color:var(--preto)}
+.jn[open]>.jn-b,.jn[open]>div{margin-top:6px;background:var(--branco);color:#0E0E0C;border:1.5px solid var(--preto);box-shadow:4px 4px 0 var(--preto);padding:14px}
+.jn-b{--preto:#0E0E0C;--mut:#3A3A36;--papel-2:#E9E8E1}
+html[data-theme="dark"] .jn[open]>summary{background:#C5FF3D!important;color:#0E0E0C!important;border-color:#C5FF3D!important}
+html[data-theme="dark"] .jn[open]>.jn-b{background:#F4F3EE;border-color:#F4F3EE;box-shadow:4px 4px 0 #C5FF3D;color:#0E0E0C;color-scheme:light}
+html[data-theme="dark"] .jn-b .lbl,html[data-theme="dark"] .jn-b .note,html[data-theme="dark"] .jn-b label{color:#0E0E0C}
+html[data-theme="dark"] .jn-b input,html[data-theme="dark"] .jn-b select,html[data-theme="dark"] .jn-b textarea{background:#fff;color:#0E0E0C;border-color:#0E0E0C}
 </style>
 
 <div class="gate" id="gate">
@@ -1978,25 +2069,23 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
         <div class="fbody" id="fbody" data-tool="kit">
         <div class="tools" id="tool-kit">
           <div class="panel card">
-            <h2 class="t" style="font-size:34px">Media <span class="w a">kit</span></h2>
-            <p class="ia-row"><span class="pill xx ia-dev"><i aria-hidden="true"></i>IA em desenvolvimento</span><span class="note">Em breve a IA ajuda a preencher e manda pronto para o Canva.</span></p>
-            <p class="note" style="margin:-6px 0 0">O media kit é o seu cartão de visitas para marcas: uma página que mostra quem você é, o que faz, os seus números e como contratar. Preencha os blocos e acompanhe a prévia.</p>
-            <div class="kstep"><span class="kn">1</span><b>Quem é você</b></div>
+            <h2 class="t" style="font-size:34px">Media <span class="w a">kit</span></h2><p class="note" style="margin:-6px 0 0">Seu cartão de visitas para marcas. Preencha e leve para o Canva.</p>
+            <details class="jn" open><summary><span class="kn">1</span><b>Quem é você</b><i aria-hidden="true"></i></summary><div class="jn-b">
             <div class="two"><label class="fld" for="k-nome">Nome artístico<input id="k-nome" value="" placeholder="Como você assina"></label><label class="fld" for="k-cid">Cidade<input id="k-cid" value="" placeholder="Cidade, UF"></label></div>
             <label class="fld" for="k-esp">Especialidades (separe por vírgula)<input id="k-esp" value="" placeholder="Ex.: muralismo, ilustração, live painting"></label>
             <label class="fld" for="k-bio">Bio<textarea id="k-bio" placeholder="Duas ou três frases: o que você faz, para quem e o que te diferencia."></textarea></label>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="btn" type="button" id="aiBio" hidden>Escrever bio com IA <span class="arr" aria-hidden="true">→</span></button><span class="note" id="aiNote" role="status" aria-live="polite"></span></div>
-            <div class="kstep"><span class="kn">2</span><b>Seus números</b><span class="note">Use números reais. Deixe em branco o que não tiver.</span></div>
+            </div></details><details class="jn"><summary><span class="kn">2</span><b>Seus números</b><i aria-hidden="true"></i></summary><div class="jn-b"><p class="note">Use números reais. Deixe em branco o que não tiver.</p>
             <div class="three"><label class="fld" for="k-seg">Seguidores<input id="k-seg" inputmode="numeric" value="" placeholder="0"></label><label class="fld" for="k-alc">Alcance mensal<input id="k-alc" inputmode="numeric" value="" placeholder="0"></label><label class="fld" for="k-eng">Engajamento (%)<input id="k-eng" inputmode="decimal" value="" placeholder="0"></label></div>
             <label class="fld" for="k-pub">Quem te acompanha<input id="k-pub" value="" placeholder="Ex.: mulheres de 25 a 34 anos, São Paulo e Rio"></label>
-            <div class="kstep"><span class="kn">3</span><b>O que você oferece</b></div>
+            </div></details><details class="jn"><summary><span class="kn">3</span><b>O que você oferece</b><i aria-hidden="true"></i></summary><div class="jn-b">
             <label class="fld" for="k-srv">Serviços e formatos (separe por vírgula)<input id="k-srv" value="" placeholder="Ex.: mural, live painting, vídeo de processo, oficina"></label>
-            <div class="kstep"><span class="kn">4</span><b>Com quem já trabalhou</b></div>
+            </div></details><details class="jn"><summary><span class="kn">4</span><b>Com quem já trabalhou</b><i aria-hidden="true"></i></summary><div class="jn-b">
             <label class="fld" for="k-cli">Marcas, eventos e projetos (separe por vírgula)<input id="k-cli" value="" placeholder="Só o que você pode citar"></label>
-            <div class="kstep"><span class="kn">5</span><b>Contato</b></div>
+            </div></details><details class="jn"><summary><span class="kn">5</span><b>Contato</b><i aria-hidden="true"></i></summary><div class="jn-b">
             <div class="two"><label class="fld" for="k-ct">E-mail ou telefone<input id="k-ct" value="" placeholder="voce@email.com"></label><label class="fld" for="k-lk">Link principal<input id="k-lk" value="" placeholder="instagram.com/voce"></label></div>
-            <div class="save-bar"><button class="btn k" type="button" data-save="kit">Salvar media kit</button><span class="note" data-saven="kit" role="status" aria-live="polite"></span></div>
-            <div class="canva card" data-canva="kit"><b>Levar para o Canva</b><p class="note" data-cv-txt>Vira um arquivo editável no formato de media kit (2 páginas A4), com seus textos, números e fotos. No Canva você termina o design.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div></div>
+            </div></details><div class="save-bar"><button class="btn k" type="button" data-save="kit">Salvar media kit</button><span class="note" data-saven="kit" role="status" aria-live="polite"></span></div>
+            <details class="jn jn-cv" data-canva="kit"><summary><span class="kn">6</span><b>Levar para o Canva</b><i aria-hidden="true"></i></summary><div class="jn-b"><span class="lbl">Formato do arquivo</span><div class="fmts" data-fmts="kit"><label class="fmt"><input type="radio" name="kit-fmt" value="a4x2" checked><span class="fmt-th" data-th="kit|a4x2"></span><b>2 páginas A4</b><span class="note">Completo, para enviar em PDF</span></label><label class="fmt"><input type="radio" name="kit-fmt" value="a4x1"><span class="fmt-th" data-th="kit|a4x1"></span><b>1 página A4</b><span class="note">Resumo compacto</span></label><label class="fmt"><input type="radio" name="kit-fmt" value="slides"><span class="fmt-th" data-th="kit|slides"></span><b>Slides 16:9</b><span class="note">Para apresentar ou mandar no WhatsApp</span></label></div><span class="lbl">Estilo</span><div class="chps" data-est="kit"><label class="chp"><input type="radio" name="kit-est" value="limpo" checked><span>Limpo</span></label><label class="chp"><input type="radio" name="kit-est" value="cr1e"><span>CR1E</span></label></div><p class="note" style="margin:-4px 0 0" data-estn>Limpo: cores neutras, pronto para você aplicar o seu estilo no Canva.</p><div class="cv-prev" data-cvprev="kit" aria-label="Prévia aproximada do arquivo"></div><p class="note" data-cv-txt>No Canva: Criar design › Importar arquivo. Tudo fica editável.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div><div class="cv-tpl"><span class="lbl">Ou comece por um modelo pronto do Canva</span><div class="cv-lk"><a class="lnk" href="https://www.canva.com/pt_pt/media-kits/modelos/" target="_blank" rel="noopener">Modelos de media kit ↗</a></div></div></div></details>
           </div>
           <div class="kit sh" aria-label="Prévia do media kit" style="box-shadow:6px 6px 0 var(--verde),6px 6px 0 2px var(--preto)">
             <div class="sub"><span class="pill">Media kit</span><span class="lg" style="font-size:18px">CR1E<span class="co">.c<span class="o"></span>llab</span></span></div>
@@ -2013,16 +2102,14 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
         </div>
         <div class="tools" id="tool-orc" hidden>
           <div class="panel card">
-            <h2 class="t" style="font-size:34px">Proposta de <span class="w a">orçamento</span></h2>
-            <p class="ia-row"><span class="pill xx ia-dev"><i aria-hidden="true"></i>IA em desenvolvimento</span><span class="note">Em breve a IA ajuda a preencher e manda pronto para o Canva.</span></p>
-            <p class="note" style="margin:-6px 0 0">Monte a proposta que vai para o cliente: liste os itens, as quantidades e os valores. O total é somado sozinho e a prévia já sai organizada para enviar.</p>
-            <div class="orc-m"><span class="lbl">Comece por um modelo</span><div class="two"><label class="fld" for="o-area">Área de atuação<select id="o-area"></select></label><label class="fld" for="o-tipo">Tipo de trabalho<select id="o-tipo"></select></label></div><p class="note" style="margin:0">Escolha o tipo de trabalho e a proposta já vem com os itens mais comuns. Depois é só ajustar quantidades e valores.</p></div>
-            <div class="two"><label class="fld" for="o-cli">Cliente<input id="o-cli" value="Marca exemplo"></label><label class="fld" for="o-proj">Projeto<input id="o-proj" value="Mural para loja"></label></div>
-            <div class="oit-l" id="o-rows"></div>
+            <h2 class="t" style="font-size:34px">Proposta de <span class="w a">orçamento</span></h2><p class="note" style="margin:-6px 0 0">Liste os itens: o total é somado sozinho.</p>
+            <details class="jn" open><summary><span class="kn">1</span><b>Modelo de partida</b><i aria-hidden="true"></i></summary><div class="jn-b">\1<p class="note">Escolha o tipo de trabalho e a proposta vem com os itens mais comuns.</p></div></details>
+            <details class="jn"><summary><span class="kn">2</span><b>Cliente e projeto</b><i aria-hidden="true"></i></summary><div class="jn-b"><div class="two"><label class="fld" for="o-cli">Cliente<input id="o-cli" value="Marca exemplo"></label>\1</div></details>
+            <details class="jn"><summary><span class="kn">3</span><b>Itens</b><i aria-hidden="true"></i></summary><div class="jn-b"><div class="oit-l" id="o-rows"></div>
             <button class="pill" type="button" id="o-add" style="align-self:flex-start">+ Adicionar item</button>
-            <p class="note">Os valores são exemplos para mostrar o cálculo. Use os seus.</p>
+            <p class="note">Os valores são exemplos para mostrar o cálculo. Use os seus.</p></div></details>
             <div class="save-bar"><button class="btn k" type="button" data-save="orc">Salvar orçamento</button><span class="note" data-saven="orc" role="status" aria-live="polite"></span></div>
-            <div class="canva card" data-canva="orc"><b>Levar para o Canva</b><p class="note" data-cv-txt>Vira um arquivo editável no formato de proposta (A4), com a tabela de itens e o total. No Canva você aplica a sua identidade.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div></div>
+            <details class="jn jn-cv" data-canva="orc"><summary><span class="kn">4</span><b>Levar para o Canva</b><i aria-hidden="true"></i></summary><div class="jn-b"><span class="lbl">Formato do arquivo</span><div class="fmts" data-fmts="orc"><label class="fmt"><input type="radio" name="orc-fmt" value="a4" checked><span class="fmt-th" data-th="orc|a4"></span><b>Proposta A4</b><span class="note">Com tabela e condições</span></label><label class="fmt"><input type="radio" name="orc-fmt" value="simples"><span class="fmt-th" data-th="orc|simples"></span><b>Orçamento rápido</b><span class="note">1 página, total em destaque</span></label><label class="fmt"><input type="radio" name="orc-fmt" value="slides"><span class="fmt-th" data-th="orc|slides"></span><b>Slides 16:9</b><span class="note">Proposta para apresentar</span></label></div><span class="lbl">Estilo</span><div class="chps" data-est="orc"><label class="chp"><input type="radio" name="orc-est" value="limpo" checked><span>Limpo</span></label><label class="chp"><input type="radio" name="orc-est" value="cr1e"><span>CR1E</span></label></div><p class="note" style="margin:-4px 0 0" data-estn>Limpo: cores neutras, pronto para você aplicar o seu estilo no Canva.</p><div class="cv-prev" data-cvprev="orc" aria-label="Prévia aproximada do arquivo"></div><p class="note" data-cv-txt>No Canva: Criar design › Importar arquivo. Tudo fica editável.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div><div class="cv-tpl"><span class="lbl">Ou comece por um modelo pronto do Canva</span><div class="cv-lk"><a class="lnk" href="https://www.canva.com/pt_br/modelos/s/orcamento/" target="_blank" rel="noopener">Modelos de orçamento ↗</a><a class="lnk" href="https://www.canva.com/pt_br/propostas-comerciais/modelos/" target="_blank" rel="noopener">Propostas comerciais ↗</a></div></div></div></details>
           </div>
           <div class="kit" aria-label="Prévia da proposta" style="box-shadow:6px 6px 0 var(--verde),6px 6px 0 2px var(--preto)">
             <div class="sub"><span class="pill">Proposta</span><span class="lbl" style="color:var(--mut)" id="po-data"></span></div>
@@ -2036,13 +2123,11 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
         <div class="tools" id="tool-ed" hidden>
           <div class="panel card">
             <h2 class="t" style="font-size:34px">Seus <span class="w a">editais</span></h2>
-            <p class="ia-row"><span class="pill xx ia-dev"><i aria-hidden="true"></i>IA em desenvolvimento</span><span class="note">Em breve a IA ajuda a preencher e manda pronto para o Canva.</span></p>
-            <p class="note" style="margin:-6px 0 0">Salve os editais em que você quer se inscrever e acompanhe os prazos em um só lugar.</p>
-            <div class="ms-row fsr"><span id="fs_esF"></span><span id="fs_esA"></span><span id="fs_esSt"></span><span id="fs_esUF"></span><span id="fs_esC"></span></div>
+            <details class="jn"><summary><span class="kn">+</span><b>Filtrar editais</b><i aria-hidden="true"></i></summary><div class="jn-b"><div class="ms-row fsr"><span id="fs_esF"></span><span id="fs_esA"></span><span id="fs_esSt"></span><span id="fs_esUF"></span><span id="fs_esC"></span></div></div></details>
             <div class="eslist" id="esList"></div>
             <p class="ed-soon"><span class="pill xx v">Em breve</span> Editais de todos os municípios brasileiros.</p>
             <div class="save-bar"><button class="btn k" type="button" data-save="ed">Salvar editais</button><span class="note" data-saven="ed" role="status" aria-live="polite"></span></div>
-            <div class="canva card" data-canva="ed"><b>Levar para o Canva</b><p class="note" data-cv-txt>Vira uma apresentação editável com os editais salvos, os prazos, um checklist e o roteiro do projeto para preencher. No Canva você escreve e finaliza.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div></div>
+            <details class="jn jn-cv" data-canva="ed"><summary><span class="kn">→</span><b>Levar para o Canva</b><i aria-hidden="true"></i></summary><div class="jn-b"><span class="lbl">Formato do arquivo</span><div class="fmts" data-fmts="ed"><label class="fmt"><input type="radio" name="ed-fmt" value="slides" checked><span class="fmt-th" data-th="ed|slides"></span><b>Slides 16:9</b><span class="note">Prazos, checklist e roteiro</span></label><label class="fmt"><input type="radio" name="ed-fmt" value="doc"><span class="fmt-th" data-th="ed|doc"></span><b>Documento A4</b><span class="note">Roteiro do projeto, uma parte por página</span></label></div><span class="lbl">Estilo</span><div class="chps" data-est="ed"><label class="chp"><input type="radio" name="ed-est" value="limpo" checked><span>Limpo</span></label><label class="chp"><input type="radio" name="ed-est" value="cr1e"><span>CR1E</span></label></div><p class="note" style="margin:-4px 0 0" data-estn>Limpo: cores neutras, pronto para você aplicar o seu estilo no Canva.</p><div class="cv-prev" data-cvprev="ed" aria-label="Prévia aproximada do arquivo"></div><p class="note" data-cv-txt>No Canva: Criar design › Importar arquivo. Tudo fica editável.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div><div class="cv-tpl"><span class="lbl">Ou comece por um modelo pronto do Canva</span><div class="cv-lk"><a class="lnk" href="https://www.canva.com/pt_br/apresentacoes/modelos/" target="_blank" rel="noopener">Apresentações ↗</a><a class="lnk" href="https://www.canva.com/pt_br/documentos/modelos/" target="_blank" rel="noopener">Documentos ↗</a></div></div></div></details>
           </div>
           <div class="panel card soon">
             <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Em breve</span><span class="note">Em construção</span></div>
@@ -2056,15 +2141,13 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
           <form class="panel card" id="pForm" novalidate>
             <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="pill s v" style="border-color:var(--preto)">Assinatura</span><span class="note">Liberado durante o teste</span></div>
             <h2 class="t" style="font-size:34px"><span class="w a">Canvas</span> de conteúdo</h2>
-            <p class="ia-row"><span class="pill xx ia-dev"><i aria-hidden="true"></i>IA em desenvolvimento</span><span class="note">Em breve a IA ajuda a preencher e manda pronto para o Canva.</span></p>
-            <p class="note" style="margin:-6px 0 0">Framework de conteúdo da CR1E.Coisas, criado por Tami Lemos. Cinco pilares: formato nativo, comunidade, talento, trend e estrutura.</p>
-            <label class="fld" for="p-obj">Objetivo<select id="p-obj"><option value="Atrair marcas">Atrair marcas</option><option value="Vender obras e serviços">Vender obras e serviços</option><option value="Crescer a audiência">Crescer a audiência</option><option value="Divulgar um evento ou lançamento">Divulgar um evento ou lançamento</option></select></label>
+            <details class="jn" open><summary><span class="kn">1</span><b>Objetivo e público</b><i aria-hidden="true"></i></summary><div class="jn-b"><label class="fld" for="p-obj">Objetivo<select id="p-obj"><option value="Atrair marcas">Atrair marcas</option><option value="Vender obras e serviços">Vender obras e serviços</option><option value="Crescer a audiência">Crescer a audiência</option><option value="Divulgar um evento ou lançamento">Divulgar um evento ou lançamento</option></select></label>
             <label class="fld" for="p-pub">Comunidade: com quem você fala?<input id="p-pub" placeholder="Ex.: quem ama arte urbana, leitores, mães criativas"></label>
-            <label class="fld" for="p-dif">Talento: o que só você tem?<textarea id="p-dif" placeholder="Seu traço, sua história, seu jeito de falar e de trabalhar"></textarea></label>
+            </div></details><details class="jn"><summary><span class="kn">2</span><b>O que só você tem</b><i aria-hidden="true"></i></summary><div class="jn-b"><label class="fld" for="p-dif">Talento: o que só você tem?<textarea id="p-dif" placeholder="Seu traço, sua história, seu jeito de falar e de trabalhar"></textarea></label>
             <div class="two"><label class="fld" for="p-ent">O que o público sente<select id="p-ent"><option value="Conexão">Conexão</option><option value="Humor">Humor</option><option value="Emoção">Emoção</option><option value="Intriga">Intriga</option><option value="Nostalgia">Nostalgia</option><option value="Satisfação">Satisfação</option></select></label><label class="fld" for="p-con">O que você apresenta<select id="p-con"><option value="Processo">Processo</option><option value="Educação">Educação</option><option value="Narrativa">Narrativa</option><option value="POV">POV</option><option value="Review">Review</option><option value="Entrevista">Entrevista</option><option value="Exploração">Exploração</option></select></label></div>
-            <div class="two"><label class="fld" for="p-trend">Trend que você consegue seguir<select id="p-trend"><option value="Formato em alta">Formato em alta</option><option value="Áudio em alta">Áudio em alta</option><option value="Modelo pronto">Modelo pronto</option></select></label><label class="fld" for="p-face">Você aparece?<select id="p-face"><option value="Com rosto">Com rosto</option><option value="Sem rosto">Sem rosto</option></select></label></div>
+            </div></details><details class="jn"><summary><span class="kn">3</span><b>Trend e frequência</b><i aria-hidden="true"></i></summary><div class="jn-b"><div class="two"><label class="fld" for="p-trend">Trend que você consegue seguir<select id="p-trend"><option value="Formato em alta">Formato em alta</option><option value="Áudio em alta">Áudio em alta</option><option value="Modelo pronto">Modelo pronto</option></select></label><label class="fld" for="p-face">Você aparece?<select id="p-face"><option value="Com rosto">Com rosto</option><option value="Sem rosto">Sem rosto</option></select></label></div>
             <label class="fld" for="p-freq">Posts por semana<select id="p-freq"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select></label>
-            <div class="short"><button class="btn k" type="submit">Gerar calendário <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="pAI" hidden>Gerar com IA</button></div>
+            </div></details><div class="short"><button class="btn k" type="submit">Gerar calendário <span class="arr" aria-hidden="true">→</span></button><button class="btn ln" type="button" id="pAI" hidden>Gerar com IA</button></div>
             <p class="note" id="pMsg" role="status" aria-live="polite">O calendário é montado a partir do seu canvas. Toque em um post para marcar como feito.</p>
           </form>
           <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
@@ -2074,7 +2157,7 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
             <div class="pcal" id="pCal"></div>
             <details class="pchk" id="pChkW"><summary><b>Checklist antes de publicar</b><span class="note" id="pChkN"></span><i aria-hidden="true"></i></summary><div id="pChk"></div></details>
             <div class="save-bar"><button class="btn k" type="button" data-save="plan">Salvar planejamento</button><span class="note" data-saven="plan" role="status" aria-live="polite"></span></div>
-            <div class="canva card" data-canva="plan"><b>Levar para o Canva</b><p class="note" data-cv-txt>Vira uma apresentação editável com a estratégia e as 4 semanas de posts. No Canva você transforma cada ideia em peça.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div></div>
+            <details class="jn jn-cv" data-canva="plan"><summary><span class="kn">→</span><b>Levar para o Canva</b><i aria-hidden="true"></i></summary><div class="jn-b"><span class="lbl">Formato do arquivo</span><div class="fmts" data-fmts="plan"><label class="fmt"><input type="radio" name="plan-fmt" value="slides" checked><span class="fmt-th" data-th="plan|slides"></span><b>Slides por semana</b><span class="note">Estratégia e 4 semanas</span></label><label class="fmt"><input type="radio" name="plan-fmt" value="a4"><span class="fmt-th" data-th="plan|a4"></span><b>Calendário A4</b><span class="note">As 4 semanas numa página</span></label></div><span class="lbl">Estilo</span><div class="chps" data-est="plan"><label class="chp"><input type="radio" name="plan-est" value="limpo" checked><span>Limpo</span></label><label class="chp"><input type="radio" name="plan-est" value="cr1e"><span>CR1E</span></label></div><p class="note" style="margin:-4px 0 0" data-estn>Limpo: cores neutras, pronto para você aplicar o seu estilo no Canva.</p><div class="cv-prev" data-cvprev="plan" aria-label="Prévia aproximada do arquivo"></div><p class="note" data-cv-txt>No Canva: Criar design › Importar arquivo. Tudo fica editável.</p><div class="cv-a" data-cv-a><button class="btn k" type="button" data-cv-btn>Levar para o Canva <span class="arr" aria-hidden="true">→</span></button></div><div class="cv-tpl"><span class="lbl">Ou comece por um modelo pronto do Canva</span><div class="cv-lk"><a class="lnk" href="https://www.canva.com/pt_br/apresentacoes/modelos/" target="_blank" rel="noopener">Apresentações ↗</a></div></div></div></details>
           </div>
         </div>
         </div></div>
@@ -2401,7 +2484,7 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
 <script src="config.js?v=2611e"></script>
 <script>window.CR1E_READY = new Promise((r) => { window.__cr1eResolve = r; }); if (!window.CR1E_CONFIG || !window.CR1E_CONFIG.firebase) window.__cr1eResolve({ A: null }); setTimeout(() => window.__cr1eResolve({ A: null }), 25000);</script>
 <script type="module" src="dados.js?v=2611e"></script>
-<script src="canva.js?v=1" defer></script>
+<script src="canva.js?v=2" defer></script>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
@@ -3346,6 +3429,17 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
       return { nome: S.name, lista: l.map((e) => ({ t: e.t, org: e.org, prazo: edWhen(e), onde: e.uf === 'BR' ? 'Nacional' : [e.cid, e.uf].filter(Boolean).join(', '), areas: (e.ar || []).join(', '), url: e.url })) }; }
     return { nome: S.name, obj: v('p-obj'), pub: v('p-pub'), dif: v('p-dif'), freq: v('p-freq'), strat: ($('pStrat') ? $('pStrat').innerText : ''), posts: (S.plan && S.plan.posts) || [] };
   }
+  const cvOpts = (box) => { const c = (n) => { const r = box.querySelector(`input[name$="-${n}"]:checked`); return r ? r.value : ''; }; return { fmt: c('fmt'), estilo: c('est') }; };
+  /* miniaturas esquemáticas do formato (aproximadas; o arquivo real é montado com os seus dados) */
+  const TH = { 'kit|a4x2': ['p', 'p'], 'kit|a4x1': ['p'], 'kit|slides': ['l', 'l', 'l'], 'orc|a4': ['p'], 'orc|simples': ['p'], 'orc|slides': ['l', 'l'], 'ed|slides': ['l', 'l', 'l'], 'ed|doc': ['p', 'p'], 'plan|slides': ['l', 'l', 'l'], 'plan|a4': ['p'] };
+  function cvThumbs() { document.querySelectorAll('[data-th]').forEach((el) => { if (el.dataset.ok) return; el.dataset.ok = 1; el.innerHTML = (TH[el.dataset.th] || []).map((t) => `<i class="pg ${t}"><b></b><b></b><b></b></i>`).join(''); }); }
+  const CV_EST = { limpo: 'Limpo: cores neutras, pronto para você aplicar o seu estilo no Canva.', cr1e: 'CR1E: verde, preto e as fontes da marca já aplicados.' };
+  function cvPrev(box) { const k = box.dataset.canva, o = cvOpts(box), pv = box.querySelector('[data-cvprev]'), th = TH[k + '|' + o.fmt] || [], d = cvDados(k);
+    const tt = k === 'kit' ? (d.nome || 'Seu nome') : k === 'orc' ? (d.proj || 'Projeto') : k === 'ed' ? 'Projeto para edital' : 'Calendário de postagens';
+    pv.dataset.est = o.estilo; pv.innerHTML = th.map((t, i) => `<div class="pv ${t}"><span class="pv-k">${i + 1}/${th.length}</span><b class="pv-t">${i ? '' : esc(tt)}</b><i></i><i></i><i></i></div>`).join('');
+    box.querySelector('[data-estn]').textContent = CV_EST[o.estilo]; }
+  document.addEventListener('change', (e) => { const box = e.target.closest('[data-canva]'); if (box) { cvPrev(box); const a = box.querySelector('[data-cv-a]'); if (!a.querySelector('[data-cv-btn]')) a.innerHTML = `<button class="btn k" type="button" data-cv-btn>${CV_BTN}</button>`; } });
+  document.addEventListener('toggle', (e) => { const d = e.target; if (d.classList && d.classList.contains('jn-cv') && d.open) { cvThumbs(); cvPrev(d); } }, true);
   const CV_BTN = 'Levar para o Canva <span class="arr" aria-hidden="true">→</span>';
   document.addEventListener('click', async (e) => {
     const sh = e.target.closest('[data-cv-share]'); if (sh) { const f = CVF[sh.dataset.cvShare]; if (f && navigator.share) { try { await navigator.share({ files: [f], title: f.name }); } catch (er) {} } return; }
@@ -3354,7 +3448,7 @@ html[data-theme="dark"] .po-box .po-f{background:#30302A}
     if (!window.CR1E_CANVA) { toast('O gerador ainda está carregando. Tente de novo em instantes.'); return; }
     b.disabled = true; b.innerHTML = 'Preparando o arquivo…';
     try {
-      const f = await window.CR1E_CANVA.gerar(k, cvDados(k)), file = new File([f.blob], f.name, { type: f.type }), url = URL.createObjectURL(f.blob); CVF[k] = file;
+      const f = await window.CR1E_CANVA.gerar(k, cvDados(k), cvOpts(box)), file = new File([f.blob], f.name, { type: f.type }), url = URL.createObjectURL(f.blob); CVF[k] = file;
       const share = !!(navigator.canShare && navigator.canShare({ files: [file] }));
       txt.innerHTML = `<b>Arquivo pronto: ${esc(f.name)}</b><br>No Canva, toque em <b>Criar design › Importar arquivo</b> e escolha esse arquivo. Ele abre editável, com textos e fotos no lugar.`;
       a.innerHTML = `<a class="btn k" href="${url}" download="${esc(f.name)}">Baixar o arquivo ↓</a>${share ? `<button class="btn ln" type="button" data-cv-share="${k}">Enviar para o app do Canva</button>` : ''}<a class="btn ln" href="https://www.canva.com/" target="_blank" rel="noopener">Abrir o Canva ↗</a><button class="lnk" type="button" data-cv-again="${k}">Gerar de novo</button>`;
