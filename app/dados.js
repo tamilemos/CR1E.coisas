@@ -152,9 +152,9 @@ const A = {
     const u = auth.currentUser; if (!u || !otherUid) return () => {};
     return onSnapshot(doc(db, 'chats', A.chatId(u.uid, otherUid)), (s) => cb(s.exists() ? (s.data().msgs || []) : []), () => cb([]));
   },
-  async sendChat(S, otherUid, t) {
-    const u = auth.currentUser, id = A.chatId(u.uid, otherUid);
-    await setDoc(doc(db, 'chats', id), { members: [u.uid, otherUid].sort(), msgs: arrayUnion({ uid: u.uid, name: S.name, t, at: Date.now() }) }, { merge: true });
+  async sendChat(S, otherUid, t, img) {
+    const u = auth.currentUser, id = A.chatId(u.uid, otherUid), m = { uid: u.uid, name: S.name, t: t || '', at: Date.now() }; if (img) m.img = img;
+    await setDoc(doc(db, 'chats', id), { members: [u.uid, otherUid].sort(), msgs: arrayUnion(m) }, { merge: true });
   },
 };
 window.CR1E_AUTH = A;
