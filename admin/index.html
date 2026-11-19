@@ -125,6 +125,7 @@ tr:hover td{background:var(--grafite)}
 
   <div class="tabs" role="tablist">
     <button class="pill" type="button" data-tab="geral" aria-pressed="true">Visão geral</button>
+    <button class="pill" type="button" data-tab="acessos" aria-pressed="false">Acessos</button>
     <button class="pill" type="button" data-tab="pessoas" aria-pressed="false">Cadastros</button>
     <button class="pill" type="button" data-tab="lugares" aria-pressed="false">Lugares</button>
     <button class="pill" type="button" data-tab="mural" aria-pressed="false">Mural</button>
@@ -144,6 +145,12 @@ tr:hover td{background:var(--grafite)}
   </section>
   <section id="t-lugares" hidden>
     <div class="g2"><div class="card"><h2 class="h">Por estado</h2><div id="cUF"></div></div><div class="card"><h2 class="h">Por cidade</h2><div id="cCity"></div></div></div>
+  </section>
+  <section id="t-acessos" hidden>
+    <p class="mut" style="margin:0 0 10px">Todas as contas criadas com e-mail, inclusive quem ainda não terminou o cadastro. O último acesso e o número de acessos começaram a ser registrados em 19/11/2026.</p>
+    <div class="kpis" id="axK" style="margin-bottom:12px"></div>
+    <div class="bar"><input id="axQ" type="search" placeholder="Buscar por nome ou e-mail"><select id="axF"><option value="">Todas as contas</option><option value="ok">Cadastro concluído</option><option value="no">Cadastro não concluído</option><option value="7">Acessaram nos últimos 7 dias</option></select><button class="pill" type="button" id="axCsv">Baixar planilha (CSV)</button></div>
+    <div class="scroll"><table><thead><tr><th>Pessoa</th><th>E-mail</th><th>Perfil</th><th>Local</th><th>Conta criada</th><th>Último acesso</th><th>Acessos</th><th>Aparelho</th></tr></thead><tbody id="axT"></tbody></table></div>
   </section>
   <section id="t-pessoas" hidden>
     <div class="bar"><input id="q" type="search" placeholder="Buscar por nome, área ou e-mail"><select id="fr"><option value="">Todos</option><option value="artista">Artistas</option><option value="empresa">Empresas</option></select><button class="pill" type="button" id="csv">Baixar CSV</button></div>
@@ -205,7 +212,7 @@ onAuthStateChanged(auth, async (u) => {
   $('gate').hidden = true; $('app').hidden = false; $('me').textContent = u.email;
   const err = (name) => () => { if (name) document.getElementById(name).innerHTML = '<div class="empty">Sem permissão de leitura. Confira as regras do Firestore.</div>'; };
   unsub.push(onSnapshot(query(collection(db, 'profiles'), limit(1000)), (s) => { D.profiles = s.docs.map((d) => ({ uid: d.id, ...d.data() })); draw(); }, err()));
-  unsub.push(onSnapshot(query(collection(db, 'private'), limit(1000)), (s) => { D.priv = Object.fromEntries(s.docs.map((d) => [d.id, d.data()])); draw(); }, () => {}));
+  unsub.push(onSnapshot(query(collection(db, 'private'), limit(2000)), (s) => { D.priv = Object.fromEntries(s.docs.map((d) => [d.id, d.data()])); D.privErr = false; draw(); }, () => { D.privErr = true; draw(); }));
   unsub.push(onSnapshot(query(collection(db, 'sugestoes'), limit(1000)), (s) => { D.sug = s.docs.map((d) => ({ id: d.id, ...d.data() })); draw(); }, () => {}));
   unsub.push(onSnapshot(query(collection(db, 'posts'), orderBy('ts', 'desc'), limit(300)), (s) => { D.posts = s.docs.map((d) => ({ id: d.id, ...d.data() })); draw(); }, err('ml')));
   unsub.push(onSnapshot(query(collection(db, 'forum'), orderBy('ts', 'desc'), limit(300)), (s) => { D.forum = s.docs.map((d) => ({ id: d.id, ...d.data() })); draw(); }, err('fl')));
@@ -240,6 +247,7 @@ const comp = (p) => { const c = [!!p.avatar, (p.sk || []).length > 0 || (p.want 
 const hbars = (l, max) => l.length ? l.map(([t, n]) => `<div class="hb"><span title="${esc(t)}">${esc(t)}</span><span class="tr"><i style="width:${max ? 100 * n / max : 0}%"></i></span><b>${n}</b></div>`).join('') : '<div class="empty">Sem dados ainda.</div>';
 const count = (arr) => { const m = {}; arr.forEach((x) => { if (x) m[x] = (m[x] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
 function draw() {
+  try { axDraw(); } catch (er) { console.warn(er); }
   const P = D.profiles, now = Date.now(), wk = now - 7 * 864e5, mo = now - 30 * 864e5, ids = new Set(P.map((p) => p.uid));
   const edges = P.flatMap((p) => fol(p).filter((u) => ids.has(u) && u !== p.uid).map((u) => [p.uid, u])), eset = new Set(edges.map((e) => e.join('>'))), mutual = edges.filter(([a, b]) => a < b && eset.has(b + '>' + a)).length;
   const chats = new Set(P.flatMap((p) => (p.chats || []).map((c) => [p.uid, c].sort().join('|')))).size;
@@ -270,7 +278,21 @@ function draw() {
   $('fl').innerHTML = D.forum.length ? D.forum.map((t) => `<div class="item"><div class="row"><div><span class="tag">${esc(t.cat)}</span> <b>${esc(t.t)}</b> <span class="mut">· ${dt(t.ts)} · ${(t.msgs || []).length} mensagens</span></div><button class="del" type="button" data-del="forum/${t.id}">Apagar</button></div>${(t.msgs || []).map((m) => `<p><b>${esc(m.name)}</b>: ${esc(m.t)}</p>`).join('')}</div>`).join('') : '<div class="empty">Nenhum tópico no fórum ainda.</div>';
 }
 $('q').addEventListener('input', draw); $('fr').addEventListener('change', draw);
-document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['geral', 'pessoas', 'lugares', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
+/* acessos: contas do login (coleção private) cruzadas com os perfis */
+const axRows = () => { const pm = Object.fromEntries(D.profiles.map((p) => [p.uid, p])), q = $('axQ').value.trim().toLowerCase(), f = $('axF').value, wk = Date.now() - 7 * 864e5;
+  return Object.entries(D.priv || {}).map(([uid, v]) => { const p = pm[uid] || {}; return { uid, name: p.name || v.name || '', email: v.email || '', role: p.role || '', ok: !!pm[uid], local: [p.cid, p.uf].filter(Boolean).join(', '), created: ms(v.created) || ms(p.created), last: Math.max(ms(v.lastAt), ms(v.appAt)), visits: v.visits || 0, dev: v.dev || '' }; })
+    .filter((r) => (!q || (r.name + ' ' + r.email).toLowerCase().includes(q)) && (!f || (f === 'ok' ? r.ok : f === 'no' ? !r.ok : r.last > wk)))
+    .sort((a, b) => (b.last || b.created) - (a.last || a.created)); };
+function axDraw() { const all = Object.keys(D.priv || {}).length, R = axRows(), wk = Date.now() - 7 * 864e5, pm = new Set(D.profiles.map((p) => p.uid));
+  const allR = Object.entries(D.priv || {}); $('axK').innerHTML = [[all, 'contas'], [allR.filter(([u]) => pm.has(u)).length, 'cadastro concluído'], [allR.filter(([u]) => !pm.has(u)).length, 'não concluíram'], [allR.filter(([, v]) => Math.max(ms(v.lastAt), ms(v.appAt)) > wk).length, 'acessaram em 7 dias']].map(([n, l]) => `<div class="kpi"><b>${n}</b><span>${l}</span></div>`).join('');
+  const d = (t) => t ? dt({ toDate: () => new Date(t) }) : '—';
+  $('axT').innerHTML = D.privErr ? '<tr><td colspan="8"><div class="empty">Sem permissão para ler as contas. Nas regras do Firestore, a coleção private precisa permitir leitura para tami@cr1e.co.</div></td></tr>'
+    : R.length ? R.map((r) => `<tr><td><b>${esc(r.name || '(sem nome)')}</b></td><td>${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '—'}</td><td>${r.ok ? esc(r.role === 'empresa' ? 'Empresa' : 'Artista') : '<span class="mut">cadastro não concluído</span>'}</td><td>${esc(r.local || '—')}</td><td>${d(r.created)}</td><td>${d(r.last)}</td><td>${r.visits || '—'}</td><td>${esc(r.dev || '—')}</td></tr>`).join('') : '<tr><td colspan="8"><div class="empty">Nenhuma conta com esse filtro.</div></td></tr>'; }
+$('axQ').addEventListener('input', axDraw); $('axF').addEventListener('change', axDraw);
+$('axCsv').addEventListener('click', () => { const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"', d = (t) => t ? new Date(t).toLocaleString('pt-BR') : '';
+  const lines = [['nome', 'email', 'perfil', 'local', 'conta_criada', 'ultimo_acesso', 'acessos', 'aparelho'].join(','), ...axRows().map((r) => [r.name, r.email, r.ok ? (r.role || 'artista') : 'cadastro não concluído', r.local, d(r.created), d(r.last), r.visits, r.dev].map(q).join(','))];
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv' })); a.download = 'cr1e-collab-acessos.csv'; a.click(); });
+document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ['geral', 'acessos', 'pessoas', 'lugares', 'mural', 'forum'].forEach((t) => { $('t-' + t).hidden = t !== b.dataset.tab; }); }));
 document.addEventListener('click', async (e) => {
   const b = e.target.closest('[data-del]'); if (!b) return;
   if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Confirmar'; setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Apagar'; }, 4000); return; }

@@ -3,7 +3,7 @@
    As chaves abaixo são públicas por natureza: quem protege os dados são as regras do Firestore e a checagem de login no script do Drive. */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-import { getFirestore, doc, getDoc, setDoc, collection, addDoc, onSnapshot, query, orderBy, limit, updateDoc, deleteDoc, arrayUnion, arrayRemove, serverTimestamp, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, onSnapshot, query, orderBy, limit, updateDoc, deleteDoc, arrayUnion, arrayRemove, serverTimestamp, where, getDocs, increment } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 const FIREBASE_CONFIG = window.CR1E_CONFIG?.firebase;
 const DRIVE_URL = window.CR1E_CONFIG?.drive || '';
@@ -62,7 +62,7 @@ const A = {
     const c = await createUserWithEmailAndPassword(auth, email, pass);
     await updateProfile(c.user, { displayName: name }).catch(() => {});
     await sendEmailVerification(c.user, { url: location.origin + '/app/' }).catch(() => {});
-    await setDoc(doc(db, 'private', c.user.uid), { email, name, created: serverTimestamp() }).catch(() => {});
+    await setDoc(doc(db, 'private', c.user.uid), { email, name, created: serverTimestamp() }, { merge: true }).catch(() => {});
     return c.user;
   },
   async signIn(email, pass) {
@@ -158,6 +158,14 @@ const A = {
   },
 };
 window.CR1E_AUTH = A;
+
+/* registro de acesso (para o painel de administração): e-mail, último acesso, quantas vezes e tipo de aparelho */
+let touched = '';
+onAuthStateChanged(auth, (u) => {
+  if (!u || touched === u.uid) return; touched = u.uid;
+  const dev = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'celular' : 'computador';
+  setDoc(doc(db, 'private', u.uid), { email: u.email || '', lastAt: serverTimestamp(), visits: increment(1), dev }, { merge: true }).catch(() => {});
+});
 
 /* sessão: quem já entrou antes volta direto para o app */
 let first = true;
