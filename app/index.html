@@ -3322,6 +3322,8 @@ html[data-theme="dark"] .chat-h{background:#30302A;--preto:#F4F3EE;color:#F4F3EE
   const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wIO = !noMotion && 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; wIO.unobserve(e.target); try { e.target.animate([{ fontStretch: '62%', letterSpacing: '-.01em' }, { fontStretch: '125%', letterSpacing: '-.035em' }], { duration: 1000, easing: 'cubic-bezier(.34,1.45,.5,1)' }); } catch (er) {} }), { threshold: 0.6 }) : null;
   function titlesIn() { if (!wIO) return; setTimeout(() => document.querySelectorAll('.view:not([hidden]) .t .w').forEach((el) => { wIO.unobserve(el); wIO.observe(el); }), 140); }
+  /* faixas animadas do rodapé: só na primeira vez que o app abre neste aparelho */
+  const BANDS_OFF = (() => { try { const k = 'cr1e-faixas-vistas'; if (localStorage.getItem(k)) return true; localStorage.setItem(k, '1'); } catch (er) {} return false; })();
   function route() {
     const emp = S.role === 'empresa'; let h = location.hash.slice(1); const gst = S.guest && !!document.getElementById('gate');
     if (gst) { const open = h === 'feed' || h === 'materia' || h === 'sobre'; if (!open && gate.classList.contains('go')) toast('Entre ou crie a sua conta para desbloquear esta área.'); gate.classList.toggle('go', open); document.documentElement.classList.toggle('lock', !open); }
@@ -3336,7 +3338,7 @@ html[data-theme="dark"] .chat-h{background:#30302A;--preto:#F4F3EE;color:#F4F3EE
     if (v === 'sobre') { $('sbGo').hidden = !S.guest; $('sbBack').href = S.guest ? '#inicio' : '#config'; }
     if (v === 'avisos') document.querySelectorAll('[data-view="avisos"] .nbox').forEach((d) => { d.open = false; });
     { const tk = document.querySelector('.tick'); if (tk) tk.hidden = !(v === 'inicio' || v === 'config'); }
-    $('crows').hidden = v === 'mensagens'; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
+    $('crows').hidden = v === 'mensagens' || BANDS_OFF; if (v === 'config') { try { cfgDraw(); } catch (er) {} } titlesIn();
     scrollTo(0, 0); if (S.lastV === 'post' && v === S.poFrom && S.poY) { S.poRs = { v, y: S.poY, t: Date.now() }; S.poY = 0; } if (S.poRs && S.poRs.v === v && Date.now() - S.poRs.t < 900) { const y = S.poRs.y; requestAnimationFrame(() => scrollTo(0, y)); setTimeout(() => scrollTo(0, y), 140); } S.lastV = v;
   }
   addEventListener('hashchange', route);
